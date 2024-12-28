@@ -1,41 +1,29 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=10 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
 [ext_resource type="Texture2D" uid="uid://dcgreuvqjri3s" path="res://my_assets/pippa.png" id="3_gj0wt"]
 [ext_resource type="Script" path="res://combat_manager.gd" id="4_0nq41"]
-[ext_resource type="Script" path="res://character.gd" id="5_fulhe"]
+[ext_resource type="Script" path="res://character_definition.gd" id="6_ipiyh"]
 [ext_resource type="Script" path="res://ability.gd" id="6_itoo6"]
+[ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/pippa.tres" id="7_51m7k"]
 
-[sub_resource type="Resource" id="Resource_e4hnw"]
+[sub_resource type="Resource" id="Resource_mf4xk"]
 script = ExtResource("6_itoo6")
-ability_name = "punch"
+ability_name = "Fists"
 ability_type = 0
 physical_damage = 1
 toxic_damage = 0
 cooldown = 1.0
+ability_range = 1
+pierce = 0
 
-[sub_resource type="Resource" id="Resource_yb3ml"]
-script = ExtResource("5_fulhe")
-character_name = "pippa"
-max_hp = 10
-cur_hp = 0
-abilities = Array[ExtResource("6_itoo6")]([SubResource("Resource_e4hnw")])
-
-[sub_resource type="Resource" id="Resource_tl1rf"]
-script = ExtResource("6_itoo6")
-ability_name = "punch"
-ability_type = 0
-physical_damage = 1
-toxic_damage = 0
-cooldown = 1.0
-
-[sub_resource type="Resource" id="Resource_wea1c"]
-script = ExtResource("5_fulhe")
-character_name = "pippa"
-max_hp = 9
-cur_hp = 0
-abilities = Array[ExtResource("6_itoo6")]([SubResource("Resource_tl1rf")])
+[sub_resource type="Resource" id="Resource_5ool0"]
+script = ExtResource("6_ipiyh")
+character_name = "Pippa"
+character_sprite = ExtResource("3_gj0wt")
+max_hp = 4
+abilities = Array[ExtResource("6_itoo6")]([SubResource("Resource_mf4xk")])
 
 [node name="Main" type="Node"]
 
@@ -73,10 +61,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Team/HBoxContainer"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_gj0wt")
-
 [node name="EnemyTeam" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 7
@@ -96,12 +80,9 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemyTeam/HBoxContainer"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_gj0wt")
-flip_h = true
-
-[node name="CombatManager" type="Node" parent="."]
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("player_team_container", "enemy_team_container")]
 script = ExtResource("4_0nq41")
-player_team = Array[ExtResource("5_fulhe")]([SubResource("Resource_yb3ml")])
-enemy_team = Array[ExtResource("5_fulhe")]([SubResource("Resource_wea1c")])
+initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
+initial_enemy_team = Array[ExtResource("6_ipiyh")]([SubResource("Resource_5ool0")])
+player_team_container = NodePath("../Team/HBoxContainer")
+enemy_team_container = NodePath("../EnemyTeam/HBoxContainer")

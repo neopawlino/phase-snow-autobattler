@@ -12,3 +12,5 @@ enum AbilityType {
 @export var physical_damage : int
 @export var toxic_damage : int
 @export var cooldown : float
+@export var ability_range : int
+@export var pierce : int

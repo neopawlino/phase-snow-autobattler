@@ -1,61 +1,54 @@
 extends Node
 
-@export var player_team : Array[Character]
-@export var enemy_team : Array[Character]
+@export var initial_player_team : Array[CharacterDefinition]
+@export var initial_enemy_team : Array[CharacterDefinition]
 
-var timers : Array[Timer]
+var player_team : Array[Character]
+var enemy_team : Array[Character]
+
+@export var player_team_container : BoxContainer
+@export var enemy_team_container : BoxContainer
 
 
 func _ready():
+	GlobalSignals.ability_applied.connect(apply_ability)
+	load_initial_teams()
 	start_combat()
 
 
+func load_initial_teams():
+	for char_def in initial_player_team:
+		var char := Character.new()
+		char.load_from_character_definition(char_def)
+		char.team = Character.Team.PLAYER
+		player_team.append(char)
+		player_team_container.add_child(char)
+	for char_def in initial_enemy_team:
+		var char := Character.new()
+		char.load_from_character_definition(char_def)
+		char.team = Character.Team.ENEMY
+		enemy_team.append(char)
+		enemy_team_container.add_child(char)
+
+
 func start_combat():
+	# TODO transition from shop to combat phase by saving character states
 	for char in player_team:
-		char.cur_hp = char.max_hp
-		for ability : Ability in char.abilities:
-			var timer := Timer.new()
-			var ability_char := char
-			var cur_ability := ability
-			timer.wait_time = ability.cooldown
-			timer.timeout.connect(func():
-				var char_index := player_team.find(ability_char)
-				# TODO some logic for range stuff and finding targets
-				var targets : Array[Character] = []
-				if not enemy_team.is_empty():
-					targets.append(enemy_team[0])
-				apply_ability(cur_ability, targets)
-			)
-			timer.set_meta(&"char", char)
-			timers.append(timer)
+		char.make_timers()
 	for char in enemy_team:
-		char.cur_hp = char.max_hp
-		for ability : Ability in char.abilities:
-			var timer := Timer.new()
-			var ability_char := char
-			var cur_ability := ability
-			timer.wait_time = ability.cooldown
-			timer.timeout.connect(func():
-				var char_index := enemy_team.find(ability_char)
-				# TODO some logic for range stuff and finding targets
-				var targets : Array[Character] = []
-				if not player_team.is_empty():
-					targets.append(player_team[0])
-				apply_ability(cur_ability, targets)
-			)
-			timer.set_meta(&"char", char)
-			timers.append(timer)
-	for timer in timers:
-		timer.autostart = true
-		self.add_child(timer)
+		char.make_timers()
 
 
-func apply_ability(ability: Ability, targets: Array[Character]):
+func apply_ability(ability: Ability, target_team: int, targets: Array[int]):
 	print(targets)
-	for char in targets:
-		char.cur_hp -= ability.physical_damage
-		if char.cur_hp <= 0:
-			kill_character(char)
+	var team := enemy_team if target_team == Character.Team.ENEMY else player_team
+	for target_index in targets:
+		if target_index >= len(team):
+			continue
+		var target_char := team[target_index]
+		target_char.hp -= ability.physical_damage
+		if target_char.hp <= 0:
+			kill_character(target_char)
 
 
 func kill_character(char: Character):
@@ -70,8 +63,4 @@ func kill_character(char: Character):
 	else:
 		push_error("Couldn't find character to kill")
 		assert(false)
-	var char_timers = timers.filter(func(t: Timer): return t.get_meta(&"char") == char)
-	for timer in char_timers:
-		var timer_idx := timers.find(timer)
-		timers[timer_idx].queue_free()
-		timers.remove_at(timer_idx)
+	char.queue_free()
