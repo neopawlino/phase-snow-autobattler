@@ -1,7 +1,6 @@
 extends Node
 
-@export var initial_player_team : Array[CharacterDefinition]
-@export var initial_enemy_team : Array[CharacterDefinition]
+class_name CombatManager
 
 @export var character_scene : PackedScene
 
@@ -11,35 +10,59 @@ var enemy_team : Array[Character]
 @export var player_team_container : BoxContainer
 @export var enemy_team_container : BoxContainer
 
+@export var continue_button : Button
+
+@export var team_manager : TeamManager
+@export var shop_manager : ShopManager
+
+
+var in_combat : bool = false
+
 
 func _ready():
 	GlobalSignals.ability_applied.connect(apply_ability)
-	load_initial_teams()
-	start_combat()
+	hide_teams()
 
 
-func load_initial_teams():
-	for char_def in initial_player_team:
-		var char : Character = character_scene.instantiate()
-		char.load_from_character_definition(char_def)
-		char.team = Character.Team.PLAYER
-		player_team.append(char)
-		player_team_container.add_child(char)
-	for char_def in initial_enemy_team:
-		var char : Character = character_scene.instantiate()
-		char.load_from_character_definition(char_def)
-		char.team = Character.Team.ENEMY
-		char.scale.x = -0.5
-		enemy_team.append(char)
-		enemy_team_container.add_child(char)
+func _physics_process(_delta):
+	if in_combat:
+		check_combat_over()
+
+
+func hide_teams():
+	player_team_container.visible = false
+	enemy_team_container.visible = false
+
+
+func show_teams():
+	player_team_container.visible = true
+	enemy_team_container.visible = true
 
 
 func start_combat():
-	# TODO transition from shop to combat phase by saving character states
+	clear_teams()
+	for char in team_manager.player_team:
+		player_team.append(char.my_duplicate())
+	for char in team_manager.enemy_team:
+		enemy_team.append(char.my_duplicate())
+	team_manager.hide_teams()
+	show_teams()
 	for char in player_team:
+		player_team_container.add_child(char)
 		char.make_timers()
 	for char in enemy_team:
+		enemy_team_container.add_child(char)
 		char.make_timers()
+	in_combat = true
+
+
+func clear_teams():
+	for char in player_team:
+		char.queue_free()
+	for char in enemy_team:
+		char.queue_free()
+	player_team.clear()
+	enemy_team.clear()
 
 
 func apply_ability(ability: Ability, target_team: int, targets: Array[int]):
@@ -66,7 +89,6 @@ func kill_character(char: Character):
 		push_error("Couldn't find character to kill")
 		assert(false)
 	char.queue_free()
-	check_combat_over()
 
 
 func check_combat_over():
@@ -74,11 +96,22 @@ func check_combat_over():
 	var enemy_win := player_team.is_empty()
 	if not player_win and not enemy_win:
 		return
-	if player_win:
+	if player_win and enemy_win:
+		print("Draw")
+	elif player_win:
 		print("Player Wins")
-	if enemy_win:
+	elif enemy_win:
 		print("Enemy Wins")
 	for char in player_team:
 		char.stop_timers()
 	for char in enemy_team:
 		char.stop_timers()
+	in_combat = false
+	continue_button.show()
+
+
+func _on_button_pressed() -> void:
+	hide_teams()
+	continue_button.hide()
+	team_manager.show_teams()
+	shop_manager.show_shop()

@@ -1,30 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=9 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
-[ext_resource type="Texture2D" uid="uid://dcgreuvqjri3s" path="res://my_assets/pippa.png" id="3_gj0wt"]
 [ext_resource type="Script" path="res://combat_manager.gd" id="4_0nq41"]
 [ext_resource type="Script" path="res://character_definition.gd" id="6_ipiyh"]
-[ext_resource type="Script" path="res://ability.gd" id="6_itoo6"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/pippa.tres" id="7_51m7k"]
 [ext_resource type="PackedScene" uid="uid://ds7ogdyno53ug" path="res://character.tscn" id="8_8q0n8"]
-
-[sub_resource type="Resource" id="Resource_mf4xk"]
-script = ExtResource("6_itoo6")
-ability_name = "Fists"
-ability_type = 0
-physical_damage = 1
-toxic_damage = 0
-cooldown = 1.0
-ability_range = 1
-pierce = 0
-
-[sub_resource type="Resource" id="Resource_5ool0"]
-script = ExtResource("6_ipiyh")
-character_name = "Pippa"
-character_sprite = ExtResource("3_gj0wt")
-max_hp = 4
-abilities = Array[ExtResource("6_itoo6")]([SubResource("Resource_mf4xk")])
+[ext_resource type="Script" path="res://shop_manager.gd" id="8_efko3"]
+[ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
 
 [node name="Main" type="Node"]
 
@@ -43,7 +26,16 @@ grow_vertical = 2
 [node name="Pause" parent="." instance=ExtResource("1_q1rts")]
 visible = false
 
-[node name="Team" type="Control" parent="."]
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("player_team_container", "enemy_team_container", "continue_button", "team_manager", "shop_manager")]
+script = ExtResource("4_0nq41")
+character_scene = ExtResource("8_8q0n8")
+player_team_container = NodePath("Team/HBoxContainer")
+enemy_team_container = NodePath("EnemyTeam/HBoxContainer")
+continue_button = NodePath("Button")
+team_manager = NodePath("../TeamManager")
+shop_manager = NodePath("../ShopManager")
+
+[node name="Team" type="Control" parent="CombatManager"]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -57,12 +49,12 @@ offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Team"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CombatManager/Team"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="EnemyTeam" type="Control" parent="."]
+[node name="EnemyTeam" type="Control" parent="CombatManager"]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -76,15 +68,105 @@ offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EnemyTeam"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CombatManager/EnemyTeam"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("player_team_container", "enemy_team_container")]
-script = ExtResource("4_0nq41")
+[node name="Button" type="Button" parent="CombatManager"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+
+[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("player_team_container", "enemy_team_container")]
+script = ExtResource("9_o3mlt")
 initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
-initial_enemy_team = Array[ExtResource("6_ipiyh")]([SubResource("Resource_5ool0")])
+initial_enemy_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
 character_scene = ExtResource("8_8q0n8")
-player_team_container = NodePath("../Team/HBoxContainer")
-enemy_team_container = NodePath("../EnemyTeam/HBoxContainer")
+player_team_container = NodePath("Team/HBoxContainer")
+enemy_team_container = NodePath("EnemyTeam/HBoxContainer")
+
+[node name="Team" type="Control" parent="TeamManager"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -298.0
+offset_top = -85.0
+offset_right = -258.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TeamManager/Team"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EnemyTeam" type="Control" parent="TeamManager"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 224.0
+offset_top = -85.0
+offset_right = 264.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TeamManager/EnemyTeam"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager")]
+script = ExtResource("8_efko3")
+shop_ui = NodePath("Control")
+combat_manager = NodePath("../CombatManager")
+
+[node name="Control" type="Control" parent="ShopManager"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="ShopManager/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -15.5
+offset_right = 55.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Combat"
+
+[connection signal="pressed" from="CombatManager/Button" to="CombatManager" method="_on_button_pressed"]
+[connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]

@@ -3,9 +3,14 @@ extends Sprite2D
 class_name Character
 
 @export var anim_player : AnimationPlayer
-@export var anim_delay : float = 0.3
+@export var anim_delay : float = 0.37
 
 @export var damage_numbers_origin : Node2D
+
+enum Team {
+	PLAYER,
+	ENEMY,
+}
 
 var max_hp : int
 var hp : int
@@ -14,11 +19,18 @@ var abilities: Array[Ability]
 
 # character's position (index) in the team
 var pos : int
-enum Team {
-	PLAYER,
-	ENEMY,
-}
 var team : int
+
+# WE NEED TO USE THIS TO DUPLICATE RESOURCES IN AN ARRAY
+# https://github.com/godotengine/godot/issues/74918
+func my_duplicate() -> Character:
+	var new_char := self.duplicate()
+	new_char.abilities = self.abilities.duplicate(true)
+	new_char.max_hp = self.max_hp
+	new_char.hp = self.max_hp
+	new_char.pos = self.pos
+	new_char.team = self.team
+	return new_char
 
 
 func load_from_character_definition(char_def : CharacterDefinition):
@@ -36,7 +48,7 @@ func make_timers():
 		timer.wait_time = ability.cooldown
 		timer.timeout.connect(func():
 			anim_player.play(&"attack")
-			await get_tree().create_timer(anim_delay)
+			await get_tree().create_timer(anim_delay).timeout
 			if self.is_inside_tree():
 				cast_ability(cur_ability)
 		)
