@@ -44,6 +44,12 @@ func make_timers():
 		self.add_child(timer)
 
 
+func stop_timers():
+	for node in self.get_children():
+		if node is Timer:
+			node.stop()
+
+
 func cast_ability(ability: Ability):
 	var target_team : int = Team.ENEMY if team == Team.PLAYER else Team.PLAYER
 	var targets : Array[int] = []

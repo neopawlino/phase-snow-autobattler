@@ -43,7 +43,6 @@ func start_combat():
 
 
 func apply_ability(ability: Ability, target_team: int, targets: Array[int]):
-	print(targets)
 	var team := enemy_team if target_team == Character.Team.ENEMY else player_team
 	for target_index in targets:
 		if target_index >= len(team):
@@ -67,3 +66,19 @@ func kill_character(char: Character):
 		push_error("Couldn't find character to kill")
 		assert(false)
 	char.queue_free()
+	check_combat_over()
+
+
+func check_combat_over():
+	var player_win := enemy_team.is_empty()
+	var enemy_win := player_team.is_empty()
+	if not player_win and not enemy_win:
+		return
+	if player_win:
+		print("Player Wins")
+	if enemy_win:
+		print("Enemy Wins")
+	for char in player_team:
+		char.stop_timers()
+	for char in enemy_team:
+		char.stop_timers()
