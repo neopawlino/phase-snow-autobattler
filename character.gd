@@ -1,7 +1,8 @@
-extends Sprite2D
+extends Control
 
 class_name Character
 
+@export var sprite : Sprite2D
 @export var anim_player : AnimationPlayer
 @export var anim_delay : float = 0.37
 
@@ -37,7 +38,7 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.max_hp = char_def.max_hp
 	self.hp = max_hp
 	self.abilities = char_def.abilities.duplicate(true)
-	self.texture = char_def.character_sprite
+	sprite.texture = char_def.character_sprite
 
 
 func make_timers():

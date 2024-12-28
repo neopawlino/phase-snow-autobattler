@@ -5,6 +5,8 @@ class_name TeamManager
 @export var initial_player_team : Array[CharacterDefinition]
 @export var initial_enemy_team : Array[CharacterDefinition]
 
+@export var test_character : CharacterDefinition
+
 @export var character_scene : PackedScene
 
 var player_team : Array[Character]
@@ -23,15 +25,26 @@ func load_initial_teams():
 		var char : Character = character_scene.instantiate()
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.PLAYER
+		char.pos = len(player_team)
 		player_team.append(char)
 		player_team_container.add_child(char)
 	for char_def in initial_enemy_team:
 		var char : Character = character_scene.instantiate()
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.ENEMY
-		char.scale.x = -0.5
+		char.sprite.scale.x = -0.5
+		char.pos = len(enemy_team)
 		enemy_team.append(char)
 		enemy_team_container.add_child(char)
+
+
+func add_test_character():
+	var char : Character = character_scene.instantiate()
+	char.load_from_character_definition(test_character)
+	char.team = Character.Team.PLAYER
+	char.pos = len(player_team)
+	player_team.append(char)
+	player_team_container.add_child(char)
 
 
 func hide_teams():
