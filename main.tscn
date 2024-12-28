@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=11 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://character_definition.gd" id="6_ipiyh"]
 [ext_resource type="Script" path="res://ability.gd" id="6_itoo6"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/pippa.tres" id="7_51m7k"]
+[ext_resource type="PackedScene" uid="uid://ds7ogdyno53ug" path="res://character.tscn" id="8_8q0n8"]
 
 [sub_resource type="Resource" id="Resource_mf4xk"]
 script = ExtResource("6_itoo6")
@@ -84,5 +85,6 @@ offset_bottom = 40.0
 script = ExtResource("4_0nq41")
 initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
 initial_enemy_team = Array[ExtResource("6_ipiyh")]([SubResource("Resource_5ool0")])
+character_scene = ExtResource("8_8q0n8")
 player_team_container = NodePath("../Team/HBoxContainer")
 enemy_team_container = NodePath("../EnemyTeam/HBoxContainer")

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://game_state.gd"
 GlobalSignals="*res://global_signals.gd"
+DamageNumbers="*res://damage_numbers.gd"
 
 [display]
 

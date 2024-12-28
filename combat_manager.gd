@@ -3,6 +3,8 @@ extends Node
 @export var initial_player_team : Array[CharacterDefinition]
 @export var initial_enemy_team : Array[CharacterDefinition]
 
+@export var character_scene : PackedScene
+
 var player_team : Array[Character]
 var enemy_team : Array[Character]
 
@@ -18,15 +20,16 @@ func _ready():
 
 func load_initial_teams():
 	for char_def in initial_player_team:
-		var char := Character.new()
+		var char : Character = character_scene.instantiate()
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.PLAYER
 		player_team.append(char)
 		player_team_container.add_child(char)
 	for char_def in initial_enemy_team:
-		var char := Character.new()
+		var char : Character = character_scene.instantiate()
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.ENEMY
+		char.scale.x = -0.5
 		enemy_team.append(char)
 		enemy_team_container.add_child(char)
 
@@ -46,7 +49,7 @@ func apply_ability(ability: Ability, target_team: int, targets: Array[int]):
 		if target_index >= len(team):
 			continue
 		var target_char := team[target_index]
-		target_char.hp -= ability.physical_damage
+		target_char.receive_ability(ability)
 		if target_char.hp <= 0:
 			kill_character(target_char)
 
