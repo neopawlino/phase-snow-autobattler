@@ -81,9 +81,13 @@ func kill_character(char: Character):
 	var enemy_index := enemy_team.find(char)
 	if player_index >= 0:
 		player_team.remove_at(player_index)
+		for i in range(player_index, len(player_team)):
+			player_team[i].pos -= 1
 		print("Player dead")
 	elif enemy_index >= 0:
 		enemy_team.remove_at(enemy_index)
+		for i in range(enemy_index, len(enemy_team)):
+			enemy_team[i].pos -= 1
 		print("Enemy dead")
 	else:
 		push_error("Couldn't find character to kill")

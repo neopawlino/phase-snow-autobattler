@@ -96,7 +96,7 @@ text = "Continue"
 [node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("player_team_container", "enemy_team_container")]
 script = ExtResource("9_o3mlt")
 initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
-initial_enemy_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
+initial_enemy_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k"), ExtResource("7_51m7k")])
 test_character = ExtResource("7_51m7k")
 character_scene = ExtResource("8_8q0n8")
 player_team_container = NodePath("Team/HBoxContainer")
