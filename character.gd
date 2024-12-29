@@ -48,6 +48,9 @@ func make_timers():
 		var cur_ability := ability
 		timer.wait_time = ability.cooldown
 		timer.timeout.connect(func():
+			var effective_range := cur_ability.ability_range - self.pos
+			if effective_range <= 0:
+				return
 			anim_player.play(&"attack")
 			await get_tree().create_timer(anim_delay).timeout
 			if self.is_inside_tree():
