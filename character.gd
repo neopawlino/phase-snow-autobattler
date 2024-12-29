@@ -4,7 +4,7 @@ class_name Character
 
 @export var sprite : Sprite2D
 @export var anim_player : AnimationPlayer
-@export var anim_delay : float = 0.37
+@export var anim_delay : float = 0.2
 
 @export var damage_numbers_origin : Node2D
 
