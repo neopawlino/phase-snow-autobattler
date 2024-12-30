@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 class_name Character
 
@@ -6,8 +6,21 @@ class_name Character
 @export var anim_player : AnimationPlayer
 @export var anim_delay : float = 0.2
 
+@export var base_scale : float = 0.25
+@export var mouseover_scale : float = 1.1
+
 @export var damage_numbers_origin : Node2D
 
+# draggable stuff
+var draggable : bool = false
+var mouseover : bool = false
+var drag_offset : Vector2
+var drag_initial_pos : Vector2
+
+# TODO set this in TeamManager
+var cur_character_slot : CharacterSlot
+
+# gameplay stuff
 enum Team {
 	PLAYER,
 	ENEMY,
@@ -21,6 +34,26 @@ var abilities: Array[Ability]
 # character's position (index) in the team
 var pos : int
 var team : int
+
+func _process(delta):
+	if mouseover and draggable:
+		if Input.is_action_just_pressed("click"):
+			drag_initial_pos = global_position
+			drag_offset = get_global_mouse_position() - global_position
+			GameState.is_dragging = true
+			GameState.drag_original_char_slot = cur_character_slot
+		if Input.is_action_pressed("click"):
+			global_position = get_global_mouse_position() - drag_offset
+		elif Input.is_action_just_released("click"):
+			GameState.is_dragging = false
+			# TODO get the dragged over character slot, otherwise return to original character slot
+			var tween = get_tree().create_tween()
+			if GameState.drag_end_char_slot:
+				# TODO call a TeamManager function to update this character's slot
+				tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+			elif GameState.drag_original_char_slot:
+				tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+
 
 # WE NEED TO USE THIS TO DUPLICATE RESOURCES IN AN ARRAY
 # https://github.com/godotengine/godot/issues/74918
@@ -84,3 +117,17 @@ func receive_ability(ability: Ability):
 	if ability.physical_damage > 0:
 		self.hp -= ability.physical_damage
 		DamageNumbers.display_number(ability.physical_damage, damage_numbers_origin.global_position)
+
+
+func _on_area_2d_mouse_entered() -> void:
+	if not GameState.is_dragging:
+		mouseover = true
+		if draggable:
+			sprite.scale = Vector2.ONE * base_scale * mouseover_scale
+
+
+func _on_area_2d_mouse_exited() -> void:
+	if not GameState.is_dragging:
+		mouseover = false
+		if draggable:
+			sprite.scale = Vector2.ONE * base_scale

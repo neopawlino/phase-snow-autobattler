@@ -7,13 +7,13 @@ class_name CombatManager
 var player_team : Array[Character]
 var enemy_team : Array[Character]
 
-@export var player_team_container : BoxContainer
-@export var enemy_team_container : BoxContainer
+@export var character_container : Control
 
 @export var continue_button : Button
 
 @export var team_manager : TeamManager
 @export var shop_manager : ShopManager
+@export var slots : CharacterSlots
 
 
 var in_combat : bool = false
@@ -30,13 +30,11 @@ func _physics_process(_delta):
 
 
 func hide_teams():
-	player_team_container.visible = false
-	enemy_team_container.visible = false
+	character_container.visible = false
 
 
 func show_teams():
-	player_team_container.visible = true
-	enemy_team_container.visible = true
+	character_container.visible = true
 
 
 func start_combat():
@@ -47,13 +45,26 @@ func start_combat():
 		enemy_team.append(char.my_duplicate())
 	team_manager.hide_teams()
 	show_teams()
+	var i := 0
 	for char in player_team:
-		player_team_container.add_child(char)
+		character_container.add_child(char)
+		set_char_pos(char, i)
 		char.make_timers()
+		i += 1
+	i = 0
 	for char in enemy_team:
-		enemy_team_container.add_child(char)
+		character_container.add_child(char)
+		set_char_pos(char, i)
 		char.make_timers()
+		i += 1
 	in_combat = true
+
+
+func set_char_pos(char : Character, i : int):
+	assert(i < slots.max_slots)
+	char.pos = i
+	var slot := slots.player_team[i] if char.team == Character.Team.PLAYER else slots.enemy_team[i]
+	char.global_position = slot.global_position
 
 
 func clear_teams():
@@ -82,12 +93,16 @@ func kill_character(char: Character):
 	if player_index >= 0:
 		player_team.remove_at(player_index)
 		for i in range(player_index, len(player_team)):
-			player_team[i].pos -= 1
+			var char_to_move := player_team[i]
+			var new_pos := char_to_move.pos - 1
+			set_char_pos(char_to_move, new_pos)
 		print("Player dead")
 	elif enemy_index >= 0:
 		enemy_team.remove_at(enemy_index)
 		for i in range(enemy_index, len(enemy_team)):
-			enemy_team[i].pos -= 1
+			var char_to_move := enemy_team[i]
+			var new_pos := char_to_move.pos - 1
+			set_char_pos(char_to_move, new_pos)
 		print("Enemy dead")
 	else:
 		push_error("Couldn't find character to kill")

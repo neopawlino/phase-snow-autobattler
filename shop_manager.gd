@@ -13,4 +13,3 @@ func show_shop():
 func _on_button_pressed() -> void:
 	shop_ui.hide()
 	combat_manager.start_combat()
-	

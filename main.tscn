@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=13 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -7,9 +7,11 @@
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/pippa.tres" id="7_51m7k"]
 [ext_resource type="PackedScene" uid="uid://ds7ogdyno53ug" path="res://character.tscn" id="8_8q0n8"]
 [ext_resource type="Script" path="res://shop_manager.gd" id="8_efko3"]
+[ext_resource type="PackedScene" uid="uid://d3kuf2p6gvovk" path="res://character_slot.tscn" id="8_qt820"]
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="9_rh2jt"]
 [ext_resource type="Script" path="res://debug_menu.gd" id="10_2a5ip"]
+[ext_resource type="Script" path="res://character_slots.gd" id="12_y3foa"]
 
 [node name="Main" type="Node"]
 
@@ -28,55 +30,14 @@ grow_vertical = 2
 [node name="Pause" parent="." instance=ExtResource("1_q1rts")]
 visible = false
 
-[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("player_team_container", "enemy_team_container", "continue_button", "team_manager", "shop_manager")]
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "continue_button", "team_manager", "shop_manager", "slots")]
 script = ExtResource("4_0nq41")
 character_scene = ExtResource("8_8q0n8")
-player_team_container = NodePath("Team/HBoxContainer")
-enemy_team_container = NodePath("EnemyTeam/HBoxContainer")
+character_container = NodePath("CharacterContainer")
 continue_button = NodePath("Button")
 team_manager = NodePath("../TeamManager")
 shop_manager = NodePath("../ShopManager")
-
-[node name="Team" type="Control" parent="CombatManager"]
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -298.0
-offset_top = -85.0
-offset_right = -258.0
-offset_bottom = -45.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CombatManager/Team"]
-layout_direction = 3
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 100
-
-[node name="EnemyTeam" type="Control" parent="CombatManager"]
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 224.0
-offset_top = -85.0
-offset_right = 264.0
-offset_bottom = -45.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CombatManager/EnemyTeam"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 100
+slots = NodePath("../CharacterSlots")
 
 [node name="Button" type="Button" parent="CombatManager"]
 visible = false
@@ -93,55 +54,27 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Continue"
 
-[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("player_team_container", "enemy_team_container")]
+[node name="CharacterContainer" type="Control" parent="CombatManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
 script = ExtResource("9_o3mlt")
 initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
 initial_enemy_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k"), ExtResource("7_51m7k")])
 test_character = ExtResource("7_51m7k")
 character_scene = ExtResource("8_8q0n8")
-player_team_container = NodePath("Team/HBoxContainer")
-enemy_team_container = NodePath("EnemyTeam/HBoxContainer")
+character_slot_scene = ExtResource("8_qt820")
+character_container = NodePath("CharacterContainer")
+slots = NodePath("../CharacterSlots")
 
-[node name="Team" type="Control" parent="TeamManager"]
+[node name="CharacterContainer" type="Control" parent="TeamManager"]
 layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -298.0
-offset_top = -85.0
-offset_right = -258.0
-offset_bottom = -45.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TeamManager/Team"]
-layout_direction = 3
-layout_mode = 0
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/separation = 100
-
-[node name="EnemyTeam" type="Control" parent="TeamManager"]
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 224.0
-offset_top = -85.0
-offset_right = 264.0
-offset_bottom = -45.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TeamManager/EnemyTeam"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 100
 
 [node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager")]
 script = ExtResource("8_efko3")
@@ -202,6 +135,65 @@ alignment = 2
 [node name="Button" type="Button" parent="DebugMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Add Test Character"
+
+[node name="CharacterSlots" type="Node" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
+script = ExtResource("12_y3foa")
+player_slot_container = NodePath("Team/HBoxContainer")
+enemy_slot_container = NodePath("EnemyTeam/HBoxContainer")
+character_slot_scene = ExtResource("8_qt820")
+
+[node name="Team" type="Control" parent="CharacterSlots"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/Team"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -80.0
+offset_right = 600.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 88
+alignment = 1
+
+[node name="EnemyTeam" type="Control" parent="CharacterSlots"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/EnemyTeam"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -80.0
+offset_right = 600.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 88
+alignment = 1
 
 [connection signal="pressed" from="CombatManager/Button" to="CombatManager" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]

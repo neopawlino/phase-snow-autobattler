@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=7 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Texture2D" uid="uid://dcgreuvqjri3s" path="res://my_assets/pippa.png" id="1_g6hx1"]
 [ext_resource type="Script" path="res://character.gd" id="2_1four"]
@@ -40,24 +40,32 @@ _data = {
 "attack": SubResource("Animation_754d8")
 }
 
-[node name="Control" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "damage_numbers_origin")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_1four")
-sprite = NodePath("Character")
-anim_player = NodePath("Character/AnimationPlayer")
-damage_numbers_origin = NodePath("Character/DamageNumbersOrigin")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkgfp"]
+size = Vector2(100, 150)
 
-[node name="Character" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "damage_numbers_origin")]
+script = ExtResource("2_1four")
+sprite = NodePath("Sprite2D")
+anim_player = NodePath("Sprite2D/AnimationPlayer")
+base_scale = 0.2
+damage_numbers_origin = NodePath("Sprite2D/DamageNumbersOrigin")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_g6hx1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Character"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
 "": SubResource("AnimationLibrary_bty2k")
 }
 
-[node name="DamageNumbersOrigin" type="Node2D" parent="Character"]
+[node name="DamageNumbersOrigin" type="Node2D" parent="Sprite2D"]
 position = Vector2(0, -200)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_nkgfp")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
