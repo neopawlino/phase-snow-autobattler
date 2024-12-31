@@ -34,3 +34,8 @@ func set_char_pos(char : Character, i : int):
 	char.pos = i
 	var slot := player_team[i] if char.team == Character.Team.PLAYER else enemy_team[i]
 	char.global_position = slot.global_position
+
+
+func is_slot_empty(team : Character.Team, i : int) -> bool:
+	var slot := player_team[i] if team == Character.Team.PLAYER else enemy_team[i]
+	return slot.character == null

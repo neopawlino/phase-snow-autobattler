@@ -39,6 +39,7 @@ func load_initial_teams():
 		player_team.append(char)
 
 		char.global_position = slot.global_position
+		slot.character = char
 		self.character_container.add_child(char)
 		i += 1
 	i = 0
@@ -54,6 +55,7 @@ func load_initial_teams():
 		enemy_team.append(char)
 
 		char.global_position = slot.global_position
+		slot.character = char
 		self.character_container.add_child(char)
 		i += 1
 
@@ -68,6 +70,7 @@ func add_test_character():
 	char.team = Character.Team.PLAYER
 	char.pos = len(player_team)
 	char.cur_character_slot = slot
+	slot.character = char
 	char.draggable = true
 	player_team.append(char)
 

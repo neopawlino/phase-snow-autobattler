@@ -36,23 +36,28 @@ var team : int
 
 func _process(delta):
 	if mouseover and draggable:
-		if Input.is_action_just_pressed("click"):
+		if Input.is_action_just_pressed("click") and not GameState.is_dragging:
 			drag_initial_pos = global_position
 			drag_offset = get_global_mouse_position() - global_position
 			GameState.is_dragging = true
+			GameState.drag_char = self
 			GameState.drag_original_char_slot = cur_character_slot
-		if Input.is_action_pressed("click"):
+		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click"):
 			GameState.is_dragging = false
+			GameState.drag_char = null
 			var tween = get_tree().create_tween()
-			if GameState.drag_end_char_slot:
-				# TODO check if slot is empty to prevent overlapping characters
+			if GameState.drag_end_char_slot and not GameState.drag_end_char_slot.character:
+				# dragging to an empty slot
 				# TODO update order in TeamManager
 				GameState.slots.set_char_pos(self, GameState.drag_end_char_slot.slot_index)
 				self.cur_character_slot = GameState.drag_end_char_slot
+				GameState.drag_original_char_slot.character = null
+				GameState.drag_end_char_slot.character = self
 				tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 			elif GameState.drag_original_char_slot:
+				# dragging nowhere in particular, or letting go after swapping
 				tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 
 

@@ -3,6 +3,7 @@ extends Control
 class_name CharacterSlot
 
 var slot_index : int
+var character : Character
 
 @export var body : StaticBody2D
 
