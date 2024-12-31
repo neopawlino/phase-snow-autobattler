@@ -138,7 +138,6 @@ text = "Add Test Character"
 
 [node name="CharacterSlots" type="Node" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
 script = ExtResource("12_y3foa")
-max_slots = null
 player_slot_container = NodePath("Team/HBoxContainer")
 enemy_slot_container = NodePath("EnemyTeam/HBoxContainer")
 character_slot_scene = ExtResource("8_qt820")

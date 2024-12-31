@@ -52,6 +52,7 @@ func _process(delta: float):
 			GameState.is_dragging = true
 			GameState.drag_char = self
 			GameState.drag_original_char_slot = cur_character_slot
+			GameState.drag_can_swap = true # disable if from shop
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click"):

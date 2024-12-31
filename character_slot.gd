@@ -15,9 +15,11 @@ func set_pickable(pickable : bool):
 func _on_static_body_2d_mouse_entered() -> void:
 	if GameState.is_dragging:
 		GameState.drag_end_char_slot = self
-		if GameState.drag_can_swap:
-			# TODO logic for swapping characters (call a function on GameState.slots)
-			pass
+		if GameState.drag_can_swap and self.character:
+			# future: differentiate merge and swap (different hitbox?)
+			GameState.slots.reorder_char(GameState.drag_char, slot_index)
+			GameState.drag_original_char_slot = self
+			GameState.drag_end_char_slot = null
 
 
 func _on_static_body_2d_mouse_exited() -> void:
