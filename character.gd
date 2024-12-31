@@ -69,6 +69,7 @@ func _process(delta: float):
 			elif GameState.drag_original_char_slot:
 				# dragging nowhere in particular, or letting go after swapping
 				tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+				GameState.drag_original_char_slot = null
 
 
 func update_visual_position(delta: float):
