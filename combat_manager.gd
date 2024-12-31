@@ -40,10 +40,12 @@ func show_teams():
 
 func start_combat():
 	clear_teams()
-	for char in team_manager.player_team:
-		player_team.append(char.my_duplicate())
-	for char in team_manager.enemy_team:
-		enemy_team.append(char.my_duplicate())
+	for slot in slots.player_team:
+		if slot.character:
+			player_team.append(slot.character.my_duplicate())
+	for slot in slots.enemy_team:
+		if slot.character:
+			enemy_team.append(slot.character.my_duplicate())
 	team_manager.hide_teams()
 	show_teams()
 	var i := 0

@@ -12,9 +12,6 @@ class_name TeamManager
 @export var character_scene : PackedScene
 @export var character_slot_scene : PackedScene
 
-var player_team : Array[Character]
-var enemy_team : Array[Character]
-
 # just used for visibility, not positioning
 @export var character_container : Control
 
@@ -33,10 +30,9 @@ func load_initial_teams():
 		var slot := slots.player_team[i]
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.PLAYER
-		char.pos = len(player_team)
+		char.pos = slot.slot_index
 		char.cur_character_slot = slot
 		char.draggable = true
-		player_team.append(char)
 
 		char.global_position = slot.global_position
 		slot.character = char
@@ -49,10 +45,9 @@ func load_initial_teams():
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.ENEMY
 		char.sprite.scale.x = char.base_scale * -1
-		char.pos = len(enemy_team)
+		char.pos = slot.slot_index
 		char.cur_character_slot = slot
 		char.draggable = false
-		enemy_team.append(char)
 
 		char.global_position = slot.global_position
 		slot.character = char
@@ -62,17 +57,20 @@ func load_initial_teams():
 
 func add_test_character():
 	var char : Character = character_scene.instantiate()
-	var slot_i := len(self.player_team)
-	if slot_i >= max_char_slots:
+	var slot_i := 0
+	var slot : CharacterSlot = null
+	for cur_slot in slots.player_team:
+		if not cur_slot.character:
+			slot = cur_slot
+			break
+	if not slot:
 		return
-	var slot := slots.player_team[slot_i]
 	char.load_from_character_definition(test_character)
 	char.team = Character.Team.PLAYER
-	char.pos = len(player_team)
+	char.pos = slot.slot_index
 	char.cur_character_slot = slot
 	slot.character = char
 	char.draggable = true
-	player_team.append(char)
 
 	char.global_position = slot.global_position
 	self.character_container.add_child(char)
