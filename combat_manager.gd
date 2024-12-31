@@ -47,24 +47,19 @@ func start_combat():
 	show_teams()
 	var i := 0
 	for char in player_team:
+		char.draggable = false
 		character_container.add_child(char)
-		set_char_pos(char, i)
+		slots.set_char_pos(char, i)
 		char.make_timers()
 		i += 1
 	i = 0
 	for char in enemy_team:
+		char.draggable = false
 		character_container.add_child(char)
-		set_char_pos(char, i)
+		slots.set_char_pos(char, i)
 		char.make_timers()
 		i += 1
 	in_combat = true
-
-
-func set_char_pos(char : Character, i : int):
-	assert(i < slots.max_slots)
-	char.pos = i
-	var slot := slots.player_team[i] if char.team == Character.Team.PLAYER else slots.enemy_team[i]
-	char.global_position = slot.global_position
 
 
 func clear_teams():
@@ -95,14 +90,14 @@ func kill_character(char: Character):
 		for i in range(player_index, len(player_team)):
 			var char_to_move := player_team[i]
 			var new_pos := char_to_move.pos - 1
-			set_char_pos(char_to_move, new_pos)
+			slots.set_char_pos(char_to_move, new_pos)
 		print("Player dead")
 	elif enemy_index >= 0:
 		enemy_team.remove_at(enemy_index)
 		for i in range(enemy_index, len(enemy_team)):
 			var char_to_move := enemy_team[i]
 			var new_pos := char_to_move.pos - 1
-			set_char_pos(char_to_move, new_pos)
+			slots.set_char_pos(char_to_move, new_pos)
 		print("Enemy dead")
 	else:
 		push_error("Couldn't find character to kill")

@@ -1,6 +1,6 @@
 extends Node
 
-var team_manager : TeamManager
+var slots : CharacterSlots
 
 var is_dragging : bool = false
 # we can swap when we're dragging a character already in our team, but not from the shop

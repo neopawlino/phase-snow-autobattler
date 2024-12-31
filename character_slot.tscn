@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7enmb"]
 size = Vector2(200, 200)
 
-[node name="CharacterSlot" type="Control"]
+[node name="CharacterSlot" type="Control" node_paths=PackedStringArray("body")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,9 +14,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x2ymd")
+body = NodePath("StaticBody2D")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 scale = Vector2(0.4, 0.4)
+input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_7enmb")

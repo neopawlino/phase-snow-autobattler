@@ -17,7 +17,6 @@ var mouseover : bool = false
 var drag_offset : Vector2
 var drag_initial_pos : Vector2
 
-# TODO set this in TeamManager
 var cur_character_slot : CharacterSlot
 
 # gameplay stuff
@@ -46,10 +45,12 @@ func _process(delta):
 			global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click"):
 			GameState.is_dragging = false
-			# TODO get the dragged over character slot, otherwise return to original character slot
 			var tween = get_tree().create_tween()
 			if GameState.drag_end_char_slot:
-				# TODO call a TeamManager function to update this character's slot
+				# TODO check if slot is empty to prevent overlapping characters
+				# TODO update order in TeamManager
+				GameState.slots.set_char_pos(self, GameState.drag_end_char_slot.slot_index)
+				self.cur_character_slot = GameState.drag_end_char_slot
 				tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 			elif GameState.drag_original_char_slot:
 				tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)

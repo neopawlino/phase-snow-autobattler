@@ -22,8 +22,8 @@ var enemy_team : Array[Character]
 
 
 func _ready():
+	# load after slots are set up
 	call_deferred(&"load_initial_teams")
-	GameState.team_manager = self
 
 
 func load_initial_teams():
