@@ -51,6 +51,7 @@ base_scale = 0.2
 damage_numbers_origin = NodePath("Sprite2D/DamageNumbersOrigin")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+top_level = true
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_g6hx1")
 

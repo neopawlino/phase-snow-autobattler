@@ -9,6 +9,8 @@ class_name Character
 @export var base_scale : float = 0.25
 @export var mouseover_scale : float = 1.1
 
+@export var visual_follow_speed : float = 30
+
 @export var damage_numbers_origin : Node2D
 
 # draggable stuff
@@ -18,6 +20,8 @@ var drag_offset : Vector2
 var drag_initial_pos : Vector2
 
 var cur_character_slot : CharacterSlot
+
+var visual_position : Vector2
 
 # gameplay stuff
 enum Team {
@@ -34,7 +38,13 @@ var abilities: Array[Ability]
 var pos : int
 var team : int
 
-func _process(delta):
+
+func _ready() -> void:
+	visual_position = self.global_position
+
+
+func _process(delta: float):
+	update_visual_position(delta)
 	if mouseover and draggable:
 		if Input.is_action_just_pressed("click") and not GameState.is_dragging:
 			drag_initial_pos = global_position
@@ -59,6 +69,12 @@ func _process(delta):
 			elif GameState.drag_original_char_slot:
 				# dragging nowhere in particular, or letting go after swapping
 				tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+
+
+func update_visual_position(delta: float):
+	var offset := global_position - visual_position
+	visual_position += offset * visual_follow_speed * delta
+	sprite.global_position = visual_position
 
 
 # WE NEED TO USE THIS TO DUPLICATE RESOURCES IN AN ARRAY
