@@ -28,6 +28,14 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")
+
+[godot_resource_groups]
+
+auto_rebuild=true
+
 [input]
 
 pause={
