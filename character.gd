@@ -13,6 +13,12 @@ class_name Character
 
 @export var damage_numbers_origin : Node2D
 
+@export var price_label : Label
+@export var price : Node2D
+
+@export var price_color : Color = Color.WHITE
+@export var price_unaffordable_color : Color = Color.INDIAN_RED
+
 # draggable stuff
 var draggable : bool = false
 var mouseover : bool = false
@@ -41,16 +47,21 @@ var team : int
 
 var from_shop : bool:
 	set(value):
-		# TODO show/hide price tag
-		# TODO add price tag
 		from_shop = value
-var buy_price : int
+		set_price_visible(value)
+var buy_price : int:
+	set(value):
+		buy_price = value
+		set_price_text(value)
+		update_price_color(GameState.player_money)
 
 var last_tween : Tween
 
 
 func _ready() -> void:
 	visual_position = self.global_position
+	GameState.player_money_changed.connect(update_price_color)
+	set_price_visible(from_shop)
 
 
 func _process(delta: float):
@@ -73,13 +84,14 @@ func _process(delta: float):
 			last_tween = get_tree().create_tween()
 			if GameState.drag_end_char_slot and not GameState.drag_end_char_slot.character:
 				# dragging to an empty slot
-				if from_shop:
-					# TODO buy the character, subtract money
-					from_shop = false
 				GameState.slots.set_char_pos(self, GameState.drag_end_char_slot.slot_index)
 				self.cur_character_slot = GameState.drag_end_char_slot
 				GameState.drag_original_char_slot.character = null
 				GameState.drag_end_char_slot.character = self
+				if from_shop:
+					# buy the character
+					GameState.player_money -= buy_price
+					from_shop = false
 				last_tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 			elif GameState.drag_original_char_slot:
 				# dragging nowhere in particular, or letting go after swapping
@@ -155,6 +167,27 @@ func receive_ability(ability: Ability):
 	if ability.physical_damage > 0:
 		self.hp -= ability.physical_damage
 		DamageNumbers.display_number(ability.physical_damage, damage_numbers_origin.global_position)
+
+
+func set_price_visible(is_visible: bool):
+	price.visible = is_visible
+
+
+func set_price_text(value: int):
+	price_label.text = str(value)
+
+
+func can_afford(money: int) -> bool:
+	return buy_price <= money
+
+
+func update_price_color(money: int):
+	set_price_color(can_afford(money))
+
+
+func set_price_color(affordable : bool):
+	var color := price_color if affordable else price_unaffordable_color
+	price_label.add_theme_color_override(&"font_color", color)
 
 
 func _on_area_2d_mouse_entered() -> void:

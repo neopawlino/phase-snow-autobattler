@@ -42,13 +42,21 @@ func _ready() -> void:
 		shop_slots.append(slot)
 		shop_slot_container.add_child(slot)
 	GameState.player_money_changed.connect(update_reroll_button_enabled)
+	GameState.player_money_changed.connect(update_shop_draggable)
 	GameState.player_money = starting_money
 	reset_reroll_price()
 	call_deferred("reroll_characters")
 
 
-func update_reroll_button_enabled(money: int):
+func update_reroll_button_enabled(money: int = GameState.player_money):
 	reroll_button.disabled = money < reroll_price
+
+
+func update_shop_draggable(money: int = GameState.player_money):
+	for slot in shop_slots:
+		if not slot.character:
+			continue
+		slot.character.draggable = slot.character.can_afford(money)
 
 
 func reset_reroll_price():
@@ -65,6 +73,7 @@ func reroll_characters(increase_reroll_price : bool = false):
 		var char := character_scene.instantiate()
 		char.load_from_character_definition(all_character_definitions.pick_random())
 		add_character_to_slot(char, slot, buy_price)
+	update_shop_draggable()
 
 
 func add_character_to_slot(char: Character, slot : CharacterSlot, buy_price : int):
