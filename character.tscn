@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ds7ogdyno53ug"]
 
-[ext_resource type="Texture2D" uid="uid://dcgreuvqjri3s" path="res://my_assets/pippa.png" id="1_g6hx1"]
+[ext_resource type="Texture2D" uid="uid://cwfjui7ry6uk8" path="res://my_assets/SAPC.png" id="2_0n0o5"]
 [ext_resource type="Script" path="res://character.gd" id="2_1four"]
 
 [sub_resource type="Animation" id="Animation_68k1c"]
@@ -53,7 +53,7 @@ damage_numbers_origin = NodePath("Sprite2D/DamageNumbersOrigin")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 top_level = true
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_g6hx1")
+texture = ExtResource("2_0n0o5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterDefinition" load_steps=5 format=3 uid="uid://baiyj43bn6b1k"]
 
 [ext_resource type="Script" path="res://ability.gd" id="1_m6ft6"]
-[ext_resource type="Texture2D" uid="uid://dcgreuvqjri3s" path="res://my_assets/pippa.png" id="2_5pxum"]
+[ext_resource type="Texture2D" uid="uid://cwfjui7ry6uk8" path="res://my_assets/SAPC.png" id="2_rw4qg"]
 [ext_resource type="Script" path="res://character_definition.gd" id="3_c6ttd"]
 
 [sub_resource type="Resource" id="Resource_mf4xk"]
@@ -17,6 +17,6 @@ pierce = 0
 [resource]
 script = ExtResource("3_c6ttd")
 character_name = "Pippa"
-character_sprite = ExtResource("2_5pxum")
+character_sprite = ExtResource("2_rw4qg")
 max_hp = 5
 abilities = Array[ExtResource("1_m6ft6")]([SubResource("Resource_mf4xk")])
