@@ -41,7 +41,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkgfp"]
-size = Vector2(100, 150)
+size = Vector2(80, 120)
 
 [node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "damage_numbers_origin")]
 script = ExtResource("2_1four")

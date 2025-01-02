@@ -134,3 +134,5 @@ func _on_button_pressed() -> void:
 	continue_button.hide()
 	team_manager.show_teams()
 	shop_manager.show_shop()
+	shop_manager.reroll_characters()
+	shop_manager.reset_reroll_price()

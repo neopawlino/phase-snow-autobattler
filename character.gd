@@ -39,6 +39,16 @@ var pos : int
 var team : int
 
 
+var from_shop : bool:
+	set(value):
+		# TODO show/hide price tag
+		# TODO add price tag
+		from_shop = value
+var buy_price : int
+
+var last_tween : Tween
+
+
 func _ready() -> void:
 	visual_position = self.global_position
 
@@ -52,23 +62,28 @@ func _process(delta: float):
 			GameState.is_dragging = true
 			GameState.drag_char = self
 			GameState.drag_original_char_slot = cur_character_slot
-			GameState.drag_can_swap = true # disable if from shop
+			GameState.drag_can_swap = not from_shop
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click"):
 			GameState.is_dragging = false
 			GameState.drag_char = null
-			var tween = get_tree().create_tween()
+			if last_tween:
+				last_tween.kill()
+			last_tween = get_tree().create_tween()
 			if GameState.drag_end_char_slot and not GameState.drag_end_char_slot.character:
 				# dragging to an empty slot
+				if from_shop:
+					# TODO buy the character, subtract money
+					from_shop = false
 				GameState.slots.set_char_pos(self, GameState.drag_end_char_slot.slot_index)
 				self.cur_character_slot = GameState.drag_end_char_slot
 				GameState.drag_original_char_slot.character = null
 				GameState.drag_end_char_slot.character = self
-				tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+				last_tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 			elif GameState.drag_original_char_slot:
 				# dragging nowhere in particular, or letting go after swapping
-				tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+				last_tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 				GameState.drag_original_char_slot = null
 
 

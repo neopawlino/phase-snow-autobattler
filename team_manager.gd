@@ -9,8 +9,8 @@ class_name TeamManager
 
 @export var test_character : CharacterDefinition
 
-@export var character_scene : PackedScene
-@export var character_slot_scene : PackedScene
+var character_scene : PackedScene = preload("res://character.tscn")
+var character_slot_scene : PackedScene = preload("res://character_slot.tscn")
 
 # just used for visibility, not positioning
 @export var character_container : Control

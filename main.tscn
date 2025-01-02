@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=12 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/pippa.tres" id="7_51m7k"]
 [ext_resource type="PackedScene" uid="uid://ds7ogdyno53ug" path="res://character.tscn" id="8_8q0n8"]
 [ext_resource type="Script" path="res://shop_manager.gd" id="8_efko3"]
-[ext_resource type="PackedScene" uid="uid://d3kuf2p6gvovk" path="res://character_slot.tscn" id="8_qt820"]
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="9_rh2jt"]
 [ext_resource type="Script" path="res://debug_menu.gd" id="10_2a5ip"]
@@ -60,27 +59,27 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
-script = ExtResource("9_o3mlt")
-initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
-initial_enemy_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k"), ExtResource("7_51m7k")])
-test_character = ExtResource("7_51m7k")
-character_scene = ExtResource("8_8q0n8")
-character_slot_scene = ExtResource("8_qt820")
-character_container = NodePath("CharacterContainer")
-slots = NodePath("../CharacterSlots")
-
-[node name="CharacterContainer" type="Control" parent="TeamManager"]
+[node name="CharacterContainer" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager", "shop_slot_container")]
+[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
+script = ExtResource("9_o3mlt")
+initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
+initial_enemy_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k"), ExtResource("7_51m7k")])
+test_character = ExtResource("7_51m7k")
+character_container = NodePath("../CharacterContainer")
+slots = NodePath("../CharacterSlots")
+
+[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager", "shop_slot_container", "character_container", "reroll_button")]
 script = ExtResource("8_efko3")
 shop_ui = NodePath("Control")
 combat_manager = NodePath("../CombatManager")
 shop_slot_container = NodePath("ShopSlots/HBoxContainer")
+character_container = NodePath("../CharacterContainer")
+reroll_button = NodePath("Control/RerollButton")
 
 [node name="Control" type="Control" parent="ShopManager"]
 layout_mode = 3
@@ -111,6 +110,13 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start Combat"
 
+[node name="RerollButton" type="Button" parent="ShopManager/Control"]
+layout_mode = 2
+offset_left = -600.0
+offset_right = -400.0
+offset_bottom = 31.0
+text = "Reroll: $x"
+
 [node name="ShopSlots" type="Control" parent="ShopManager"]
 layout_mode = 3
 anchors_preset = 7
@@ -126,12 +132,13 @@ grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ShopManager/ShopSlots"]
 custom_minimum_size = Vector2(200, 0)
-layout_mode = 0
-offset_left = -500.0
+layout_mode = 2
+offset_left = -400.0
 offset_top = -200.0
-offset_right = -300.0
+offset_right = -200.0
 offset_bottom = -200.0
 theme_override_constants/separation = 88
+alignment = 1
 
 [node name="DebugMenu" type="PanelContainer" parent="." node_paths=PackedStringArray("team_manager")]
 anchors_preset = 6
@@ -219,4 +226,5 @@ alignment = 1
 
 [connection signal="pressed" from="CombatManager/Button" to="CombatManager" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]
+[connection signal="pressed" from="ShopManager/Control/RerollButton" to="ShopManager" method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="DebugMenu/MarginContainer/VBoxContainer/Button" to="DebugMenu" method="_on_button_pressed"]

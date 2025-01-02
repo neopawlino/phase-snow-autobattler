@@ -26,6 +26,7 @@ shape = SubResource("RectangleShape2D_7enmb")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 z_index = -1
 texture = ExtResource("1_h7ac4")
+offset = Vector2(0, 30)
 
 [connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
 [connection signal="mouse_exited" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_exited"]
