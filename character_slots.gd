@@ -10,7 +10,7 @@ var enemy_team : Array[CharacterSlot]
 @export var player_slot_container : BoxContainer
 @export var enemy_slot_container : BoxContainer
 
-@export var character_slot_scene : PackedScene
+var character_slot_scene : PackedScene = preload("res://character_slot.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

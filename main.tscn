@@ -76,10 +76,11 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager")]
+[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager", "shop_slot_container")]
 script = ExtResource("8_efko3")
 shop_ui = NodePath("Control")
 combat_manager = NodePath("../CombatManager")
+shop_slot_container = NodePath("ShopSlots/HBoxContainer")
 
 [node name="Control" type="Control" parent="ShopManager"]
 layout_mode = 3
@@ -109,6 +110,28 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start Combat"
+
+[node name="ShopSlots" type="Control" parent="ShopManager"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopManager/ShopSlots"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = -500.0
+offset_top = -200.0
+offset_right = -300.0
+offset_bottom = -200.0
+theme_override_constants/separation = 88
 
 [node name="DebugMenu" type="PanelContainer" parent="." node_paths=PackedStringArray("team_manager")]
 anchors_preset = 6
@@ -140,7 +163,6 @@ text = "Add Test Character"
 script = ExtResource("12_y3foa")
 player_slot_container = NodePath("Team/HBoxContainer")
 enemy_slot_container = NodePath("EnemyTeam/HBoxContainer")
-character_slot_scene = ExtResource("8_qt820")
 
 [node name="Team" type="Control" parent="CharacterSlots"]
 layout_mode = 3
