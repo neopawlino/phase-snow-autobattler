@@ -61,7 +61,6 @@ func _process(delta: float):
 			var tween = get_tree().create_tween()
 			if GameState.drag_end_char_slot and not GameState.drag_end_char_slot.character:
 				# dragging to an empty slot
-				# TODO update order in TeamManager
 				GameState.slots.set_char_pos(self, GameState.drag_end_char_slot.slot_index)
 				self.cur_character_slot = GameState.drag_end_char_slot
 				GameState.drag_original_char_slot.character = null
