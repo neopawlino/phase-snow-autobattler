@@ -16,6 +16,7 @@ var reroll_price : int:
 	set(value):
 		reroll_price = value
 		reroll_button.text = "Reroll: $%s" % reroll_price
+		update_reroll_button_enabled(GameState.player_money)
 
 @export var shop_slot_container : BoxContainer
 
@@ -25,6 +26,8 @@ var character_slot_scene : PackedScene = preload("res://character_slot.tscn")
 @export var character_container : Control
 
 @export var reroll_button : Button
+
+@export var starting_money : int = 5
 
 var all_characters_rg : ResourceGroup = load("res://all_characters.tres")
 var all_character_definitions : Array[CharacterDefinition]
@@ -38,8 +41,14 @@ func _ready() -> void:
 		slot.slot_index = i
 		shop_slots.append(slot)
 		shop_slot_container.add_child(slot)
+	GameState.player_money_changed.connect(update_reroll_button_enabled)
+	GameState.player_money = starting_money
 	reset_reroll_price()
 	call_deferred("reroll_characters")
+
+
+func update_reroll_button_enabled(money: int):
+	reroll_button.disabled = money < reroll_price
 
 
 func reset_reroll_price():
@@ -84,4 +93,8 @@ func _on_button_pressed() -> void:
 
 
 func _on_reroll_button_pressed() -> void:
+	if reroll_price > GameState.player_money:
+		# button should be disabled
+		assert(false)
+	GameState.player_money -= reroll_price
 	reroll_characters(true)

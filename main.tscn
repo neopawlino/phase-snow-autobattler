@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=14 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="9_rh2jt"]
 [ext_resource type="Script" path="res://debug_menu.gd" id="10_2a5ip"]
+[ext_resource type="Script" path="res://player_state_ui.gd" id="12_1pqsp"]
+[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="12_32gs5"]
 [ext_resource type="Script" path="res://character_slots.gd" id="12_y3foa"]
 
 [node name="Main" type="Node"]
@@ -223,6 +225,37 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 88
 alignment = 1
+
+[node name="PlayerStateUI" type="Control" parent="." node_paths=PackedStringArray("money_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("9_rh2jt")
+script = ExtResource("12_1pqsp")
+money_label = NodePath("PanelContainer/MarginContainer/HBoxContainer/MoneyLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="PlayerStateUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerStateUI/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerStateUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PlayerStateUI/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("12_32gs5")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MoneyLabel" type="Label" parent="PlayerStateUI/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "10"
 
 [connection signal="pressed" from="CombatManager/Button" to="CombatManager" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]

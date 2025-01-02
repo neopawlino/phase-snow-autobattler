@@ -9,6 +9,13 @@ var drag_char : Character
 var drag_original_char_slot : CharacterSlot
 var drag_end_char_slot : CharacterSlot
 
+var player_money : int:
+	set(val):
+		player_money = val
+		player_money_changed.emit(val)
+
+signal player_money_changed(value: int)
+
 var paused : bool = false:
 	set(val):
 		paused = val
