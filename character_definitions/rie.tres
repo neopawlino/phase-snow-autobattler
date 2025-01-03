@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="CharacterDefinition" load_steps=5 format=3 uid="uid://baiyj43bn6b1k"]
 
-[ext_resource type="Script" path="res://ability.gd" id="1_m6ft6"]
-[ext_resource type="Texture2D" uid="uid://cwfjui7ry6uk8" path="res://my_assets/SAPC.png" id="2_rw4qg"]
-[ext_resource type="Script" path="res://character_definition.gd" id="3_c6ttd"]
+[ext_resource type="Script" path="res://ability.gd" id="1_xulnq"]
+[ext_resource type="Texture2D" uid="uid://cqd1axt1y8hns" path="res://my_assets/SAPC_Sheet.png" id="2_yr1ff"]
+[ext_resource type="Script" path="res://character_definition.gd" id="3_chc5m"]
 
 [sub_resource type="Resource" id="Resource_mf4xk"]
-script = ExtResource("1_m6ft6")
+script = ExtResource("1_xulnq")
 ability_name = "Fists"
 ability_type = 0
 physical_damage = 1
@@ -15,8 +15,11 @@ ability_range = 1
 pierce = 0
 
 [resource]
-script = ExtResource("3_c6ttd")
+script = ExtResource("3_chc5m")
 character_name = "Rie"
-character_sprite = ExtResource("2_rw4qg")
+character_sprite = ExtResource("2_yr1ff")
+sprite_pos_offset = Vector2(8, 0)
+sprite_scale = Vector2(2, 2)
+sprite_hframes = 2
 max_hp = 2
-abilities = Array[ExtResource("1_m6ft6")]([SubResource("Resource_mf4xk")])
+abilities = Array[ExtResource("1_xulnq")]([SubResource("Resource_mf4xk")])

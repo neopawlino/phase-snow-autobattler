@@ -44,7 +44,7 @@ func load_initial_teams():
 		var slot := slots.enemy_team[i]
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.ENEMY
-		char.sprite.scale.x = char.base_scale * -1
+		char.set_flipped(true)
 		char.pos = slot.slot_index
 		char.cur_character_slot = slot
 		char.draggable = false

@@ -4,9 +4,12 @@ class_name Character
 
 @export var sprite : Sprite2D
 @export var anim_player : AnimationPlayer
+
+@export var visual : Node2D
+
 @export var anim_delay : float = 0.2
 
-@export var base_scale : float = 0.25
+
 @export var mouseover_scale : float = 1.1
 
 @export var visual_follow_speed : float = 30
@@ -28,6 +31,9 @@ var drag_initial_pos : Vector2
 var cur_character_slot : CharacterSlot
 
 var visual_position : Vector2
+
+var base_scale : Vector2 = Vector2.ONE
+var pos_offset : Vector2
 
 # gameplay stuff
 enum Team {
@@ -99,10 +105,19 @@ func _process(delta: float):
 				GameState.drag_original_char_slot = null
 
 
+func set_flipped(flipped: bool):
+	if flipped:
+		base_scale.x = -abs(base_scale.x)
+	else:
+		base_scale.x = abs(base_scale.x)
+	sprite.scale = base_scale
+	sprite.position.x = -pos_offset.x
+
+
 func update_visual_position(delta: float):
 	var offset := global_position - visual_position
 	visual_position += offset * visual_follow_speed * delta
-	sprite.global_position = visual_position
+	visual.global_position = visual_position
 
 
 # WE NEED TO USE THIS TO DUPLICATE RESOURCES IN AN ARRAY
@@ -122,6 +137,12 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.hp = max_hp
 	self.abilities = char_def.abilities.duplicate(true)
 	sprite.texture = char_def.character_sprite
+	pos_offset = char_def.sprite_pos_offset
+	sprite.position = char_def.sprite_pos_offset
+	sprite.hframes = char_def.sprite_hframes
+
+	sprite.scale = char_def.sprite_scale
+	base_scale = char_def.sprite_scale
 
 
 func make_timers():
@@ -194,11 +215,11 @@ func _on_area_2d_mouse_entered() -> void:
 	if not GameState.is_dragging:
 		mouseover = true
 		if draggable:
-			sprite.scale = Vector2.ONE * base_scale * mouseover_scale
+			sprite.scale = base_scale * mouseover_scale
 
 
 func _on_area_2d_mouse_exited() -> void:
 	if not GameState.is_dragging:
 		mouseover = false
 		if draggable:
-			sprite.scale = Vector2.ONE * base_scale
+			sprite.scale = base_scale
