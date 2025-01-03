@@ -58,7 +58,8 @@ var hp : int:
 		update_hp_bar(hp, max_hp)
 
 
-var abilities : Array[Ability]
+var abilities : Array[AbilityDefinition]
+var ability_levels : Array[int]
 var ability_timers : Array[Timer]
 var ability_bars : Array[ProgressBar]
 
@@ -157,6 +158,7 @@ func update_hp_bar(hp : int, max_hp : int):
 func my_duplicate() -> Character:
 	var new_char := self.duplicate()
 	new_char.abilities = self.abilities.duplicate(true)
+	new_char.ability_levels = self.ability_levels.duplicate()
 	new_char.max_hp = self.max_hp
 	new_char.hp = self.max_hp
 	new_char.pos = self.pos
@@ -168,6 +170,11 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.max_hp = char_def.max_hp
 	self.hp = max_hp
 	self.abilities = char_def.abilities.duplicate(true)
+	self.ability_levels = []
+	assert(!abilities.is_empty())
+	for ability in abilities:
+		self.ability_levels.append(0)
+	self.ability_levels[0] = 1
 	sprite.texture = char_def.character_sprite
 	pos_offset = char_def.sprite_pos_offset
 	sprite.position = char_def.sprite_pos_offset
@@ -178,19 +185,23 @@ func load_from_character_definition(char_def : CharacterDefinition):
 
 
 func make_timers():
-	for ability : Ability in abilities:
+	for i in range(len(abilities)):
+		var ability_def := abilities[i]
+		var ability_level_index := ability_levels[i] - 1
+		if ability_level_index < 0:
+			continue
+		var ability_level := ability_def.ability_levels[ability_level_index]
 		var timer := Timer.new()
 		var ability_char := char
-		var cur_ability := ability
-		timer.wait_time = ability.cooldown
+		timer.wait_time = ability_level.cooldown
 		timer.timeout.connect(func():
-			var effective_range := cur_ability.ability_range - self.pos
+			var effective_range := ability_level.ability_range - self.pos
 			if effective_range <= 0:
 				return
 			anim_player.play(&"attack")
 			await get_tree().create_timer(anim_delay).timeout
 			if self.is_inside_tree():
-				cast_ability(cur_ability)
+				cast_ability(ability_level)
 		)
 		timer.autostart = true
 		self.add_child(timer)
@@ -212,7 +223,7 @@ func stop_timers():
 	ability_bars.clear()
 
 
-func cast_ability(ability: Ability):
+func cast_ability(ability: AbilityLevel):
 	var target_team : int = Team.ENEMY if team == Team.PLAYER else Team.PLAYER
 	var targets : Array[int] = []
 	var effective_range := ability.ability_range - self.pos
@@ -226,7 +237,7 @@ func cast_ability(ability: Ability):
 		GlobalSignals.ability_applied.emit(ability, target_team, targets)
 
 
-func receive_ability(ability: Ability):
+func receive_ability(ability: AbilityLevel):
 	if ability.physical_damage > 0:
 		self.hp -= ability.physical_damage
 		DamageNumbers.display_number(ability.physical_damage, damage_numbers_origin.global_position)

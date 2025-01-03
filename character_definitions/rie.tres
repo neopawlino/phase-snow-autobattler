@@ -1,18 +1,38 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=5 format=3 uid="uid://baiyj43bn6b1k"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=9 format=3 uid="uid://baiyj43bn6b1k"]
 
-[ext_resource type="Script" path="res://ability.gd" id="1_xulnq"]
+[ext_resource type="Script" path="res://ability_definition.gd" id="1_167rq"]
+[ext_resource type="Script" path="res://ability_level.gd" id="2_w7q34"]
 [ext_resource type="Texture2D" uid="uid://cqd1axt1y8hns" path="res://my_assets/SAPC_Sheet.png" id="2_yr1ff"]
 [ext_resource type="Script" path="res://character_definition.gd" id="3_chc5m"]
 
-[sub_resource type="Resource" id="Resource_mf4xk"]
-script = ExtResource("1_xulnq")
-ability_name = "Fists"
+[sub_resource type="Resource" id="Resource_0x04l"]
+script = ExtResource("2_w7q34")
 ability_type = 0
 physical_damage = 1
-toxic_damage = 0
 cooldown = 1.0
 ability_range = 1
 pierce = 0
+
+[sub_resource type="Resource" id="Resource_qi428"]
+script = ExtResource("2_w7q34")
+ability_type = 0
+physical_damage = 2
+cooldown = 0.9
+ability_range = 1
+pierce = 0
+
+[sub_resource type="Resource" id="Resource_rvljk"]
+script = ExtResource("2_w7q34")
+ability_type = 0
+physical_damage = 3
+cooldown = 0.8
+ability_range = 2
+pierce = 0
+
+[sub_resource type="Resource" id="Resource_d0bo2"]
+script = ExtResource("1_167rq")
+ability_name = "Bite"
+ability_levels = Array[ExtResource("2_w7q34")]([SubResource("Resource_0x04l"), SubResource("Resource_qi428"), SubResource("Resource_rvljk")])
 
 [resource]
 script = ExtResource("3_chc5m")
@@ -22,4 +42,4 @@ sprite_pos_offset = Vector2(8, 0)
 sprite_scale = Vector2(2, 2)
 sprite_hframes = 2
 max_hp = 2
-abilities = Array[ExtResource("1_xulnq")]([SubResource("Resource_mf4xk")])
+abilities = Array[ExtResource("1_167rq")]([SubResource("Resource_d0bo2")])

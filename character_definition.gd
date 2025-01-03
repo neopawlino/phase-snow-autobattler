@@ -9,4 +9,4 @@ class_name CharacterDefinition
 @export var sprite_hframes : int = 2
 
 @export var max_hp : int
-@export var abilities : Array[Ability]
+@export var abilities : Array[AbilityDefinition]

@@ -86,7 +86,7 @@ func clear_teams():
 	enemy_team.clear()
 
 
-func apply_ability(ability: Ability, target_team: int, targets: Array[int]):
+func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int]):
 	var team := enemy_team if target_team == Character.Team.ENEMY else player_team
 	for target_index in targets:
 		if target_index >= len(team):

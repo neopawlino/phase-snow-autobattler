@@ -1,3 +1,3 @@
 extends Node
 
-signal ability_applied(ability : Ability, team : int, targets : Array[int])
+signal ability_applied(ability : AbilityLevel, team : int, targets : Array[int])
