@@ -1,19 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=14 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
+[ext_resource type="PackedScene" uid="uid://v3pc2y7lhn1w" path="res://lose_screen.tscn" id="3_w720u"]
 [ext_resource type="Script" path="res://combat_manager.gd" id="4_0nq41"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="5_5nd4k"]
 [ext_resource type="Script" path="res://character_definition.gd" id="6_ipiyh"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="7_51m7k"]
-[ext_resource type="PackedScene" uid="uid://ds7ogdyno53ug" path="res://character.tscn" id="8_8q0n8"]
 [ext_resource type="Script" path="res://shop_manager.gd" id="8_efko3"]
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="9_rh2jt"]
 [ext_resource type="Script" path="res://debug_menu.gd" id="10_2a5ip"]
-[ext_resource type="Script" path="res://player_state_ui.gd" id="12_1pqsp"]
-[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="12_32gs5"]
 [ext_resource type="Script" path="res://character_slots.gd" id="12_y3foa"]
+[ext_resource type="PackedScene" uid="uid://b70hwns4rlfpw" path="res://player_state_ui.tscn" id="13_y2f8g"]
 
 [node name="Main" type="Node"]
 
@@ -32,14 +31,21 @@ grow_vertical = 2
 [node name="Pause" parent="." instance=ExtResource("1_q1rts")]
 visible = false
 
-[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "combat_summary", "team_manager", "shop_manager", "slots")]
+[node name="LoseScreen" parent="." instance=ExtResource("3_w720u")]
+visible = false
+
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "lose_screen", "combat_summary", "team_manager", "shop_manager", "slots")]
 script = ExtResource("4_0nq41")
-character_scene = ExtResource("8_8q0n8")
 character_container = NodePath("CharacterContainer")
+lose_screen = NodePath("../LoseScreen")
 combat_summary = NodePath("CombatSummary")
 team_manager = NodePath("../TeamManager")
 shop_manager = NodePath("../ShopManager")
 slots = NodePath("../CharacterSlots")
+win_reward = 5
+lose_reward = 2
+draw_reward = 2
+lose_hp_damage = 10
 
 [node name="CharacterContainer" type="Control" parent="CombatManager"]
 layout_mode = 3
@@ -215,37 +221,7 @@ grow_vertical = 2
 theme_override_constants/separation = 88
 alignment = 1
 
-[node name="PlayerStateUI" type="Control" parent="." node_paths=PackedStringArray("money_label")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme = ExtResource("9_rh2jt")
-script = ExtResource("12_1pqsp")
-money_label = NodePath("PanelContainer/MarginContainer/HBoxContainer/MoneyLabel")
-
-[node name="PanelContainer" type="PanelContainer" parent="PlayerStateUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="PlayerStateUI/PanelContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerStateUI/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PlayerStateUI/PanelContainer/MarginContainer/HBoxContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-texture = ExtResource("12_32gs5")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="MoneyLabel" type="Label" parent="PlayerStateUI/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "10"
+[node name="PlayerStateUI" parent="." instance=ExtResource("13_y2f8g")]
 
 [connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]

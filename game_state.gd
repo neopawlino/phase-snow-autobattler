@@ -13,8 +13,13 @@ var player_money : int:
 	set(val):
 		player_money = val
 		player_money_changed.emit(val)
-
 signal player_money_changed(value: int)
+
+var player_hp : int:
+	set(val):
+		player_hp = val
+		player_hp_changed.emit(val)
+signal player_hp_changed(value: int)
 
 var max_interest : int = 5
 

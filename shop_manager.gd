@@ -28,6 +28,7 @@ var character_slot_scene : PackedScene = preload("res://character_slot.tscn")
 @export var reroll_button : Button
 
 @export var starting_money : int = 5
+@export var starting_hp : int = 10
 
 var all_characters_rg : ResourceGroup = load("res://all_characters.tres")
 var all_character_definitions : Array[CharacterDefinition]
@@ -44,6 +45,7 @@ func _ready() -> void:
 	GameState.player_money_changed.connect(update_reroll_button_enabled)
 	GameState.player_money_changed.connect(update_shop_draggable)
 	GameState.player_money = starting_money
+	GameState.player_hp = starting_hp
 	reset_reroll_price()
 	call_deferred("reroll_characters")
 

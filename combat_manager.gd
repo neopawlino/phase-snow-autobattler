@@ -2,12 +2,14 @@ extends Node
 
 class_name CombatManager
 
-@export var character_scene : PackedScene
+var character_scene : PackedScene = preload("res://character.tscn")
 
 var player_team : Array[Character]
 var enemy_team : Array[Character]
 
 @export var character_container : Control
+
+@export var lose_screen : Control
 
 @export var combat_summary : CombatSummary
 
@@ -23,7 +25,10 @@ var in_combat : bool = false
 @export var lose_reward : int = 0
 @export var draw_reward : int = 0
 
+@export var lose_hp_damage : int = 2
+
 var reward : int
+var hp_gain : int
 
 func _ready():
 	GlobalSignals.ability_applied.connect(apply_ability)
@@ -124,18 +129,21 @@ func check_combat_over():
 	if player_win and enemy_win:
 		result = CombatSummary.CombatResult.DRAW
 		reward = draw_reward
+		hp_gain = 0
 	elif player_win:
 		result = CombatSummary.CombatResult.WIN
 		reward = win_reward
+		hp_gain = 0
 	elif enemy_win:
 		result = CombatSummary.CombatResult.LOSE
 		reward = lose_reward
+		hp_gain = -lose_hp_damage
 	for char in player_team:
 		char.stop_timers()
 	for char in enemy_team:
 		char.stop_timers()
 	in_combat = false
-	combat_summary.show_combat_summary(result, reward)
+	combat_summary.show_combat_summary(result, reward, hp_gain)
 
 
 func _on_combat_summary_continue_button_pressed() -> void:
@@ -144,6 +152,10 @@ func _on_combat_summary_continue_button_pressed() -> void:
 
 	GameState.player_money += GameState.get_interest()
 	GameState.player_money += reward
+	GameState.player_hp += hp_gain
+	if GameState.player_hp <= 0:
+		lose_screen.show()
+		return
 
 	team_manager.show_teams()
 	shop_manager.show_shop()
