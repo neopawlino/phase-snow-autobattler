@@ -19,6 +19,9 @@ class_name Character
 @export var price_label : Label
 @export var price : Node2D
 
+@export var hp_label : Label
+@export var hp_bar : ProgressBar
+
 @export var price_color : Color = Color.WHITE
 @export var price_unaffordable_color : Color = Color.INDIAN_RED
 
@@ -41,8 +44,15 @@ enum Team {
 	ENEMY,
 }
 
-var max_hp : int
-var hp : int
+var max_hp : int:
+	set(value):
+		max_hp = value
+		update_hp_bar(hp, max_hp)
+var hp : int:
+	set(value):
+		hp = value
+		update_hp_bar(hp, max_hp)
+
 
 var abilities: Array[Ability]
 
@@ -118,6 +128,12 @@ func update_visual_position(delta: float):
 	var offset := global_position - visual_position
 	visual_position += offset * visual_follow_speed * delta
 	visual.global_position = visual_position
+
+
+func update_hp_bar(hp : int, max_hp : int):
+	hp_bar.max_value = max_hp
+	hp_bar.value = hp
+	hp_label.text = "%s/%s" % [hp, max_hp]
 
 
 # WE NEED TO USE THIS TO DUPLICATE RESOURCES IN AN ARRAY
