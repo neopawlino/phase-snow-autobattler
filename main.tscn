@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=13 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -9,8 +9,7 @@
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="7_51m7k"]
 [ext_resource type="Script" path="res://shop_manager.gd" id="8_efko3"]
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
-[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="9_rh2jt"]
-[ext_resource type="Script" path="res://debug_menu.gd" id="10_2a5ip"]
+[ext_resource type="PackedScene" uid="uid://d2rrv6nlpencx" path="res://debug_menu.tscn" id="10_sb6nl"]
 [ext_resource type="Script" path="res://character_slots.gd" id="12_y3foa"]
 [ext_resource type="PackedScene" uid="uid://b70hwns4rlfpw" path="res://player_state_ui.tscn" id="13_y2f8g"]
 
@@ -137,31 +136,8 @@ offset_bottom = -200.0
 theme_override_constants/separation = 88
 alignment = 1
 
-[node name="DebugMenu" type="PanelContainer" parent="." node_paths=PackedStringArray("team_manager")]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-theme = ExtResource("9_rh2jt")
-script = ExtResource("10_2a5ip")
+[node name="DebugMenu" parent="." node_paths=PackedStringArray("team_manager") instance=ExtResource("10_sb6nl")]
 team_manager = NodePath("../TeamManager")
-
-[node name="MarginContainer" type="MarginContainer" parent="DebugMenu"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugMenu/MarginContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="Button" type="Button" parent="DebugMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Add Test Character"
 
 [node name="CharacterSlots" type="Node" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
 script = ExtResource("12_y3foa")
@@ -226,4 +202,3 @@ alignment = 1
 [connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/RerollButton" to="ShopManager" method="_on_reroll_button_pressed"]
-[connection signal="pressed" from="DebugMenu/MarginContainer/VBoxContainer/Button" to="DebugMenu" method="_on_button_pressed"]

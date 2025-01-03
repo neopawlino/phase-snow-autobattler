@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=9 format=3 uid="uid://baiyj43bn6b1k"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=13 format=3 uid="uid://baiyj43bn6b1k"]
 
 [ext_resource type="Script" path="res://ability_definition.gd" id="1_167rq"]
 [ext_resource type="Script" path="res://ability_level.gd" id="2_w7q34"]
 [ext_resource type="Texture2D" uid="uid://cqd1axt1y8hns" path="res://my_assets/SAPC_Sheet.png" id="2_yr1ff"]
 [ext_resource type="Script" path="res://character_definition.gd" id="3_chc5m"]
+[ext_resource type="Script" path="res://character_level.gd" id="4_yhsmg"]
 
 [sub_resource type="Resource" id="Resource_0x04l"]
 script = ExtResource("2_w7q34")
@@ -34,6 +35,18 @@ script = ExtResource("1_167rq")
 ability_name = "Bite"
 ability_levels = Array[ExtResource("2_w7q34")]([SubResource("Resource_0x04l"), SubResource("Resource_qi428"), SubResource("Resource_rvljk")])
 
+[sub_resource type="Resource" id="Resource_s0rwx"]
+script = ExtResource("4_yhsmg")
+hp = 1
+
+[sub_resource type="Resource" id="Resource_klgkn"]
+script = ExtResource("4_yhsmg")
+hp = 1
+
+[sub_resource type="Resource" id="Resource_l7yi4"]
+script = ExtResource("4_yhsmg")
+hp = 1
+
 [resource]
 script = ExtResource("3_chc5m")
 character_name = "Rie"
@@ -43,3 +56,5 @@ sprite_scale = Vector2(2, 2)
 sprite_hframes = 2
 max_hp = 2
 abilities = Array[ExtResource("1_167rq")]([SubResource("Resource_d0bo2")])
+level_requirements = Array[int]([1, 2, 3])
+levels = Array[ExtResource("4_yhsmg")]([SubResource("Resource_s0rwx"), SubResource("Resource_klgkn"), SubResource("Resource_l7yi4")])

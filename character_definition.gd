@@ -10,3 +10,5 @@ class_name CharacterDefinition
 
 @export var max_hp : int
 @export var abilities : Array[AbilityDefinition]
+@export var level_requirements : Array[int]
+@export var levels : Array[CharacterLevel]

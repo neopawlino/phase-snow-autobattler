@@ -22,6 +22,11 @@ class_name Character
 @export var hp_label : Label
 @export var hp_bar : ProgressBar
 
+@export var level_label : Label
+
+@export var xp_label : Label
+@export var xp_bar : ProgressBar
+
 @export var ability_bar_container : BoxContainer
 
 @export var price_color : Color = Color.WHITE
@@ -60,6 +65,19 @@ var hp : int:
 
 var abilities : Array[AbilityDefinition]
 var ability_levels : Array[int]
+
+var cur_level : int = 0:
+	set(value):
+		cur_level = value
+		update_level_label(value)
+		update_xp_bar(xp)
+var xp : int = 0:
+	set(value):
+		xp = value
+		update_xp_bar(value)
+var level_requirements : Array[int]
+var levels : Array[CharacterLevel]
+
 var ability_timers : Array[Timer]
 var ability_bars : Array[ProgressBar]
 
@@ -85,6 +103,9 @@ func _ready() -> void:
 	visual_position = self.global_position
 	GameState.player_money_changed.connect(update_price_color)
 	set_price_visible(from_shop)
+	update_hp_bar(hp, max_hp)
+	update_xp_bar(xp)
+	update_level_label(cur_level)
 
 
 func _process(delta: float):
@@ -153,28 +174,50 @@ func update_hp_bar(hp : int, max_hp : int):
 	hp_label.text = "%s/%s" % [hp, max_hp]
 
 
+func update_xp_bar(xp : int):
+	if cur_level >= len(level_requirements):
+		xp_label.text = "Max"
+		xp_bar.max_value = 1
+		xp_bar.value = 1
+	else:
+		var xp_req := level_requirements[cur_level]
+		xp_label.text = "%s/%s" % [xp, xp_req]
+		xp_bar.max_value = xp_req
+		xp_bar.value = xp
+
+
+func update_level_label(level : int):
+	level_label.text = "Lv.%s" % level
+
+
 # WE NEED TO USE THIS TO DUPLICATE RESOURCES IN AN ARRAY
 # https://github.com/godotengine/godot/issues/74918
 func my_duplicate() -> Character:
-	var new_char := self.duplicate()
-	new_char.abilities = self.abilities.duplicate(true)
+	var new_char : Character = self.duplicate()
+	new_char.abilities = self.abilities.duplicate()
 	new_char.ability_levels = self.ability_levels.duplicate()
 	new_char.max_hp = self.max_hp
 	new_char.hp = self.max_hp
 	new_char.pos = self.pos
 	new_char.team = self.team
+	new_char.cur_level = self.cur_level
+	new_char.xp = self.xp
+	new_char.level_requirements = self.level_requirements.duplicate()
+	new_char.levels = self.levels.duplicate()
 	return new_char
 
 
 func load_from_character_definition(char_def : CharacterDefinition):
 	self.max_hp = char_def.max_hp
 	self.hp = max_hp
-	self.abilities = char_def.abilities.duplicate(true)
+	self.abilities = char_def.abilities.duplicate()
 	self.ability_levels = []
 	assert(!abilities.is_empty())
 	for ability in abilities:
 		self.ability_levels.append(0)
 	self.ability_levels[0] = 1
+	self.levels = char_def.levels.duplicate()
+	self.level_requirements = char_def.level_requirements.duplicate()
 	sprite.texture = char_def.character_sprite
 	pos_offset = char_def.sprite_pos_offset
 	sprite.position = char_def.sprite_pos_offset
@@ -182,6 +225,25 @@ func load_from_character_definition(char_def : CharacterDefinition):
 
 	sprite.scale = char_def.sprite_scale
 	base_scale = char_def.sprite_scale
+
+
+func add_xp(amount : int):
+	if cur_level >= len(level_requirements):
+		return
+	var cur_level_req := level_requirements[cur_level]
+	xp += amount
+	if xp >= cur_level_req:
+		level_up()
+
+
+func level_up():
+	# index 0 == level 1, etc.
+	var char_level : CharacterLevel = levels[cur_level]
+	max_hp += char_level.hp
+	hp += char_level.hp
+	var cur_level_req := level_requirements[cur_level]
+	xp -= cur_level_req
+	cur_level += 1
 
 
 func make_timers():

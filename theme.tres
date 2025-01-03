@@ -8,7 +8,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gf707"]
-bg_color = Color(0.81, 0.3159, 0.3159, 1)
+bg_color = Color(0.803922, 0.360784, 0.360784, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -40,3 +40,6 @@ MarginContainer/constants/margin_right = 8
 MarginContainer/constants/margin_top = 8
 ProgressBar/styles/background = SubResource("StyleBoxFlat_rg5kn")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_42deb")
+TextSmall/base_type = &"Label"
+TextSmall/constants/outline_size = 4
+TextSmall/font_sizes/font_size = 16

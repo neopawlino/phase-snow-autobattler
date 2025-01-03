@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=10 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" path="res://character.gd" id="2_1four"]
 [ext_resource type="Texture2D" uid="uid://cqd1axt1y8hns" path="res://my_assets/SAPC_Sheet.png" id="2_e1sdp"]
@@ -66,10 +66,12 @@ _data = {
 "attack": SubResource("Animation_754d8")
 }
 
+[sub_resource type="Theme" id="Theme_f484m"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkgfp"]
 size = Vector2(80, 120)
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "ability_bar_container")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/Sprite2D")
@@ -80,6 +82,9 @@ price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
 hp_label = NodePath("Visual/VBoxContainer/HPBar/HPLabel")
 hp_bar = NodePath("Visual/VBoxContainer/HPBar")
+level_label = NodePath("Visual/VBoxContainer/LvLabel")
+xp_label = NodePath("Visual/VBoxContainer/XPBar/XPLabel")
+xp_bar = NodePath("Visual/VBoxContainer/XPBar")
 ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
 
 [node name="Visual" type="Node2D" parent="."]
@@ -134,12 +139,47 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 theme = ExtResource("4_18dhx")
-theme_override_constants/separation = 4
+theme_override_constants/separation = 6
 alignment = 2
 
 [node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
+
+[node name="LvLabel" type="Label" parent="Visual/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"TextSmall"
+text = "Lv.1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XPBar" type="ProgressBar" parent="Visual/VBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+theme = ExtResource("4_18dhx")
+max_value = 5.0
+value = 3.0
+show_percentage = false
+
+[node name="XPLabel" type="Label" parent="Visual/VBoxContainer/XPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -17.0
+offset_right = 20.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"TextSmall"
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HPBar" type="ProgressBar" parent="Visual/VBoxContainer"]
 custom_minimum_size = Vector2(80, 10)
@@ -163,8 +203,8 @@ offset_right = 20.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 14
+theme = SubResource("Theme_f484m")
+theme_type_variation = &"TextSmall"
 text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
