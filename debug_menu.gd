@@ -13,3 +13,7 @@ func _on_add_xp_button_pressed() -> void:
 		if slot.character:
 			slot.character.add_xp(1)
 			return
+
+
+func _on_add_money_button_pressed() -> void:
+	GameState.player_money += 1

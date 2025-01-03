@@ -51,10 +51,10 @@ func show_teams():
 func start_combat():
 	clear_teams()
 	for slot in slots.player_team:
-		if slot.character:
+		if slot.character != null:
 			player_team.append(slot.character.my_duplicate())
 	for slot in slots.enemy_team:
-		if slot.character:
+		if slot.character != null:
 			enemy_team.append(slot.character.my_duplicate())
 	team_manager.hide_teams()
 	show_teams()
@@ -106,14 +106,12 @@ func kill_character(char: Character):
 			var char_to_move := player_team[i]
 			var new_pos := char_to_move.pos - 1
 			slots.set_char_pos(char_to_move, new_pos)
-		print("Player dead")
 	elif enemy_index >= 0:
 		enemy_team.remove_at(enemy_index)
 		for i in range(enemy_index, len(enemy_team)):
 			var char_to_move := enemy_team[i]
 			var new_pos := char_to_move.pos - 1
 			slots.set_char_pos(char_to_move, new_pos)
-		print("Enemy dead")
 	else:
 		push_error("Couldn't find character to kill")
 		assert(false)

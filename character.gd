@@ -34,6 +34,8 @@ class_name Character
 
 var ability_bar_scene : PackedScene = preload("res://ability_bar.tscn")
 
+var character_name : String
+
 # draggable stuff
 var draggable : bool = false
 var mouseover : bool = false
@@ -118,6 +120,7 @@ func _process(delta: float):
 			GameState.is_dragging = true
 			GameState.drag_char = self
 			GameState.drag_original_char_slot = cur_character_slot
+			GameState.drag_end_char_slot = null
 			GameState.drag_can_swap = not from_shop
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
@@ -127,12 +130,19 @@ func _process(delta: float):
 			if last_tween:
 				last_tween.kill()
 			last_tween = get_tree().create_tween()
-			if GameState.drag_end_char_slot and not GameState.drag_end_char_slot.character:
+			if GameState.drag_end_char_slot and GameState.drag_end_char_slot.character \
+				and GameState.drag_end_char_slot.character.can_merge(self):
+				if from_shop:
+					# buy the character
+					GameState.player_money -= buy_price
+					from_shop = false
+				GameState.drag_end_char_slot.character.add_xp(1)
+				if cur_character_slot:
+					cur_character_slot.character = null
+				self.queue_free()
+			elif GameState.drag_end_char_slot and not GameState.drag_end_char_slot.character:
 				# dragging to an empty slot
-				GameState.slots.set_char_pos(self, GameState.drag_end_char_slot.slot_index)
-				self.cur_character_slot = GameState.drag_end_char_slot
-				GameState.drag_original_char_slot.character = null
-				GameState.drag_end_char_slot.character = self
+				GameState.slots.move_to_slot(self, GameState.drag_end_char_slot.slot_index)
 				if from_shop:
 					# buy the character
 					GameState.player_money -= buy_price
@@ -175,7 +185,7 @@ func update_hp_bar(hp : int, max_hp : int):
 
 
 func update_xp_bar(xp : int):
-	if cur_level >= len(level_requirements):
+	if is_max_level():
 		xp_label.text = "Max"
 		xp_bar.max_value = 1
 		xp_bar.value = 1
@@ -208,6 +218,7 @@ func my_duplicate() -> Character:
 
 
 func load_from_character_definition(char_def : CharacterDefinition):
+	self.character_name = char_def.character_name
 	self.max_hp = char_def.max_hp
 	self.hp = max_hp
 	self.abilities = char_def.abilities.duplicate()
@@ -228,7 +239,7 @@ func load_from_character_definition(char_def : CharacterDefinition):
 
 
 func add_xp(amount : int):
-	if cur_level >= len(level_requirements):
+	if is_max_level():
 		return
 	var cur_level_req := level_requirements[cur_level]
 	xp += amount
@@ -315,6 +326,14 @@ func set_price_text(value: int):
 
 func can_afford(money: int) -> bool:
 	return buy_price <= money
+
+
+func can_merge(other: Character) -> bool:
+	return other != self and !is_max_level() and other.character_name == self.character_name
+
+
+func is_max_level() -> bool:
+	return cur_level >= len(levels)
 
 
 func update_price_color(money: int):
