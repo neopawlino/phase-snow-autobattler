@@ -78,8 +78,8 @@ visual = NodePath("Visual")
 damage_numbers_origin = NodePath("Visual/Sprite2D/DamageNumbersOrigin")
 price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
-hp_label = NodePath("Visual/HPBar/HPLabel")
-hp_bar = NodePath("Visual/HPBar")
+hp_label = NodePath("Visual/VBoxContainer/HPBar/HPLabel")
+hp_bar = NodePath("Visual/VBoxContainer/HPBar")
 
 [node name="Visual" type="Node2D" parent="."]
 top_level = true
@@ -118,25 +118,35 @@ theme_override_font_sizes/font_size = 16
 text = "0"
 vertical_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="Visual"]
-custom_minimum_size = Vector2(80, 0)
-anchors_preset = 8
+[node name="VBoxContainer" type="VBoxContainer" parent="Visual"]
+custom_minimum_size = Vector2(0, 10)
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -40.0
-offset_top = -60.0
+offset_top = -70.0
 offset_right = 40.0
 offset_bottom = -50.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+size_flags_vertical = 8
+alignment = 2
+
+[node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/VBoxContainer"]
+layout_mode = 2
+
+[node name="HPBar" type="ProgressBar" parent="Visual/VBoxContainer"]
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
 theme = ExtResource("4_18dhx")
+theme_type_variation = &"HPBar"
 max_value = 5.0
 value = 3.0
 show_percentage = false
 
-[node name="HPLabel" type="Label" parent="Visual/HPBar"]
+[node name="HPLabel" type="Label" parent="Visual/VBoxContainer/HPBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
