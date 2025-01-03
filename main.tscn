@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=15 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
 [ext_resource type="Script" path="res://combat_manager.gd" id="4_0nq41"]
+[ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="5_5nd4k"]
 [ext_resource type="Script" path="res://character_definition.gd" id="6_ipiyh"]
-[ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/pippa.tres" id="7_51m7k"]
+[ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="7_51m7k"]
 [ext_resource type="PackedScene" uid="uid://ds7ogdyno53ug" path="res://character.tscn" id="8_8q0n8"]
 [ext_resource type="Script" path="res://shop_manager.gd" id="8_efko3"]
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
@@ -31,35 +32,23 @@ grow_vertical = 2
 [node name="Pause" parent="." instance=ExtResource("1_q1rts")]
 visible = false
 
-[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "continue_button", "team_manager", "shop_manager", "slots")]
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "combat_summary", "team_manager", "shop_manager", "slots")]
 script = ExtResource("4_0nq41")
 character_scene = ExtResource("8_8q0n8")
 character_container = NodePath("CharacterContainer")
-continue_button = NodePath("Button")
+combat_summary = NodePath("CombatSummary")
 team_manager = NodePath("../TeamManager")
 shop_manager = NodePath("../ShopManager")
 slots = NodePath("../CharacterSlots")
-
-[node name="Button" type="Button" parent="CombatManager"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Continue"
 
 [node name="CharacterContainer" type="Control" parent="CombatManager"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="CombatSummary" parent="CombatManager" instance=ExtResource("5_5nd4k")]
+visible = false
 
 [node name="CharacterContainer" type="Control" parent="."]
 layout_mode = 3
@@ -258,7 +247,7 @@ stretch_mode = 4
 layout_mode = 2
 text = "10"
 
-[connection signal="pressed" from="CombatManager/Button" to="CombatManager" method="_on_button_pressed"]
+[connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/RerollButton" to="ShopManager" method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="DebugMenu/MarginContainer/VBoxContainer/Button" to="DebugMenu" method="_on_button_pressed"]

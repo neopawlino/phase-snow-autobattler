@@ -16,6 +16,13 @@ var player_money : int:
 
 signal player_money_changed(value: int)
 
+var max_interest : int = 5
+
+
+func get_interest() -> int:
+	return min(int(player_money / 5), max_interest)
+
+
 var paused : bool = false:
 	set(val):
 		paused = val

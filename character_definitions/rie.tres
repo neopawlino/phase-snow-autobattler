@@ -16,7 +16,7 @@ pierce = 0
 
 [resource]
 script = ExtResource("3_c6ttd")
-character_name = "Pippa"
+character_name = "Rie"
 character_sprite = ExtResource("2_rw4qg")
-max_hp = 5
+max_hp = 2
 abilities = Array[ExtResource("1_m6ft6")]([SubResource("Resource_mf4xk")])

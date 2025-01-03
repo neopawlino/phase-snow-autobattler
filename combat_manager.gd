@@ -9,7 +9,7 @@ var enemy_team : Array[Character]
 
 @export var character_container : Control
 
-@export var continue_button : Button
+@export var combat_summary : CombatSummary
 
 @export var team_manager : TeamManager
 @export var shop_manager : ShopManager
@@ -19,6 +19,11 @@ var enemy_team : Array[Character]
 
 var in_combat : bool = false
 
+@export var win_reward : int = 3
+@export var lose_reward : int = 0
+@export var draw_reward : int = 0
+
+var reward : int
 
 func _ready():
 	GlobalSignals.ability_applied.connect(apply_ability)
@@ -115,23 +120,31 @@ func check_combat_over():
 	var enemy_win := player_team.is_empty()
 	if not player_win and not enemy_win:
 		return
+	var result : CombatSummary.CombatResult
 	if player_win and enemy_win:
-		print("Draw")
+		result = CombatSummary.CombatResult.DRAW
+		reward = draw_reward
 	elif player_win:
-		print("Player Wins")
+		result = CombatSummary.CombatResult.WIN
+		reward = win_reward
 	elif enemy_win:
-		print("Enemy Wins")
+		result = CombatSummary.CombatResult.LOSE
+		reward = lose_reward
 	for char in player_team:
 		char.stop_timers()
 	for char in enemy_team:
 		char.stop_timers()
 	in_combat = false
-	continue_button.show()
+	combat_summary.show_combat_summary(result, reward)
 
 
-func _on_button_pressed() -> void:
+func _on_combat_summary_continue_button_pressed() -> void:
 	hide_teams()
-	continue_button.hide()
+	combat_summary.hide()
+
+	GameState.player_money += GameState.get_interest()
+	GameState.player_money += reward
+
 	team_manager.show_teams()
 	shop_manager.show_shop()
 	shop_manager.reroll_characters()
