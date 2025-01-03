@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwbs3fauix8kv"]
+
+[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_yi0dv"]
+
+[node name="AbilityBar" type="ProgressBar"]
+custom_minimum_size = Vector2(80, 10)
+offset_right = 80.0
+offset_bottom = 10.0
+theme = ExtResource("1_yi0dv")
+value = 50.0
+show_percentage = false

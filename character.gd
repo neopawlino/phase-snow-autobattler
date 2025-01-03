@@ -22,8 +22,12 @@ class_name Character
 @export var hp_label : Label
 @export var hp_bar : ProgressBar
 
+@export var ability_bar_container : BoxContainer
+
 @export var price_color : Color = Color.WHITE
 @export var price_unaffordable_color : Color = Color.INDIAN_RED
+
+var ability_bar_scene : PackedScene = preload("res://ability_bar.tscn")
 
 # draggable stuff
 var draggable : bool = false
@@ -54,7 +58,9 @@ var hp : int:
 		update_hp_bar(hp, max_hp)
 
 
-var abilities: Array[Ability]
+var abilities : Array[Ability]
+var ability_timers : Array[Timer]
+var ability_bars : Array[ProgressBar]
 
 # character's position (index) in the team
 var pos : int
@@ -82,6 +88,7 @@ func _ready() -> void:
 
 func _process(delta: float):
 	update_visual_position(delta)
+	update_ability_bars()
 	if mouseover and draggable:
 		if Input.is_action_just_pressed("click") and not GameState.is_dragging:
 			drag_initial_pos = global_position
@@ -128,6 +135,15 @@ func update_visual_position(delta: float):
 	var offset := global_position - visual_position
 	visual_position += offset * visual_follow_speed * delta
 	visual.global_position = visual_position
+
+
+func update_ability_bars():
+	# future: interpolate/smooth bar visual updates
+	for i in range(len(ability_bars)):
+		var ability_timer := ability_timers[i]
+		var ability_bar := ability_bars[i]
+		ability_bar.max_value = ability_timer.wait_time
+		ability_bar.value = ability_timer.wait_time - ability_timer.time_left
 
 
 func update_hp_bar(hp : int, max_hp : int):
@@ -178,12 +194,22 @@ func make_timers():
 		)
 		timer.autostart = true
 		self.add_child(timer)
+		self.ability_timers.append(timer)
+
+		var ability_bar : ProgressBar = ability_bar_scene.instantiate()
+		self.ability_bars.append(ability_bar)
+		self.ability_bar_container.add_child(ability_bar)
 
 
 func stop_timers():
-	for node in self.get_children():
-		if node is Timer:
-			node.stop()
+	for timer in ability_timers:
+		timer.stop()
+		timer.queue_free()
+	ability_timers.clear()
+
+	for bar in ability_bars:
+		bar.queue_free()
+	ability_bars.clear()
 
 
 func cast_ability(ability: Ability):

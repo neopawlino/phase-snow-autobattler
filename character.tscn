@@ -69,20 +69,24 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkgfp"]
 size = Vector2(80, 120)
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "ability_bar_container")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/Sprite2D")
 anim_player = NodePath("Visual/Sprite2D/AnimationPlayer")
 visual = NodePath("Visual")
-damage_numbers_origin = NodePath("Visual/Sprite2D/DamageNumbersOrigin")
+damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
 price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
 hp_label = NodePath("Visual/VBoxContainer/HPBar/HPLabel")
 hp_bar = NodePath("Visual/VBoxContainer/HPBar")
+ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
 
 [node name="Visual" type="Node2D" parent="."]
 top_level = true
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
+position = Vector2(0, -60)
 
 [node name="Sprite2D" type="Sprite2D" parent="Visual"]
 texture_filter = 1
@@ -95,9 +99,6 @@ hframes = 2
 libraries = {
 "": SubResource("AnimationLibrary_bty2k")
 }
-
-[node name="DamageNumbersOrigin" type="Node2D" parent="Visual/Sprite2D"]
-position = Vector2(0, -200)
 
 [node name="Price" type="Node2D" parent="Visual"]
 position = Vector2(0, 50)
@@ -132,10 +133,13 @@ offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
+theme = ExtResource("4_18dhx")
+theme_override_constants/separation = 4
 alignment = 2
 
 [node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 4
 
 [node name="HPBar" type="ProgressBar" parent="Visual/VBoxContainer"]
 custom_minimum_size = Vector2(80, 10)
