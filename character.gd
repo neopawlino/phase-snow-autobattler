@@ -102,6 +102,7 @@ var buy_price : int:
 		buy_price = value
 		set_price_text(value)
 		update_price_color(GameState.player_money)
+var sell_price : int = 2
 
 var last_tween : Tween
 
@@ -138,7 +139,14 @@ func _process(delta: float):
 			GameState.drag_char = null
 			if last_tween:
 				last_tween.kill()
-			if GameState.drag_end_char_slot and GameState.drag_end_char_slot.character \
+			if GameState.drag_sell_button and not from_shop:
+				# sell the character
+				GameState.player_money += sell_price
+				if cur_character_slot:
+					cur_character_slot.character = null
+				self.queue_free()
+				GameState.drag_sell_button = false
+			elif GameState.drag_end_char_slot and GameState.drag_end_char_slot.character \
 				and GameState.drag_end_char_slot.character.can_merge(self):
 				if from_shop:
 					# buy the character

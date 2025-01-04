@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=14 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
 [ext_resource type="PackedScene" uid="uid://d2rrv6nlpencx" path="res://debug_menu.tscn" id="10_sb6nl"]
 [ext_resource type="Script" path="res://character_slots.gd" id="12_y3foa"]
+[ext_resource type="PackedScene" uid="uid://bb02d6qe3f5go" path="res://sell.tscn" id="13_cmt5l"]
 [ext_resource type="PackedScene" uid="uid://b70hwns4rlfpw" path="res://player_state_ui.tscn" id="13_y2f8g"]
 
 [node name="Main" type="Node"]
@@ -198,6 +199,26 @@ theme_override_constants/separation = 88
 alignment = 1
 
 [node name="PlayerStateUI" parent="." instance=ExtResource("13_y2f8g")]
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Sell" parent="Control2" instance=ExtResource("13_cmt5l")]
+layout_mode = 1
+offset_left = -80.0
+offset_top = 160.0
+offset_right = -80.0
+offset_bottom = 160.0
 
 [connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]
