@@ -29,6 +29,7 @@ func update_ability_levels(levels : Array[int]):
 	for i in range(len(ability_infos)):
 		var info := ability_infos[i]
 		info.level = levels[i]
+	update_level_up_buttons(character.skill_points)
 
 
 func load_char_def(character_definition : CharacterDefinition):
