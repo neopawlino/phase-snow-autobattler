@@ -138,7 +138,6 @@ func _process(delta: float):
 			GameState.drag_char = null
 			if last_tween:
 				last_tween.kill()
-			last_tween = get_tree().create_tween()
 			if GameState.drag_end_char_slot and GameState.drag_end_char_slot.character \
 				and GameState.drag_end_char_slot.character.can_merge(self):
 				if from_shop:
@@ -156,9 +155,11 @@ func _process(delta: float):
 					# buy the character
 					GameState.player_money -= buy_price
 					from_shop = false
+				last_tween = get_tree().create_tween()
 				last_tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 			elif GameState.drag_original_char_slot:
 				# dragging nowhere in particular, or letting go after swapping
+				last_tween = get_tree().create_tween()
 				last_tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 				GameState.drag_original_char_slot = null
 
