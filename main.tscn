@@ -56,12 +56,6 @@ offset_bottom = 40.0
 [node name="CombatSummary" parent="CombatManager" instance=ExtResource("5_5nd4k")]
 visible = false
 
-[node name="CharacterContainer" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
 script = ExtResource("9_o3mlt")
 initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
@@ -115,6 +109,7 @@ offset_bottom = 31.0
 text = "Reroll: $x"
 
 [node name="ShopSlots" type="Control" parent="ShopManager"]
+z_index = -1
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -146,6 +141,7 @@ player_slot_container = NodePath("Team/HBoxContainer")
 enemy_slot_container = NodePath("EnemyTeam/HBoxContainer")
 
 [node name="Team" type="Control" parent="CharacterSlots"]
+z_index = -1
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -219,6 +215,12 @@ offset_left = -80.0
 offset_top = 160.0
 offset_right = -80.0
 offset_bottom = 160.0
+
+[node name="CharacterContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://mvolvkvd21yr"]
+
+[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_6fchv"]
+[ext_resource type="Script" path="res://character_tooltip.gd" id="2_ntbkv"]
+[ext_resource type="PackedScene" uid="uid://bldeapu4qf5vg" path="res://ability_info.tscn" id="2_v280t"]
+
+[node name="CharacterTooltip" type="PanelContainer" node_paths=PackedStringArray("name_label", "ability_info_container")]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_6fchv")
+script = ExtResource("2_ntbkv")
+ability_info_scene = ExtResource("2_v280t")
+name_label = NodePath("MarginContainer/VBoxContainer/NameLabel")
+ability_info_container = NodePath("MarginContainer/VBoxContainer/AbilityInfoContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Character Name Here"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityInfoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2

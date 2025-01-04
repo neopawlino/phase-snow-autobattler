@@ -36,6 +36,10 @@ enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")
 
 auto_rebuild=true
 
+[gui]
+
+timers/tooltip_delay_sec=0.1
+
 [input]
 
 pause={

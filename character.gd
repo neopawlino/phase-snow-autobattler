@@ -32,6 +32,8 @@ class_name Character
 @export var price_color : Color = Color.WHITE
 @export var price_unaffordable_color : Color = Color.INDIAN_RED
 
+@export var character_tooltip : CharacterTooltip
+
 var ability_bar_scene : PackedScene = preload("res://ability_bar.tscn")
 
 var character_name : String
@@ -84,6 +86,8 @@ var skill_points : int = 0:
 	set(value):
 		skill_points = value
 		update_skill_points(value)
+		skill_points_changed.emit(value)
+signal skill_points_changed(value : int)
 
 var ability_timers : Array[Timer]
 var ability_bars : Array[ProgressBar]
@@ -108,11 +112,14 @@ var last_tween : Tween
 
 
 @onready var skill_points_label : Label = %SkillPointsLabel
+@onready var select_container : Container = %SelectContainer
+@onready var tooltip : CharacterTooltip = %CharacterTooltip
 
 
 func _ready() -> void:
 	visual_position = self.global_position
 	GameState.player_money_changed.connect(update_price_color)
+	GameState.is_dragging_changed.connect(set_container_mouse_filter)
 	set_price_visible(from_shop)
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
@@ -130,8 +137,9 @@ func _process(delta: float):
 			GameState.is_dragging = true
 			GameState.drag_char = self
 			GameState.drag_original_char_slot = cur_character_slot
-			GameState.drag_end_char_slot = null
+			GameState.drag_end_char_slot = cur_character_slot
 			GameState.drag_can_swap = not from_shop
+			GameState.drag_initial_mouse_pos = get_global_mouse_position()
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click"):
@@ -170,6 +178,13 @@ func _process(delta: float):
 				last_tween = get_tree().create_tween()
 				last_tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 				GameState.drag_original_char_slot = null
+				if not from_shop and GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
+					# future: more polished select state
+					tooltip.visible = !tooltip.visible
+
+
+func set_container_mouse_filter(is_dragging: bool):
+	select_container.mouse_filter = Control.MOUSE_FILTER_IGNORE if is_dragging else Control.MOUSE_FILTER_PASS
 
 
 func set_flipped(flipped: bool):
@@ -259,6 +274,8 @@ func load_from_character_definition(char_def : CharacterDefinition):
 
 	sprite.scale = char_def.sprite_scale
 	base_scale = char_def.sprite_scale
+
+	character_tooltip.load_char_def(char_def)
 
 
 func add_xp(amount : int):
@@ -369,14 +386,14 @@ func set_price_color(affordable : bool):
 	price_label.add_theme_color_override(&"font_color", color)
 
 
-func _on_area_2d_mouse_entered() -> void:
+func _on_container_mouse_entered() -> void:
 	if not GameState.is_dragging:
 		mouseover = true
 		if draggable:
 			sprite.scale = base_scale * mouseover_scale
 
 
-func _on_area_2d_mouse_exited() -> void:
+func _on_container_mouse_exited() -> void:
 	if not GameState.is_dragging:
 		mouseover = false
 		if draggable:

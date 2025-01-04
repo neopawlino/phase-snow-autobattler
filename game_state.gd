@@ -2,17 +2,22 @@ extends Node
 
 var slots : CharacterSlots
 
-var is_dragging : bool = false
+var is_dragging : bool = false:
+	set(val):
+		is_dragging = val
+		is_dragging_changed.emit(val)
+signal is_dragging_changed(value : bool)
 # we can swap when we're dragging a character already in our team, but not from the shop
 var drag_can_swap : bool = false
 var drag_char : Character:
 	set(char):
 		drag_char = char
 		drag_char_changed.emit(char)
-signal drag_char_changed(char: Character)
+signal drag_char_changed(char : Character)
 var drag_original_char_slot : CharacterSlot
 var drag_end_char_slot : CharacterSlot
 var drag_sell_button : bool
+var drag_initial_mouse_pos : Vector2
 
 var player_money : int:
 	set(val):

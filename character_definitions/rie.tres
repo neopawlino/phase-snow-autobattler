@@ -49,7 +49,7 @@ hp = 1
 
 [resource]
 script = ExtResource("3_chc5m")
-character_name = "Rie"
+character_name = "Himemiya Rie"
 character_sprite = ExtResource("2_yr1ff")
 sprite_pos_offset = Vector2(8, 0)
 sprite_scale = Vector2(2, 2)

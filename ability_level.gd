@@ -7,8 +7,16 @@ enum AbilityType {
 	TOXIC,
 }
 
+static var ability_type_names : Dictionary = {
+	AbilityType.PHYSICAL: "Physical",
+	AbilityType.TOXIC: "Toxic"
+}
+
 @export var ability_type : AbilityType
 @export var physical_damage : int
 @export var cooldown : float
 @export var ability_range : int
 @export var pierce : int
+
+static func ability_type_to_str(ability_type: AbilityType) -> String:
+	return ability_type_names[ability_type]

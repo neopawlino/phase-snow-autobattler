@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cqd1axt1y8hns" path="res://my_assets/SAPC_Sheet.png" id="2_e1sdp"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_j0801"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="4_18dhx"]
+[ext_resource type="PackedScene" uid="uid://mvolvkvd21yr" path="res://character_tooltip.tscn" id="6_dw3ix"]
 
 [sub_resource type="Animation" id="Animation_68k1c"]
 length = 0.001
@@ -68,10 +69,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkgfp"]
-size = Vector2(80, 120)
-
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "character_tooltip")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/Sprite2D")
@@ -86,6 +84,7 @@ level_label = NodePath("Visual/VBoxContainer/LvLabel")
 xp_label = NodePath("Visual/VBoxContainer/XPBar/XPLabel")
 xp_bar = NodePath("Visual/VBoxContainer/XPBar")
 ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
+character_tooltip = NodePath("Control/CharacterTooltip")
 
 [node name="Visual" type="Node2D" parent="."]
 top_level = true
@@ -218,10 +217,44 @@ text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="SelectContainer" type="Container" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 120)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_nkgfp")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[node name="CharacterTooltip" parent="Control" node_paths=PackedStringArray("character") instance=ExtResource("6_dw3ix")]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -255.0
+offset_right = 416.0
+offset_bottom = 0.0
+grow_vertical = 0
+character = NodePath("../..")
+
+[connection signal="mouse_entered" from="SelectContainer" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="SelectContainer" to="." method="_on_container_mouse_exited"]
