@@ -49,6 +49,7 @@ func show_teams():
 
 
 func start_combat():
+	GlobalSignals.close_all_tooltips()
 	clear_teams()
 	for slot in slots.player_team:
 		if slot.character != null:
