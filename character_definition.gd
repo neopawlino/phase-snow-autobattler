@@ -12,3 +12,6 @@ class_name CharacterDefinition
 @export var abilities : Array[AbilityDefinition]
 @export var level_requirements : Array[int]
 @export var levels : Array[CharacterLevel]
+
+@export var initial_level : int
+@export var initial_ability_levels : Array[int]

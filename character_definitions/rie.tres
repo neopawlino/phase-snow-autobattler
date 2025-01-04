@@ -58,3 +58,5 @@ max_hp = 2
 abilities = Array[ExtResource("1_167rq")]([SubResource("Resource_d0bo2")])
 level_requirements = Array[int]([1, 2, 3])
 levels = Array[ExtResource("4_yhsmg")]([SubResource("Resource_s0rwx"), SubResource("Resource_klgkn"), SubResource("Resource_l7yi4")])
+initial_level = 0
+initial_ability_levels = Array[int]([1])

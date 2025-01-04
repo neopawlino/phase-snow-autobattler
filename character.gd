@@ -282,13 +282,10 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.max_hp = char_def.max_hp
 	self.hp = max_hp
 	self.abilities = char_def.abilities.duplicate()
-	self.ability_levels = []
-	assert(!abilities.is_empty())
-	for ability in abilities:
-		self.ability_levels.append(0)
-	self.ability_levels[0] = 1
+	self.ability_levels = char_def.initial_ability_levels.duplicate()
 	self.levels = char_def.levels.duplicate()
 	self.level_requirements = char_def.level_requirements.duplicate()
+	self.cur_level = char_def.initial_level
 	sprite.texture = char_def.character_sprite
 	pos_offset = char_def.sprite_pos_offset
 	sprite.position = char_def.sprite_pos_offset
