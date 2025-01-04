@@ -15,6 +15,7 @@ var preview_levelup : bool = false
 var ability_index : int
 
 @export var name_label : Label
+@export var level_label : Label
 @export var type_label : Label
 @export var damage_label : Label
 @export var cooldown_label : Label
@@ -44,6 +45,7 @@ func update_visual():
 		cur_level = ability_def.ability_levels[0]
 #		TODO gray out the ability info box on level 0 and make the button say "Unlock"
 	name_label.text = ability_def.ability_name
+	level_label.text = "Lv.%s" % level
 	type_label.text = AbilityLevel.ability_type_to_str(cur_level.ability_type)
 	damage_label.visible = cur_level.physical_damage > 0
 	damage_label.text = "Damage: %s" % cur_level.physical_damage
