@@ -12,6 +12,8 @@ var level : int:
 		update_visual()
 var preview_levelup : bool = false
 
+var ability_index : int
+
 @export var name_label : Label
 @export var type_label : Label
 @export var damage_label : Label

@@ -69,6 +69,7 @@ var hp : int:
 
 var abilities : Array[AbilityDefinition]
 var ability_levels : Array[int]
+signal ability_levels_changed(levels : Array[int])
 
 var cur_level : int = 0:
 	set(value):
@@ -301,6 +302,12 @@ func level_up():
 	var cur_level_req := level_requirements[cur_level]
 	xp -= cur_level_req
 	cur_level += 1
+
+
+func level_up_ability(ability_index : int):
+	skill_points -= 1
+	ability_levels[ability_index] += 1
+	ability_levels_changed.emit(ability_levels)
 
 
 func make_timers():
