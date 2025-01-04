@@ -146,6 +146,15 @@ alignment = 2
 layout_mode = 2
 theme_override_constants/separation = 4
 
+[node name="SkillPointsLabel" type="Label" parent="Visual/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"TextSmall"
+text = "SP:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LvLabel" type="Label" parent="Visual/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_18dhx")
