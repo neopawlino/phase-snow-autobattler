@@ -22,6 +22,10 @@ func _ready():
 	# load after slots are set up
 	call_deferred(&"load_initial_teams")
 
+	GameState.round_number = 1
+	GameState.wins_needed = 10 # TODO get this from EnemyLayouts
+	GameState.wins = 0
+
 
 func load_initial_teams():
 	var i : int = 0

@@ -33,6 +33,24 @@ signal player_hp_changed(value: int)
 
 var max_interest : int = 5
 
+var round_number : int:
+	set(val):
+		round_number = val
+		round_number_changed.emit(val)
+signal round_number_changed(value: int)
+
+var wins : int:
+	set(val):
+		wins = val
+		wins_changed.emit(val)
+signal wins_changed(value: int)
+
+var wins_needed : int:
+	set(val):
+		wins_needed = val
+		wins_needed_changed.emit(val)
+signal wins_needed_changed(value: int)
+
 
 func get_interest() -> int:
 	return min(int(player_money / 5), max_interest)

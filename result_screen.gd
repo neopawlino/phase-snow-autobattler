@@ -1,5 +1,10 @@
 extends Control
 
+class_name ResultScreen
+
+
+@onready var result_label : Label = %ResultLabel
+
 
 func _on_retry_button_pressed() -> void:
 	get_tree().reload_current_scene()

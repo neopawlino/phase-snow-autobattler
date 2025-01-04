@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
-[ext_resource type="PackedScene" uid="uid://v3pc2y7lhn1w" path="res://lose_screen.tscn" id="3_w720u"]
+[ext_resource type="PackedScene" uid="uid://v3pc2y7lhn1w" path="res://result_screen.tscn" id="3_w720u"]
 [ext_resource type="Script" path="res://combat_manager.gd" id="4_0nq41"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="5_5nd4k"]
 [ext_resource type="Script" path="res://character_definition.gd" id="6_ipiyh"]
@@ -90,13 +90,13 @@ grow_vertical = 2
 [node name="Pause" parent="." instance=ExtResource("1_q1rts")]
 visible = false
 
-[node name="LoseScreen" parent="." instance=ExtResource("3_w720u")]
+[node name="ResultScreen" parent="." instance=ExtResource("3_w720u")]
 visible = false
 
-[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "lose_screen", "combat_summary", "team_manager", "shop_manager", "slots")]
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "result_screen", "combat_summary", "team_manager", "shop_manager", "slots")]
 script = ExtResource("4_0nq41")
 character_container = NodePath("CharacterContainer")
-lose_screen = NodePath("../LoseScreen")
+result_screen = NodePath("../ResultScreen")
 combat_summary = NodePath("CombatSummary")
 team_manager = NodePath("../TeamManager")
 shop_manager = NodePath("../ShopManager")

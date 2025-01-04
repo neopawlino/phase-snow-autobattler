@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b70hwns4rlfpw"]
+[gd_scene load_steps=7 format=3 uid="uid://b70hwns4rlfpw"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_2y55o"]
 [ext_resource type="Script" path="res://player_state_ui.gd" id="2_v0kog"]
 [ext_resource type="Texture2D" uid="uid://bt6gg4cs87c6h" path="res://my_assets/heart.png" id="3_d6syb"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_e0p42"]
+[ext_resource type="Texture2D" uid="uid://clxj16en41akn" path="res://my_assets/p_coin.png" id="5_hktyc"]
+[ext_resource type="Texture2D" uid="uid://dcgreuvqjri3s" path="res://my_assets/pippa.png" id="6_mg2m3"]
 
 [node name="PlayerStateUI" type="Control"]
 layout_mode = 3
@@ -24,6 +26,22 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
+[node name="MoneyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("3_e0p42")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="MoneyLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
 [node name="HeartIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 0)
@@ -37,18 +55,34 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="MoneyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="WinsIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
-texture = ExtResource("3_e0p42")
+texture = ExtResource("5_hktyc")
 expand_mode = 4
 stretch_mode = 4
 
-[node name="MoneyLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="WinsLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0/10"
+
+[node name="VSeparator3" type="VSeparator" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RoundIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("6_mg2m3")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="RoundLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10"

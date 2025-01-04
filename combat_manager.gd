@@ -9,7 +9,7 @@ var enemy_team : Array[Character]
 
 @export var character_container : Control
 
-@export var lose_screen : Control
+@export var result_screen : ResultScreen
 
 @export var combat_summary : CombatSummary
 
@@ -29,6 +29,9 @@ var in_combat : bool = false
 
 var reward : int
 var hp_gain : int
+
+var result : CombatSummary.CombatResult
+
 
 func _ready():
 	GlobalSignals.ability_applied.connect(apply_ability)
@@ -126,7 +129,6 @@ func check_combat_over():
 	var enemy_win := player_team.is_empty()
 	if not player_win and not enemy_win:
 		return
-	var result : CombatSummary.CombatResult
 	if player_win and enemy_win:
 		result = CombatSummary.CombatResult.DRAW
 		reward = draw_reward
@@ -155,7 +157,16 @@ func _on_combat_summary_continue_button_pressed() -> void:
 	GameState.player_money += reward
 	GameState.player_hp += hp_gain
 	if GameState.player_hp <= 0:
-		lose_screen.show()
+		result_screen.result_label.text = "You lose!"
+		result_screen.show()
+		return
+
+	if result == CombatSummary.CombatResult.WIN:
+		GameState.wins += 1
+	GameState.round_number += 1
+	if GameState.wins >= GameState.wins_needed:
+		result_screen.result_label.text = "You win!"
+		result_screen.show()
 		return
 
 	team_manager.show_teams()
