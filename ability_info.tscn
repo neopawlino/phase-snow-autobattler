@@ -85,7 +85,7 @@ text = "Pierce"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-text = "Level Up"
+text = "+"
 
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/LevelUpButton" to="." method="_on_level_up_button_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/LevelUpButton" to="." method="_on_level_up_button_mouse_exited"]

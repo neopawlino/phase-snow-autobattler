@@ -12,7 +12,6 @@ var char_def : CharacterDefinition
 var ability_infos : Array[AbilityInfo]
 
 # TODO connect level up button signals
-# TODO disable/enable level up buttons based on skill points
 
 func _ready() -> void:
 	character.skill_points_changed.connect(update_level_up_buttons)

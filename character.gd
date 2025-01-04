@@ -110,6 +110,8 @@ var sell_price : int = 2
 
 var last_tween : Tween
 
+var tooltip_was_visible : bool
+
 
 @onready var skill_points_label : Label = %SkillPointsLabel
 @onready var select_container : Container = %SelectContainer
@@ -120,6 +122,7 @@ func _ready() -> void:
 	visual_position = self.global_position
 	GameState.player_money_changed.connect(update_price_color)
 	GameState.is_dragging_changed.connect(set_container_mouse_filter)
+	GlobalSignals.character_tooltip_opened.connect(func(): tooltip.visible = false)
 	set_price_visible(from_shop)
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
@@ -140,6 +143,8 @@ func _process(delta: float):
 			GameState.drag_end_char_slot = cur_character_slot
 			GameState.drag_can_swap = not from_shop
 			GameState.drag_initial_mouse_pos = get_global_mouse_position()
+			tooltip_was_visible = tooltip.visible
+			tooltip.visible = false
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click"):
@@ -179,8 +184,8 @@ func _process(delta: float):
 				last_tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 				GameState.drag_original_char_slot = null
 				if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
-					# future: more polished select state
-					tooltip.visible = !tooltip.visible
+					GlobalSignals.character_tooltip_opened.emit()
+					tooltip.visible = !tooltip_was_visible
 
 
 func set_container_mouse_filter(is_dragging: bool):
