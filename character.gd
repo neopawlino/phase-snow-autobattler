@@ -178,7 +178,7 @@ func _process(delta: float):
 				last_tween = get_tree().create_tween()
 				last_tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 				GameState.drag_original_char_slot = null
-				if not from_shop and GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
+				if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
 					# future: more polished select state
 					tooltip.visible = !tooltip.visible
 
