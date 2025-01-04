@@ -62,6 +62,7 @@ func start_combat():
 	for char in player_team:
 		char.visual_follow_speed = combat_visual_follow_speed
 		char.draggable = false
+		char.character_tooltip.visible = false
 		character_container.add_child(char)
 		slots.set_char_pos(char, i)
 		char.make_timers()
@@ -70,6 +71,7 @@ func start_combat():
 	for char in enemy_team:
 		char.visual_follow_speed = combat_visual_follow_speed
 		char.draggable = false
+		char.character_tooltip.visible = false
 		character_container.add_child(char)
 		slots.set_char_pos(char, i)
 		char.make_timers()

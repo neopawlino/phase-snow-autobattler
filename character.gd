@@ -50,6 +50,7 @@ var visual_position : Vector2
 
 var base_scale : Vector2 = Vector2.ONE
 var pos_offset : Vector2
+var flipped : bool
 
 # gameplay stuff
 enum Team {
@@ -116,14 +117,13 @@ var tooltip_was_visible : bool
 
 @onready var skill_points_label : Label = %SkillPointsLabel
 @onready var select_container : Container = %SelectContainer
-@onready var tooltip : CharacterTooltip = %CharacterTooltip
 
 
 func _ready() -> void:
 	visual_position = self.global_position
 	GameState.player_money_changed.connect(update_price_color)
 	GameState.is_dragging_changed.connect(set_container_mouse_filter)
-	GlobalSignals.character_tooltip_opened.connect(func(): tooltip.visible = false)
+	GlobalSignals.character_tooltip_opened.connect(func(): character_tooltip.visible = false)
 	set_price_visible(from_shop)
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
@@ -144,8 +144,8 @@ func _process(delta: float):
 			GameState.drag_end_char_slot = cur_character_slot
 			GameState.drag_can_swap = not from_shop
 			GameState.drag_initial_mouse_pos = get_global_mouse_position()
-			tooltip_was_visible = tooltip.visible
-			tooltip.visible = false
+			tooltip_was_visible = character_tooltip.visible
+			character_tooltip.visible = false
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click"):
@@ -186,7 +186,7 @@ func _process(delta: float):
 				GameState.drag_original_char_slot = null
 				if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
 					GlobalSignals.character_tooltip_opened.emit()
-					tooltip.visible = !tooltip_was_visible
+					character_tooltip.visible = !tooltip_was_visible
 
 
 func set_container_mouse_filter(is_dragging: bool):
@@ -194,12 +194,14 @@ func set_container_mouse_filter(is_dragging: bool):
 
 
 func set_flipped(flipped: bool):
+	self.flipped = flipped
 	if flipped:
 		base_scale.x = -abs(base_scale.x)
+		sprite.position.x = -pos_offset.x
 	else:
 		base_scale.x = abs(base_scale.x)
+		sprite.position.x = pos_offset.x
 	sprite.scale = base_scale
-	sprite.position.x = -pos_offset.x
 
 
 func update_visual_position(delta: float):
@@ -247,7 +249,8 @@ func update_skill_points(value : int):
 # WE NEED TO USE THIS TO DUPLICATE RESOURCES IN AN ARRAY
 # https://github.com/godotengine/godot/issues/74918
 func my_duplicate() -> Character:
-	var new_char : Character = self.duplicate()
+	var char_scene : PackedScene = preload("res://character.tscn")
+	var new_char : Character = char_scene.instantiate()
 	new_char.abilities = self.abilities.duplicate()
 	new_char.ability_levels = self.ability_levels.duplicate()
 	new_char.max_hp = self.max_hp
@@ -258,6 +261,19 @@ func my_duplicate() -> Character:
 	new_char.xp = self.xp
 	new_char.level_requirements = self.level_requirements.duplicate()
 	new_char.levels = self.levels.duplicate()
+
+	new_char.global_position = self.global_position
+	new_char.visual_position = self.visual_position
+	new_char.visual.global_position = self.visual.global_position
+	new_char.sprite.texture = self.sprite.texture
+	new_char.pos_offset = self.pos_offset
+	new_char.sprite.position = self.pos_offset
+	new_char.sprite.hframes = self.sprite.hframes
+
+	new_char.sprite.scale = self.sprite.scale
+	new_char.base_scale = self.base_scale
+	new_char.set_flipped(flipped)
+
 	return new_char
 
 
