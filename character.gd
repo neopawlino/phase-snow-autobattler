@@ -77,6 +77,8 @@ var cur_level : int = 0:
 		cur_level = value
 		update_level_label(value)
 		update_xp_bar(xp)
+		cur_level_changed.emit(value)
+signal cur_level_changed(value : int)
 var xp : int = 0:
 	set(value):
 		xp = value
