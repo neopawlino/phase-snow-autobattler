@@ -15,9 +15,10 @@
 script = ExtResource("5_8s28j")
 ability_type = 0
 physical_damage = 1
-cooldown = 1.5
+cooldown = 1.0
 ability_range = 1
 pierce = 0
+income = 0
 applied_statuses = Array[ExtResource("6_xp11y")]([])
 
 [sub_resource type="Resource" id="Resource_wy7kt"]
@@ -32,6 +33,7 @@ physical_damage = 1
 cooldown = 0.9
 ability_range = 1
 pierce = 0
+income = 1
 applied_statuses = Array[ExtResource("6_xp11y")]([SubResource("Resource_wy7kt")])
 
 [sub_resource type="Resource" id="Resource_0npco"]
@@ -46,6 +48,7 @@ physical_damage = 2
 cooldown = 0.8
 ability_range = 2
 pierce = 0
+income = 0
 applied_statuses = Array[ExtResource("6_xp11y")]([SubResource("Resource_0npco")])
 
 [sub_resource type="Resource" id="Resource_d0bo2"]
@@ -60,6 +63,7 @@ physical_damage = 1
 cooldown = 0.5
 ability_range = 2
 pierce = 0
+income = 0
 applied_statuses = Array[ExtResource("6_xp11y")]([])
 
 [sub_resource type="Resource" id="Resource_17l2b"]
@@ -69,6 +73,7 @@ physical_damage = 2
 cooldown = 0.5
 ability_range = 2
 pierce = 1
+income = 0
 applied_statuses = Array[ExtResource("6_xp11y")]([])
 
 [sub_resource type="Resource" id="Resource_3pnjp"]

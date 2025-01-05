@@ -437,6 +437,18 @@ func get_status_value(status: StatusEffect.StatusId) -> int:
 	return statuses.get(status, 0)
 
 
+func get_income() -> int:
+	var income := 0
+	for i in range(len(abilities)):
+		var ability_def := abilities[i]
+		var ability_level_index := ability_levels[i] - 1
+		if ability_level_index < 0:
+			continue
+		var ability_level := ability_def.ability_levels[ability_level_index]
+		income += ability_level.income
+	return income
+
+
 func set_price_visible(is_visible: bool):
 	price.visible = is_visible
 

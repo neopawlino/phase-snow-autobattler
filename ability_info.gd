@@ -21,6 +21,7 @@ var ability_index : int
 @export var cooldown_label : RichTextLabel
 @export var range_label : RichTextLabel
 @export var pierce_label : RichTextLabel
+@export var income_label : RichTextLabel
 @export var level_up_button : Button
 @export var statuses_container : Container
 @export var status_icons_container : Container
@@ -65,9 +66,13 @@ func update_visual():
 	pierce_label.visible = cur_level.pierce > 0
 	pierce_label.text = "Pierce: %s" % cur_level.pierce
 
+	income_label.visible = cur_level.income != 0
+	income_label.text = "Income: %s" % cur_level.income
+
 	var statuses := cur_level.applied_statuses
 	if preview_levelup and next_level:
 		pierce_label.visible = next_level.pierce > 0
+		income_label.visible = income_label.visible or next_level.income != cur_level.income
 		statuses = next_level.applied_statuses
 		if next_level.physical_damage != cur_level.physical_damage:
 			damage_label.text += "->[color=green]%s[/color]" % next_level.physical_damage
@@ -77,6 +82,8 @@ func update_visual():
 			range_label.text += "->[color=green]%s[/color]" % next_level.ability_range
 		if next_level.pierce != cur_level.pierce:
 			pierce_label.text += "->[color=green]%s[/color]" % next_level.pierce
+		if next_level.income != cur_level.income:
+			income_label.text += "->[color=green]%s[/color]" % next_level.income
 
 	statuses_container.visible = !statuses.is_empty()
 	for icon in status_icons_container.get_children():

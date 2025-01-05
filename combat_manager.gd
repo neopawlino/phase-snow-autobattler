@@ -26,6 +26,7 @@ var in_combat : bool = false
 @export var draw_reward : int = 0
 
 var reward : int
+var income : int
 var hp_gain : int
 
 var result : CombatSummary.CombatResult
@@ -149,7 +150,16 @@ func check_combat_over():
 	for char in enemy_team:
 		char.stop_timers()
 	in_combat = false
-	combat_summary.show_combat_summary(result, reward, hp_gain)
+	income = get_player_income()
+	combat_summary.show_combat_summary(result, reward, income, hp_gain)
+
+
+func get_player_income() -> int:
+	var income := 0
+	for slot in slots.player_team:
+		if slot.character != null:
+			income += slot.character.get_income()
+	return income
 
 
 func _on_combat_summary_continue_button_pressed() -> void:
@@ -158,6 +168,7 @@ func _on_combat_summary_continue_button_pressed() -> void:
 
 	GameState.player_money += GameState.get_interest()
 	GameState.player_money += reward
+	GameState.player_money += income
 	GameState.player_hp += hp_gain
 	if GameState.player_hp <= 0:
 		result_screen.result_label.text = "You lose!"

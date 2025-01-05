@@ -17,6 +17,7 @@ static var ability_type_names : Dictionary = {
 @export var cooldown : float
 @export var ability_range : int
 @export var pierce : int
+@export var income : int
 @export var applied_statuses : Array[StatusEffect]
 
 

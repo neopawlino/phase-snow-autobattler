@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://ability_info.gd" id="2_g68wf"]
 [ext_resource type="PackedScene" uid="uid://rcf054woe6m1" path="res://status_effects/StatusIcon.tscn" id="3_tp40i"]
 
-[node name="AbilityInfo" type="PanelContainer" node_paths=PackedStringArray("name_label", "level_label", "type_label", "damage_label", "cooldown_label", "range_label", "pierce_label", "level_up_button", "statuses_container", "status_icons_container", "gray_on_locked")]
+[node name="AbilityInfo" type="PanelContainer" node_paths=PackedStringArray("name_label", "level_label", "type_label", "damage_label", "cooldown_label", "range_label", "pierce_label", "income_label", "level_up_button", "statuses_container", "status_icons_container", "gray_on_locked")]
 custom_minimum_size = Vector2(520, 0)
 offset_right = 40.0
 offset_bottom = 40.0
@@ -17,6 +17,7 @@ damage_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContain
 cooldown_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1/CooldownLabel")
 range_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2/RangeLabel")
 pierce_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2/PierceLabel")
+income_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2/IncomeLabel")
 level_up_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/LevelUpButton")
 statuses_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer")
 status_icons_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer/StatusIconsContainer")
@@ -106,6 +107,15 @@ theme = ExtResource("1_ppw0l")
 theme_type_variation = &"TextSmall"
 bbcode_enabled = true
 text = "Pierce"
+fit_content = true
+
+[node name="IncomeLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_ppw0l")
+theme_type_variation = &"TextSmall"
+bbcode_enabled = true
+text = "Income"
 fit_content = true
 
 [node name="StatusesContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
