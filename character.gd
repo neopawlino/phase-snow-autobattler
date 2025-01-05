@@ -391,6 +391,13 @@ func cast_ability(ability: AbilityLevel):
 		pierce -= 1
 	if not targets.is_empty():
 		GlobalSignals.ability_applied.emit(ability, target_team, targets, self.statuses)
+		var toxic_value : int = get_status_value(StatusEffect.StatusId.TOXIC)
+		if toxic_value > 0:
+			self.hp -= toxic_value
+			DamageNumbers.display_number(toxic_value, damage_numbers_origin.global_position)
+			self.add_status(StatusEffect.StatusId.TOXIC, -1)
+			GameState.combat_manager.check_character_dead(self)
+
 
 
 func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
@@ -400,6 +407,8 @@ func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 			damage = max(1, damage - get_status_value(StatusEffect.StatusId.ARMOR))
 		self.hp -= damage
 		DamageNumbers.display_number(damage, damage_numbers_origin.global_position)
+	for status in ability.applied_statuses:
+		self.add_status(status.status_id, status.value)
 
 
 func add_status(status: StatusEffect.StatusId, value: int):

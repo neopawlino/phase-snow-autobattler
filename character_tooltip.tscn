@@ -4,13 +4,14 @@
 [ext_resource type="Script" path="res://character_tooltip.gd" id="2_ntbkv"]
 [ext_resource type="PackedScene" uid="uid://bldeapu4qf5vg" path="res://ability_info.tscn" id="2_v280t"]
 
-[node name="CharacterTooltip" type="PanelContainer" node_paths=PackedStringArray("name_label", "ability_info_container")]
+[node name="CharacterTooltip" type="PanelContainer" node_paths=PackedStringArray("name_label", "sp_label", "ability_info_container")]
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_6fchv")
 script = ExtResource("2_ntbkv")
 ability_info_scene = ExtResource("2_v280t")
 name_label = NodePath("MarginContainer/VBoxContainer/NameLabel")
+sp_label = NodePath("MarginContainer/VBoxContainer/SPLabel")
 ability_info_container = NodePath("MarginContainer/VBoxContainer/AbilityInfoContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -22,6 +23,12 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Character Name Here"
+
+[node name="SPLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"TextSmall"
+text = "Skill Points: 999"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

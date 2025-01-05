@@ -4,6 +4,7 @@ class_name CharacterTooltip
 
 @export var ability_info_scene : PackedScene
 @export var name_label : Label
+@export var sp_label : Label
 @export var ability_info_container : Container
 @export var character : Character
 
@@ -15,6 +16,7 @@ var ability_infos : Array[AbilityInfo]
 
 func _ready() -> void:
 	character.skill_points_changed.connect(update_level_up_buttons)
+	character.skill_points_changed.connect(update_skill_points)
 	character.ability_levels_changed.connect(update_ability_levels)
 
 
@@ -26,6 +28,11 @@ func update_level_up_buttons(sp : int):
 		info.set_level_up_button_disabled(disabled)
 		if info.preview_levelup:
 			info.preview_levelup = not disabled
+
+
+func update_skill_points(sp : int):
+	sp_label.visible = sp != 0
+	sp_label.text = "Skill Points: %s" % sp
 
 
 func update_ability_levels(levels : Array[int]):

@@ -1,10 +1,115 @@
-[gd_resource type="Resource" script_class="EnemyLayouts" load_steps=10 format=3 uid="uid://doc6nuduyiunp"]
+[gd_resource type="Resource" script_class="EnemyLayouts" load_steps=30 format=3 uid="uid://doc6nuduyiunp"]
 
 [ext_resource type="Script" path="res://enemy_layouts.gd" id="1_4rtr3"]
 [ext_resource type="Script" path="res://enemy_team_set.gd" id="1_7jn50"]
 [ext_resource type="Script" path="res://enemy_team.gd" id="2_d5vn4"]
 [ext_resource type="Script" path="res://character_definition.gd" id="3_w8llv"]
+[ext_resource type="Script" path="res://ability_definition.gd" id="4_qewpd"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="4_vrh2k"]
+[ext_resource type="Script" path="res://ability_level.gd" id="5_8s28j"]
+[ext_resource type="Script" path="res://status_effects/status_effect.gd" id="6_xp11y"]
+[ext_resource type="Texture2D" uid="uid://cqd1axt1y8hns" path="res://my_assets/SAPC_Sheet.png" id="7_5mc3o"]
+[ext_resource type="Script" path="res://character_level.gd" id="8_cr7pt"]
+
+[sub_resource type="Resource" id="Resource_0x04l"]
+script = ExtResource("5_8s28j")
+ability_type = 0
+physical_damage = 1
+cooldown = 1.5
+ability_range = 1
+pierce = 0
+applied_statuses = Array[ExtResource("6_xp11y")]([])
+
+[sub_resource type="Resource" id="Resource_wy7kt"]
+script = ExtResource("6_xp11y")
+status_id = 1
+value = 1
+
+[sub_resource type="Resource" id="Resource_qi428"]
+script = ExtResource("5_8s28j")
+ability_type = 0
+physical_damage = 1
+cooldown = 0.9
+ability_range = 1
+pierce = 0
+applied_statuses = Array[ExtResource("6_xp11y")]([SubResource("Resource_wy7kt")])
+
+[sub_resource type="Resource" id="Resource_0npco"]
+script = ExtResource("6_xp11y")
+status_id = 1
+value = 1
+
+[sub_resource type="Resource" id="Resource_rvljk"]
+script = ExtResource("5_8s28j")
+ability_type = 0
+physical_damage = 2
+cooldown = 0.8
+ability_range = 2
+pierce = 0
+applied_statuses = Array[ExtResource("6_xp11y")]([SubResource("Resource_0npco")])
+
+[sub_resource type="Resource" id="Resource_d0bo2"]
+script = ExtResource("4_qewpd")
+ability_name = "Bite"
+ability_levels = Array[ExtResource("5_8s28j")]([SubResource("Resource_0x04l"), SubResource("Resource_qi428"), SubResource("Resource_rvljk")])
+
+[sub_resource type="Resource" id="Resource_cviki"]
+script = ExtResource("5_8s28j")
+ability_type = 0
+physical_damage = 1
+cooldown = 0.5
+ability_range = 2
+pierce = 0
+applied_statuses = Array[ExtResource("6_xp11y")]([])
+
+[sub_resource type="Resource" id="Resource_17l2b"]
+script = ExtResource("5_8s28j")
+ability_type = 0
+physical_damage = 2
+cooldown = 0.5
+ability_range = 2
+pierce = 1
+applied_statuses = Array[ExtResource("6_xp11y")]([])
+
+[sub_resource type="Resource" id="Resource_3pnjp"]
+script = ExtResource("4_qewpd")
+ability_name = "TestAbility2"
+ability_levels = Array[ExtResource("5_8s28j")]([SubResource("Resource_cviki"), SubResource("Resource_17l2b")])
+
+[sub_resource type="Resource" id="Resource_s0rwx"]
+script = ExtResource("8_cr7pt")
+hp = 1
+
+[sub_resource type="Resource" id="Resource_klgkn"]
+script = ExtResource("8_cr7pt")
+hp = 1
+
+[sub_resource type="Resource" id="Resource_l7yi4"]
+script = ExtResource("8_cr7pt")
+hp = 1
+
+[sub_resource type="Resource" id="Resource_altxf"]
+script = ExtResource("3_w8llv")
+character_name = "Himemiya Rie"
+character_sprite = ExtResource("7_5mc3o")
+sprite_pos_offset = Vector2(8, 0)
+sprite_scale = Vector2(2, 2)
+sprite_hframes = 2
+max_hp = 10
+abilities = Array[ExtResource("4_qewpd")]([SubResource("Resource_d0bo2"), SubResource("Resource_3pnjp")])
+level_requirements = Array[int]([1, 2, 3])
+levels = Array[ExtResource("8_cr7pt")]([SubResource("Resource_s0rwx"), SubResource("Resource_klgkn"), SubResource("Resource_l7yi4")])
+initial_level = 0
+initial_ability_levels = Array[int]([1, 0])
+statuses = Array[ExtResource("6_xp11y")]([])
+
+[sub_resource type="Resource" id="Resource_6mvpu"]
+script = ExtResource("2_d5vn4")
+characters = Array[ExtResource("3_w8llv")]([SubResource("Resource_altxf")])
+
+[sub_resource type="Resource" id="Resource_d8i7f"]
+script = ExtResource("1_7jn50")
+enemy_teams = Array[ExtResource("2_d5vn4")]([SubResource("Resource_6mvpu")])
 
 [sub_resource type="Resource" id="Resource_0k4kn"]
 script = ExtResource("2_d5vn4")
@@ -27,4 +132,4 @@ script = ExtResource("1_4rtr3")
 wins_needed = 10
 damage_on_loss = 1
 initial_lives = 5
-round_layouts = Array[ExtResource("1_7jn50")]([SubResource("Resource_r83g8"), SubResource("Resource_shxfc")])
+round_layouts = Array[ExtResource("1_7jn50")]([SubResource("Resource_d8i7f"), SubResource("Resource_r83g8"), SubResource("Resource_shxfc")])

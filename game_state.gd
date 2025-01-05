@@ -1,6 +1,7 @@
 extends Node
 
 var slots : CharacterSlots
+var combat_manager : CombatManager
 
 var is_dragging : bool = false:
 	set(val):

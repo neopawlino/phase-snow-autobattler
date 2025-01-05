@@ -32,6 +32,7 @@ var result : CombatSummary.CombatResult
 
 
 func _ready():
+	GameState.combat_manager = self
 	GlobalSignals.ability_applied.connect(apply_ability)
 	hide_teams()
 
@@ -97,8 +98,12 @@ func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int],
 			continue
 		var target_char := team[target_index]
 		target_char.receive_ability(ability, caster_statuses)
-		if target_char.hp <= 0:
-			kill_character(target_char)
+		check_character_dead(target_char)
+
+
+func check_character_dead(char: Character):
+	if char.hp <= 0:
+		kill_character(char)
 
 
 func kill_character(char: Character):
