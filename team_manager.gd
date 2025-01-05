@@ -5,7 +5,7 @@ class_name TeamManager
 @export var max_char_slots : int = 6
 
 @export var initial_player_team : Array[CharacterDefinition]
-@export var initial_enemy_team : Array[CharacterDefinition]
+@export var enemy_layouts : EnemyLayouts
 
 @export var test_character : CharacterDefinition
 
@@ -23,7 +23,8 @@ func _ready():
 	call_deferred(&"load_initial_teams")
 
 	GameState.round_number = 1
-	GameState.wins_needed = 10 # TODO get this from EnemyLayouts
+	GameState.wins_needed = enemy_layouts.wins_needed
+	GameState.player_hp = enemy_layouts.initial_lives
 	GameState.wins = 0
 
 
@@ -42,8 +43,18 @@ func load_initial_teams():
 		slot.character = char
 		self.character_container.add_child(char)
 		i += 1
-	i = 0
-	for char_def in initial_enemy_team:
+	load_enemy_team_for_round(GameState.round_number)
+
+
+func load_enemy_team_for_round(round_number : int):
+	clear_enemy_slots()
+	var round_index := clampi(round_number - 1, 0, len(enemy_layouts.round_layouts) - 1)
+	var enemy_team : EnemyTeam = enemy_layouts.round_layouts[round_index].enemy_teams.pick_random()
+	var i := 0
+	for char_def in enemy_team.characters:
+		if i >= len(slots.enemy_team):
+			push_warning("Enemy team with more characters than max slots")
+			return
 		var char : Character = character_scene.instantiate()
 		var slot := slots.enemy_team[i]
 		char.load_from_character_definition(char_def)
@@ -57,6 +68,13 @@ func load_initial_teams():
 		slot.character = char
 		self.character_container.add_child(char)
 		i += 1
+
+
+func clear_enemy_slots():
+	for slot in slots.enemy_team:
+		if slot.character:
+			slot.character.queue_free()
+		slot.character = null
 
 
 func add_test_character():

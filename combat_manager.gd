@@ -25,8 +25,6 @@ var in_combat : bool = false
 @export var lose_reward : int = 0
 @export var draw_reward : int = 0
 
-@export var lose_hp_damage : int = 2
-
 var reward : int
 var hp_gain : int
 
@@ -140,7 +138,7 @@ func check_combat_over():
 	elif enemy_win:
 		result = CombatSummary.CombatResult.LOSE
 		reward = lose_reward
-		hp_gain = -lose_hp_damage
+		hp_gain = -team_manager.enemy_layouts.damage_on_loss
 	for char in player_team:
 		char.stop_timers()
 	for char in enemy_team:
@@ -170,6 +168,7 @@ func _on_combat_summary_continue_button_pressed() -> void:
 		return
 
 	team_manager.show_teams()
+	team_manager.load_enemy_team_for_round(GameState.round_number)
 	shop_manager.show_shop()
 	shop_manager.reroll_characters()
 	shop_manager.reset_reroll_price()
