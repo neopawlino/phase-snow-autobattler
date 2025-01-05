@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://player_state_ui.gd" id="2_v0kog"]
 [ext_resource type="Texture2D" uid="uid://bt6gg4cs87c6h" path="res://my_assets/heart.png" id="3_d6syb"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_e0p42"]
-[ext_resource type="Texture2D" uid="uid://clxj16en41akn" path="res://my_assets/p_coin.png" id="5_hktyc"]
-[ext_resource type="Texture2D" uid="uid://dcgreuvqjri3s" path="res://my_assets/pippa.png" id="6_mg2m3"]
+[ext_resource type="Texture2D" uid="uid://cmv2xj5hg5jo2" path="res://my_assets/trophy.png" id="5_k4ufb"]
+[ext_resource type="Texture2D" uid="uid://ccj1r160gllfe" path="res://my_assets/hourglass.png" id="6_0pwgu"]
 
 [node name="PlayerStateUI" type="Control"]
 layout_mode = 3
@@ -62,7 +62,7 @@ layout_mode = 2
 texture_filter = 1
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
-texture = ExtResource("5_hktyc")
+texture = ExtResource("5_k4ufb")
 expand_mode = 4
 stretch_mode = 4
 
@@ -78,7 +78,7 @@ layout_mode = 2
 texture_filter = 1
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
-texture = ExtResource("6_mg2m3")
+texture = ExtResource("6_0pwgu")
 expand_mode = 4
 stretch_mode = 4
 
