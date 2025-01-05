@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://qw78e5iu3bob" path="res://my_assets/fishie.png" id="3_ufjp5"]
 
 [node name="StatusIcon" type="Control" node_paths=PackedStringArray("icon", "value_label")]
-custom_minimum_size = Vector2(24, 0)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 24.0

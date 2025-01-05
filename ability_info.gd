@@ -22,6 +22,8 @@ var ability_index : int
 @export var range_label : RichTextLabel
 @export var pierce_label : RichTextLabel
 @export var level_up_button : Button
+@export var statuses_container : Container
+@export var status_icons_container : Container
 
 @export var gray_on_locked : Array[Control]
 @export var gray_color : Color = Color.DIM_GRAY
@@ -63,8 +65,10 @@ func update_visual():
 	pierce_label.visible = cur_level.pierce > 0
 	pierce_label.text = "Pierce: %s" % cur_level.pierce
 
+	var statuses := cur_level.applied_statuses
 	if preview_levelup and next_level:
 		pierce_label.visible = next_level.pierce > 0
+		statuses = next_level.applied_statuses
 		if next_level.physical_damage != cur_level.physical_damage:
 			damage_label.text += "->[color=green]%s[/color]" % next_level.physical_damage
 		if next_level.cooldown != cur_level.cooldown:
@@ -73,6 +77,13 @@ func update_visual():
 			range_label.text += "->[color=green]%s[/color]" % next_level.ability_range
 		if next_level.pierce != cur_level.pierce:
 			pierce_label.text += "->[color=green]%s[/color]" % next_level.pierce
+
+	statuses_container.visible = !statuses.is_empty()
+	for icon in status_icons_container.get_children():
+		icon.queue_free()
+	for status in statuses:
+		var icon := StatusIcon.make_status_icon(status.status_id, status.value)
+		status_icons_container.add_child(icon)
 
 
 func set_locked(locked: bool):

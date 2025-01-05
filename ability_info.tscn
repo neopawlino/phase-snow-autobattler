@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bldeapu4qf5vg"]
+[gd_scene load_steps=4 format=3 uid="uid://bldeapu4qf5vg"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_ppw0l"]
 [ext_resource type="Script" path="res://ability_info.gd" id="2_g68wf"]
+[ext_resource type="PackedScene" uid="uid://rcf054woe6m1" path="res://status_effects/StatusIcon.tscn" id="3_tp40i"]
 
-[node name="AbilityInfo" type="PanelContainer" node_paths=PackedStringArray("name_label", "level_label", "type_label", "damage_label", "cooldown_label", "range_label", "pierce_label", "level_up_button", "gray_on_locked")]
-custom_minimum_size = Vector2(450, 0)
+[node name="AbilityInfo" type="PanelContainer" node_paths=PackedStringArray("name_label", "level_label", "type_label", "damage_label", "cooldown_label", "range_label", "pierce_label", "level_up_button", "statuses_container", "status_icons_container", "gray_on_locked")]
+custom_minimum_size = Vector2(520, 0)
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_ppw0l")
@@ -17,6 +18,8 @@ cooldown_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxConta
 range_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2/RangeLabel")
 pierce_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2/PierceLabel")
 level_up_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/LevelUpButton")
+statuses_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer")
+status_icons_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer/StatusIconsContainer")
 gray_on_locked = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -33,7 +36,7 @@ theme_override_constants/separation = 16
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "I'm Gonna ****ing Shoot Up A"
+text = "I'm Gonna ****ing Shoot Up A W*lm*rt"
 
 [node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
@@ -105,9 +108,33 @@ bbcode_enabled = true
 text = "Pierce"
 fit_content = true
 
+[node name="StatusesContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer"]
+layout_mode = 2
+theme_type_variation = &"TextSmall"
+text = "Statuses"
+
+[node name="StatusIconsContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+columns = 2
+
+[node name="StatusIcon" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer/StatusIconsContainer" instance=ExtResource("3_tp40i")]
+layout_mode = 2
+
+[node name="StatusIcon2" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer/StatusIconsContainer" instance=ExtResource("3_tp40i")]
+layout_mode = 2
+
+[node name="StatusIcon3" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer/StatusIconsContainer" instance=ExtResource("3_tp40i")]
+layout_mode = 2
+
 [node name="LevelUpButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "+"
 
