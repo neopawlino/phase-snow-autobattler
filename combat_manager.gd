@@ -53,6 +53,7 @@ func show_teams():
 
 func start_combat():
 	GlobalSignals.close_all_tooltips()
+	slots.set_player_slots_pickable(false)
 	clear_teams()
 	for slot in slots.player_team:
 		if slot.character != null:
@@ -183,6 +184,8 @@ func _on_combat_summary_continue_button_pressed() -> void:
 		result_screen.result_label.text = "You win!"
 		result_screen.show()
 		return
+
+	slots.set_player_slots_pickable(true)
 
 	team_manager.show_teams()
 	team_manager.load_enemy_team_for_round(GameState.round_number)

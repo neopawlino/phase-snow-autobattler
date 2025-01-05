@@ -29,6 +29,11 @@ func _ready() -> void:
 		enemy_slot_container.add_child(enemy_slot)
 
 
+func set_player_slots_pickable(pickable: bool):
+	for slot in player_team:
+		slot.set_pickable(pickable)
+
+
 func reorder_char(char : Character, to : int):
 	var slots := player_team if char.team == Character.Team.PLAYER else enemy_team
 	var from := char.pos
