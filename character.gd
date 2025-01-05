@@ -39,7 +39,10 @@ var ability_bar_scene : PackedScene = preload("res://ability_bar.tscn")
 var character_name : String
 
 # draggable stuff
-var draggable : bool = false
+var draggable : bool = false:
+	set(val):
+		draggable = val
+		select_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if val else Control.CURSOR_ARROW
 var mouseover : bool = false
 var drag_offset : Vector2
 var drag_initial_pos : Vector2
@@ -125,7 +128,7 @@ var tooltip_was_visible : bool
 
 
 @onready var skill_points_label : Label = %SkillPointsLabel
-@onready var select_container : Container = %SelectContainer
+@export var select_container : Container
 
 
 func _ready() -> void:

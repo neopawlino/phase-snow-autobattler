@@ -69,7 +69,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "character_tooltip", "status_icon_container")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "character_tooltip", "status_icon_container", "select_container")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/Sprite2D")
@@ -86,6 +86,7 @@ xp_bar = NodePath("Visual/VBoxContainer/XPBar")
 ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
 character_tooltip = NodePath("Control/CharacterTooltip")
 status_icon_container = NodePath("Visual/StatusContainer")
+select_container = NodePath("SelectContainer")
 
 [node name="Visual" type="Node2D" parent="."]
 top_level = true
@@ -248,10 +249,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -100.0
-offset_right = -40.0
-offset_bottom = -100.0
+offset_top = 40.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -260,13 +259,13 @@ unique_name_in_owner = true
 visible = false
 z_index = 1
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -255.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -200.0
 offset_right = 416.0
-offset_bottom = 0.0
-grow_vertical = 0
+offset_bottom = 55.0
+grow_vertical = 2
 character = NodePath("../..")
 
 [connection signal="mouse_entered" from="SelectContainer" to="." method="_on_container_mouse_entered"]
