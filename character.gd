@@ -379,16 +379,26 @@ func stop_timers():
 
 
 func cast_ability(ability: AbilityLevel):
-	# TODO buff targeting logic
-	var target_team : int = Team.ENEMY if team == Team.PLAYER else Team.PLAYER
+	var target_team : int = Team.ENEMY if self.team == Team.PLAYER else Team.PLAYER
 	var targets : Array[int] = []
-	var effective_range := ability.ability_range - self.pos
-	var pierce := ability.pierce
-	var i := 0
-	while i < effective_range and pierce >= 0:
-		targets.append(i)
-		i += 1
-		pierce -= 1
+
+	if ability.ability_type == AbilityLevel.AbilityType.BUFF:
+		target_team = self.team
+		var start_index = maxi(0, self.pos - ability.ability_range)
+		var end_index = mini(GameState.combat_manager.slots.max_slots, self.pos + ability.ability_range + 1)
+		for i in range(start_index, end_index):
+			targets.append(i)
+	else:
+		var effective_range := ability.ability_range - self.pos
+		var pierce := ability.pierce
+		var i := 0
+		while i < effective_range and pierce >= 0:
+			if i >= GameState.combat_manager.slots.max_slots:
+				break
+			targets.append(i)
+			i += 1
+			pierce -= 1
+
 	if not targets.is_empty():
 		GlobalSignals.ability_applied.emit(ability, target_team, targets, self.statuses)
 		var toxic_value : int = get_status_value(StatusEffect.StatusId.TOXIC)
@@ -397,7 +407,6 @@ func cast_ability(ability: AbilityLevel):
 			DamageNumbers.display_number(toxic_value, damage_numbers_origin.global_position)
 			self.add_status(StatusEffect.StatusId.TOXIC, -1)
 			GameState.combat_manager.check_character_dead(self)
-
 
 
 func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
@@ -418,6 +427,7 @@ func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 
 		self.hp -= damage
 		DamageNumbers.display_number(damage, damage_numbers_origin.global_position)
+
 	for status in ability.applied_statuses:
 		self.add_status(status.status_id, status.value)
 

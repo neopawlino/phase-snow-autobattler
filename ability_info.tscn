@@ -21,7 +21,7 @@ income_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContain
 level_up_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/LevelUpButton")
 statuses_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer")
 status_icons_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer/StatusIconsContainer")
-gray_on_locked = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2")]
+gray_on_locked = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatusesContainer")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
