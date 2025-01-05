@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3kuf2p6gvovk"]
 
-[ext_resource type="Texture2D" uid="uid://bfyseo7apl6g" path="res://my_assets/tile.png" id="1_h7ac4"]
 [ext_resource type="Script" path="res://character_slot.gd" id="1_x2ymd"]
+[ext_resource type="Texture2D" uid="uid://dhkgqtjouosqu" path="res://my_assets/slot.png" id="2_2h50i"]
 
 [node name="CharacterSlot" type="Control" node_paths=PackedStringArray("select_container")]
 layout_mode = 3
@@ -17,8 +17,9 @@ select_container = NodePath("Container")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_h7ac4")
+position = Vector2(0, 10)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("2_2h50i")
 offset = Vector2(0, 30)
 
 [node name="MergeSwapTimer" type="Timer" parent="."]

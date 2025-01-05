@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpfytprhd24ow"]
 
-[ext_resource type="Texture2D" uid="uid://bdebtieljaute" path="res://assets/vecteezy_winter-landscape-with-mountains-on-the-horizon-pine-forest_4371970.png" id="1_1g4os"]
+[ext_resource type="Texture2D" uid="uid://bxolf73yr740g" path="res://my_assets/bgfrfr.png" id="1_nbw73"]
 
 [node name="Sprite2D" type="Sprite2D"]
 z_index = -2
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_1g4os")
+texture = ExtResource("1_nbw73")
