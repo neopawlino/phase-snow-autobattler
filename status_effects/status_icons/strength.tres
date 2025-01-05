@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusIconDefinition" load_steps=3 format=3 uid="uid://0jwk0oxo2nbp"]
+
+[ext_resource type="Texture2D" uid="uid://clxj16en41akn" path="res://my_assets/p_coin.png" id="1_3hc51"]
+[ext_resource type="Script" path="res://status_effects/status_icon_definition.gd" id="1_mwyk5"]
+
+[resource]
+script = ExtResource("1_mwyk5")
+status = 0
+icon = ExtResource("1_3hc51")

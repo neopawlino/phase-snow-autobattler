@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=16 format=3 uid="uid://baiyj43bn6b1k"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=17 format=3 uid="uid://baiyj43bn6b1k"]
 
 [ext_resource type="Script" path="res://ability_definition.gd" id="1_167rq"]
 [ext_resource type="Script" path="res://ability_level.gd" id="2_w7q34"]
 [ext_resource type="Texture2D" uid="uid://cqd1axt1y8hns" path="res://my_assets/SAPC_Sheet.png" id="2_yr1ff"]
 [ext_resource type="Script" path="res://character_definition.gd" id="3_chc5m"]
 [ext_resource type="Script" path="res://character_level.gd" id="4_yhsmg"]
+[ext_resource type="Script" path="res://status_effects/status_effect.gd" id="6_y1j6c"]
 
 [sub_resource type="Resource" id="Resource_0x04l"]
 script = ExtResource("2_w7q34")
@@ -81,3 +82,4 @@ level_requirements = Array[int]([1, 2, 3])
 levels = Array[ExtResource("4_yhsmg")]([SubResource("Resource_s0rwx"), SubResource("Resource_klgkn"), SubResource("Resource_l7yi4")])
 initial_level = 0
 initial_ability_levels = Array[int]([1, 0])
+statuses = Array[ExtResource("6_y1j6c")]([])

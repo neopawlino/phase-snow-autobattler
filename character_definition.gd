@@ -15,3 +15,5 @@ class_name CharacterDefinition
 
 @export var initial_level : int
 @export var initial_ability_levels : Array[int]
+
+@export var statuses : Array[StatusEffect]

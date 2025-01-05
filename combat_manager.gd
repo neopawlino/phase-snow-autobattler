@@ -90,13 +90,13 @@ func clear_teams():
 	enemy_team.clear()
 
 
-func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int]):
+func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int], caster_statuses: Dictionary):
 	var team := enemy_team if target_team == Character.Team.ENEMY else player_team
 	for target_index in targets:
 		if target_index >= len(team):
 			continue
 		var target_char := team[target_index]
-		target_char.receive_ability(ability)
+		target_char.receive_ability(ability, caster_statuses)
 		if target_char.hp <= 0:
 			kill_character(target_char)
 

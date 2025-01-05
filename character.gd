@@ -94,6 +94,13 @@ signal skill_points_changed(value : int)
 var ability_timers : Array[Timer]
 var ability_bars : Array[ProgressBar]
 
+# StatusId -> int (number of stacks)
+var statuses : Dictionary
+# StatusId -> StatusIcon (that has been added to status icon container)
+var status_icons : Dictionary
+
+@export var status_icon_container : Container
+
 # character's position (index) in the team
 var pos : int
 var team : int
@@ -262,6 +269,11 @@ func my_duplicate() -> Character:
 	new_char.level_requirements = self.level_requirements.duplicate()
 	new_char.levels = self.levels.duplicate()
 
+	# ensure status icons get added
+	# this might reorder status icons oh well
+	for status_id in self.statuses:
+		new_char.add_status(status_id, self.statuses[status_id])
+
 	new_char.global_position = self.global_position
 	new_char.visual_position = self.visual_position
 	new_char.visual.global_position = self.visual.global_position
@@ -286,6 +298,10 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.levels = char_def.levels.duplicate()
 	self.level_requirements = char_def.level_requirements.duplicate()
 	self.cur_level = char_def.initial_level
+
+	for status in char_def.statuses:
+		self.add_status(status.status_id, status.value)
+
 	sprite.texture = char_def.character_sprite
 	pos_offset = char_def.sprite_pos_offset
 	sprite.position = char_def.sprite_pos_offset
@@ -363,6 +379,7 @@ func stop_timers():
 
 
 func cast_ability(ability: AbilityLevel):
+	# TODO buff targeting logic
 	var target_team : int = Team.ENEMY if team == Team.PLAYER else Team.PLAYER
 	var targets : Array[int] = []
 	var effective_range := ability.ability_range - self.pos
@@ -373,13 +390,31 @@ func cast_ability(ability: AbilityLevel):
 		i += 1
 		pierce -= 1
 	if not targets.is_empty():
-		GlobalSignals.ability_applied.emit(ability, target_team, targets)
+		GlobalSignals.ability_applied.emit(ability, target_team, targets, self.statuses)
 
 
-func receive_ability(ability: AbilityLevel):
+func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 	if ability.physical_damage > 0:
-		self.hp -= ability.physical_damage
-		DamageNumbers.display_number(ability.physical_damage, damage_numbers_origin.global_position)
+		var damage : int = ability.physical_damage + caster_statuses.get(StatusEffect.StatusId.STRENGTH, 0)
+		if damage > 0:
+			damage = max(1, damage - get_status_value(StatusEffect.StatusId.ARMOR))
+		self.hp -= damage
+		DamageNumbers.display_number(damage, damage_numbers_origin.global_position)
+
+
+func add_status(status: StatusEffect.StatusId, value: int):
+	var new_value : int = statuses.get(status, 0) + value
+	statuses[status] = new_value
+	if not status_icons.has(status):
+		var icon := StatusIcon.make_status_icon(status, value)
+		status_icon_container.add_child(icon)
+		status_icons[status] = icon
+	else:
+		status_icons[status].value = new_value
+
+
+func get_status_value(status: StatusEffect.StatusId) -> int:
+	return statuses.get(status, 0)
 
 
 func set_price_visible(is_visible: bool):
