@@ -5,11 +5,13 @@ class_name AbilityLevel
 enum AbilityType {
 	PHYSICAL,
 	TOXIC,
+	BUFF,
 }
 
 static var ability_type_names : Dictionary = {
 	AbilityType.PHYSICAL: "Physical",
-	AbilityType.TOXIC: "Toxic"
+	AbilityType.TOXIC: "Toxic",
+	AbilityType.BUFF: "Buff",
 }
 
 @export var ability_type : AbilityType
