@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=13 format=3 uid="uid://baiyj43bn6b1k"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=16 format=3 uid="uid://baiyj43bn6b1k"]
 
 [ext_resource type="Script" path="res://ability_definition.gd" id="1_167rq"]
 [ext_resource type="Script" path="res://ability_level.gd" id="2_w7q34"]
@@ -35,6 +35,27 @@ script = ExtResource("1_167rq")
 ability_name = "Bite"
 ability_levels = Array[ExtResource("2_w7q34")]([SubResource("Resource_0x04l"), SubResource("Resource_qi428"), SubResource("Resource_rvljk")])
 
+[sub_resource type="Resource" id="Resource_cviki"]
+script = ExtResource("2_w7q34")
+ability_type = 0
+physical_damage = 1
+cooldown = 0.5
+ability_range = 2
+pierce = 1
+
+[sub_resource type="Resource" id="Resource_17l2b"]
+script = ExtResource("2_w7q34")
+ability_type = 0
+physical_damage = 4
+cooldown = 0.5
+ability_range = 2
+pierce = 1
+
+[sub_resource type="Resource" id="Resource_3pnjp"]
+script = ExtResource("1_167rq")
+ability_name = "TestAbility2"
+ability_levels = Array[ExtResource("2_w7q34")]([SubResource("Resource_cviki"), SubResource("Resource_17l2b")])
+
 [sub_resource type="Resource" id="Resource_s0rwx"]
 script = ExtResource("4_yhsmg")
 hp = 1
@@ -55,8 +76,8 @@ sprite_pos_offset = Vector2(8, 0)
 sprite_scale = Vector2(2, 2)
 sprite_hframes = 2
 max_hp = 2
-abilities = Array[ExtResource("1_167rq")]([SubResource("Resource_d0bo2")])
+abilities = Array[ExtResource("1_167rq")]([SubResource("Resource_d0bo2"), SubResource("Resource_3pnjp")])
 level_requirements = Array[int]([1, 2, 3])
 levels = Array[ExtResource("4_yhsmg")]([SubResource("Resource_s0rwx"), SubResource("Resource_klgkn"), SubResource("Resource_l7yi4")])
 initial_level = 0
-initial_ability_levels = Array[int]([1])
+initial_ability_levels = Array[int]([1, 0])
