@@ -124,8 +124,8 @@ func kill_character(char: Character):
 			var new_pos := char_to_move.pos - 1
 			slots.set_char_pos(char_to_move, new_pos)
 	else:
-		push_error("Couldn't find character to kill")
-		assert(false)
+		# character died to 2 sources on the same tick
+		return
 	char.queue_free()
 
 

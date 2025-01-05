@@ -328,6 +328,10 @@ func level_up():
 	var char_level : CharacterLevel = levels[cur_level]
 	max_hp += char_level.hp
 	hp += char_level.hp
+
+	for status in char_level.statuses:
+		self.add_status(status.status_id, status.value)
+
 	var cur_level_req := level_requirements[cur_level]
 	xp -= cur_level_req
 	cur_level += 1
