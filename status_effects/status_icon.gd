@@ -5,6 +5,9 @@ class_name StatusIcon
 @export var icon : TextureRect
 @export var value_label : Label
 
+@export var pos_color : Color = Color.GREEN
+@export var neg_color : Color = Color.RED
+
 var value : int = 0:
 	set(val):
 		value = val
@@ -24,3 +27,4 @@ static func make_status_icon(status : StatusEffect.StatusId, value : int = 0) ->
 func update_value(val: int):
 	self.visible = val != 0
 	value_label.text = str(val)
+	value_label.add_theme_color_override(&"font_color", pos_color if val > 0 else neg_color)
