@@ -7,4 +7,4 @@ script = ExtResource("1_nq5qt")
 base_folder = "res://status_effects/status_icons"
 includes = Array[String](["*.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://status_effects/status_icons/armor.tres", "res://status_effects/status_icons/strength.tres", "res://status_effects/status_icons/toxic.tres"])
+paths = Array[String](["res://status_effects/status_icons/armor.tres", "res://status_effects/status_icons/armor_breaker.tres", "res://status_effects/status_icons/envenom.tres", "res://status_effects/status_icons/strength.tres", "res://status_effects/status_icons/toxic.tres"])
