@@ -7,3 +7,4 @@
 script = ExtResource("2_kfdb3")
 status = 1
 icon = ExtResource("1_28blo")
+tooltip_text = "Toxic: When this unit casts an ability, take %s damage, then reduce Toxic by 1."

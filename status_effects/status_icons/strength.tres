@@ -7,3 +7,4 @@
 script = ExtResource("1_mwyk5")
 status = 0
 icon = ExtResource("1_mbgtr")
+tooltip_text = "Strength: Unit's Physical attacks deal %s more damage."

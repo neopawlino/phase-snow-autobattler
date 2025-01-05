@@ -7,3 +7,4 @@
 script = ExtResource("2_8wr84")
 status = 2
 icon = ExtResource("1_q3kc6")
+tooltip_text = "Armor: Reduces Physical attack damage received by %s, to a minimum of 1."
