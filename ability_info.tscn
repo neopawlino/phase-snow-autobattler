@@ -3,20 +3,21 @@
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_ppw0l"]
 [ext_resource type="Script" path="res://ability_info.gd" id="2_g68wf"]
 
-[node name="AbilityInfo" type="PanelContainer" node_paths=PackedStringArray("name_label", "level_label", "type_label", "damage_label", "cooldown_label", "range_label", "pierce_label", "level_up_button")]
-custom_minimum_size = Vector2(400, 0)
+[node name="AbilityInfo" type="PanelContainer" node_paths=PackedStringArray("name_label", "level_label", "type_label", "damage_label", "cooldown_label", "range_label", "pierce_label", "level_up_button", "gray_on_locked")]
+custom_minimum_size = Vector2(450, 0)
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_ppw0l")
 script = ExtResource("2_g68wf")
 name_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/NameLabel")
 level_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/LevelLabel")
-type_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/TypeLabel")
-damage_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/DamageLabel")
-cooldown_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/CooldownLabel")
-range_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/RangeLabel")
-pierce_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/PierceLabel")
+type_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1/TypeLabel")
+damage_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1/DamageLabel")
+cooldown_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1/CooldownLabel")
+range_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2/RangeLabel")
+pierce_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2/PierceLabel")
 level_up_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/LevelUpButton")
+gray_on_locked = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -53,48 +54,56 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="StatsContainer1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_ppw0l")
 theme_type_variation = &"TextSmall"
 text = "Type"
 
-[node name="DamageLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="DamageLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_ppw0l")
 theme_type_variation = &"TextSmall"
-text = "Damage"
+bbcode_enabled = true
+text = "Damage: 1->[color=lime_green]2[/color]"
+fit_content = true
 
-[node name="CooldownLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CooldownLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_ppw0l")
 theme_type_variation = &"TextSmall"
+bbcode_enabled = true
 text = "Cooldown"
+fit_content = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="StatsContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RangeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="RangeLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_ppw0l")
 theme_type_variation = &"TextSmall"
+bbcode_enabled = true
 text = "Range"
+fit_content = true
 
-[node name="PierceLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="PierceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_ppw0l")
 theme_type_variation = &"TextSmall"
+bbcode_enabled = true
 text = "Pierce"
+fit_content = true
 
 [node name="LevelUpButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true

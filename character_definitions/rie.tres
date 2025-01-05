@@ -41,12 +41,12 @@ ability_type = 0
 physical_damage = 1
 cooldown = 0.5
 ability_range = 2
-pierce = 1
+pierce = 0
 
 [sub_resource type="Resource" id="Resource_17l2b"]
 script = ExtResource("2_w7q34")
 ability_type = 0
-physical_damage = 4
+physical_damage = 2
 cooldown = 0.5
 ability_range = 2
 pierce = 1

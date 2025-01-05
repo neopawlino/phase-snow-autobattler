@@ -22,7 +22,10 @@ func update_level_up_buttons(sp : int):
 	for i in range(len(ability_infos)):
 		var ability_level := character.ability_levels[i]
 		var info := ability_infos[i]
-		info.set_level_up_button_disabled(sp == 0 or info.is_max_level(ability_level))
+		var disabled : bool = sp == 0 or info.is_max_level(ability_level)
+		info.set_level_up_button_disabled(disabled)
+		if info.preview_levelup:
+			info.preview_levelup = not disabled
 
 
 func update_ability_levels(levels : Array[int]):
