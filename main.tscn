@@ -30,12 +30,6 @@ grow_vertical = 2
 [node name="Sprite2D" parent="Control" instance=ExtResource("1_ihq3p")]
 scale = Vector2(0.67, 0.67)
 
-[node name="Pause" parent="." instance=ExtResource("1_q1rts")]
-visible = false
-
-[node name="ResultScreen" parent="." instance=ExtResource("3_w720u")]
-visible = false
-
 [node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "result_screen", "combat_summary", "team_manager", "shop_manager", "slots")]
 script = ExtResource("4_0nq41")
 character_container = NodePath("CharacterContainer")
@@ -70,9 +64,11 @@ script = ExtResource("8_efko3")
 shop_ui = NodePath("Control")
 combat_manager = NodePath("../CombatManager")
 base_reroll_price = 1
+reroll_increase = 0
 shop_slot_container = NodePath("ShopSlots/HBoxContainer")
 character_container = NodePath("../CharacterContainer")
 reroll_button = NodePath("Control/RerollButton")
+starting_money = 10
 
 [node name="Control" type="Control" parent="ShopManager"]
 layout_mode = 3
@@ -226,6 +222,12 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="ResultScreen" parent="." instance=ExtResource("3_w720u")]
+visible = false
+
+[node name="Pause" parent="." instance=ExtResource("1_q1rts")]
+visible = false
 
 [connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]

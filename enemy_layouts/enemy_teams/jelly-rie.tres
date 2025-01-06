@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyTeam" load_steps=5 format=3 uid="uid://bs3uplwuroaji"]
+
+[ext_resource type="Script" path="res://character_definition.gd" id="1_rsdry"]
+[ext_resource type="Resource" uid="uid://d2stuegtrwosd" path="res://enemy_layouts/enemy_character_definitions/jelly-lv2-130.tres" id="2_2xtnp"]
+[ext_resource type="Resource" uid="uid://2pkjbwy4f6ou" path="res://enemy_layouts/enemy_character_definitions/rie-lv3-331.tres" id="3_i7i13"]
+[ext_resource type="Script" path="res://enemy_team.gd" id="3_spw7r"]
+
+[resource]
+script = ExtResource("3_spw7r")
+characters = Array[ExtResource("1_rsdry")]([ExtResource("2_2xtnp"), ExtResource("3_i7i13")])

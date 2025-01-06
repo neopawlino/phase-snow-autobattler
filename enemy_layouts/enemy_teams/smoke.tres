@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyTeam" load_steps=4 format=3 uid="uid://bicox5nyigai4"]
+
+[ext_resource type="Script" path="res://character_definition.gd" id="1_75oxn"]
+[ext_resource type="Resource" uid="uid://bb13frwm34bco" path="res://enemy_layouts/enemy_character_definitions/jelly-lv1-smoker.tres" id="2_8oivb"]
+[ext_resource type="Script" path="res://enemy_team.gd" id="4_0t17g"]
+
+[resource]
+script = ExtResource("4_0t17g")
+characters = Array[ExtResource("1_75oxn")]([ExtResource("2_8oivb"), ExtResource("2_8oivb"), ExtResource("2_8oivb")])
