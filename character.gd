@@ -358,7 +358,7 @@ func make_timers():
 		timer.wait_time = ability_level.cooldown
 		timer.timeout.connect(func():
 			var effective_range := ability_level.ability_range - self.pos
-			if effective_range <= 0:
+			if effective_range <= 0 and not ability_level.ability_type == AbilityLevel.AbilityType.BUFF:
 				return
 			if flipped:
 				anim_player.play(&"attack_flipped")
