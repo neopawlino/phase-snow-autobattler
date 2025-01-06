@@ -169,6 +169,7 @@ offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
+mouse_filter = 2
 theme = ExtResource("4_18dhx")
 theme_override_constants/separation = 6
 alignment = 2

@@ -7,6 +7,7 @@
 [node name="CharacterTooltip" type="PanelContainer" node_paths=PackedStringArray("name_label", "sp_label", "level_up_label", "level_up_status_container", "level_up_container", "ability_info_container")]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 theme = ExtResource("1_6fchv")
 script = ExtResource("2_ntbkv")
 ability_info_scene = ExtResource("2_v280t")
