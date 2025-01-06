@@ -3,6 +3,7 @@ extends Resource
 class_name CharacterDefinition
 
 @export var character_name : String
+@export var short_name : String
 @export var character_sprite : Texture2D
 @export var sprite_offset : Vector2
 @export var sprite_scale : Vector2 = Vector2.ONE

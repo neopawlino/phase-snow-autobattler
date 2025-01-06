@@ -160,6 +160,7 @@ value = 3
 [resource]
 script = ExtResource("6_wjt24")
 character_name = "Pipkin Pippa"
+short_name = "Pippa"
 character_sprite = ExtResource("4_aldht")
 sprite_offset = Vector2(2, 0)
 sprite_scale = Vector2(3, 3)

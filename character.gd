@@ -29,6 +29,8 @@ class_name Character
 
 @export var ability_bar_container : BoxContainer
 
+@export var name_label : Label
+
 @export var price_color : Color = Color.WHITE
 @export var price_unaffordable_color : Color = Color.INDIAN_RED
 
@@ -300,6 +302,8 @@ func my_duplicate() -> Character:
 	new_char.base_scale = self.base_scale
 	new_char.set_flipped(flipped)
 
+	new_char.name_label.text = self.name_label.text
+
 	return new_char
 
 
@@ -323,6 +327,8 @@ func load_from_character_definition(char_def : CharacterDefinition):
 
 	sprite.scale = char_def.sprite_scale
 	base_scale = char_def.sprite_scale
+
+	self.name_label.text = char_def.short_name
 
 	character_tooltip.load_char_def(char_def)
 

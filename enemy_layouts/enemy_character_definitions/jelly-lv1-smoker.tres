@@ -185,6 +185,7 @@ statuses = Array[ExtResource("3_osnqe")]([SubResource("Resource_ipqmy")])
 [resource]
 script = ExtResource("6_nifs5")
 character_name = "Jelly Hoshiumi"
+short_name = "Jelly"
 character_sprite = ExtResource("4_wqb7b")
 sprite_offset = Vector2(-2, 0)
 sprite_scale = Vector2(3, 3)

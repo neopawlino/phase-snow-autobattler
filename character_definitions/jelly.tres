@@ -15,8 +15,8 @@ value = -1
 [sub_resource type="Resource" id="Resource_m648g"]
 script = ExtResource("2_ugbu7")
 ability_type = 0
-physical_damage = 6
-cooldown = 4.0
+physical_damage = 5
+cooldown = 3.0
 ability_range = 2
 pierce = 0
 income = 0
@@ -30,8 +30,8 @@ value = -1
 [sub_resource type="Resource" id="Resource_tb1iw"]
 script = ExtResource("2_ugbu7")
 ability_type = 0
-physical_damage = 7
-cooldown = 3.5
+physical_damage = 6
+cooldown = 2.5
 ability_range = 3
 pierce = 1
 income = 0
@@ -46,7 +46,7 @@ value = -1
 script = ExtResource("2_ugbu7")
 ability_type = 0
 physical_damage = 8
-cooldown = 3.0
+cooldown = 2.0
 ability_range = 4
 pierce = 2
 income = 0
@@ -117,7 +117,7 @@ script = ExtResource("2_ugbu7")
 ability_type = 1
 physical_damage = 0
 cooldown = 2.0
-ability_range = 2
+ability_range = 4
 pierce = 99
 income = 0
 applied_statuses = Array[ExtResource("4_ue5ot")]([SubResource("Resource_afyvm")])
@@ -125,14 +125,14 @@ applied_statuses = Array[ExtResource("4_ue5ot")]([SubResource("Resource_afyvm")]
 [sub_resource type="Resource" id="Resource_pw7te"]
 script = ExtResource("4_ue5ot")
 status_id = 1
-value = 1
+value = 2
 
 [sub_resource type="Resource" id="Resource_lja6y"]
 script = ExtResource("2_ugbu7")
 ability_type = 1
 physical_damage = 0
 cooldown = 1.8
-ability_range = 4
+ability_range = 5
 pierce = 99
 income = 0
 applied_statuses = Array[ExtResource("4_ue5ot")]([SubResource("Resource_pw7te")])
@@ -140,7 +140,7 @@ applied_statuses = Array[ExtResource("4_ue5ot")]([SubResource("Resource_pw7te")]
 [sub_resource type="Resource" id="Resource_xc7ft"]
 script = ExtResource("4_ue5ot")
 status_id = 1
-value = 2
+value = 3
 
 [sub_resource type="Resource" id="Resource_y26hd"]
 script = ExtResource("2_ugbu7")
@@ -185,6 +185,7 @@ statuses = Array[ExtResource("4_ue5ot")]([SubResource("Resource_ipqmy")])
 [resource]
 script = ExtResource("3_wdn4x")
 character_name = "Jelly Hoshiumi"
+short_name = "Jelly"
 character_sprite = ExtResource("4_ngvhp")
 sprite_offset = Vector2(-2, 0)
 sprite_scale = Vector2(3, 3)

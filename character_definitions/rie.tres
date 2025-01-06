@@ -36,7 +36,7 @@ value = 1
 script = ExtResource("2_w7q34")
 ability_type = 0
 physical_damage = 3
-cooldown = 0.8
+cooldown = 0.7
 ability_range = 3
 pierce = 0
 income = 0
@@ -175,6 +175,7 @@ statuses = Array[ExtResource("6_y1j6c")]([SubResource("Resource_u0chf")])
 [resource]
 script = ExtResource("3_chc5m")
 character_name = "Himemiya Rie"
+short_name = "Rie"
 character_sprite = ExtResource("4_e8q58")
 sprite_offset = Vector2(8, 8)
 sprite_scale = Vector2(3, 3)

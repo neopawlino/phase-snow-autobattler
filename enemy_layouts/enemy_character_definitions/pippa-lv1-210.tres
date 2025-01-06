@@ -155,6 +155,7 @@ statuses = Array[ExtResource("3_2o5ki")]([SubResource("Resource_r6e1p")])
 [resource]
 script = ExtResource("6_s7g84")
 character_name = "Pipkin Pippa"
+short_name = "Pippa"
 character_sprite = ExtResource("4_26jee")
 sprite_offset = Vector2(2, 0)
 sprite_scale = Vector2(3, 3)

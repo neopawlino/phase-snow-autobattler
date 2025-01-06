@@ -190,6 +190,7 @@ value = 5
 [resource]
 script = ExtResource("6_eiw1a")
 character_name = "Jelly Hoshiumi"
+short_name = "Jelly"
 character_sprite = ExtResource("4_7srfd")
 sprite_offset = Vector2(-2, 0)
 sprite_scale = Vector2(3, 3)

@@ -180,6 +180,7 @@ value = 1
 [resource]
 script = ExtResource("6_h4byx")
 character_name = "Himemiya Rie"
+short_name = "Rie"
 character_sprite = ExtResource("4_ugc5p")
 sprite_offset = Vector2(8, 8)
 sprite_scale = Vector2(3, 3)

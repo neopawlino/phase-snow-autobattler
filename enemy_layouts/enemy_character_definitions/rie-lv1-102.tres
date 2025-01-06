@@ -175,6 +175,7 @@ statuses = Array[ExtResource("3_i5tr7")]([SubResource("Resource_u0chf")])
 [resource]
 script = ExtResource("6_awnu6")
 character_name = "Himemiya Rie"
+short_name = "Rie"
 character_sprite = ExtResource("4_3aguq")
 sprite_offset = Vector2(8, 8)
 sprite_scale = Vector2(3, 3)
