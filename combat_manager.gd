@@ -190,7 +190,12 @@ func _on_combat_summary_continue_button_pressed() -> void:
 	slots.set_player_slots_pickable(true)
 
 	team_manager.show_teams()
-	team_manager.load_enemy_team_for_round(GameState.round_number)
+
+	if GameState.hard_mode:
+		team_manager.load_enemy_team_for_round(GameState.round_number)
+	else:
+		team_manager.load_enemy_team_for_round(GameState.wins)
+
 	shop_manager.show_shop()
 	shop_manager.reroll_characters()
 	shop_manager.reset_reroll_price()

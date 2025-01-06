@@ -39,8 +39,8 @@ team_manager = NodePath("../TeamManager")
 shop_manager = NodePath("../ShopManager")
 slots = NodePath("../CharacterSlots")
 win_reward = 5
-lose_reward = 2
-draw_reward = 2
+lose_reward = 5
+draw_reward = 5
 
 [node name="CharacterContainer" type="Control" parent="CombatManager"]
 layout_mode = 3
@@ -132,6 +132,7 @@ theme_override_constants/separation = 100
 alignment = 1
 
 [node name="DebugMenu" parent="." node_paths=PackedStringArray("team_manager") instance=ExtResource("10_sb6nl")]
+visible = false
 team_manager = NodePath("../TeamManager")
 
 [node name="CharacterSlots" type="Node" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]

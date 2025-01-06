@@ -4,6 +4,13 @@ extends PanelContainer
 @export var team_manager : TeamManager
 
 
+func _ready() -> void:
+	GameState.cheats_enabled_changed.connect(func(val: bool):
+		self.visible = val
+	)
+	self.visible = GameState.cheats_enabled
+
+
 func _on_button_pressed() -> void:
 	team_manager.add_test_character()
 

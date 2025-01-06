@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_bkle6"]
 [ext_resource type="Script" path="res://pause.gd" id="1_ol8cc"]
 
-[node name="Pause" type="Control"]
+[node name="Pause" type="Control" node_paths=PackedStringArray("options", "pause_menu", "hard_mode", "cheats")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -19,34 +19,111 @@ grow_vertical = 2
 theme = ExtResource("1_bkle6")
 script = ExtResource("1_ol8cc")
 main_menu = "res://main_menu.tscn"
+options = NodePath("OptionsMenu")
+pause_menu = NodePath("PauseMenu")
+hard_mode = NodePath("OptionsMenu/MarginContainer/VBoxContainer/HBoxContainer/HardModeCheck")
+cheats = NodePath("OptionsMenu/MarginContainer/VBoxContainer/Cheats/CheatsCheck")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PauseMenu" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -77.0
-offset_top = -46.5
-offset_right = 77.0
-offset_bottom = 46.5
+offset_left = -85.0
+offset_top = -76.0
+offset_right = 85.0
+offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resume"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Button2" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit to Main Menu"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[node name="OptionsMenu" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -25.0
+offset_right = 54.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="OptionsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="OptionsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hard Mode"
+
+[node name="HardModeCheck" type="CheckButton" parent="OptionsMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Cheats" type="HBoxContainer" parent="OptionsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsMenu/MarginContainer/VBoxContainer/Cheats"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Enable Cheats/Debug Menu"
+
+[node name="CheatsCheck" type="CheckButton" parent="OptionsMenu/MarginContainer/VBoxContainer/Cheats"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="OptionsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="toggled" from="OptionsMenu/MarginContainer/VBoxContainer/HBoxContainer/HardModeCheck" to="." method="_on_hard_mode_check_toggled"]
+[connection signal="toggled" from="OptionsMenu/MarginContainer/VBoxContainer/Cheats/CheatsCheck" to="." method="_on_cheats_check_toggled"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

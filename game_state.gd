@@ -53,6 +53,16 @@ var wins_needed : int:
 signal wins_needed_changed(value: int)
 
 
+var hard_mode : bool
+
+
+var cheats_enabled : bool:
+	set(val):
+		cheats_enabled = val
+		cheats_enabled_changed.emit(val)
+signal cheats_enabled_changed(value : bool)
+
+
 func get_interest() -> int:
 	return min(int(player_money / 5), max_interest)
 
