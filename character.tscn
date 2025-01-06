@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=11 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" path="res://character.gd" id="2_1four"]
-[ext_resource type="Texture2D" uid="uid://cqd1axt1y8hns" path="res://my_assets/SAPC_Sheet.png" id="2_e1sdp"]
+[ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://my_assets/SAPC_Rie_Sheet.png" id="2_y5mxj"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_j0801"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="4_18dhx"]
 [ext_resource type="PackedScene" uid="uid://mvolvkvd21yr" path="res://character_tooltip.tscn" id="6_dw3ix"]
@@ -11,26 +11,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_754d8"]
@@ -39,32 +39,61 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.366667, 0.666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(20, 0), Vector2(20, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0666667, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(20, 0), Vector2(20, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c15sm"]
+resource_name = "attack_flipped"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-20, 0), Vector2(-20, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bty2k"]
 _data = {
 "RESET": SubResource("Animation_68k1c"),
-"attack": SubResource("Animation_754d8")
+"attack": SubResource("Animation_754d8"),
+"attack_flipped": SubResource("Animation_c15sm")
 }
 
 [sub_resource type="Theme" id="Theme_f484m"]
@@ -96,10 +125,10 @@ position = Vector2(0, -60)
 
 [node name="Sprite2D" type="Sprite2D" parent="Visual"]
 texture_filter = 1
-position = Vector2(8, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("2_e1sdp")
-hframes = 2
+scale = Vector2(3, 3)
+texture = ExtResource("2_y5mxj")
+offset = Vector2(8, 8)
+hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Sprite2D"]
 libraries = {

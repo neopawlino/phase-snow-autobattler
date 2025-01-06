@@ -52,7 +52,7 @@ var cur_character_slot : CharacterSlot
 var visual_position : Vector2
 
 var base_scale : Vector2 = Vector2.ONE
-var pos_offset : Vector2
+var sprite_offset : Vector2
 var flipped : bool
 
 # gameplay stuff
@@ -209,10 +209,8 @@ func set_flipped(flipped: bool):
 	self.flipped = flipped
 	if flipped:
 		base_scale.x = -abs(base_scale.x)
-		sprite.position.x = -pos_offset.x
 	else:
 		base_scale.x = abs(base_scale.x)
-		sprite.position.x = pos_offset.x
 	sprite.scale = base_scale
 
 
@@ -283,11 +281,11 @@ func my_duplicate() -> Character:
 	new_char.visual_position = self.visual_position
 	new_char.visual.global_position = self.visual.global_position
 	new_char.sprite.texture = self.sprite.texture
-	new_char.pos_offset = self.pos_offset
-	new_char.sprite.position = self.pos_offset
+	new_char.sprite_offset = self.sprite_offset
 	new_char.sprite.hframes = self.sprite.hframes
 
 	new_char.sprite.scale = self.sprite.scale
+	new_char.sprite.offset = self.sprite_offset
 	new_char.base_scale = self.base_scale
 	new_char.set_flipped(flipped)
 
@@ -308,8 +306,8 @@ func load_from_character_definition(char_def : CharacterDefinition):
 		self.add_status(status.status_id, status.value)
 
 	sprite.texture = char_def.character_sprite
-	pos_offset = char_def.sprite_pos_offset
-	sprite.position = char_def.sprite_pos_offset
+	sprite_offset = char_def.sprite_offset
+	sprite.offset = char_def.sprite_offset
 	sprite.hframes = char_def.sprite_hframes
 
 	sprite.scale = char_def.sprite_scale
@@ -362,7 +360,10 @@ func make_timers():
 			var effective_range := ability_level.ability_range - self.pos
 			if effective_range <= 0:
 				return
-			anim_player.play(&"attack")
+			if flipped:
+				anim_player.play(&"attack_flipped")
+			else:
+				anim_player.play(&"attack")
 			await get_tree().create_timer(anim_delay).timeout
 			if self.is_inside_tree():
 				cast_ability(ability_level)
