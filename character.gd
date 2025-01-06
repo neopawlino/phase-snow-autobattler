@@ -152,6 +152,12 @@ func _ready() -> void:
 func _process(delta: float):
 	update_visual_position(delta)
 	update_ability_bars()
+	var rect := select_container.get_global_rect()
+	var mouse_pos := select_container.get_global_mouse_position()
+	if !rect.has_point(mouse_pos):
+		mouseover = false
+		if draggable:
+			sprite.scale = base_scale
 	if mouseover and draggable:
 		if Input.is_action_just_pressed("click") and not GameState.is_dragging:
 			drag_initial_pos = global_position
