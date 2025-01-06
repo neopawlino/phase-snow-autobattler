@@ -215,6 +215,8 @@ func set_flipped(flipped: bool):
 
 
 func update_visual_position(delta: float):
+	if not GameState.is_dragging and cur_character_slot:
+		global_position = cur_character_slot.global_position
 	var offset := global_position - visual_position
 	visual_position += offset * visual_follow_speed * delta
 	visual.global_position = visual_position
