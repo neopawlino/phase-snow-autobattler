@@ -183,6 +183,8 @@ func _on_combat_summary_continue_button_pressed() -> void:
 	if GameState.wins >= GameState.wins_needed:
 		result_screen.result_label.text = "You win!"
 		result_screen.show()
+		team_manager.clear_enemy_slots()
+		team_manager.show_teams()
 		return
 
 	slots.set_player_slots_pickable(true)
