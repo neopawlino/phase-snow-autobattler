@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwfjui7ry6uk8"
-path="res://.godot/imported/SAPC.png-82e4a15c8b5a3312f29b40b6b0be70fd.ctex"
+uid="uid://c48xyiiskpfks"
+path="res://.godot/imported/SAPC_Rie_Sheet.png-fc9bd87c8091c51a6b7b2989b6357f67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://my_assets/SAPC.png"
-dest_files=["res://.godot/imported/SAPC.png-82e4a15c8b5a3312f29b40b6b0be70fd.ctex"]
+source_file="res://my_assets/SAPC_Rie_Sheet.png"
+dest_files=["res://.godot/imported/SAPC_Rie_Sheet.png-fc9bd87c8091c51a6b7b2989b6357f67.ctex"]
 
 [params]
 
