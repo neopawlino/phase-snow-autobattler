@@ -425,17 +425,16 @@ func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 			damage = max(1, damage - get_status_value(StatusEffect.StatusId.ARMOR))
 		else:
 			damage = max(0, damage - get_status_value(StatusEffect.StatusId.ARMOR))
-
-		var envenom : int = caster_statuses.get(StatusEffect.StatusId.ENVENOM, 0)
-		if envenom > 0:
-			self.add_status(StatusEffect.StatusId.TOXIC, envenom)
-
-		var armor_break : int = caster_statuses.get(StatusEffect.StatusId.ARMOR_BREAKER, 0)
-		if armor_break > 0:
-			self.add_status(StatusEffect.StatusId.ARMOR, -armor_break)
-
 		self.hp -= damage
 		DamageNumbers.display_number(damage, damage_numbers_origin.global_position)
+
+	var armor_break : int = caster_statuses.get(StatusEffect.StatusId.ARMOR_BREAKER, 0)
+	if armor_break > 0 and ability.ability_type != AbilityLevel.AbilityType.BUFF:
+		self.add_status(StatusEffect.StatusId.ARMOR, -armor_break)
+
+	var envenom : int = caster_statuses.get(StatusEffect.StatusId.ENVENOM, 0)
+	if envenom > 0 and ability.ability_type != AbilityLevel.AbilityType.BUFF:
+		self.add_status(StatusEffect.StatusId.TOXIC, envenom)
 
 	for status in ability.applied_statuses:
 		self.add_status(status.status_id, status.value)

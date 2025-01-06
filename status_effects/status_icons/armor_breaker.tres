@@ -7,4 +7,4 @@
 script = ExtResource("2_rt1b2")
 status = 4
 icon = ExtResource("1_o7tn2")
-tooltip_text = "Armor Breaker: Unit's Physical attacks reduce target's armor by %s."
+tooltip_text = "Armor Breaker: Unit's attacks reduce target's armor by %s."

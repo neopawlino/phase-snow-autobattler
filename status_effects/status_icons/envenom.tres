@@ -7,4 +7,4 @@
 script = ExtResource("1_u1klu")
 status = 3
 icon = ExtResource("1_bshsd")
-tooltip_text = "Envenom: Unit's Physical attacks also apply %s Toxic."
+tooltip_text = "Envenom: Unit's attacks apply an additional %s Toxic."
