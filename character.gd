@@ -38,6 +38,10 @@ var ability_bar_scene : PackedScene = preload("res://ability_bar.tscn")
 
 var character_name : String
 
+var idle_sprite_frame : int = 0
+var drag_sprite_frame : int = 2
+var sell_sprite_frame : int = 3
+
 # draggable stuff
 var draggable : bool = false:
 	set(val):
@@ -160,9 +164,14 @@ func _process(delta: float):
 			character_tooltip.visible = false
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
+			if GameState.drag_sell_button:
+				self.sprite.frame = sell_sprite_frame
+			else:
+				self.sprite.frame = drag_sprite_frame
 		elif Input.is_action_just_released("click"):
 			GameState.is_dragging = false
 			GameState.drag_char = null
+			self.sprite.frame = idle_sprite_frame
 			if last_tween:
 				last_tween.kill()
 			if GameState.drag_sell_button and not from_shop:
