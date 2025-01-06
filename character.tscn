@@ -137,7 +137,7 @@ libraries = {
 
 [node name="Price" type="Node2D" parent="Visual"]
 visible = false
-position = Vector2(0, 50)
+position = Vector2(0, -120)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Visual/Price"]
 position = Vector2(-10, 0)
