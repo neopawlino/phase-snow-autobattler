@@ -31,6 +31,8 @@ class_name Character
 
 @export var name_label : Label
 
+@export var char_info_container : Container
+
 @export var price_color : Color = Color.WHITE
 @export var price_unaffordable_color : Color = Color.INDIAN_RED
 
@@ -209,6 +211,7 @@ func _process(delta: float):
 				if from_shop:
 					# buy the character
 					GameState.player_money -= buy_price
+					self.set_info_z_index(0)
 					from_shop = false
 				last_tween = get_tree().create_tween()
 				last_tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
@@ -222,6 +225,12 @@ func _process(delta: float):
 						was_tooltip_open_for_character = false
 					else:
 						GlobalSignals.character_tooltip_opened.emit(self)
+
+
+func set_info_z_index(val : int):
+	self.z_index = val
+	self.sprite.z_index = val
+	char_info_container.z_index = val
 
 
 func set_container_mouse_filter(is_dragging: bool):

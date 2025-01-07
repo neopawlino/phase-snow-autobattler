@@ -70,8 +70,9 @@ func reroll_characters(increase_reroll_price : bool = false):
 		var slot := shop_slots[i]
 		if slot.character:
 			slot.character.queue_free()
-		var char := character_scene.instantiate()
+		var char : Character = character_scene.instantiate()
 		char.load_from_character_definition(all_character_definitions.pick_random())
+		char.set_info_z_index(-1)
 		add_character_to_slot(char, slot, buy_price)
 	update_shop_draggable()
 

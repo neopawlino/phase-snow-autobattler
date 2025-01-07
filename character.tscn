@@ -97,7 +97,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "status_icon_container", "select_container")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "select_container")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/Sprite2D")
@@ -113,6 +113,7 @@ xp_label = NodePath("Visual/VBoxContainer/XPBar/XPLabel")
 xp_bar = NodePath("Visual/VBoxContainer/XPBar")
 ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
 name_label = NodePath("Visual/VBoxContainer/NameLabel")
+char_info_container = NodePath("Visual/VBoxContainer")
 status_icon_container = NodePath("Visual/StatusContainer")
 select_container = NodePath("SelectContainer")
 
