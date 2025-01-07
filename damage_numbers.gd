@@ -5,6 +5,7 @@ extends Node
 
 func display_number(value: int, pos: Vector2):
 	var number := Label.new()
+	number.process_mode = Node.PROCESS_MODE_ALWAYS
 	number.global_position = pos
 	number.text = str(value)
 	number.z_index = 5

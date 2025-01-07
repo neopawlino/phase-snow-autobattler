@@ -228,7 +228,9 @@ offset_bottom = 40.0
 visible = false
 
 [node name="Pause" parent="." instance=ExtResource("1_q1rts")]
+process_mode = 3
 visible = false
+z_index = 10
 
 [connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]

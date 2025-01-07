@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bq8dpascomfv3" path="res://options_menu.tscn" id="4_43rle"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("main_menu_container", "options")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
