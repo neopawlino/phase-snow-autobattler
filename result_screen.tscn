@@ -16,6 +16,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_p5wir")
 script = ExtResource("1_feru4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -40,6 +41,11 @@ layout_mode = 2
 theme = ExtResource("1_p5wir")
 text = "You lose!"
 horizontal_alignment = 1
+
+[node name="HardModeLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "(now try hard mode)"
 
 [node name="RetryButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

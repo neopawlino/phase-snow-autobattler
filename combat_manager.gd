@@ -180,6 +180,7 @@ func _on_combat_summary_continue_button_pressed() -> void:
 	GameState.round_number += 1
 	if GameState.wins >= GameState.wins_needed:
 		result_screen.result_label.text = "You win!"
+		result_screen.hard_mode_label.visible = not GameState.hard_mode
 		result_screen.show()
 		team_manager.clear_enemy_slots()
 		team_manager.show_teams()

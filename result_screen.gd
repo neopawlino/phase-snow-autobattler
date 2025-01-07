@@ -4,6 +4,7 @@ class_name ResultScreen
 
 
 @onready var result_label : Label = %ResultLabel
+@onready var hard_mode_label : Label = %HardModeLabel
 
 
 func _on_retry_button_pressed() -> void:
