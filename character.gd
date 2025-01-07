@@ -34,8 +34,6 @@ class_name Character
 @export var price_color : Color = Color.WHITE
 @export var price_unaffordable_color : Color = Color.INDIAN_RED
 
-@export var character_tooltip : CharacterTooltip
-
 var ability_bar_scene : PackedScene = preload("res://ability_bar.tscn")
 
 var character_name : String
@@ -132,6 +130,8 @@ var last_tween : Tween
 
 var tooltip_was_visible : bool
 
+var char_def : CharacterDefinition
+
 
 @onready var skill_points_label : Label = %SkillPointsLabel
 @export var select_container : Container
@@ -141,7 +141,6 @@ func _ready() -> void:
 	visual_position = self.global_position
 	GameState.player_money_changed.connect(update_price_color)
 	GameState.is_dragging_changed.connect(set_container_mouse_filter)
-	GlobalSignals.character_tooltip_opened.connect(func(): character_tooltip.visible = false)
 	set_price_visible(from_shop)
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
@@ -172,8 +171,7 @@ func _process(delta: float):
 			GameState.drag_end_char_slot = cur_character_slot
 			GameState.drag_can_swap = not from_shop
 			GameState.drag_initial_mouse_pos = get_global_mouse_position()
-			tooltip_was_visible = character_tooltip.visible
-			character_tooltip.visible = false
+			tooltip_was_visible = GameState.character_tooltip.character == self and GameState.character_tooltip.visible
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
 			if GameState.drag_sell_button:
@@ -218,8 +216,7 @@ func _process(delta: float):
 				last_tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 				GameState.drag_original_char_slot = null
 				if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
-					GlobalSignals.character_tooltip_opened.emit()
-					character_tooltip.visible = !tooltip_was_visible
+					GlobalSignals.character_tooltip_opened.emit(self)
 
 
 func set_container_mouse_filter(is_dragging: bool):
@@ -295,6 +292,8 @@ func my_duplicate() -> Character:
 	new_char.level_requirements = self.level_requirements.duplicate()
 	new_char.levels = self.levels.duplicate()
 
+	new_char.char_def = self.char_def
+
 	# ensure status icons get added
 	# this might reorder status icons oh well
 	for status_id in self.statuses:
@@ -340,7 +339,7 @@ func load_from_character_definition(char_def : CharacterDefinition):
 
 	self.name_label.text = char_def.short_name
 
-	character_tooltip.load_char_def(char_def)
+	self.char_def = char_def
 
 
 func add_xp(amount : int):
@@ -368,6 +367,8 @@ func level_up():
 
 
 func level_up_ability(ability_index : int):
+	if skill_points <= 0:
+		return
 	skill_points -= 1
 	ability_levels[ability_index] += 1
 	ability_levels_changed.emit(ability_levels)

@@ -52,7 +52,7 @@ func show_teams():
 
 
 func start_combat():
-	GlobalSignals.close_all_tooltips()
+	GameState.close_character_tooltip()
 	slots.set_player_slots_pickable(false)
 	clear_teams()
 	for slot in slots.player_team:
@@ -67,7 +67,6 @@ func start_combat():
 	for char in player_team:
 		char.visual_follow_speed = combat_visual_follow_speed
 		char.draggable = false
-		char.character_tooltip.visible = false
 		character_container.add_child(char)
 		slots.set_char_pos(char, i)
 		char.make_timers()
@@ -76,7 +75,6 @@ func start_combat():
 	for char in enemy_team:
 		char.visual_follow_speed = combat_visual_follow_speed
 		char.draggable = false
-		char.character_tooltip.visible = false
 		character_container.add_child(char)
 		slots.set_char_pos(char, i)
 		char.make_timers()

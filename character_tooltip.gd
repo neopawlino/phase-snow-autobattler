@@ -9,18 +9,39 @@ class_name CharacterTooltip
 @export var level_up_status_container : Container
 @export var level_up_container : Container
 @export var ability_info_container : Container
-@export var character : Character
+
+@export var char_tooltip_parent : Control
+
+var character : Character
 
 var char_def : CharacterDefinition
 
 var ability_infos : Array[AbilityInfo]
 
+
 func _ready() -> void:
-	character.skill_points_changed.connect(update_level_up_buttons)
-	character.skill_points_changed.connect(update_skill_points)
-	character.ability_levels_changed.connect(update_ability_levels)
-	character.cur_level_changed.connect(update_char_level_bonuses)
+	GameState.character_tooltip = self
+	GlobalSignals.character_tooltip_opened.connect(load_char_and_show)
+
+
+func _process(delta: float) -> void:
+	if self.visible and Input.is_action_just_pressed(&"click"):
+		var mouse_pos := self.get_global_mouse_position()
+		var rect := self.get_global_rect()
+		if !rect.has_point(mouse_pos):
+			self.hide()
+
+
+func load_char_and_show(char: Character):
+	load_char(char)
+	char_tooltip_parent.global_position = char.global_position
+	self.show()
+
+
+func update_all():
+	update_level_up_buttons(character.skill_points)
 	update_skill_points(character.skill_points)
+	update_ability_levels(character.ability_levels)
 	update_char_level_bonuses(character.cur_level)
 
 
@@ -59,9 +80,13 @@ func update_char_level_bonuses(level : int):
 		level_up_status_container.add_child(icon)
 
 
-func load_char_def(character_definition : CharacterDefinition):
-	char_def = character_definition
-	name_label.text = char_def.character_name
+func load_char(character : Character):
+	self.character = character
+	self.char_def = character.char_def
+	self.name_label.text = char_def.character_name
+
+	clear_abilities()
+
 	for i in range(len(char_def.abilities)):
 		var ability : AbilityDefinition = char_def.abilities[i]
 		var ability_info : AbilityInfo = ability_info_scene.instantiate()
@@ -75,6 +100,13 @@ func load_char_def(character_definition : CharacterDefinition):
 
 		ability_info.level_up_button_pressed.connect(func():
 			character.level_up_ability(ability_info.ability_index)
+			update_all()
 		)
 
-	update_level_up_buttons(character.skill_points)
+	update_all()
+
+
+func clear_abilities():
+	for child in ability_info_container.get_children():
+		child.queue_free()
+	ability_infos.clear()

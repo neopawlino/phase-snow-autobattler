@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=10 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" path="res://character.gd" id="2_1four"]
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://my_assets/SAPC_Rie_Sheet.png" id="2_y5mxj"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_j0801"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="4_18dhx"]
-[ext_resource type="PackedScene" uid="uid://mvolvkvd21yr" path="res://character_tooltip.tscn" id="6_dw3ix"]
 
 [sub_resource type="Animation" id="Animation_68k1c"]
 length = 0.001
@@ -98,7 +97,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "character_tooltip", "status_icon_container", "select_container")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "status_icon_container", "select_container")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/Sprite2D")
@@ -114,7 +113,6 @@ xp_label = NodePath("Visual/VBoxContainer/XPBar/XPLabel")
 xp_bar = NodePath("Visual/VBoxContainer/XPBar")
 ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
 name_label = NodePath("Visual/VBoxContainer/NameLabel")
-character_tooltip = NodePath("Control/CharacterTooltip")
 status_icon_container = NodePath("Visual/StatusContainer")
 select_container = NodePath("SelectContainer")
 
@@ -277,29 +275,3 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = 40.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CharacterTooltip" parent="Control" node_paths=PackedStringArray("character") instance=ExtResource("6_dw3ix")]
-unique_name_in_owner = true
-visible = false
-z_index = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -200.0
-offset_right = 416.0
-offset_bottom = 55.0
-grow_vertical = 2
-character = NodePath("../..")

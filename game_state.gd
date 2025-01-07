@@ -3,6 +3,8 @@ extends Node
 var slots : CharacterSlots
 var combat_manager : CombatManager
 
+var character_tooltip : CharacterTooltip
+
 var is_dragging : bool = false:
 	set(val):
 		is_dragging = val
@@ -65,6 +67,10 @@ signal cheats_enabled_changed(value : bool)
 
 func get_interest() -> int:
 	return min(int(player_money / 5), max_interest)
+
+
+func close_character_tooltip():
+	GameState.character_tooltip.hide()
 
 
 var paused : bool = false:
