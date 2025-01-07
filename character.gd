@@ -158,6 +158,10 @@ func _process(delta: float):
 		mouseover = false
 		if draggable:
 			sprite.scale = base_scale
+	elif !GameState.is_dragging:
+		mouseover = true
+		if draggable:
+			sprite.scale = base_scale * mouseover_scale
 	if mouseover and draggable:
 		if Input.is_action_just_pressed("click") and not GameState.is_dragging:
 			drag_initial_pos = global_position
@@ -518,17 +522,3 @@ func update_price_color(money: int):
 func set_price_color(affordable : bool):
 	var color := price_color if affordable else price_unaffordable_color
 	price_label.add_theme_color_override(&"font_color", color)
-
-
-func _on_container_mouse_entered() -> void:
-	if not GameState.is_dragging:
-		mouseover = true
-		if draggable:
-			sprite.scale = base_scale * mouseover_scale
-
-
-func _on_container_mouse_exited() -> void:
-	if not GameState.is_dragging:
-		mouseover = false
-		if draggable:
-			sprite.scale = base_scale

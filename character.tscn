@@ -303,6 +303,3 @@ offset_right = 416.0
 offset_bottom = 55.0
 grow_vertical = 2
 character = NodePath("../..")
-
-[connection signal="mouse_entered" from="SelectContainer" to="." method="_on_container_mouse_entered"]
-[connection signal="mouse_exited" from="SelectContainer" to="." method="_on_container_mouse_exited"]
