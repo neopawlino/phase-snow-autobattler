@@ -232,6 +232,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CharacterTooltip" parent="CharTooltipParent" node_paths=PackedStringArray("char_tooltip_parent") instance=ExtResource("13_4h68e")]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5

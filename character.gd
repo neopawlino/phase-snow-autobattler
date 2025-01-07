@@ -128,7 +128,7 @@ var sell_price : int = 2
 
 var last_tween : Tween
 
-var tooltip_was_visible : bool
+var was_tooltip_open_for_character : bool
 
 var char_def : CharacterDefinition
 
@@ -141,6 +141,9 @@ func _ready() -> void:
 	visual_position = self.global_position
 	GameState.player_money_changed.connect(update_price_color)
 	GameState.is_dragging_changed.connect(set_container_mouse_filter)
+	GlobalSignals.character_tooltip_opened.connect(func(char : Character):
+		self.was_tooltip_open_for_character = char == self
+	)
 	set_price_visible(from_shop)
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
@@ -153,7 +156,7 @@ func _process(delta: float):
 	update_ability_bars()
 	var rect := select_container.get_global_rect()
 	var mouse_pos := select_container.get_global_mouse_position()
-	if !rect.has_point(mouse_pos):
+	if !rect.has_point(mouse_pos) and !GameState.is_dragging:
 		mouseover = false
 		if draggable:
 			sprite.scale = base_scale
@@ -171,14 +174,13 @@ func _process(delta: float):
 			GameState.drag_end_char_slot = cur_character_slot
 			GameState.drag_can_swap = not from_shop
 			GameState.drag_initial_mouse_pos = get_global_mouse_position()
-			tooltip_was_visible = GameState.character_tooltip.character == self and GameState.character_tooltip.visible
 		if Input.is_action_pressed("click") and GameState.drag_char == self:
 			global_position = get_global_mouse_position() - drag_offset
 			if GameState.drag_sell_button:
 				self.sprite.frame = sell_sprite_frame
 			else:
 				self.sprite.frame = drag_sprite_frame
-		elif Input.is_action_just_released("click"):
+		elif Input.is_action_just_released("click") and GameState.drag_char == self:
 			GameState.is_dragging = false
 			GameState.drag_char = null
 			self.sprite.frame = idle_sprite_frame
@@ -216,7 +218,10 @@ func _process(delta: float):
 				last_tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 				GameState.drag_original_char_slot = null
 				if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
-					GlobalSignals.character_tooltip_opened.emit(self)
+					if was_tooltip_open_for_character:
+						was_tooltip_open_for_character = false
+					else:
+						GlobalSignals.character_tooltip_opened.emit(self)
 
 
 func set_container_mouse_filter(is_dragging: bool):
