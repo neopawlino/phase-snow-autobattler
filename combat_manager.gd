@@ -172,6 +172,7 @@ func _on_combat_summary_continue_button_pressed() -> void:
 	GameState.player_hp += hp_gain
 	if GameState.player_hp <= 0:
 		result_screen.result_label.text = "You lose!"
+		result_screen.hard_mode_label.visible = false
 		result_screen.show()
 		return
 
