@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="5_5nd4k"]
 [ext_resource type="Script" path="res://character_definition.gd" id="6_ipiyh"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="7_51m7k"]
+[ext_resource type="Resource" uid="uid://ddns1s6uuyfgc" path="res://enemy_layouts/postjam_balance_1_layouts.tres" id="7_ntw4x"]
 [ext_resource type="Script" path="res://shop_manager.gd" id="8_efko3"]
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
-[ext_resource type="Resource" uid="uid://doc6nuduyiunp" path="res://enemy_layouts/base_layouts.tres" id="9_pydbb"]
 [ext_resource type="PackedScene" uid="uid://d2rrv6nlpencx" path="res://debug_menu.tscn" id="10_sb6nl"]
 [ext_resource type="Script" path="res://character_slots.gd" id="12_y3foa"]
 [ext_resource type="PackedScene" uid="uid://mvolvkvd21yr" path="res://character_tooltip.tscn" id="13_4h68e"]
@@ -55,7 +55,7 @@ visible = false
 [node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
 script = ExtResource("9_o3mlt")
 initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
-enemy_layouts = ExtResource("9_pydbb")
+enemy_layouts = ExtResource("7_ntw4x")
 test_character = ExtResource("7_51m7k")
 character_container = NodePath("../CharacterContainer")
 slots = NodePath("../CharacterSlots")
@@ -64,8 +64,7 @@ slots = NodePath("../CharacterSlots")
 script = ExtResource("8_efko3")
 shop_ui = NodePath("Control")
 combat_manager = NodePath("../CombatManager")
-base_reroll_price = 1
-reroll_increase = 0
+buy_price = 4
 shop_slot_container = NodePath("ShopSlots/HBoxContainer")
 character_container = NodePath("../CharacterContainer")
 reroll_button = NodePath("Control/RerollButton")

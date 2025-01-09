@@ -5,36 +5,36 @@
 [ext_resource type="Script" path="res://enemy_team.gd" id="2_d5vn4"]
 [ext_resource type="Script" path="res://character_definition.gd" id="3_w8llv"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="4_vrh2k"]
-[ext_resource type="Resource" uid="uid://dyagwyla546q8" path="res://character_definitions/pippa.tres" id="5_vm4v6"]
+[ext_resource type="Resource" uid="uid://110qt3emx8hl" path="res://character_definitions/pippa.tres" id="5_vm4v6"]
 [ext_resource type="Resource" uid="uid://c5aos2rj1tpbt" path="res://character_definitions/jelly.tres" id="6_alk2j"]
-[ext_resource type="Resource" uid="uid://cpsvkyr0bor80" path="res://enemy_layouts/enemy_character_definitions/pippa-lv1-200.tres" id="7_y6b7f"]
-[ext_resource type="Resource" uid="uid://nvvwsoulwx7k" path="res://enemy_layouts/enemy_character_definitions/rie-lv1-toxic.tres" id="8_3miuv"]
-[ext_resource type="Resource" uid="uid://be3rrj3k7pcj8" path="res://enemy_layouts/enemy_character_definitions/rie-lv1-pafu.tres" id="8_brrvb"]
-[ext_resource type="Resource" uid="uid://ch5qefyelbed2" path="res://enemy_layouts/enemy_character_definitions/pippa-lv1-110.tres" id="8_l1pwq"]
-[ext_resource type="Resource" uid="uid://7u21eoti5xai" path="res://enemy_layouts/enemy_character_definitions/jelly-lv1-120.tres" id="10_g4y1l"]
+[ext_resource type="Resource" uid="uid://cpsvkyr0bor80" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv1-200.tres" id="7_1rmqf"]
+[ext_resource type="Resource" uid="uid://ch5qefyelbed2" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv1-110.tres" id="8_dtn5o"]
+[ext_resource type="Resource" uid="uid://nvvwsoulwx7k" path="res://enemy_layouts/enemy_character_definitions/jam/rie-lv1-toxic.tres" id="9_hroj6"]
+[ext_resource type="Resource" uid="uid://7u21eoti5xai" path="res://enemy_layouts/enemy_character_definitions/jam/jelly-lv1-120.tres" id="10_varpm"]
+[ext_resource type="Resource" uid="uid://be3rrj3k7pcj8" path="res://enemy_layouts/enemy_character_definitions/jam/rie-lv1-pafu.tres" id="11_8gxtf"]
 [ext_resource type="Resource" uid="uid://kow0a8f0op4p" path="res://enemy_layouts/enemy_teams/mid_requiem_train.tres" id="11_bsver"]
 [ext_resource type="Resource" uid="uid://bicox5nyigai4" path="res://enemy_layouts/enemy_teams/smoke.tres" id="12_vptx4"]
 [ext_resource type="Resource" uid="uid://bs3uplwuroaji" path="res://enemy_layouts/enemy_teams/jelly-rie.tres" id="13_0irgg"]
-[ext_resource type="Resource" uid="uid://b7rbcu3xriluv" path="res://enemy_layouts/enemy_character_definitions/rie-lv1-300.tres" id="13_8oube"]
+[ext_resource type="Resource" uid="uid://b7rbcu3xriluv" path="res://enemy_layouts/enemy_character_definitions/jam/rie-lv1-300.tres" id="13_q778i"]
 [ext_resource type="Resource" uid="uid://dlrm4810j40f2" path="res://enemy_layouts/enemy_teams/jelly-rie-2.tres" id="14_0n1bb"]
-[ext_resource type="Resource" uid="uid://2vsws1vrpcum" path="res://enemy_layouts/enemy_character_definitions/pippa-lv1-120.tres" id="15_gwhiw"]
+[ext_resource type="Resource" uid="uid://2vsws1vrpcum" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv1-120.tres" id="15_qhag6"]
 [ext_resource type="Resource" uid="uid://chlntobwydkod" path="res://enemy_layouts/enemy_teams/jelly-rie-pippa.tres" id="15_uopx1"]
-[ext_resource type="Resource" uid="uid://dx348xt7ey1gu" path="res://enemy_layouts/enemy_character_definitions/pippa-lv2-130.tres" id="16_h0wa4"]
 [ext_resource type="Resource" uid="uid://ce5vh3lo880kk" path="res://enemy_layouts/enemy_teams/jelly-rie-pippa-2.tres" id="16_jikb1"]
+[ext_resource type="Resource" uid="uid://dx348xt7ey1gu" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv2-130.tres" id="16_t1vwq"]
 [ext_resource type="Resource" uid="uid://coei4lsil8af" path="res://enemy_layouts/enemy_teams/jelly-rie-pippa-3.tres" id="17_s2uqx"]
 [ext_resource type="Resource" uid="uid://byik5i64okvw5" path="res://enemy_layouts/enemy_teams/jelly-rie-pippa-4.tres" id="18_kd1i2"]
-[ext_resource type="Resource" uid="uid://du3yt1uj8p527" path="res://enemy_layouts/enemy_character_definitions/pippa-lv2-330.tres" id="19_jby7e"]
-[ext_resource type="Resource" uid="uid://dnsx5eu66ygqt" path="res://enemy_layouts/enemy_character_definitions/jelly-lv2-230.tres" id="20_5byik"]
-[ext_resource type="Resource" uid="uid://dvjk8quqip8ug" path="res://enemy_layouts/enemy_character_definitions/pippa-lv3-331.tres" id="22_dxrdr"]
-[ext_resource type="Resource" uid="uid://3t20qqecqtt4" path="res://enemy_layouts/enemy_character_definitions/jelly-lv2-330.tres" id="24_7g86i"]
-[ext_resource type="Resource" uid="uid://cl2jphos1r0ne" path="res://enemy_layouts/enemy_character_definitions/rie-lv2-301.tres" id="26_x2o3h"]
-[ext_resource type="Resource" uid="uid://dae40gcvv7siu" path="res://enemy_layouts/enemy_character_definitions/pippa-lv1-210.tres" id="28_5fovr"]
-[ext_resource type="Resource" uid="uid://f4qk8fwxpkxq" path="res://enemy_layouts/enemy_character_definitions/jelly-lv3-331.tres" id="29_m4tb4"]
-[ext_resource type="Resource" uid="uid://pkn7lxynaftr" path="res://enemy_layouts/enemy_character_definitions/pippa-lv2-230.tres" id="30_vwan1"]
-[ext_resource type="Resource" uid="uid://bd0hky4pg87g5" path="res://enemy_layouts/enemy_character_definitions/pippa-lv2-231.tres" id="31_cbpys"]
-[ext_resource type="Resource" uid="uid://cs84rca2bh7lq" path="res://enemy_layouts/enemy_character_definitions/rie-lv2-302.tres" id="32_rvg16"]
-[ext_resource type="Resource" uid="uid://k28b888fa1gw" path="res://enemy_layouts/enemy_character_definitions/pippa-lv3-232.tres" id="33_lt0v6"]
-[ext_resource type="Resource" uid="uid://bxoi5uh8nhkn2" path="res://enemy_layouts/enemy_character_definitions/rie-lv2-303.tres" id="34_wuns5"]
+[ext_resource type="Resource" uid="uid://du3yt1uj8p527" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv2-330.tres" id="19_i11oc"]
+[ext_resource type="Resource" uid="uid://dnsx5eu66ygqt" path="res://enemy_layouts/enemy_character_definitions/jam/jelly-lv2-230.tres" id="20_8cbjg"]
+[ext_resource type="Resource" uid="uid://dvjk8quqip8ug" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv3-331.tres" id="22_8ouy6"]
+[ext_resource type="Resource" uid="uid://3t20qqecqtt4" path="res://enemy_layouts/enemy_character_definitions/jam/jelly-lv2-330.tres" id="24_u4uo3"]
+[ext_resource type="Resource" uid="uid://cl2jphos1r0ne" path="res://enemy_layouts/enemy_character_definitions/jam/rie-lv2-301.tres" id="26_swv47"]
+[ext_resource type="Resource" uid="uid://dae40gcvv7siu" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv1-210.tres" id="28_h62nx"]
+[ext_resource type="Resource" uid="uid://f4qk8fwxpkxq" path="res://enemy_layouts/enemy_character_definitions/jam/jelly-lv3-331.tres" id="29_xqqcm"]
+[ext_resource type="Resource" uid="uid://pkn7lxynaftr" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv2-230.tres" id="30_bdnbj"]
+[ext_resource type="Resource" uid="uid://bd0hky4pg87g5" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv2-231.tres" id="31_i28u5"]
+[ext_resource type="Resource" uid="uid://cs84rca2bh7lq" path="res://enemy_layouts/enemy_character_definitions/jam/rie-lv2-302.tres" id="32_lv0nw"]
+[ext_resource type="Resource" uid="uid://k28b888fa1gw" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv3-232.tres" id="33_6vcpo"]
+[ext_resource type="Resource" uid="uid://bxoi5uh8nhkn2" path="res://enemy_layouts/enemy_character_definitions/jam/rie-lv2-303.tres" id="34_acjlj"]
 
 [sub_resource type="Resource" id="Resource_6mvpu"]
 script = ExtResource("2_d5vn4")
@@ -54,11 +54,11 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([SubResource("Resource_6mvpu"), SubR
 
 [sub_resource type="Resource" id="Resource_0k4kn"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("7_y6b7f"), ExtResource("4_vrh2k")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("7_1rmqf"), ExtResource("4_vrh2k")])
 
 [sub_resource type="Resource" id="Resource_800wq"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("8_l1pwq"), ExtResource("4_vrh2k")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("8_dtn5o"), ExtResource("4_vrh2k")])
 
 [sub_resource type="Resource" id="Resource_x400j"]
 script = ExtResource("2_d5vn4")
@@ -70,19 +70,19 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([SubResource("Resource_0k4kn"), SubR
 
 [sub_resource type="Resource" id="Resource_byrrv"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("8_3miuv"), ExtResource("10_g4y1l"), ExtResource("8_brrvb")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("9_hroj6"), ExtResource("10_varpm"), ExtResource("11_8gxtf")])
 
 [sub_resource type="Resource" id="Resource_t5466"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("7_y6b7f"), ExtResource("8_3miuv"), ExtResource("8_3miuv")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("7_1rmqf"), ExtResource("9_hroj6"), ExtResource("9_hroj6")])
 
 [sub_resource type="Resource" id="Resource_ohhf0"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("10_g4y1l"), ExtResource("5_vm4v6"), ExtResource("10_g4y1l")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("10_varpm"), ExtResource("5_vm4v6"), ExtResource("10_varpm")])
 
 [sub_resource type="Resource" id="Resource_eg4en"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("8_l1pwq"), ExtResource("13_8oube"), ExtResource("6_alk2j")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("8_dtn5o"), ExtResource("13_q778i"), ExtResource("6_alk2j")])
 
 [sub_resource type="Resource" id="Resource_shxfc"]
 script = ExtResource("1_7jn50")
@@ -90,7 +90,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([SubResource("Resource_byrrv"), SubR
 
 [sub_resource type="Resource" id="Resource_2agf4"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("15_gwhiw"), ExtResource("13_8oube"), ExtResource("6_alk2j")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("15_qhag6"), ExtResource("13_q778i"), ExtResource("6_alk2j")])
 
 [sub_resource type="Resource" id="Resource_c1cgk"]
 script = ExtResource("1_7jn50")
@@ -98,7 +98,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([ExtResource("12_vptx4"), SubResourc
 
 [sub_resource type="Resource" id="Resource_8wxn8"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("16_h0wa4"), ExtResource("13_8oube"), ExtResource("6_alk2j")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("16_t1vwq"), ExtResource("13_q778i"), ExtResource("6_alk2j")])
 
 [sub_resource type="Resource" id="Resource_dkwok"]
 script = ExtResource("1_7jn50")
@@ -106,7 +106,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([ExtResource("11_bsver"), SubResourc
 
 [sub_resource type="Resource" id="Resource_gd4ad"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("16_h0wa4"), ExtResource("10_g4y1l"), ExtResource("13_8oube")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("16_t1vwq"), ExtResource("10_varpm"), ExtResource("13_q778i")])
 
 [sub_resource type="Resource" id="Resource_nuyai"]
 script = ExtResource("1_7jn50")
@@ -114,7 +114,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([ExtResource("13_0irgg"), SubResourc
 
 [sub_resource type="Resource" id="Resource_kympx"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("19_jby7e"), ExtResource("20_5byik"), ExtResource("13_8oube")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("19_i11oc"), ExtResource("20_8cbjg"), ExtResource("13_q778i")])
 
 [sub_resource type="Resource" id="Resource_cky2u"]
 script = ExtResource("1_7jn50")
@@ -122,7 +122,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([ExtResource("14_0n1bb"), SubResourc
 
 [sub_resource type="Resource" id="Resource_pfdps"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("22_dxrdr"), ExtResource("20_5byik"), ExtResource("13_8oube")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("22_8ouy6"), ExtResource("20_8cbjg"), ExtResource("13_q778i")])
 
 [sub_resource type="Resource" id="Resource_rcag1"]
 script = ExtResource("1_7jn50")
@@ -130,7 +130,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([ExtResource("15_uopx1"), SubResourc
 
 [sub_resource type="Resource" id="Resource_d46mg"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("5_vm4v6"), ExtResource("24_7g86i"), ExtResource("22_dxrdr"), ExtResource("13_8oube")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("5_vm4v6"), ExtResource("24_u4uo3"), ExtResource("22_8ouy6"), ExtResource("13_q778i")])
 
 [sub_resource type="Resource" id="Resource_yehmm"]
 script = ExtResource("1_7jn50")
@@ -138,7 +138,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([ExtResource("16_jikb1"), SubResourc
 
 [sub_resource type="Resource" id="Resource_fqq7h"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("7_y6b7f"), ExtResource("24_7g86i"), ExtResource("22_dxrdr"), ExtResource("26_x2o3h")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("7_1rmqf"), ExtResource("24_u4uo3"), ExtResource("22_8ouy6"), ExtResource("26_swv47")])
 
 [sub_resource type="Resource" id="Resource_g30g4"]
 script = ExtResource("1_7jn50")
@@ -146,7 +146,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([ExtResource("17_s2uqx"), SubResourc
 
 [sub_resource type="Resource" id="Resource_8stu5"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("28_5fovr"), ExtResource("29_m4tb4"), ExtResource("22_dxrdr"), ExtResource("26_x2o3h")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("28_h62nx"), ExtResource("29_xqqcm"), ExtResource("22_8ouy6"), ExtResource("26_swv47")])
 
 [sub_resource type="Resource" id="Resource_s6uxi"]
 script = ExtResource("1_7jn50")
@@ -154,7 +154,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([ExtResource("18_kd1i2"), SubResourc
 
 [sub_resource type="Resource" id="Resource_sv31d"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("30_vwan1"), ExtResource("29_m4tb4"), ExtResource("22_dxrdr"), ExtResource("26_x2o3h")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("30_bdnbj"), ExtResource("29_xqqcm"), ExtResource("22_8ouy6"), ExtResource("26_swv47")])
 
 [sub_resource type="Resource" id="Resource_x5avi"]
 script = ExtResource("1_7jn50")
@@ -162,7 +162,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([SubResource("Resource_sv31d")])
 
 [sub_resource type="Resource" id="Resource_np7ir"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("31_cbpys"), ExtResource("29_m4tb4"), ExtResource("22_dxrdr"), ExtResource("32_rvg16")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("31_i28u5"), ExtResource("29_xqqcm"), ExtResource("22_8ouy6"), ExtResource("32_lv0nw")])
 
 [sub_resource type="Resource" id="Resource_ee73m"]
 script = ExtResource("1_7jn50")
@@ -170,7 +170,7 @@ enemy_teams = Array[ExtResource("2_d5vn4")]([SubResource("Resource_np7ir")])
 
 [sub_resource type="Resource" id="Resource_4fmqe"]
 script = ExtResource("2_d5vn4")
-characters = Array[ExtResource("3_w8llv")]([ExtResource("33_lt0v6"), ExtResource("22_dxrdr"), ExtResource("29_m4tb4"), ExtResource("34_wuns5")])
+characters = Array[ExtResource("3_w8llv")]([ExtResource("33_6vcpo"), ExtResource("22_8ouy6"), ExtResource("29_xqqcm"), ExtResource("34_acjlj")])
 
 [sub_resource type="Resource" id="Resource_dbndt"]
 script = ExtResource("1_7jn50")
