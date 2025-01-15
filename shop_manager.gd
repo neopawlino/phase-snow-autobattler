@@ -5,7 +5,7 @@ class_name ShopManager
 @export var shop_ui : Control
 @export var combat_manager : CombatManager
 
-var shop_slots : Array[CharacterSlot]
+var shop_slots : Array[Slot]
 
 @export var shop_slot_count : int = 2
 @export var buy_price : int = 3
@@ -36,7 +36,7 @@ var all_character_definitions : Array[CharacterDefinition]
 func _ready() -> void:
 	all_characters_rg.load_all_into(all_character_definitions)
 	for i in range(shop_slot_count):
-		var slot : CharacterSlot = character_slot_scene.instantiate()
+		var slot : Slot = character_slot_scene.instantiate()
 		slot.set_pickable(false)
 		slot.slot_index = i
 		shop_slots.append(slot)
@@ -56,7 +56,7 @@ func update_shop_draggable(money: int = GameState.player_money):
 	for slot in shop_slots:
 		if not slot.character:
 			continue
-		slot.character.draggable = slot.character.can_afford(money)
+		slot.character.drag_component.draggable = slot.character.can_afford(money)
 
 
 func reset_reroll_price():
@@ -77,12 +77,12 @@ func reroll_characters(increase_reroll_price : bool = false):
 	update_shop_draggable()
 
 
-func add_character_to_slot(char: Character, slot : CharacterSlot, buy_price : int):
+func add_character_to_slot(char: Character, slot : Slot, buy_price : int):
 	char.team = Character.Team.PLAYER
 	char.pos = slot.slot_index
 	char.cur_character_slot = slot
 	slot.character = char
-	char.draggable = true
+	char.drag_component.draggable = true
 
 	char.from_shop = true
 	char.buy_price = buy_price

@@ -2,7 +2,7 @@ extends Node
 
 class_name TeamManager
 
-@export var max_char_slots : int = 6
+@export var max_slots : int = 6
 
 @export var initial_player_team : Array[CharacterDefinition]
 @export var enemy_layouts : EnemyLayouts
@@ -15,7 +15,7 @@ var character_slot_scene : PackedScene = preload("res://character_slot.tscn")
 # just used for visibility, not positioning
 @export var character_container : Control
 
-@export var slots : CharacterSlots
+@export var slots : Slots
 
 
 func _ready():
@@ -37,7 +37,7 @@ func load_initial_teams():
 		char.team = Character.Team.PLAYER
 		char.pos = slot.slot_index
 		char.cur_character_slot = slot
-		char.draggable = true
+		char.drag_component.draggable = true
 
 		char.global_position = slot.global_position
 		slot.character = char
@@ -62,7 +62,7 @@ func load_enemy_team_for_round(round_number : int):
 		char.set_flipped(true)
 		char.pos = slot.slot_index
 		char.cur_character_slot = slot
-		char.draggable = false
+		char.drag_component.draggable = false
 
 		char.global_position = slot.global_position
 		slot.character = char
@@ -80,7 +80,7 @@ func clear_enemy_slots():
 func add_test_character():
 	var char : Character = character_scene.instantiate()
 	var slot_i := 0
-	var slot : CharacterSlot = null
+	var slot : Slot = null
 	for cur_slot in slots.player_team:
 		if not cur_slot.character:
 			slot = cur_slot
@@ -92,7 +92,7 @@ func add_test_character():
 	char.pos = slot.slot_index
 	char.cur_character_slot = slot
 	slot.character = char
-	char.draggable = true
+	char.drag_component.draggable = true
 
 	char.global_position = slot.global_position
 	self.character_container.add_child(char)

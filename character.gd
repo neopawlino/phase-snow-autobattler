@@ -12,8 +12,6 @@ class_name Character
 
 @export var mouseover_scale : float = 1.1
 
-@export var visual_follow_speed : float = 30
-
 @export var damage_numbers_origin : Node2D
 
 @export var price_label : Label
@@ -44,16 +42,11 @@ var idle_sprite_frame : int = 0
 var drag_sprite_frame : int = 2
 var sell_sprite_frame : int = 3
 
-# draggable stuff
-var draggable : bool = false:
-	set(val):
-		draggable = val
-		select_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if val else Control.CURSOR_ARROW
-var mouseover : bool = false
-var drag_offset : Vector2
-var drag_initial_pos : Vector2
 
-var cur_character_slot : CharacterSlot
+var cur_character_slot : Slot:
+	set(slot):
+		cur_character_slot = slot
+		self.drag_component.cur_slot = slot
 
 var visual_position : Vector2
 
@@ -136,13 +129,12 @@ var char_def : CharacterDefinition
 
 
 @onready var skill_points_label : Label = %SkillPointsLabel
-@export var select_container : Container
+@export var drag_component : Draggable
 
 
 func _ready() -> void:
 	visual_position = self.global_position
 	GameState.player_money_changed.connect(update_price_color)
-	GameState.is_dragging_changed.connect(set_container_mouse_filter)
 	GlobalSignals.character_tooltip_opened.connect(func(char : Character):
 		self.was_tooltip_open_for_character = char == self
 	)
@@ -151,90 +143,59 @@ func _ready() -> void:
 	update_xp_bar(xp)
 	update_level_label(cur_level)
 	update_skill_points(skill_points)
+	drag_component.mouseover_changed.connect(func(is_mouseover):
+		if is_mouseover:
+			self.sprite.scale = base_scale * mouseover_scale
+		else:
+			self.sprite.scale = base_scale
+	)
+	drag_component.drag_started.connect(func():
+		GameState.drag_can_swap = not from_shop
+	)
+	drag_component.drag_ended.connect(handle_drag_ended)
 
 
 func _process(delta: float):
-	update_visual_position(delta)
 	update_ability_bars()
-	var rect := select_container.get_global_rect()
-	var mouse_pos := select_container.get_global_mouse_position()
-	if !rect.has_point(mouse_pos) and !GameState.is_dragging:
-		mouseover = false
-		if draggable:
-			sprite.scale = base_scale
-	elif !GameState.is_dragging:
-		mouseover = true
-		if draggable:
-			sprite.scale = base_scale * mouseover_scale
-	if mouseover and draggable:
-		if Input.is_action_just_pressed("click") and not GameState.is_dragging:
-			drag_initial_pos = global_position
-			drag_offset = get_global_mouse_position() - global_position
-			GameState.is_dragging = true
-			GameState.drag_char = self
-			GameState.drag_original_char_slot = cur_character_slot
-			GameState.drag_end_char_slot = cur_character_slot
-			GameState.drag_can_swap = not from_shop
-			GameState.drag_initial_mouse_pos = get_global_mouse_position()
-		if Input.is_action_pressed("click") and GameState.drag_char == self:
-			global_position = get_global_mouse_position() - drag_offset
-			if GameState.drag_sell_button:
-				self.sprite.frame = sell_sprite_frame
+	if GameState.is_dragging and GameState.drag_object == self:
+		if GameState.drag_sell_button:
+			self.sprite.frame = sell_sprite_frame
+		else:
+			self.sprite.frame = drag_sprite_frame
+
+
+func handle_drag_ended():
+	self.sprite.frame = idle_sprite_frame
+	if last_tween:
+		last_tween.kill()
+	if GameState.drag_sell_button and not from_shop:
+		self.sell_character()
+	elif GameState.drag_end_slot and GameState.drag_end_slot.character \
+		and GameState.drag_end_slot.character.can_merge(self):
+		merge_character(GameState.drag_end_slot.character)
+	elif GameState.drag_end_slot and not GameState.drag_end_slot.character:
+		# dragging to an empty slot
+		GameState.slots.move_to_slot(self, GameState.drag_end_slot.slot_index)
+		if from_shop:
+			buy_character()
+		last_tween = get_tree().create_tween()
+		last_tween.tween_property(drag_component, "global_position", GameState.drag_end_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+	elif GameState.drag_original_slot:
+		# dragging nowhere in particular, or letting go after swapping
+		last_tween = get_tree().create_tween()
+		last_tween.tween_property(drag_component, "global_position", GameState.drag_original_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+		GameState.drag_original_slot = null
+		if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
+			if was_tooltip_open_for_character:
+				was_tooltip_open_for_character = false
 			else:
-				self.sprite.frame = drag_sprite_frame
-		elif Input.is_action_just_released("click") and GameState.drag_char == self:
-			GameState.is_dragging = false
-			GameState.drag_char = null
-			self.sprite.frame = idle_sprite_frame
-			if last_tween:
-				last_tween.kill()
-			if GameState.drag_sell_button and not from_shop:
-				# sell the character
-				GameState.player_money += sell_price
-				if cur_character_slot:
-					cur_character_slot.character = null
-				self.queue_free()
-				GameState.drag_sell_button = false
-			elif GameState.drag_end_char_slot and GameState.drag_end_char_slot.character \
-				and GameState.drag_end_char_slot.character.can_merge(self):
-				if from_shop:
-					# buy the character
-					GameState.player_money -= buy_price
-					from_shop = false
-				GameState.drag_end_char_slot.character.add_xp(1)
-				if cur_character_slot:
-					cur_character_slot.character = null
-				self.queue_free()
-			elif GameState.drag_end_char_slot and not GameState.drag_end_char_slot.character:
-				# dragging to an empty slot
-				GameState.slots.move_to_slot(self, GameState.drag_end_char_slot.slot_index)
-				if from_shop:
-					# buy the character
-					GameState.player_money -= buy_price
-					self.set_info_z_index(0)
-					from_shop = false
-				last_tween = get_tree().create_tween()
-				last_tween.tween_property(self, "global_position", GameState.drag_end_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
-			elif GameState.drag_original_char_slot:
-				# dragging nowhere in particular, or letting go after swapping
-				last_tween = get_tree().create_tween()
-				last_tween.tween_property(self, "global_position", GameState.drag_original_char_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
-				GameState.drag_original_char_slot = null
-				if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
-					if was_tooltip_open_for_character:
-						was_tooltip_open_for_character = false
-					else:
-						GlobalSignals.character_tooltip_opened.emit(self)
+				GlobalSignals.character_tooltip_opened.emit(self)
 
 
 func set_info_z_index(val : int):
 	self.z_index = val
 	self.sprite.z_index = val
 	char_info_container.z_index = val
-
-
-func set_container_mouse_filter(is_dragging: bool):
-	select_container.mouse_filter = Control.MOUSE_FILTER_IGNORE if is_dragging else Control.MOUSE_FILTER_PASS
 
 
 func set_flipped(flipped: bool):
@@ -246,12 +207,31 @@ func set_flipped(flipped: bool):
 	sprite.scale = base_scale
 
 
-func update_visual_position(delta: float):
-	if not GameState.is_dragging and cur_character_slot:
-		global_position = cur_character_slot.global_position
-	var offset := global_position - visual_position
-	visual_position += offset * visual_follow_speed * delta
-	visual.global_position = visual_position
+func merge_character(other: Character):
+	if from_shop:
+		buy_character()
+	other.add_xp(1)
+	remove_self()
+
+
+func buy_character():
+	GameState.player_money -= buy_price
+	self.set_info_z_index(0)
+	from_shop = false
+
+
+func sell_character():
+	GameState.player_money += sell_price
+	if cur_character_slot:
+		cur_character_slot.character = null
+	self.queue_free()
+	GameState.drag_sell_button = false
+
+
+func remove_self():
+	if cur_character_slot:
+		cur_character_slot.character = null
+	self.queue_free()
 
 
 func update_ability_bars():
@@ -523,7 +503,7 @@ func can_afford(money: int) -> bool:
 
 
 func can_merge(other: Character) -> bool:
-	return other != self and !is_max_level() and other.character_name == self.character_name
+	return other != null and other != self and !is_max_level() and other.character_name == self.character_name
 
 
 func is_max_level() -> bool:

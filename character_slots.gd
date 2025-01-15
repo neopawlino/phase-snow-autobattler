@@ -1,11 +1,11 @@
 extends Node
 
-class_name CharacterSlots
+class_name Slots
 
 @export var max_slots : int = 6
 
-var player_team : Array[CharacterSlot]
-var enemy_team : Array[CharacterSlot]
+var player_team : Array[Slot]
+var enemy_team : Array[Slot]
 
 @export var player_slot_container : BoxContainer
 @export var enemy_slot_container : BoxContainer
@@ -16,13 +16,13 @@ var character_slot_scene : PackedScene = preload("res://character_slot.tscn")
 func _ready() -> void:
 	GameState.slots = self
 	for i in range(max_slots):
-		var slot : CharacterSlot = character_slot_scene.instantiate()
+		var slot : Slot = character_slot_scene.instantiate()
 		slot.set_pickable(true)
 		slot.slot_index = i
 		player_team.append(slot)
 		player_slot_container.add_child(slot)
 
-		var enemy_slot : CharacterSlot = character_slot_scene.instantiate()
+		var enemy_slot : Slot = character_slot_scene.instantiate()
 		enemy_slot.set_pickable(false)
 		enemy_slot.slot_index = i
 		enemy_team.append(enemy_slot)
@@ -59,14 +59,14 @@ func move_to_slot(char : Character, i : int):
 		char.cur_character_slot.character = null
 	slot.character = char
 	char.cur_character_slot = slot
-	char.global_position = slot.global_position
+	char.drag_component.global_position = slot.global_position
 
 
 func set_char_pos(char : Character, i : int):
 	assert(i < max_slots)
 	char.pos = i
 	var slot := player_team[i] if char.team == Character.Team.PLAYER else enemy_team[i]
-	char.global_position = slot.global_position
+	char.drag_component.global_position = slot.global_position
 
 
 func all_slots_full(team : Character.Team = Character.Team.PLAYER) -> bool:

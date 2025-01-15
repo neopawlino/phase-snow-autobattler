@@ -15,7 +15,7 @@ var enemy_team : Array[Character]
 
 @export var team_manager : TeamManager
 @export var shop_manager : ShopManager
-@export var slots : CharacterSlots
+@export var slots : Slots
 
 @export var combat_visual_follow_speed : float = 10
 
@@ -65,16 +65,14 @@ func start_combat():
 	show_teams()
 	var i := 0
 	for char in player_team:
-		char.visual_follow_speed = combat_visual_follow_speed
-		char.draggable = false
+		char.drag_component.draggable = false
 		character_container.add_child(char)
 		slots.set_char_pos(char, i)
 		char.make_timers()
 		i += 1
 	i = 0
 	for char in enemy_team:
-		char.visual_follow_speed = combat_visual_follow_speed
-		char.draggable = false
+		char.drag_component.draggable = false
 		character_container.add_child(char)
 		slots.set_char_pos(char, i)
 		char.make_timers()

@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=12 format=3 uid="uid://ds7ogdyno53ug"]
 
+[ext_resource type="Script" path="res://visual_follow.gd" id="2_0vcty"]
 [ext_resource type="Script" path="res://character.gd" id="2_1four"]
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://my_assets/SAPC_Rie_Sheet.png" id="2_y5mxj"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_j0801"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="4_18dhx"]
+[ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="5_bv4aq"]
 
 [sub_resource type="Animation" id="Animation_68k1c"]
 length = 0.001
@@ -97,7 +99,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "select_container")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/Sprite2D")
@@ -115,10 +117,12 @@ ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
 name_label = NodePath("Visual/VBoxContainer/NameLabel")
 char_info_container = NodePath("Visual/VBoxContainer")
 status_icon_container = NodePath("Visual/StatusContainer")
-select_container = NodePath("SelectContainer")
+drag_component = NodePath("Draggable")
 
-[node name="Visual" type="Node2D" parent="."]
+[node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
+script = ExtResource("2_0vcty")
+follow_target = NodePath("../Draggable")
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
 position = Vector2(0, -60)
@@ -262,17 +266,6 @@ offset_right = 959.0
 offset_bottom = 72.0
 theme_override_constants/separation = 0
 
-[node name="SelectContainer" type="Container" parent="."]
+[node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 120)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+drag_object = NodePath("..")

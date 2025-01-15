@@ -5,7 +5,7 @@ extends Control
 
 
 func _ready() -> void:
-	GameState.drag_char_changed.connect(update_price)
+	GameState.drag_object_changed.connect(update_price)
 
 
 func update_price(char: Character):
