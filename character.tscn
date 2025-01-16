@@ -268,4 +268,8 @@ theme_override_constants/separation = 0
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]
 unique_name_in_owner = true
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = 60.0
 drag_object = NodePath("..")

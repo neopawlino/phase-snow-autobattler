@@ -10,8 +10,32 @@ var character : Character
 @onready var merge_swap_timer : Timer = %MergeSwapTimer
 
 
+var mouseover : bool:
+	set(val):
+		var changed := mouseover != val
+		mouseover = val
+		if changed:
+			mouseover_changed.emit(val)
+signal mouseover_changed(is_mouseover: bool)
+
+
 func _ready() -> void:
 	merge_swap_timer.timeout.connect(drag_swap)
+	mouseover_changed.connect(func(is_mouseover : bool):
+		if is_mouseover:
+			on_mouse_entered()
+		else:
+			on_mouse_exited()
+	)
+
+
+func _process(delta: float) -> void:
+	var rect := select_container.get_global_rect()
+	var mouse_pos := self.get_global_mouse_position()
+	if !rect.has_point(mouse_pos) and GameState.is_dragging:
+		mouseover = false
+	elif GameState.is_dragging:
+		mouseover = true
 
 
 func set_pickable(pickable : bool):
@@ -25,7 +49,7 @@ func drag_swap():
 		GameState.drag_end_slot = null
 
 
-func _on_container_mouse_entered() -> void:
+func on_mouse_entered() -> void:
 	if GameState.is_dragging:
 		GameState.drag_end_slot = self
 		if GameState.drag_can_swap and self.character != null:
@@ -35,7 +59,7 @@ func _on_container_mouse_entered() -> void:
 				drag_swap()
 
 
-func _on_container_mouse_exited() -> void:
+func on_mouse_exited() -> void:
 	if GameState.is_dragging:
 		if GameState.drag_end_slot == self:
 			GameState.drag_end_slot = null

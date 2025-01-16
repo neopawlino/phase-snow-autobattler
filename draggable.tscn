@@ -2,8 +2,16 @@
 
 [ext_resource type="Script" path="res://draggable.gd" id="1_smc63"]
 
-[node name="Draggable" type="Container"]
+[node name="Draggable" type="Control" node_paths=PackedStringArray("container")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_smc63")
+rect_offset = Vector2(-40, -60)
+container = NodePath("Container")
+
+[node name="Container" type="Container" parent="."]
 custom_minimum_size = Vector2(80, 120)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -15,4 +23,3 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_smc63")
