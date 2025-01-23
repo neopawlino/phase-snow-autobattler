@@ -18,6 +18,8 @@ var mouseover : bool:
 			mouseover_changed.emit(val)
 signal mouseover_changed(is_mouseover: bool)
 
+var pickable : bool
+
 
 func _ready() -> void:
 	merge_swap_timer.timeout.connect(drag_swap)
@@ -30,6 +32,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if not pickable:
+		return
 	var rect := select_container.get_global_rect()
 	var mouse_pos := self.get_global_mouse_position()
 	if !rect.has_point(mouse_pos) and GameState.is_dragging:
@@ -40,6 +44,7 @@ func _process(delta: float) -> void:
 
 func set_pickable(pickable : bool):
 	select_container.mouse_filter = Control.MOUSE_FILTER_PASS if pickable else Control.MOUSE_FILTER_IGNORE
+	self.pickable = pickable
 
 
 func drag_swap():
