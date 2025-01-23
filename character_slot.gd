@@ -70,6 +70,9 @@ func on_mouse_entered() -> void:
 				merge_swap_timer.start()
 			else:
 				drag_swap()
+	elif GameState.drag_object is Item and self.slot_type == SlotType.ITEM:
+		GameState.drag_end_slot = self
+		# TODO Item slot swapping
 
 
 func on_mouse_exited() -> void:

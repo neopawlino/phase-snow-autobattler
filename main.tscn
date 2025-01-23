@@ -138,6 +138,7 @@ team_manager = NodePath("../TeamManager")
 
 [node name="ItemSlots" type="Node" parent="." node_paths=PackedStringArray("player_items_container")]
 script = ExtResource("10_eetyq")
+max_items = null
 player_items_container = NodePath("Items/ItemsContainer")
 
 [node name="Items" type="Control" parent="ItemSlots"]
