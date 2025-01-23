@@ -40,7 +40,7 @@ func load_initial_teams():
 		char.drag_component.draggable = true
 
 		char.global_position = slot.global_position
-		slot.character = char
+		slot.slot_obj = char
 		self.character_container.add_child(char)
 		i += 1
 	load_enemy_team_for_round(GameState.round_number)
@@ -65,16 +65,16 @@ func load_enemy_team_for_round(round_number : int):
 		char.drag_component.draggable = false
 
 		char.global_position = slot.global_position
-		slot.character = char
+		slot.slot_obj = char
 		self.character_container.add_child(char)
 		i += 1
 
 
 func clear_enemy_slots():
 	for slot in slots.enemy_team:
-		if slot.character:
-			slot.character.queue_free()
-		slot.character = null
+		if slot.slot_obj:
+			slot.slot_obj.queue_free()
+		slot.slot_obj = null
 
 
 func add_test_character():
@@ -82,7 +82,7 @@ func add_test_character():
 	var slot_i := 0
 	var slot : Slot = null
 	for cur_slot in slots.player_team:
-		if not cur_slot.character:
+		if not cur_slot.slot_obj:
 			slot = cur_slot
 			break
 	if not slot:
@@ -91,7 +91,7 @@ func add_test_character():
 	char.team = Character.Team.PLAYER
 	char.pos = slot.slot_index
 	char.cur_character_slot = slot
-	slot.character = char
+	slot.slot_obj = char
 	char.drag_component.draggable = true
 
 	char.global_position = slot.global_position

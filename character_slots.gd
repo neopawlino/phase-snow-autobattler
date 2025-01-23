@@ -39,13 +39,13 @@ func reorder_char(char : Character, to : int):
 	var from := char.pos
 	if from < to:
 		for i in range(from + 1, to + 1):
-			var cur_char := slots[i].character
+			var cur_char := slots[i].slot_obj
 			if cur_char:
 				move_to_slot(cur_char, i - 1)
 		move_to_slot(char, to)
 	elif from > to:
 		for i in range(from - 1, to - 1, -1):
-			var cur_char := slots[i].character
+			var cur_char := slots[i].slot_obj
 			if cur_char:
 				move_to_slot(cur_char, i + 1)
 		move_to_slot(char, to)
@@ -55,9 +55,9 @@ func move_to_slot(char : Character, i : int):
 	assert(i < max_slots)
 	char.pos = i
 	var slot := player_team[i] if char.team == Character.Team.PLAYER else enemy_team[i]
-	if char.cur_character_slot and char.cur_character_slot.character == char:
-		char.cur_character_slot.character = null
-	slot.character = char
+	if char.cur_character_slot and char.cur_character_slot.slot_obj == char:
+		char.cur_character_slot.slot_obj = null
+	slot.slot_obj = char
 	char.cur_character_slot = slot
 	char.drag_component.global_position = slot.global_position
 
@@ -72,11 +72,11 @@ func set_char_pos(char : Character, i : int):
 func all_slots_full(team : Character.Team = Character.Team.PLAYER) -> bool:
 	var slots := player_team if team == Character.Team.PLAYER else enemy_team
 	for slot in slots:
-		if not slot.character:
+		if not slot.slot_obj:
 			return false
 	return true
 
 
 func is_slot_empty(team : Character.Team, i : int) -> bool:
 	var slot := player_team[i] if team == Character.Team.PLAYER else enemy_team[i]
-	return slot.character == null
+	return slot.slot_obj == null

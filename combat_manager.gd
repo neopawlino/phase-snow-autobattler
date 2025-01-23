@@ -56,11 +56,11 @@ func start_combat():
 	slots.set_player_slots_pickable(false)
 	clear_teams()
 	for slot in slots.player_team:
-		if slot.character != null:
-			player_team.append(slot.character.my_duplicate())
+		if slot.slot_obj != null:
+			player_team.append(slot.slot_obj.my_duplicate())
 	for slot in slots.enemy_team:
-		if slot.character != null:
-			enemy_team.append(slot.character.my_duplicate())
+		if slot.slot_obj != null:
+			enemy_team.append(slot.slot_obj.my_duplicate())
 	team_manager.hide_teams()
 	show_teams()
 	var i := 0
@@ -155,8 +155,8 @@ func check_combat_over():
 func get_player_income() -> int:
 	var income := 0
 	for slot in slots.player_team:
-		if slot.character != null:
-			income += slot.character.get_income()
+		if slot.slot_obj != null:
+			income += slot.slot_obj.get_income()
 	return income
 
 

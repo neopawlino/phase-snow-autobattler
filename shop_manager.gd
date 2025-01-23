@@ -54,9 +54,9 @@ func update_reroll_button_enabled(money: int = GameState.player_money):
 
 func update_shop_draggable(money: int = GameState.player_money):
 	for slot in shop_slots:
-		if not slot.character:
+		if not slot.slot_obj:
 			continue
-		slot.character.drag_component.draggable = slot.character.can_afford(money)
+		slot.slot_obj.drag_component.draggable = slot.slot_obj.can_afford(money)
 
 
 func reset_reroll_price():
@@ -68,8 +68,8 @@ func reroll_characters(increase_reroll_price : bool = false):
 		reroll_price += reroll_increase
 	for i in range(shop_slot_count):
 		var slot := shop_slots[i]
-		if slot.character:
-			slot.character.queue_free()
+		if slot.slot_obj:
+			slot.slot_obj.queue_free()
 		var char : Character = character_scene.instantiate()
 		char.load_from_character_definition(all_character_definitions.pick_random())
 		char.set_info_z_index(-1)
@@ -81,7 +81,7 @@ func add_character_to_slot(char: Character, slot : Slot, buy_price : int):
 	char.team = Character.Team.PLAYER
 	char.pos = slot.slot_index
 	char.cur_character_slot = slot
-	slot.character = char
+	slot.slot_obj = char
 	char.drag_component.draggable = true
 
 	char.from_shop = true

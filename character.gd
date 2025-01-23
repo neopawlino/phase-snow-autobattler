@@ -170,10 +170,10 @@ func handle_drag_ended():
 		last_tween.kill()
 	if GameState.drag_sell_button and not from_shop:
 		self.sell_character()
-	elif GameState.drag_end_slot and GameState.drag_end_slot.character \
-		and GameState.drag_end_slot.character.can_merge(self):
-		merge_character(GameState.drag_end_slot.character)
-	elif GameState.drag_end_slot and not GameState.drag_end_slot.character:
+	elif GameState.drag_end_slot and GameState.drag_end_slot.slot_obj \
+		and GameState.drag_end_slot.slot_obj.can_merge(self):
+		merge_character(GameState.drag_end_slot.slot_obj)
+	elif GameState.drag_end_slot and not GameState.drag_end_slot.slot_obj:
 		# dragging to an empty slot
 		GameState.slots.move_to_slot(self, GameState.drag_end_slot.slot_index)
 		if from_shop:
@@ -223,14 +223,14 @@ func buy_character():
 func sell_character():
 	GameState.player_money += sell_price
 	if cur_character_slot:
-		cur_character_slot.character = null
+		cur_character_slot.slot_obj = null
 	self.queue_free()
 	GameState.drag_sell_button = false
 
 
 func remove_self():
 	if cur_character_slot:
-		cur_character_slot.character = null
+		cur_character_slot.slot_obj = null
 	self.queue_free()
 
 

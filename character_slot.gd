@@ -2,8 +2,14 @@ extends Control
 
 class_name Slot
 
+enum SlotType {
+	CHARACTER,
+	ITEM,
+}
+
+var slot_type : SlotType
 var slot_index : int
-var character : Character
+var slot_obj : Node
 
 @export var select_container : Container
 
@@ -57,8 +63,8 @@ func drag_swap():
 func on_mouse_entered() -> void:
 	if GameState.is_dragging:
 		GameState.drag_end_slot = self
-		if GameState.drag_can_swap and self.character != null:
-			if self.character.can_merge(GameState.drag_object):
+		if GameState.drag_can_swap and self.slot_obj != null:
+			if self.slot_obj.can_merge(GameState.drag_object):
 				merge_swap_timer.start()
 			else:
 				drag_swap()
