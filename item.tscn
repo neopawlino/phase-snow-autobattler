@@ -1,0 +1,150 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbb2jc53khyem"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_drrui"]
+[ext_resource type="Script" path="res://visual_follow.gd" id="2_8n1u8"]
+[ext_resource type="Texture2D" uid="uid://bv7f15tib0ilm" path="res://my_assets/brokenvase.png" id="2_pagk8"]
+[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="4_6lc6i"]
+[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="5_nrwl3"]
+[ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="6_mx8ia"]
+
+[sub_resource type="Animation" id="Animation_68k1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_754d8"]
+resource_name = "attack"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(20, 0), Vector2(20, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c15sm"]
+resource_name = "attack_flipped"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-20, 0), Vector2(-20, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bty2k"]
+_data = {
+"RESET": SubResource("Animation_68k1c"),
+"attack": SubResource("Animation_754d8"),
+"attack_flipped": SubResource("Animation_c15sm")
+}
+
+[node name="Item" type="Node2D" node_paths=PackedStringArray("price_label", "price", "drag_component", "sprite")]
+texture_filter = 1
+script = ExtResource("1_drrui")
+price_label = NodePath("Visual/Price/Label")
+price = NodePath("Visual/Price")
+drag_component = NodePath("Draggable")
+sprite = NodePath("Visual/Sprite2D")
+
+[node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+script = ExtResource("2_8n1u8")
+follow_target = NodePath("../Draggable")
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
+position = Vector2(0, -60)
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual"]
+texture_filter = 1
+texture = ExtResource("2_pagk8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_bty2k")
+}
+
+[node name="Price" type="Node2D" parent="Visual"]
+position = Vector2(0, -100)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Visual/Price"]
+position = Vector2(-10, 0)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_6lc6i")
+
+[node name="Label" type="Label" parent="Visual/Price"]
+offset_left = 5.0
+offset_top = -15.0
+offset_right = 35.0
+offset_bottom = 15.0
+theme = ExtResource("5_nrwl3")
+theme_override_colors/font_color = Color(0.803922, 0.360784, 0.360784, 1)
+theme_override_font_sizes/font_size = 16
+text = "0"
+vertical_alignment = 1
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("6_mx8ia")]
+unique_name_in_owner = true
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = 60.0
+drag_object = NodePath("..")

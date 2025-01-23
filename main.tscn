@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=17 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://ddns1s6uuyfgc" path="res://enemy_layouts/postjam_balance_1_layouts.tres" id="7_ntw4x"]
 [ext_resource type="Script" path="res://shop_manager.gd" id="8_efko3"]
 [ext_resource type="Script" path="res://team_manager.gd" id="9_o3mlt"]
+[ext_resource type="Script" path="res://items.gd" id="10_eetyq"]
 [ext_resource type="PackedScene" uid="uid://d2rrv6nlpencx" path="res://debug_menu.tscn" id="10_sb6nl"]
 [ext_resource type="Script" path="res://character_slots.gd" id="12_y3foa"]
 [ext_resource type="PackedScene" uid="uid://mvolvkvd21yr" path="res://character_tooltip.tscn" id="13_4h68e"]
@@ -134,6 +135,36 @@ alignment = 1
 [node name="DebugMenu" parent="." node_paths=PackedStringArray("team_manager") instance=ExtResource("10_sb6nl")]
 visible = false
 team_manager = NodePath("../TeamManager")
+
+[node name="ItemSlots" type="Node" parent="." node_paths=PackedStringArray("player_items_container")]
+script = ExtResource("10_eetyq")
+player_items_container = NodePath("Items/ItemsContainer")
+
+[node name="Items" type="Control" parent="ItemSlots"]
+z_index = -1
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="ItemsContainer" type="HBoxContainer" parent="ItemSlots/Items"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
 
 [node name="CharacterSlots" type="Node" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
 script = ExtResource("12_y3foa")
