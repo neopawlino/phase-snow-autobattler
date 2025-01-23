@@ -19,12 +19,14 @@ func _ready() -> void:
 		var slot : Slot = character_slot_scene.instantiate()
 		slot.set_pickable(true)
 		slot.slot_index = i
+		slot.slot_type = Slot.SlotType.CHARACTER
 		player_team.append(slot)
 		player_slot_container.add_child(slot)
 
 		var enemy_slot : Slot = character_slot_scene.instantiate()
 		enemy_slot.set_pickable(false)
 		enemy_slot.slot_index = i
+		enemy_slot.slot_type = Slot.SlotType.CHARACTER
 		enemy_team.append(enemy_slot)
 		enemy_slot_container.add_child(enemy_slot)
 

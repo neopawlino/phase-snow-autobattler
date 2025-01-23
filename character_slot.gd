@@ -61,7 +61,9 @@ func drag_swap():
 
 
 func on_mouse_entered() -> void:
-	if GameState.is_dragging:
+	if not GameState.is_dragging:
+		return
+	if GameState.drag_object is Character and self.slot_type == SlotType.CHARACTER:
 		GameState.drag_end_slot = self
 		if GameState.drag_can_swap and self.slot_obj != null:
 			if self.slot_obj.can_merge(GameState.drag_object):
@@ -71,7 +73,8 @@ func on_mouse_entered() -> void:
 
 
 func on_mouse_exited() -> void:
-	if GameState.is_dragging:
-		if GameState.drag_end_slot == self:
-			GameState.drag_end_slot = null
-		merge_swap_timer.stop()
+	if not GameState.is_dragging:
+		return
+	if GameState.drag_end_slot == self:
+		GameState.drag_end_slot = null
+	merge_swap_timer.stop()

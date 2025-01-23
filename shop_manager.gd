@@ -39,6 +39,7 @@ func _ready() -> void:
 		var slot : Slot = character_slot_scene.instantiate()
 		slot.set_pickable(false)
 		slot.slot_index = i
+		slot.slot_type = Slot.SlotType.CHARACTER
 		shop_slots.append(slot)
 		shop_slot_container.add_child(slot)
 	GameState.player_money_changed.connect(update_reroll_button_enabled)
