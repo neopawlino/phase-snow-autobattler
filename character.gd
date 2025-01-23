@@ -48,8 +48,6 @@ var cur_character_slot : Slot:
 		cur_character_slot = slot
 		self.drag_component.cur_slot = slot
 
-var visual_position : Vector2
-
 var base_scale : Vector2 = Vector2.ONE
 var sprite_offset : Vector2
 var flipped : bool
@@ -133,7 +131,6 @@ var char_def : CharacterDefinition
 
 
 func _ready() -> void:
-	visual_position = self.global_position
 	GameState.player_money_changed.connect(update_price_color)
 	GlobalSignals.character_tooltip_opened.connect(func(char : Character):
 		self.was_tooltip_open_for_character = char == self
@@ -294,7 +291,6 @@ func my_duplicate() -> Character:
 		new_char.add_status(status_id, self.statuses[status_id])
 
 	new_char.global_position = self.global_position
-	new_char.visual_position = self.visual_position
 	new_char.visual.global_position = self.visual.global_position
 	new_char.sprite.texture = self.sprite.texture
 	new_char.sprite_offset = self.sprite_offset
