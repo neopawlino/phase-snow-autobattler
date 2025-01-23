@@ -8,11 +8,11 @@ func _ready() -> void:
 	GameState.drag_object_changed.connect(update_price)
 
 
-func update_price(char: Character):
-	if char == null or char.from_shop:
+func update_price(drag_obj: Node):
+	if drag_obj == null or drag_obj.from_shop:
 		price_label.text = "--"
 		return
-	price_label.text = str(char.sell_price)
+	price_label.text = str(drag_obj.sell_price)
 
 
 func _on_panel_container_mouse_entered() -> void:

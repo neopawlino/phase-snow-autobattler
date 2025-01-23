@@ -12,11 +12,11 @@ var is_dragging : bool = false:
 signal is_dragging_changed(value : bool)
 # we can swap when we're dragging a character already in our team, but not from the shop
 var drag_can_swap : bool = false
-var drag_object : Character:
-	set(char):
-		drag_object = char
-		drag_object_changed.emit(char)
-signal drag_object_changed(char : Character)
+var drag_object : Node:
+	set(drag_obj):
+		drag_object = drag_obj
+		drag_object_changed.emit(drag_obj)
+signal drag_object_changed(drag_obj : Node)
 var drag_original_slot : Slot
 var drag_end_slot : Slot
 var drag_sell_button : bool
