@@ -113,3 +113,5 @@ func load_from_item_definition(item_def : ItemDefinition):
 	self.sprite.scale = item_def.sprite_scale
 	self.buy_price = item_def.price
 	self.sell_price = item_def.sell_price
+
+	self.base_scale = item_def.sprite_scale
