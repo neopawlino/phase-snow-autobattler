@@ -16,7 +16,8 @@ grow_vertical = 2
 theme = ExtResource("1_3e5gm")
 script = ExtResource("1_q1g5w")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="SellContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -30,31 +31,32 @@ offset_right = 100.0
 offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(100, 51)
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SellContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 34
 theme_override_constants/margin_bottom = 34
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SellContainer/MarginContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="SellContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sell: "
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="SellContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("2_ctq74")
 expand_mode = 3
 
-[node name="PriceLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="PriceLabel" type="Label" parent="SellContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "--"
 
-[connection signal="mouse_entered" from="PanelContainer" to="." method="_on_panel_container_mouse_entered"]
-[connection signal="mouse_exited" from="PanelContainer" to="." method="_on_panel_container_mouse_exited"]
+[connection signal="mouse_entered" from="SellContainer" to="." method="_on_panel_container_mouse_entered"]
+[connection signal="mouse_exited" from="SellContainer" to="." method="_on_panel_container_mouse_exited"]
