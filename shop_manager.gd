@@ -28,6 +28,7 @@ var item_scene : PackedScene = preload("res://item.tscn")
 var slot_scene : PackedScene = preload("res://character_slot.tscn")
 
 @export var character_container : Control
+@export var item_container : Control
 
 @export var reroll_button : Button
 
@@ -113,6 +114,11 @@ func reroll_items():
 	update_shop_draggable()
 
 
+func reroll_all():
+	reroll_characters()
+	reroll_items()
+
+
 func add_character_to_slot(char: Character, slot : Slot, buy_price : int):
 	char.team = Character.Team.PLAYER
 	char.pos = slot.slot_index
@@ -136,17 +142,25 @@ func add_item_to_slot(item : Item, slot : Slot, buy_price : int):
 	item.buy_price = buy_price
 
 	item.global_position = slot.global_position
-	self.character_container.add_child(item)
+	self.item_container.add_child(item)
 
 
 func show_shop():
 	shop_ui.show()
 	shop_slot_container.show()
+	item_slot_container.show()
+	item_container.show()
+
+
+func hide_shop():
+	shop_ui.hide()
+	shop_slot_container.hide()
+	item_slot_container.hide()
+	item_container.hide()
 
 
 func _on_button_pressed() -> void:
-	shop_ui.hide()
-	shop_slot_container.hide()
+	hide_shop()
 	combat_manager.start_combat()
 
 
@@ -156,5 +170,4 @@ func _on_reroll_button_pressed() -> void:
 		assert(false)
 	GameState.player_money -= reroll_price
 	increase_reroll_price()
-	reroll_characters()
-	reroll_items()
+	reroll_all()

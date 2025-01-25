@@ -61,18 +61,19 @@ test_character = ExtResource("7_51m7k")
 character_container = NodePath("../CharacterContainer")
 slots = NodePath("../CharacterSlots")
 
-[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager", "shop_slot_container", "item_slot_container", "character_container", "reroll_button")]
+[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager", "shop_slot_container", "item_slot_container", "character_container", "item_container", "reroll_button")]
 script = ExtResource("8_efko3")
-shop_ui = NodePath("Control")
+shop_ui = NodePath("ShopUI")
 combat_manager = NodePath("../CombatManager")
 buy_price = 4
 shop_slot_container = NodePath("ShopSlots/CharacterSlotsContainer")
 item_slot_container = NodePath("ShopSlots/ItemSlotsContainer")
 character_container = NodePath("../CharacterContainer")
-reroll_button = NodePath("Control/RerollButton")
+item_container = NodePath("ShopItemContainer")
+reroll_button = NodePath("ShopUI/RerollButton")
 starting_money = 10
 
-[node name="Control" type="Control" parent="ShopManager"]
+[node name="ShopUI" type="Control" parent="ShopManager"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,7 +87,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="ShopManager/Control"]
+[node name="Button" type="Button" parent="ShopManager/ShopUI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,7 +102,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start Combat"
 
-[node name="RerollButton" type="Button" parent="ShopManager/Control"]
+[node name="RerollButton" type="Button" parent="ShopManager/ShopUI"]
 layout_mode = 2
 offset_left = -600.0
 offset_top = -200.0
@@ -143,13 +144,20 @@ offset_bottom = -368.0
 theme_override_constants/separation = 100
 alignment = 1
 
+[node name="ShopItemContainer" type="Control" parent="ShopManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="DebugMenu" parent="." node_paths=PackedStringArray("team_manager") instance=ExtResource("10_sb6nl")]
 visible = false
 team_manager = NodePath("../TeamManager")
 
-[node name="ItemSlots" type="Node" parent="." node_paths=PackedStringArray("player_items_container")]
+[node name="ItemSlots" type="Node" parent="." node_paths=PackedStringArray("item_slots_container", "items_container")]
 script = ExtResource("10_eetyq")
-player_items_container = NodePath("Items/ItemsContainer")
+item_slots_container = NodePath("Items/ItemSlotsContainer")
+items_container = NodePath("ItemContainer")
 
 [node name="Items" type="Control" parent="ItemSlots"]
 z_index = -1
@@ -162,7 +170,7 @@ offset_bottom = 120.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 
-[node name="ItemsContainer" type="HBoxContainer" parent="ItemSlots/Items"]
+[node name="ItemSlotsContainer" type="HBoxContainer" parent="ItemSlots/Items"]
 layout_direction = 3
 layout_mode = 1
 anchors_preset = 8
@@ -176,6 +184,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 100
 alignment = 1
+
+[node name="ItemContainer" type="Control" parent="ItemSlots"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="CharacterSlots" type="Node" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
 script = ExtResource("12_y3foa")
@@ -293,5 +307,5 @@ visible = false
 z_index = 10
 
 [connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
-[connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]
-[connection signal="pressed" from="ShopManager/Control/RerollButton" to="ShopManager" method="_on_reroll_button_pressed"]
+[connection signal="pressed" from="ShopManager/ShopUI/Button" to="ShopManager" method="_on_button_pressed"]
+[connection signal="pressed" from="ShopManager/ShopUI/RerollButton" to="ShopManager" method="_on_reroll_button_pressed"]

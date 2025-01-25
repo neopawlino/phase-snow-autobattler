@@ -33,7 +33,7 @@ func _on_panel_container_mouse_exited() -> void:
 	GameState.drag_sell_button = false
 	if holding_sellable:
 		set_box_scale(c_normal_size)
-	
+
 func set_box_scale(val: float):
 	if box.scale.x != val:
 		box.scale = Vector2(val, val)

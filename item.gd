@@ -75,6 +75,7 @@ func handle_drag_ended():
 func buy_item():
 	GameState.player_money -= buy_price
 	from_shop = false
+	self.reparent(GameState.items.items_container)
 
 
 func sell_item():

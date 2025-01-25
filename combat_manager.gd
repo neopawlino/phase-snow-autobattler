@@ -204,5 +204,5 @@ func _on_combat_summary_continue_button_pressed() -> void:
 		team_manager.load_enemy_team_for_round(GameState.wins)
 
 	shop_manager.show_shop()
-	shop_manager.reroll_characters()
+	shop_manager.reroll_all()
 	shop_manager.reset_reroll_price()

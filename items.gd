@@ -7,7 +7,8 @@ var slot_scene : PackedScene = preload("res://character_slot.tscn")
 var player_items : Array[Slot]
 
 @export var max_items : int = 5
-@export var player_items_container : Container
+@export var item_slots_container : Container
+@export var items_container : Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +19,7 @@ func _ready() -> void:
 		slot.slot_index = i
 		slot.slot_type = Slot.SlotType.ITEM
 		player_items.append(slot)
-		player_items_container.add_child(slot)
+		item_slots_container.add_child(slot)
 
 
 func move_to_slot(item : Item, i : int):
