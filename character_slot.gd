@@ -72,7 +72,15 @@ func on_mouse_entered() -> void:
 				drag_swap()
 	elif GameState.drag_object is Item and self.slot_type == SlotType.ITEM:
 		GameState.drag_end_slot = self
-		# TODO Item slot swapping
+		if GameState.drag_can_swap and self.slot_obj != null and GameState.drag_object.cur_slot:
+			drag_item_swap()
+
+
+func drag_item_swap():
+	if GameState.is_dragging and GameState.drag_end_slot == self:
+		GameState.items.reorder_item(GameState.drag_object, slot_index)
+		GameState.drag_original_slot = self
+		GameState.drag_end_slot = null
 
 
 func on_mouse_exited() -> void:

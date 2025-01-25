@@ -29,3 +29,20 @@ func move_to_slot(item : Item, i : int):
 	slot.slot_obj = item
 	item.cur_slot = slot
 	item.global_position = slot.global_position
+
+
+func reorder_item(item : Item, to : int):
+	assert(item.cur_slot)
+	var from := item.cur_slot.slot_index
+	if from < to:
+		for i in range(from + 1, to + 1):
+			var cur_item := player_items[i].slot_obj
+			if cur_item:
+				move_to_slot(cur_item, i - 1)
+		move_to_slot(item, to)
+	elif from > to:
+		for i in range(from - 1, to - 1, -1):
+			var cur_item := player_items[i].slot_obj
+			if cur_item:
+				move_to_slot(cur_item, i + 1)
+		move_to_slot(item, to)
