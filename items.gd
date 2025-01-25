@@ -4,7 +4,6 @@ class_name Items
 
 var slot_scene : PackedScene = preload("res://character_slot.tscn")
 
-# TODO Item class
 var player_items : Array[Slot]
 
 @export var max_items : int = 5
@@ -22,6 +21,11 @@ func _ready() -> void:
 		player_items_container.add_child(slot)
 
 
-func move_to_slot(item : Item, slot_index : int):
-	# TODO
-	pass
+func move_to_slot(item : Item, i : int):
+	assert(i < max_items)
+	var slot := player_items[i]
+	if item.cur_slot and item.cur_slot.slot_obj == item:
+		item.cur_slot.slot_obj = null
+	slot.slot_obj = item
+	item.cur_slot = slot
+	item.global_position = slot.global_position

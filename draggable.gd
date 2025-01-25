@@ -10,7 +10,7 @@ var mouseover : bool:
 			mouseover_changed.emit(val)
 signal mouseover_changed(is_mouseover: bool)
 
-var draggable : bool = false:
+@export var draggable : bool = false:
 	set(val):
 		draggable = val
 		container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if val else Control.CURSOR_ARROW
