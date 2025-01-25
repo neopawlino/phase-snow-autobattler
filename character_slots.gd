@@ -61,14 +61,14 @@ func move_to_slot(char : Character, i : int):
 		char.cur_character_slot.slot_obj = null
 	slot.slot_obj = char
 	char.cur_character_slot = slot
-	char.drag_component.global_position = slot.global_position
+	char.global_position = slot.global_position
 
 
 func set_char_pos(char : Character, i : int):
 	assert(i < max_slots)
 	char.pos = i
 	var slot := player_team[i] if char.team == Character.Team.PLAYER else enemy_team[i]
-	char.drag_component.global_position = slot.global_position
+	char.global_position = slot.global_position
 
 
 func all_slots_full(team : Character.Team = Character.Team.PLAYER) -> bool:

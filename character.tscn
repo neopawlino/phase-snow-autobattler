@@ -122,7 +122,7 @@ drag_component = NodePath("Draggable")
 [node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
 script = ExtResource("2_0vcty")
-follow_target = NodePath("../Draggable")
+follow_target = NodePath("..")
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
 position = Vector2(0, -60)

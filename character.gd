@@ -176,11 +176,11 @@ func handle_drag_ended():
 		if from_shop:
 			buy_character()
 		last_tween = get_tree().create_tween()
-		last_tween.tween_property(drag_component, "global_position", GameState.drag_end_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+		last_tween.tween_property(self, "global_position", GameState.drag_end_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 	elif GameState.drag_original_slot:
 		# dragging nowhere in particular, or letting go after swapping
 		last_tween = get_tree().create_tween()
-		last_tween.tween_property(drag_component, "global_position", GameState.drag_original_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
+		last_tween.tween_property(self, "global_position", GameState.drag_original_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 		GameState.drag_original_slot = null
 		if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
 			if was_tooltip_open_for_character:

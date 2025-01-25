@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var follow_target : Control
+@export var follow_target : Node2D
 
 @export var visual_follow_speed : float = 30
 

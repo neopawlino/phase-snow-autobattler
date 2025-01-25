@@ -38,8 +38,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	self.global_position = drag_object.global_position
 	if not GameState.is_dragging and cur_slot:
-		global_position = cur_slot.global_position
+		drag_object.global_position = cur_slot.global_position
 	if not draggable:
 		return
 	var rect := container.get_global_rect()
@@ -50,8 +51,8 @@ func _process(delta: float) -> void:
 		mouseover = true
 	if mouseover and draggable:
 		if Input.is_action_just_pressed("click") and not GameState.is_dragging:
-			drag_initial_pos = global_position
-			drag_offset = get_global_mouse_position() - global_position
+			drag_initial_pos = drag_object.global_position
+			drag_offset = get_global_mouse_position() - self.global_position
 			GameState.is_dragging = true
 			GameState.drag_object = self.drag_object
 			GameState.drag_original_slot = self.cur_slot
@@ -59,7 +60,7 @@ func _process(delta: float) -> void:
 			GameState.drag_initial_mouse_pos = get_global_mouse_position()
 			self.drag_started.emit()
 		if Input.is_action_pressed("click") and GameState.drag_object == self.drag_object:
-			global_position = get_global_mouse_position() - drag_offset
+			drag_object.global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click") and GameState.drag_object == self.drag_object:
 			GameState.is_dragging = false
 			GameState.drag_object = null
