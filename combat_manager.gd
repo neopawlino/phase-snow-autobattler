@@ -78,6 +78,13 @@ func start_combat():
 		char.make_timers()
 		i += 1
 	in_combat = true
+	proc_start_combat_items()
+
+
+func proc_start_combat_items():
+	for item in GameState.items.get_items(&"test_item"):
+		for char in player_team:
+			char.add_status(StatusEffect.StatusId.STRENGTH, 1)
 
 
 func clear_teams():

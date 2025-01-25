@@ -46,3 +46,14 @@ func reorder_item(item : Item, to : int):
 			if cur_item:
 				move_to_slot(cur_item, i + 1)
 		move_to_slot(item, to)
+
+
+func get_items(item_name : StringName) -> Array[Item]:
+	var items : Array[Item] = []
+	for slot in player_items:
+		if not slot.slot_obj:
+			continue
+		var item : Item = slot.slot_obj
+		if item.item_definition.name == item_name:
+			items.append(item)
+	return items

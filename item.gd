@@ -35,6 +35,9 @@ var cur_slot : Slot:
 		self.drag_component.cur_slot = slot
 
 
+@export var item_definition : ItemDefinition
+
+
 func _ready() -> void:
 	GameState.player_money_changed.connect(update_price_color)
 	set_price_visible(from_shop)
@@ -101,3 +104,11 @@ func set_price_visible(is_visible: bool):
 
 func set_price_text(value: int):
 	price_label.text = str(value)
+
+
+func load_from_item_definition(item_def : ItemDefinition):
+	self.item_definition = item_def.duplicate(true)
+	self.sprite.texture = item_def.item_sprite
+	self.sprite.scale = item_def.sprite_scale
+	self.buy_price = item_def.price
+	self.sell_price = item_def.sell_price

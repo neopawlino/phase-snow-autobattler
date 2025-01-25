@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=19 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://mvolvkvd21yr" path="res://character_tooltip.tscn" id="13_4h68e"]
 [ext_resource type="PackedScene" uid="uid://bb02d6qe3f5go" path="res://sell.tscn" id="13_cmt5l"]
 [ext_resource type="PackedScene" uid="uid://b70hwns4rlfpw" path="res://player_state_ui.tscn" id="13_y2f8g"]
+[ext_resource type="Resource" uid="uid://bwnru8rlos5lp" path="res://item_definitions/test_item.tres" id="16_45niu"]
 [ext_resource type="PackedScene" uid="uid://dbb2jc53khyem" path="res://item.tscn" id="17_e60ia"]
 
 [node name="Main" type="Node"]
@@ -276,12 +277,14 @@ char_tooltip_parent = NodePath("..")
 
 [node name="Item" parent="." instance=ExtResource("17_e60ia")]
 position = Vector2(131, 168)
+item_definition = ExtResource("16_45niu")
 
 [node name="Draggable" parent="Item" index="1"]
 draggable = true
 
 [node name="Item2" parent="." instance=ExtResource("17_e60ia")]
 position = Vector2(131, 168)
+item_definition = ExtResource("16_45niu")
 
 [node name="Draggable" parent="Item2" index="1"]
 draggable = true
