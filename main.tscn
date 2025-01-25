@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d0teyvnsjhmux"]
+[gd_scene load_steps=17 format=3 uid="uid://d0teyvnsjhmux"]
 
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
@@ -16,8 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://mvolvkvd21yr" path="res://character_tooltip.tscn" id="13_4h68e"]
 [ext_resource type="PackedScene" uid="uid://bb02d6qe3f5go" path="res://sell.tscn" id="13_cmt5l"]
 [ext_resource type="PackedScene" uid="uid://b70hwns4rlfpw" path="res://player_state_ui.tscn" id="13_y2f8g"]
-[ext_resource type="Resource" uid="uid://bwnru8rlos5lp" path="res://item_definitions/test_item.tres" id="16_45niu"]
-[ext_resource type="PackedScene" uid="uid://dbb2jc53khyem" path="res://item.tscn" id="17_e60ia"]
 
 [node name="Main" type="Node"]
 
@@ -63,12 +61,13 @@ test_character = ExtResource("7_51m7k")
 character_container = NodePath("../CharacterContainer")
 slots = NodePath("../CharacterSlots")
 
-[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager", "shop_slot_container", "character_container", "reroll_button")]
+[node name="ShopManager" type="Node" parent="." node_paths=PackedStringArray("shop_ui", "combat_manager", "shop_slot_container", "item_slot_container", "character_container", "reroll_button")]
 script = ExtResource("8_efko3")
 shop_ui = NodePath("Control")
 combat_manager = NodePath("../CombatManager")
 buy_price = 4
-shop_slot_container = NodePath("ShopSlots/HBoxContainer")
+shop_slot_container = NodePath("ShopSlots/CharacterSlotsContainer")
+item_slot_container = NodePath("ShopSlots/ItemSlotsContainer")
 character_container = NodePath("../CharacterContainer")
 reroll_button = NodePath("Control/RerollButton")
 starting_money = 10
@@ -105,9 +104,9 @@ text = "Start Combat"
 [node name="RerollButton" type="Button" parent="ShopManager/Control"]
 layout_mode = 2
 offset_left = -600.0
-offset_top = -32.0
+offset_top = -200.0
 offset_right = -400.0
-offset_bottom = -1.0
+offset_bottom = -169.0
 text = "Reroll: $x"
 
 [node name="ShopSlots" type="Control" parent="ShopManager"]
@@ -124,7 +123,17 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ShopManager/ShopSlots"]
+[node name="CharacterSlotsContainer" type="HBoxContainer" parent="ShopManager/ShopSlots"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+offset_left = -600.0
+offset_top = -368.0
+offset_right = -400.0
+offset_bottom = -368.0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="ItemSlotsContainer" type="HBoxContainer" parent="ShopManager/ShopSlots"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_left = -322.0
@@ -275,20 +284,6 @@ offset_bottom = 58.0
 grow_vertical = 2
 char_tooltip_parent = NodePath("..")
 
-[node name="Item" parent="." instance=ExtResource("17_e60ia")]
-position = Vector2(131, 168)
-item_definition = ExtResource("16_45niu")
-
-[node name="Draggable" parent="Item" index="1"]
-draggable = true
-
-[node name="Item2" parent="." instance=ExtResource("17_e60ia")]
-position = Vector2(131, 168)
-item_definition = ExtResource("16_45niu")
-
-[node name="Draggable" parent="Item2" index="1"]
-draggable = true
-
 [node name="ResultScreen" parent="." instance=ExtResource("3_w720u")]
 visible = false
 
@@ -300,6 +295,3 @@ z_index = 10
 [connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/Button" to="ShopManager" method="_on_button_pressed"]
 [connection signal="pressed" from="ShopManager/Control/RerollButton" to="ShopManager" method="_on_reroll_button_pressed"]
-
-[editable path="Item"]
-[editable path="Item2"]
