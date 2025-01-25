@@ -57,3 +57,11 @@ func get_items(item_name : StringName) -> Array[Item]:
 		if item.item_definition.name == item_name:
 			items.append(item)
 	return items
+
+
+func set_items_draggable(draggable : bool):
+	for slot in player_items:
+		if not slot.slot_obj:
+			continue
+		var item : Item = slot.slot_obj
+		item.drag_component.draggable = draggable

@@ -55,6 +55,7 @@ func start_combat():
 	GameState.close_character_tooltip()
 	slots.set_player_slots_pickable(false)
 	clear_teams()
+	GameState.items.set_items_draggable(false)
 	for slot in slots.player_team:
 		if slot.slot_obj != null:
 			player_team.append(slot.slot_obj.my_duplicate())
@@ -193,6 +194,7 @@ func _on_combat_summary_continue_button_pressed() -> void:
 		return
 
 	slots.set_player_slots_pickable(true)
+	GameState.items.set_items_draggable(true)
 
 	team_manager.show_teams()
 

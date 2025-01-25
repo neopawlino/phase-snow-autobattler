@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://bpctkdgngdmkj"]
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://cs485gjn3g3s7"]
 
 [ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_nexic"]
 
