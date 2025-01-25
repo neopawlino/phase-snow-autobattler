@@ -105,9 +105,9 @@ text = "Start Combat"
 [node name="RerollButton" type="Button" parent="ShopManager/ShopUI"]
 layout_mode = 2
 offset_left = -600.0
-offset_top = -200.0
+offset_top = 256.0
 offset_right = -400.0
-offset_bottom = -169.0
+offset_bottom = 287.0
 text = "Reroll: $x"
 
 [node name="ShopSlots" type="Control" parent="ShopManager"]
@@ -128,9 +128,9 @@ grow_vertical = 0
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_left = -600.0
-offset_top = -368.0
+offset_top = -400.0
 offset_right = -400.0
-offset_bottom = -368.0
+offset_bottom = -400.0
 theme_override_constants/separation = 100
 alignment = 1
 
@@ -138,9 +138,9 @@ alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_left = -322.0
-offset_top = -368.0
+offset_top = -400.0
 offset_right = -122.0
-offset_bottom = -368.0
+offset_bottom = -400.0
 theme_override_constants/separation = 100
 alignment = 1
 
@@ -165,8 +165,8 @@ layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_top = 120.0
-offset_bottom = 120.0
+offset_top = 80.0
+offset_bottom = 80.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 
