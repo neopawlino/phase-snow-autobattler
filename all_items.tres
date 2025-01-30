@@ -7,4 +7,4 @@ script = ExtResource("1_nexic")
 base_folder = "res://item_definitions"
 includes = Array[String](["*.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://item_definitions/test_item.tres"])
+paths = Array[String](["res://item_definitions/str_on_damage.tres", "res://item_definitions/test_item.tres"])

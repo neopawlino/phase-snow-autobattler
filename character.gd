@@ -64,9 +64,11 @@ var max_hp : int:
 		update_hp_bar(hp, max_hp)
 var hp : int:
 	set(value):
+		var old_hp := hp
 		hp = value
 		update_hp_bar(hp, max_hp)
-
+		hp_changed.emit(hp, old_hp)
+signal hp_changed(new_hp : int, old_hp : int)
 
 var abilities : Array[AbilityDefinition]
 var ability_levels : Array[int]

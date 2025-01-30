@@ -80,12 +80,24 @@ func start_combat():
 		i += 1
 	in_combat = true
 	proc_start_combat_items()
+	apply_front_character_items()
 
 
 func proc_start_combat_items():
 	for item in GameState.items.get_items(&"test_item"):
 		for char in player_team:
 			char.add_status(StatusEffect.StatusId.STRENGTH, 1)
+
+
+func apply_front_character_items():
+	if player_team.is_empty():
+		return
+	var char := player_team[0]
+	char.hp_changed.connect(func(new_hp: int, old_hp: int):
+		if new_hp < old_hp:
+			for item in GameState.items.get_items(&"str_on_damage"):
+				char.add_status(StatusEffect.StatusId.STRENGTH, 1)
+	)
 
 
 func clear_teams():
@@ -122,6 +134,8 @@ func kill_character(char: Character):
 			var char_to_move := player_team[i]
 			var new_pos := char_to_move.pos - 1
 			slots.set_char_pos(char_to_move, new_pos)
+		if player_index == 0:
+			apply_front_character_items()
 	elif enemy_index >= 0:
 		enemy_team.remove_at(enemy_index)
 		for i in range(enemy_index, len(enemy_team)):
