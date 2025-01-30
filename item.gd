@@ -41,17 +41,25 @@ var cur_slot : Slot:
 func _ready() -> void:
 	GameState.player_money_changed.connect(update_price_color)
 	set_price_visible(from_shop)
-	drag_component.mouseover_changed.connect(func(is_mouseover):
-		if is_mouseover:
-			self.sprite.scale = base_scale * mouseover_scale
-		else:
-			self.sprite.scale = base_scale
-	)
+	drag_component.mouseover_changed.connect(on_drag_component_mouseover_changed)
 	drag_component.drag_started.connect(func():
 		GameState.drag_can_swap = not from_shop
 	)
 	drag_component.drag_ended.connect(handle_drag_ended)
 
+
+func on_drag_component_mouseover_changed(is_mouseover : bool):
+	if is_mouseover:
+		var rect_offset := drag_component.size / 2
+		Popups.show_item_popup(Rect2i(Vector2i(drag_component.global_position - rect_offset), Vector2i(drag_component.size)), item_definition)
+	else:
+		Popups.hide_item_popup()
+	if not drag_component.draggable:
+		return
+	if is_mouseover:
+		self.sprite.scale = base_scale * mouseover_scale
+	else:
+		self.sprite.scale = base_scale
 
 func handle_drag_ended():
 	if last_tween:

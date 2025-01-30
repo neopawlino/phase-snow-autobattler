@@ -22,6 +22,7 @@ GlobalSignals="*res://global_signals.gd"
 DamageNumbers="*res://damage_numbers.gd"
 StatusIconLib="*res://status_effects/status_icon_lib.gd"
 Bgm="*res://bgm.tscn"
+Popups="*res://popups.tscn"
 
 [display]
 
