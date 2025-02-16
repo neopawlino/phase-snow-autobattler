@@ -82,3 +82,9 @@ func all_slots_full(team : Character.Team = Character.Team.PLAYER) -> bool:
 func is_slot_empty(team : Character.Team, i : int) -> bool:
 	var slot := player_team[i] if team == Character.Team.PLAYER else enemy_team[i]
 	return slot.slot_obj == null
+
+
+func foreach_player_team(my_func : Callable):
+	for slot in player_team:
+		if slot.slot_obj != null:
+			my_func.call(slot.slot_obj)

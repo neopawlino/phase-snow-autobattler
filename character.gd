@@ -366,6 +366,11 @@ func level_up_ability(ability_index : int):
 	ability_levels_changed.emit(ability_levels)
 
 
+func add_max_hp(hp: int):
+	self.max_hp += hp
+	self.hp += hp
+
+
 func make_timers():
 	for i in range(len(abilities)):
 		var ability_def := abilities[i]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://63ktvxn24508"]
+
+[ext_resource type="Script" path="res://item_definition.gd" id="1_k4pbo"]
+[ext_resource type="Texture2D" uid="uid://bfyseo7apl6g" path="res://my_assets/tile.png" id="1_ybeqy"]
+
+[resource]
+script = ExtResource("1_k4pbo")
+name = &"empty_slot_buff"
+display_name = "Empty Slot Buff"
+item_sprite = ExtResource("1_ybeqy")
+sprite_scale = Vector2(0.5, 0.5)
+description_text = "All units: +1 str/+1 armor per empty unit slot"
+price = 8
+sell_price = 4
+properties = {}

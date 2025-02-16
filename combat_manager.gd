@@ -84,9 +84,21 @@ func start_combat():
 
 
 func proc_start_combat_items():
-	for item in GameState.items.get_items(&"test_item"):
+	for item in GameState.items.get_items(&"str_item"):
 		for char in player_team:
 			char.add_status(StatusEffect.StatusId.STRENGTH, 1)
+	for item in GameState.items.get_items(&"empty_slot_buff"):
+		var empty_slots := slots.max_slots - len(player_team)
+		for char in player_team:
+			char.add_status(StatusEffect.StatusId.STRENGTH, empty_slots)
+			char.add_status(StatusEffect.StatusId.ARMOR, empty_slots)
+	for item in GameState.items.get_items(&"toxic_up"):
+		for char in player_team:
+			char.add_status(StatusEffect.StatusId.ENVENOM, 1)
+	for item in GameState.items.get_items(&"toxic_only"):
+		for char in player_team:
+			char.add_status(StatusEffect.StatusId.ENVENOM, 5)
+			char.add_status(StatusEffect.StatusId.STRENGTH, -99)
 
 
 func apply_front_character_items():
@@ -179,6 +191,14 @@ func get_player_income() -> int:
 	for slot in slots.player_team:
 		if slot.slot_obj != null:
 			income += slot.slot_obj.get_income()
+	income += get_item_income()
+	return income
+
+
+func get_item_income() -> int:
+	var income := 0
+	for item in GameState.items.get_items(&"income_up"):
+		income += 4
 	return income
 
 
@@ -220,3 +240,12 @@ func _on_combat_summary_continue_button_pressed() -> void:
 	shop_manager.show_shop()
 	shop_manager.reroll_all()
 	shop_manager.reset_reroll_price()
+
+	proc_end_combat_items()
+
+
+func proc_end_combat_items():
+	for item in GameState.items.get_items(&"hp_gain"):
+		slots.foreach_player_team(func(char: Character):
+			char.add_max_hp(2)
+		)

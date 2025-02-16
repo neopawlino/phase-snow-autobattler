@@ -105,6 +105,8 @@ script = ExtResource("2_1four")
 sprite = NodePath("Visual/Sprite2D")
 anim_player = NodePath("Visual/Sprite2D/AnimationPlayer")
 visual = NodePath("Visual")
+anim_delay = null
+mouseover_scale = null
 damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
 price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
@@ -116,6 +118,8 @@ xp_bar = NodePath("Visual/VBoxContainer/XPBar")
 ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
 name_label = NodePath("Visual/VBoxContainer/NameLabel")
 char_info_container = NodePath("Visual/VBoxContainer")
+price_color = null
+price_unaffordable_color = null
 status_icon_container = NodePath("Visual/StatusContainer")
 drag_component = NodePath("Draggable")
 
