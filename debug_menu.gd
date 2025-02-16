@@ -24,3 +24,7 @@ func _on_add_xp_button_pressed() -> void:
 
 func _on_add_money_button_pressed() -> void:
 	GameState.player_money += 1
+
+
+func _on_free_reroll_button_pressed() -> void:
+	GameState.shop_manager.reroll_all()

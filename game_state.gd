@@ -3,6 +3,7 @@ extends Node
 var slots : Slots
 var items : Items
 var combat_manager : CombatManager
+var shop_manager : ShopManager
 
 var character_tooltip : CharacterTooltip
 

@@ -64,6 +64,7 @@ func _ready() -> void:
 	GameState.player_money_changed.connect(update_reroll_button_enabled)
 	GameState.player_money_changed.connect(update_shop_draggable)
 	GameState.player_money = starting_money
+	GameState.shop_manager = self
 	reset_reroll_price()
 	call_deferred("reroll_characters")
 	call_deferred("reroll_items")

@@ -36,6 +36,11 @@ text = "Give Front Character XP"
 layout_mode = 2
 text = "Give Money"
 
+[node name="FreeRerollButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Free Reroll"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AddCharButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AddXpButton" to="." method="_on_add_xp_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AddMoneyButton" to="." method="_on_add_money_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/FreeRerollButton" to="." method="_on_free_reroll_button_pressed"]
