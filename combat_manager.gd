@@ -148,6 +148,7 @@ func kill_character(char: Character):
 			slots.set_char_pos(char_to_move, new_pos)
 		if player_index == 0:
 			apply_front_character_items()
+		on_player_character_died()
 	elif enemy_index >= 0:
 		enemy_team.remove_at(enemy_index)
 		for i in range(enemy_index, len(enemy_team)):
@@ -158,6 +159,13 @@ func kill_character(char: Character):
 		# character died to 2 sources on the same tick
 		return
 	char.queue_free()
+
+
+func on_player_character_died():
+	for item in GameState.items.get_items(&"buff_on_death"):
+		for char in player_team:
+			char.add_status(StatusEffect.StatusId.STRENGTH, 1)
+			char.add_status(StatusEffect.StatusId.ARMOR, 1)
 
 
 func check_combat_over():
