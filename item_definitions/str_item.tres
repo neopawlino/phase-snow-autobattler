@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://bwnru8rlos5lp"]
 
-[ext_resource type="Texture2D" uid="uid://bv7f15tib0ilm" path="res://my_assets/brokenvase.png" id="1_fwa78"]
+[ext_resource type="Texture2D" uid="uid://cqrkop5ypcg6y" path="res://my_assets/sakana.png" id="1_rs0y1"]
 [ext_resource type="Script" path="res://item_definition.gd" id="2_tkoii"]
 
 [resource]
 script = ExtResource("2_tkoii")
 name = &"str_item"
 display_name = "Physical Trainer"
-item_sprite = ExtResource("1_fwa78")
-sprite_scale = Vector2(0.8, 0.8)
+item_sprite = ExtResource("1_rs0y1")
+sprite_scale = Vector2(1.5, 1.5)
 description_text = "Start of combat: +1 str to all units"
 price = 4
 sell_price = 2
