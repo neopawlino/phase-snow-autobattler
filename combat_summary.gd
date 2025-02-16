@@ -18,6 +18,7 @@ enum CombatResult {
 @onready var damage_label : Label = %DamageLabel
 @onready var income_container : Container = %IncomeContainer
 @onready var income_label : Label = %IncomeLabel
+@onready var interest_info : Label = %InterestInfo
 
 @onready var title : Label = %TitleLabel
 
@@ -41,6 +42,7 @@ func show_combat_summary(result: CombatResult, money: int, income: int = 0, hp_g
 	interest_label.text = str(interest)
 	damage_label.text = str(hp_gain)
 	income_label.text = str(income)
+	interest_info.text = "1 per 5, max %s)" % GameState.get_interest_cap()
 	visible = true
 
 

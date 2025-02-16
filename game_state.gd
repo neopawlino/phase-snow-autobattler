@@ -67,7 +67,15 @@ signal cheats_enabled_changed(value : bool)
 
 
 func get_interest() -> int:
-	return min(int(player_money / 5), max_interest)
+	var interest_cap := get_interest_cap()
+	return min(int(player_money / 5), interest_cap)
+
+
+func get_interest_cap() -> int:
+	var interest_cap := max_interest
+	for item in items.get_items(&"interest_cap_up"):
+		interest_cap += 5
+	return interest_cap
 
 
 func close_character_tooltip():

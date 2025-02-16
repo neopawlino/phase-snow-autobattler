@@ -124,7 +124,8 @@ layout_mode = 2
 texture = ExtResource("3_8l2ao")
 expand_mode = 2
 
-[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/InterestContainer"]
+[node name="InterestInfo" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/InterestContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1 per 5, max 5)"
