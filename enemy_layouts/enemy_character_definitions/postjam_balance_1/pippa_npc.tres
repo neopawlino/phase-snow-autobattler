@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ability_definition.gd" id="1_gpjbf"]
 [ext_resource type="Script" path="res://ability_level.gd" id="2_o4dtq"]
 [ext_resource type="Script" path="res://status_effects/status_effect.gd" id="3_ag7qc"]
-[ext_resource type="Texture2D" uid="uid://c6kreiov0lvdg" path="res://my_assets/SAPC_Pippa_Sheet.png" id="4_3h7m7"]
+[ext_resource type="Texture2D" uid="uid://b5v4aiwui8brk" path="res://my_assets/slimekin2.png" id="4_grcq2"]
 [ext_resource type="Script" path="res://character_level.gd" id="5_ce8fv"]
 [ext_resource type="Script" path="res://character_definition.gd" id="6_28wq1"]
 
@@ -154,12 +154,12 @@ statuses = Array[ExtResource("3_ag7qc")]([SubResource("Resource_r6e1p")])
 
 [resource]
 script = ExtResource("6_28wq1")
-character_name = "Pipkin Pippa"
-short_name = "Peeba"
-character_sprite = ExtResource("4_3h7m7")
-sprite_offset = Vector2(2, 0)
+character_name = "Slimekin Slippa"
+short_name = "Slippa"
+character_sprite = ExtResource("4_grcq2")
+sprite_offset = Vector2(0, 0)
 sprite_scale = Vector2(4, 4)
-sprite_hframes = 4
+sprite_hframes = 2
 max_hp = 50
 abilities = Array[ExtResource("1_gpjbf")]([SubResource("Resource_lg4fc"), SubResource("Resource_y3g4q"), SubResource("Resource_edjr2")])
 level_requirements = Array[int]([1, 2, 3])
