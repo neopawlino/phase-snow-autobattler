@@ -103,6 +103,9 @@ var statuses : Dictionary
 # StatusId -> StatusIcon (that has been added to status icon container)
 var status_icons : Dictionary
 
+var unique_statuses : Array[UniqueStatus]
+var unique_status_icons : Array
+
 @export var status_icon_container : Container
 
 # character's position (index) in the team
@@ -130,6 +133,15 @@ var char_def : CharacterDefinition
 
 @onready var skill_points_label : Label = %SkillPointsLabel
 @export var drag_component : Draggable
+
+
+static var character_scene : PackedScene = preload("res://character.tscn")
+
+
+static func spawn_from_character_definition(char_def : CharacterDefinition) -> Character:
+	var char : Character = character_scene.instantiate()
+	char.load_from_character_definition(char_def)
+	return char
 
 
 func _ready() -> void:
@@ -174,7 +186,7 @@ func handle_drag_ended():
 		merge_character(GameState.drag_end_slot.slot_obj)
 	elif GameState.drag_end_slot and not GameState.drag_end_slot.slot_obj:
 		# dragging to an empty slot
-		GameState.slots.move_to_slot(self, GameState.drag_end_slot.slot_index)
+		GameState.slots.move_to_slot(self, GameState.drag_end_slot)
 		if from_shop:
 			buy_character()
 		last_tween = get_tree().create_tween()
@@ -289,6 +301,8 @@ func my_duplicate() -> Character:
 
 	# ensure status icons get added
 	# this might reorder status icons oh well
+	for status in self.unique_statuses:
+		new_char.add_unique_status(status)
 	for status_id in self.statuses:
 		new_char.add_status(status_id, self.statuses[status_id])
 
@@ -318,6 +332,8 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.level_requirements = char_def.level_requirements.duplicate()
 	self.cur_level = char_def.initial_level
 
+	for unique_status in char_def.unique_statuses:
+		self.add_unique_status(unique_status)
 	for status in char_def.statuses:
 		self.add_status(status.status_id, status.value)
 
@@ -479,6 +495,19 @@ func add_status(status: StatusEffect.StatusId, value: int):
 
 func get_status_value(status: StatusEffect.StatusId) -> int:
 	return statuses.get(status, 0)
+
+
+func add_unique_status(status : UniqueStatus):
+	unique_statuses.append(status)
+	var icon := StatusIcon.make_unique_status_icon(status)
+	status_icon_container.add_child(icon)
+	unique_status_icons.append(icon)
+
+
+func get_unique_statuses(status_name : StringName) -> Array[UniqueStatus]:
+	return unique_statuses.filter(func(uniq_st : UniqueStatus):
+		return uniq_st.name == status_name
+	)
 
 
 func get_income() -> int:

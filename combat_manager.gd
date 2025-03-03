@@ -35,6 +35,8 @@ var result : CombatSummary.CombatResult
 func _ready():
 	GameState.combat_manager = self
 	GlobalSignals.ability_applied.connect(apply_ability)
+	GlobalSignals.character_died.connect(on_character_died)
+	GlobalSignals.player_character_died.connect(on_player_character_died)
 	hide_teams()
 
 
@@ -122,7 +124,7 @@ func clear_teams():
 
 
 func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int], caster_statuses: Dictionary):
-	var team := enemy_team if target_team == Character.Team.ENEMY else player_team
+	var team := self.enemy_team if target_team == Character.Team.ENEMY else self.player_team
 	for target_index in targets:
 		assert(target_index >= 0)
 		if target_index >= len(team):
@@ -142,30 +144,65 @@ func kill_character(char: Character):
 	var enemy_index := enemy_team.find(char)
 	if player_index >= 0:
 		player_team.remove_at(player_index)
-		for i in range(player_index, len(player_team)):
+		if char.cur_character_slot:
+			char.cur_character_slot.slot_obj = null
+		for i in range(char.pos, len(player_team)):
 			var char_to_move := player_team[i]
 			var new_pos := char_to_move.pos - 1
 			slots.set_char_pos(char_to_move, new_pos)
 		if player_index == 0:
 			apply_front_character_items()
-		on_player_character_died()
+		GlobalSignals.player_character_died.emit(char)
 	elif enemy_index >= 0:
 		enemy_team.remove_at(enemy_index)
-		for i in range(enemy_index, len(enemy_team)):
+		if char.cur_character_slot:
+			char.cur_character_slot.slot_obj = null
+		for i in range(char.pos, len(enemy_team)):
 			var char_to_move := enemy_team[i]
 			var new_pos := char_to_move.pos - 1
 			slots.set_char_pos(char_to_move, new_pos)
 	else:
 		# character died to 2 sources on the same tick
 		return
+	GlobalSignals.character_died.emit(char)
 	char.queue_free()
 
 
-func on_player_character_died():
+func summon_character(char_def : CharacterDefinition, team : Character.Team, pos : int = 0):
+	var char : Character = Character.spawn_from_character_definition(char_def)
+	char.team = team
+	char.set_flipped(team == Character.Team.ENEMY)
+	#slots.insert_char(char, pos)
+	character_container.add_child(char)
+	if team == Character.Team.PLAYER:
+		player_team.insert(pos, char)
+	else:
+		enemy_team.insert(pos, char)
+	update_positions()
+	char.make_timers()
+
+
+func update_positions():
+	for i in len(player_team):
+		var char := player_team[i]
+		slots.set_char_pos(char, i)
+	for i in len(enemy_team):
+		var char := enemy_team[i]
+		slots.set_char_pos(char, i)
+
+
+func on_character_died(char : Character):
+	for st in char.get_unique_statuses(&"SummonOnDeath"):
+		var summon_st : SummonOnDeath = st
+		for summon in summon_st.summons:
+			summon_character(summon, char.team, char.pos)
+
+
+func on_player_character_died(char : Character):
 	for item in GameState.items.get_items(&"buff_on_death"):
-		for char in player_team:
-			char.add_status(StatusEffect.StatusId.STRENGTH, 1)
-			char.add_status(StatusEffect.StatusId.ARMOR, 1)
+		for team_char in player_team:
+			team_char.add_status(StatusEffect.StatusId.STRENGTH, 1)
+			team_char.add_status(StatusEffect.StatusId.ARMOR, 1)
 
 
 func check_combat_over():

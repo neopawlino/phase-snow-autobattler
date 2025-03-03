@@ -2,8 +2,14 @@ extends UniqueStatus
 
 class_name SummonOnDeath
 
+
 @export var summons : Array[CharacterDefinition]
-var tooltip_text_template = "On death, summon %s."
+var tooltip_text_template := "On death, summon %s."
+
+
+func _init() -> void:
+	self.name = &"SummonOnDeath"
+	self.display_name = "Summon on Death"
 
 
 func get_tooltip_text() -> String:

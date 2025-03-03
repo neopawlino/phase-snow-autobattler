@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://enemy_team_set.gd" id="1_jb5x3"]
 [ext_resource type="Script" path="res://enemy_team.gd" id="2_81dqr"]
 [ext_resource type="Script" path="res://character_definition.gd" id="3_8yxr0"]
-[ext_resource type="Resource" uid="uid://dyagwyla546q8" path="res://enemy_layouts/enemy_character_definitions/postjam_balance_1/pippa_npc.tres" id="5_rqx7j"]
+[ext_resource type="Resource" uid="uid://uewc0dwhja40" path="res://enemy_layouts/enemy_character_definitions/postjam_balance_1/slippa_m.tres" id="4_xl52x"]
 [ext_resource type="Script" path="res://enemy_layouts.gd" id="35_xtar2"]
 
 [sub_resource type="Resource" id="Resource_5jwyk"]
 script = ExtResource("2_81dqr")
-characters = Array[ExtResource("3_8yxr0")]([ExtResource("5_rqx7j")])
+characters = Array[ExtResource("3_8yxr0")]([ExtResource("4_xl52x")])
 
 [sub_resource type="Resource" id="Resource_s265x"]
 script = ExtResource("1_jb5x3")

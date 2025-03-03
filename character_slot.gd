@@ -83,6 +83,10 @@ func drag_item_swap():
 		GameState.drag_end_slot = null
 
 
+func is_empty() -> bool:
+	return slot_obj == null
+
+
 func on_mouse_exited() -> void:
 	if not GameState.is_dragging:
 		return

@@ -26,6 +26,13 @@ static func make_status_icon(status : StatusEffect.StatusId, value : int = 0) ->
 	return status_icon
 
 
+static func make_unique_status_icon(status: UniqueStatus) -> StatusIcon:
+	var status_icon : StatusIcon = status_icon_scene.instantiate()
+	status_icon.icon.texture = status.icon
+	status_icon.value = 0
+	return status_icon
+
+
 func update_value(val: int):
 	self.visible = val != 0
 	value_label.text = str(val)
