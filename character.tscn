@@ -60,11 +60,23 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath(".:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.133333, 0.2, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(30, 0), Vector2(30, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.133333, 0.2, 0.666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
@@ -89,11 +101,23 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath(".:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.133333, 0.2, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-30, 0), Vector2(-30, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.133333, 0.2, 0.666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
@@ -112,8 +136,8 @@ _data = {
 [node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component")]
 texture_filter = 1
 script = ExtResource("2_1four")
-sprite = NodePath("Visual/Sprite2D")
-anim_player = NodePath("Visual/Sprite2D/AnimationPlayer")
+sprite = NodePath("Visual/SpriteParent/Sprite2D")
+anim_player = NodePath("Visual/SpriteParent/Sprite2D/AnimationPlayer")
 visual = NodePath("Visual")
 damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
 price_label = NodePath("Visual/Price/Label")
@@ -137,7 +161,9 @@ follow_target = NodePath("..")
 [node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
 position = Vector2(0, -60)
 
-[node name="Sprite2D" type="Sprite2D" parent="Visual"]
+[node name="SpriteParent" type="Node2D" parent="Visual"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual/SpriteParent"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_yxww1")
 scale = Vector2(3, 3)
@@ -146,7 +172,7 @@ offset = Vector2(4, -4)
 hframes = 4
 script = ExtResource("5_wdpcj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Sprite2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/SpriteParent/Sprite2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_bty2k")
 }

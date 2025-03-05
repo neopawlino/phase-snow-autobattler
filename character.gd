@@ -484,6 +484,7 @@ func take_damage(amount : int):
 	self.hp -= amount
 	DamageNumbers.display_number(amount, damage_numbers_origin.global_position)
 	sprite.damage_flash()
+	sprite.damage_shake(6)
 
 
 func add_status(status: StatusEffect.StatusId, value: int):
