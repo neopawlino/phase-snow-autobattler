@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dbb2jc53khyem"]
 
-[ext_resource type="Script" path="res://item.gd" id="1_drrui"]
-[ext_resource type="Script" path="res://visual_follow.gd" id="2_8n1u8"]
+[ext_resource type="Script" uid="uid://ddxs564fhf7bf" path="res://item.gd" id="1_drrui"]
+[ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://visual_follow.gd" id="2_8n1u8"]
 [ext_resource type="Texture2D" uid="uid://bv7f15tib0ilm" path="res://my_assets/brokenvase.png" id="2_pagk8"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="4_6lc6i"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="5_nrwl3"]
@@ -92,9 +92,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bty2k"]
 _data = {
-"RESET": SubResource("Animation_68k1c"),
-"attack": SubResource("Animation_754d8"),
-"attack_flipped": SubResource("Animation_c15sm")
+&"RESET": SubResource("Animation_68k1c"),
+&"attack": SubResource("Animation_754d8"),
+&"attack_flipped": SubResource("Animation_c15sm")
 }
 
 [node name="Item" type="Node2D" node_paths=PackedStringArray("price_label", "price", "drag_component", "sprite")]

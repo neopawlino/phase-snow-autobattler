@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb02d6qe3f5go"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_3e5gm"]
-[ext_resource type="Script" path="res://sell.gd" id="1_q1g5w"]
+[ext_resource type="Script" uid="uid://b8rfy07oxksfe" path="res://sell.gd" id="1_q1g5w"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="2_ctq74"]
 
 [node name="Sell" type="Control"]

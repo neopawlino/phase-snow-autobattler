@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://b555w081wki17"]
 
-[ext_resource type="Script" path="res://item_definition.gd" id="1_gg6aj"]
+[ext_resource type="Script" uid="uid://emeo5qgrpd0w" path="res://item_definition.gd" id="1_gg6aj"]
 [ext_resource type="Texture2D" uid="uid://clxj16en41akn" path="res://my_assets/p_coin.png" id="1_pilwc"]
 
 [resource]

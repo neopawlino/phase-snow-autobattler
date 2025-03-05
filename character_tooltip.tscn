@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://mvolvkvd21yr"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_6fchv"]
-[ext_resource type="Script" path="res://character_tooltip.gd" id="2_ntbkv"]
+[ext_resource type="Script" uid="uid://ceslbyb663id6" path="res://character_tooltip.gd" id="2_ntbkv"]
 [ext_resource type="PackedScene" uid="uid://bldeapu4qf5vg" path="res://ability_info.tscn" id="2_v280t"]
 
 [node name="CharacterTooltip" type="PanelContainer" node_paths=PackedStringArray("name_label", "sp_label", "level_up_label", "level_up_status_container", "level_up_container", "ability_info_container")]

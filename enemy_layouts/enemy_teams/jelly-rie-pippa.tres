@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EnemyTeam" load_steps=6 format=3 uid="uid://chlntobwydkod"]
 
-[ext_resource type="Script" path="res://character_definition.gd" id="1_7tnxw"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="1_7tnxw"]
 [ext_resource type="Resource" uid="uid://cpsvkyr0bor80" path="res://enemy_layouts/enemy_character_definitions/jam/pippa-lv1-200.tres" id="2_ny5g0"]
 [ext_resource type="Resource" uid="uid://ueasmf7n7sft" path="res://enemy_layouts/enemy_character_definitions/jam/jelly-lv2-132.tres" id="3_0fn75"]
 [ext_resource type="Resource" uid="uid://2pkjbwy4f6ou" path="res://enemy_layouts/enemy_character_definitions/jam/rie-lv3-331.tres" id="4_g1a3f"]
-[ext_resource type="Script" path="res://enemy_team.gd" id="4_idpxp"]
+[ext_resource type="Script" uid="uid://pgh10n561hi5" path="res://enemy_team.gd" id="4_idpxp"]
 
 [resource]
 script = ExtResource("4_idpxp")

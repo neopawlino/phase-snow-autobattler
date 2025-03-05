@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://blrbgg3lo7mww"]
 
 [ext_resource type="Texture2D" uid="uid://di4amu2g8d3vt" path="res://my_assets/empoisen.png" id="1_cpf8n"]
-[ext_resource type="Script" path="res://item_definition.gd" id="2_2e1wd"]
+[ext_resource type="Script" uid="uid://emeo5qgrpd0w" path="res://item_definition.gd" id="2_2e1wd"]
 
 [resource]
 script = ExtResource("2_2e1wd")

@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=31 format=3 uid="uid://be3rrj3k7pcj8"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=32 format=3 uid="uid://be3rrj3k7pcj8"]
 
-[ext_resource type="Script" path="res://ability_definition.gd" id="1_dus2w"]
-[ext_resource type="Script" path="res://ability_level.gd" id="2_370fc"]
-[ext_resource type="Script" path="res://status_effects/status_effect.gd" id="3_7gamp"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="1_dus2w"]
+[ext_resource type="Script" uid="uid://s8flvcmw4ywi" path="res://ability_level.gd" id="2_370fc"]
+[ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://status_effects/status_effect.gd" id="3_7gamp"]
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://my_assets/SAPC_Rie_Sheet.png" id="4_ds8qh"]
-[ext_resource type="Script" path="res://character_level.gd" id="5_itonv"]
-[ext_resource type="Script" path="res://character_definition.gd" id="6_ht4r8"]
+[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://character_level.gd" id="5_itonv"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_ht4r8"]
+[ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://status_effects/unique_status.gd" id="7_kxv4c"]
 
 [sub_resource type="Resource" id="Resource_0x04l"]
 script = ExtResource("2_370fc")
@@ -187,3 +188,4 @@ levels = Array[ExtResource("5_itonv")]([SubResource("Resource_s0rwx"), SubResour
 initial_level = 1
 initial_ability_levels = Array[int]([2, 0, 0])
 statuses = Array[ExtResource("3_7gamp")]([])
+unique_statuses = Array[ExtResource("7_kxv4c")]([])

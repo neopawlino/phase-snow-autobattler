@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2rrv6nlpencx"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_hducs"]
-[ext_resource type="Script" path="res://debug_menu.gd" id="2_3yhh7"]
+[ext_resource type="Script" uid="uid://dsclf66ptouim" path="res://debug_menu.gd" id="2_3yhh7"]
 
 [node name="DebugMenu" type="PanelContainer"]
 anchors_preset = 6

@@ -1,14 +1,11 @@
 [gd_resource type="Resource" script_class="SummonOnDeath" load_steps=5 format=3 uid="uid://bsl03v81rty0s"]
 
 [ext_resource type="Texture2D" uid="uid://qw78e5iu3bob" path="res://my_assets/fishie.png" id="1_ivwko"]
-[ext_resource type="Script" path="res://status_effects/unique_statuses/summon_on_death.gd" id="1_mox8m"]
-[ext_resource type="Script" path="res://character_definition.gd" id="2_dth88"]
+[ext_resource type="Script" uid="uid://c7xv3twlaayer" path="res://status_effects/unique_statuses/summon_on_death.gd" id="1_mox8m"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="2_dth88"]
 [ext_resource type="Resource" uid="uid://110qt3emx8hl" path="res://character_definitions/pippa.tres" id="4_nkp7q"]
 
 [resource]
 script = ExtResource("1_mox8m")
 summons = Array[ExtResource("2_dth88")]([ExtResource("4_nkp7q")])
-name = &"summon_on_death"
-display_name = "Summon on Death"
-tooltip_text = ""
 icon = ExtResource("1_ivwko")

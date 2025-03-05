@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyLayouts" load_steps=71 format=3 uid="uid://doc6nuduyiunp"]
 
-[ext_resource type="Script" path="res://enemy_layouts.gd" id="1_4rtr3"]
-[ext_resource type="Script" path="res://enemy_team_set.gd" id="1_7jn50"]
-[ext_resource type="Script" path="res://enemy_team.gd" id="2_d5vn4"]
-[ext_resource type="Script" path="res://character_definition.gd" id="3_w8llv"]
+[ext_resource type="Script" uid="uid://drfpph5k10wpo" path="res://enemy_layouts.gd" id="1_4rtr3"]
+[ext_resource type="Script" uid="uid://bh1u044lkobwt" path="res://enemy_team_set.gd" id="1_7jn50"]
+[ext_resource type="Script" uid="uid://pgh10n561hi5" path="res://enemy_team.gd" id="2_d5vn4"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="3_w8llv"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="4_vrh2k"]
 [ext_resource type="Resource" uid="uid://110qt3emx8hl" path="res://character_definitions/pippa.tres" id="5_vm4v6"]
 [ext_resource type="Resource" uid="uid://c5aos2rj1tpbt" path="res://character_definitions/jelly.tres" id="6_alk2j"]

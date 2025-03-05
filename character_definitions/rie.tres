@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="CharacterDefinition" load_steps=32 format=3 uid="uid://baiyj43bn6b1k"]
 
-[ext_resource type="Script" path="res://ability_definition.gd" id="1_167rq"]
-[ext_resource type="Script" path="res://ability_level.gd" id="2_w7q34"]
-[ext_resource type="Script" path="res://character_definition.gd" id="3_chc5m"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="1_167rq"]
+[ext_resource type="Script" uid="uid://s8flvcmw4ywi" path="res://ability_level.gd" id="2_w7q34"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="3_chc5m"]
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://my_assets/SAPC_Rie_Sheet.png" id="4_e8q58"]
-[ext_resource type="Script" path="res://character_level.gd" id="4_yhsmg"]
-[ext_resource type="Script" path="res://status_effects/status_effect.gd" id="6_y1j6c"]
-[ext_resource type="Script" path="res://status_effects/unique_status.gd" id="7_d62pp"]
+[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://character_level.gd" id="4_yhsmg"]
+[ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://status_effects/status_effect.gd" id="6_y1j6c"]
+[ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://status_effects/unique_status.gd" id="7_d62pp"]
 
 [sub_resource type="Resource" id="Resource_0x04l"]
 script = ExtResource("2_w7q34")

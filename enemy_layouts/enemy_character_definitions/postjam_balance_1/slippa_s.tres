@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="CharacterDefinition" load_steps=28 format=3 uid="uid://dyagwyla546q8"]
 
-[ext_resource type="Script" path="res://ability_definition.gd" id="1_gpjbf"]
-[ext_resource type="Script" path="res://ability_level.gd" id="2_o4dtq"]
-[ext_resource type="Script" path="res://status_effects/status_effect.gd" id="3_ag7qc"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="1_gpjbf"]
+[ext_resource type="Script" uid="uid://s8flvcmw4ywi" path="res://ability_level.gd" id="2_o4dtq"]
+[ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://status_effects/status_effect.gd" id="3_ag7qc"]
 [ext_resource type="Texture2D" uid="uid://b5v4aiwui8brk" path="res://my_assets/slimekin2.png" id="4_grcq2"]
-[ext_resource type="Script" path="res://character_level.gd" id="5_ce8fv"]
-[ext_resource type="Script" path="res://character_definition.gd" id="6_28wq1"]
-[ext_resource type="Script" path="res://status_effects/unique_status.gd" id="7_pb0i4"]
+[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://character_level.gd" id="5_ce8fv"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_28wq1"]
+[ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://status_effects/unique_status.gd" id="7_pb0i4"]
 
 [sub_resource type="Resource" id="Resource_hljlv"]
 script = ExtResource("2_o4dtq")

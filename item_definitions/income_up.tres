@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://dgwe030kpj6lw"]
 
-[ext_resource type="Script" path="res://item_definition.gd" id="1_3h28k"]
+[ext_resource type="Script" uid="uid://emeo5qgrpd0w" path="res://item_definition.gd" id="1_3h28k"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="1_aw1fh"]
 
 [resource]

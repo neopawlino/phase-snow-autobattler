@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://bwnru8rlos5lp"]
 
 [ext_resource type="Texture2D" uid="uid://cqrkop5ypcg6y" path="res://my_assets/sakana.png" id="1_rs0y1"]
-[ext_resource type="Script" path="res://item_definition.gd" id="2_tkoii"]
+[ext_resource type="Script" uid="uid://emeo5qgrpd0w" path="res://item_definition.gd" id="2_tkoii"]
 
 [resource]
 script = ExtResource("2_tkoii")

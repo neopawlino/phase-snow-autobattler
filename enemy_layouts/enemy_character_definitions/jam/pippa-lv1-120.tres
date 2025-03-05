@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=27 format=3 uid="uid://2vsws1vrpcum"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=28 format=3 uid="uid://2vsws1vrpcum"]
 
-[ext_resource type="Script" path="res://ability_definition.gd" id="1_a2fir"]
-[ext_resource type="Script" path="res://ability_level.gd" id="2_oojyq"]
-[ext_resource type="Script" path="res://status_effects/status_effect.gd" id="3_2bjbq"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="1_a2fir"]
+[ext_resource type="Script" uid="uid://s8flvcmw4ywi" path="res://ability_level.gd" id="2_oojyq"]
+[ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://status_effects/status_effect.gd" id="3_2bjbq"]
 [ext_resource type="Texture2D" uid="uid://c6kreiov0lvdg" path="res://my_assets/SAPC_Pippa_Sheet.png" id="4_d08cq"]
-[ext_resource type="Script" path="res://character_level.gd" id="5_5vg4x"]
-[ext_resource type="Script" path="res://character_definition.gd" id="6_n4ppp"]
+[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://character_level.gd" id="5_5vg4x"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_n4ppp"]
+[ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://status_effects/unique_status.gd" id="7_nx3be"]
 
 [sub_resource type="Resource" id="Resource_hljlv"]
 script = ExtResource("2_oojyq")
@@ -167,3 +168,4 @@ levels = Array[ExtResource("5_5vg4x")]([SubResource("Resource_cbdyu"), SubResour
 initial_level = 1
 initial_ability_levels = Array[int]([1, 2, 0])
 statuses = Array[ExtResource("3_2bjbq")]([])
+unique_statuses = Array[ExtResource("7_nx3be")]([])

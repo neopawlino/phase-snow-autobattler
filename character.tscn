@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://ds7ogdyno53ug"]
 
-[ext_resource type="Script" path="res://visual_follow.gd" id="2_0vcty"]
-[ext_resource type="Script" path="res://character.gd" id="2_1four"]
+[ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://visual_follow.gd" id="2_0vcty"]
+[ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://character.gd" id="2_1four"]
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://my_assets/SAPC_Rie_Sheet.png" id="2_y5mxj"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_j0801"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="4_18dhx"]
@@ -92,9 +92,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bty2k"]
 _data = {
-"RESET": SubResource("Animation_68k1c"),
-"attack": SubResource("Animation_754d8"),
-"attack_flipped": SubResource("Animation_c15sm")
+&"RESET": SubResource("Animation_68k1c"),
+&"attack": SubResource("Animation_754d8"),
+&"attack_flipped": SubResource("Animation_c15sm")
 }
 
 [sub_resource type="Theme" id="Theme_f484m"]
@@ -136,7 +136,7 @@ hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_bty2k")
+&"": SubResource("AnimationLibrary_bty2k")
 }
 
 [node name="Price" type="Node2D" parent="Visual"]

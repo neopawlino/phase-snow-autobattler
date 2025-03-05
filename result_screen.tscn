@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://v3pc2y7lhn1w"]
 
-[ext_resource type="Script" path="res://result_screen.gd" id="1_feru4"]
+[ext_resource type="Script" uid="uid://dgr5jlt8ut0hv" path="res://result_screen.gd" id="1_feru4"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_p5wir"]
 
 [node name="ResultScreen" type="Control"]

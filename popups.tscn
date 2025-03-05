@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pbsxgn245l4d"]
 
-[ext_resource type="Script" path="res://popups.gd" id="1_3kh1f"]
+[ext_resource type="Script" uid="uid://7hv04ypb02ar" path="res://popups.gd" id="1_3kh1f"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="2_ntgy4"]
 
 [node name="Popups" type="Control" node_paths=PackedStringArray("title_label", "description_label", "item_popup")]
