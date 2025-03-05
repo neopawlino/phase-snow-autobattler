@@ -172,7 +172,6 @@ func summon_character(char_def : CharacterDefinition, team : Character.Team, pos
 	var char : Character = Character.spawn_from_character_definition(char_def)
 	char.team = team
 	char.set_flipped(team == Character.Team.ENEMY)
-	#slots.insert_char(char, pos)
 	character_container.add_child(char)
 	if team == Character.Team.PLAYER:
 		player_team.insert(pos, char)

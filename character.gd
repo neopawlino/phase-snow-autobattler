@@ -9,7 +9,6 @@ class_name Character
 
 @export var anim_delay : float = 0.2
 
-
 @export var mouseover_scale : float = 1.1
 
 @export var damage_numbers_origin : Node2D
@@ -42,6 +41,7 @@ var idle_sprite_frame : int = 0
 var drag_sprite_frame : int = 2
 var sell_sprite_frame : int = 3
 
+var FLASH_DURATION : float = 0.5
 
 var cur_character_slot : Slot:
 	set(slot):
@@ -454,8 +454,7 @@ func cast_ability(ability: AbilityLevel):
 		GlobalSignals.ability_applied.emit(ability, target_team, targets, self.statuses)
 		var toxic_value : int = get_status_value(StatusEffect.StatusId.TOXIC)
 		if toxic_value > 0:
-			self.hp -= toxic_value
-			DamageNumbers.display_number(toxic_value, damage_numbers_origin.global_position)
+			take_damage(toxic_value)
 			self.add_status(StatusEffect.StatusId.TOXIC, -1)
 			GameState.combat_manager.check_character_dead(self)
 
@@ -467,8 +466,7 @@ func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 			damage = max(1, damage - get_status_value(StatusEffect.StatusId.ARMOR))
 		else:
 			damage = max(0, damage - get_status_value(StatusEffect.StatusId.ARMOR))
-		self.hp -= damage
-		DamageNumbers.display_number(damage, damage_numbers_origin.global_position)
+		take_damage(damage)
 
 	var armor_break : int = caster_statuses.get(StatusEffect.StatusId.ARMOR_BREAKER, 0)
 	if armor_break > 0 and ability.ability_type != AbilityLevel.AbilityType.BUFF:
@@ -480,6 +478,18 @@ func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 
 	for status in ability.applied_statuses:
 		self.add_status(status.status_id, status.value)
+
+
+func take_damage(amount : int):
+	self.hp -= amount
+	DamageNumbers.display_number(amount, damage_numbers_origin.global_position)
+	var tween := get_tree().create_tween()
+	tween.tween_method(set_shader_flash_intensity, 1.0, 0.0, FLASH_DURATION)
+
+
+func set_shader_flash_intensity(value : float):
+	var shader : ShaderMaterial = sprite.material
+	shader.set_shader_parameter(&"flash_intensity", value)
 
 
 func add_status(status: StatusEffect.StatusId, value: int):
