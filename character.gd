@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Character
 
-@export var sprite : Sprite2D
+@export var sprite : CharacterSprite
 @export var anim_player : AnimationPlayer
 
 @export var visual : Node2D
@@ -483,13 +483,7 @@ func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 func take_damage(amount : int):
 	self.hp -= amount
 	DamageNumbers.display_number(amount, damage_numbers_origin.global_position)
-	var tween := get_tree().create_tween()
-	tween.tween_method(set_shader_flash_intensity, 1.0, 0.0, FLASH_DURATION)
-
-
-func set_shader_flash_intensity(value : float):
-	var shader : ShaderMaterial = sprite.material
-	shader.set_shader_parameter(&"flash_intensity", value)
+	sprite.damage_flash()
 
 
 func add_status(status: StatusEffect.StatusId, value: int):

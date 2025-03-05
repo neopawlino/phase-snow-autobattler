@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=15 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://visual_follow.gd" id="2_0vcty"]
 [ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://character.gd" id="2_1four"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://bowkvjqncd3p" path="res://damage_flash.gdshader" id="3_yxww1"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="4_18dhx"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="5_bv4aq"]
+[ext_resource type="Script" uid="uid://b1n7n8i4cjf7l" path="res://character_sprite.gd" id="5_wdpcj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yxww1"]
 resource_local_to_scene = true
@@ -143,6 +144,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("2_y5mxj")
 offset = Vector2(4, -4)
 hframes = 4
+script = ExtResource("5_wdpcj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Sprite2D"]
 libraries = {
