@@ -6,6 +6,7 @@ class_name Character
 @export var anim_player : AnimationPlayer
 
 @export var visual : Node2D
+@export var damage_audio : AudioStreamPlayer2D
 
 @export var anim_delay : float = 0.2
 
@@ -485,6 +486,7 @@ func take_damage(amount : int):
 	DamageNumbers.display_number(amount, damage_numbers_origin.global_position)
 	sprite.damage_flash()
 	sprite.damage_shake(6)
+	damage_audio.play()
 
 
 func add_status(status: StatusEffect.StatusId, value: int):
