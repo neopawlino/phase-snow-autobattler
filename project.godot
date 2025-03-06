@@ -24,6 +24,7 @@ StatusIconLib="*res://status_effects/status_icon_lib.gd"
 Settings="*res://settings.gd"
 Bgm="*res://bgm.tscn"
 Popups="*res://popups.tscn"
+SoundManager="*res://sound_manager.gd"
 
 [display]
 

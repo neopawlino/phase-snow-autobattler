@@ -134,13 +134,13 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_audio", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/SpriteParent/Sprite2D")
 anim_player = NodePath("Visual/SpriteParent/Sprite2D/AnimationPlayer")
 visual = NodePath("Visual")
-damage_audio = NodePath("Visual/AudioStreamPlayer2D")
+damage_audio = ExtResource("8_qi5as")
 damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
 price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
@@ -305,10 +305,6 @@ offset_top = 40.0
 offset_right = 959.0
 offset_bottom = 72.0
 theme_override_constants/separation = 0
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Visual"]
-stream = ExtResource("8_qi5as")
-bus = &"Sound"
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]
 unique_name_in_owner = true

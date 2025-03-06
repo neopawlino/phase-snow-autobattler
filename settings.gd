@@ -5,15 +5,15 @@ const CONFIG_FILE_PATH : String = "user://settings.cfg"
 const SECTION : String = "Settings"
 
 
-var master_bus_name := "Master"
+var master_bus_name := &"Master"
 @onready var master_bus := AudioServer.get_bus_index(master_bus_name)
 const MASTER_VOLUME : String = "master_volume"
 
-var music_bus_name := "Music"
+var music_bus_name := &"Music"
 @onready var music_bus := AudioServer.get_bus_index(music_bus_name)
 const MUSIC_VOLUME : String = "music_volume"
 
-var sound_bus_name := "Sound"
+var sound_bus_name := &"Sound"
 @onready var sound_bus := AudioServer.get_bus_index(sound_bus_name)
 const SOUND_VOLUME : String = "sound_volume"
 
