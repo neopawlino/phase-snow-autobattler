@@ -5,6 +5,8 @@ extends Node2D
 
 @export var visual_follow_speed : float = 30
 
+@export var smoke_particles : CPUParticles2D
+
 
 signal death_anim_finished
 
@@ -32,6 +34,7 @@ func play_death_anim(force_x : float) -> void:
 	const Y_VEL_MULT : float = -2.0
 	var y_vel := absf(force_x) * Y_VEL_MULT
 	velocity = Vector2(force_x, y_vel)
+	smoke_particles.emitting = true
 
 
 func is_oob():

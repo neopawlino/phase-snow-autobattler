@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=17 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://visual_follow.gd" id="2_0vcty"]
 [ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://character.gd" id="2_1four"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="5_bv4aq"]
 [ext_resource type="Script" uid="uid://b1n7n8i4cjf7l" path="res://character_sprite.gd" id="5_wdpcj"]
 [ext_resource type="AudioStream" uid="uid://cs4qsoh8stgi3" path="res://assets/punch_general_body_impact_03.wav" id="8_qi5as"]
+
+[sub_resource type="Gradient" id="Gradient_qi5as"]
+offsets = PackedFloat32Array(0, 0.549296, 1)
+colors = PackedColorArray(0.942823, 0.942823, 0.942823, 1, 0.856067, 0.856067, 0.856067, 1, 1, 1, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yxww1"]
 resource_local_to_scene = true
@@ -155,13 +159,24 @@ char_info_container = NodePath("Visual/VBoxContainer")
 status_icon_container = NodePath("Visual/StatusContainer")
 drag_component = NodePath("Draggable")
 
-[node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+[node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "smoke_particles")]
 top_level = true
 script = ExtResource("2_0vcty")
 follow_target = NodePath("..")
+smoke_particles = NodePath("CPUParticles2D")
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
 position = Vector2(0, -60)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual"]
+emitting = false
+amount = 64
+emission_shape = 1
+emission_sphere_radius = 32.0
+gravity = Vector2(0, -30)
+scale_amount_min = 16.0
+scale_amount_max = 32.0
+color_ramp = SubResource("Gradient_qi5as")
 
 [node name="SpriteParent" type="Node2D" parent="Visual"]
 

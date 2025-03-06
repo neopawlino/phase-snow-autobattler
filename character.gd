@@ -185,7 +185,9 @@ func die(damage : int):
 	var lerp_weight : float = clampi(damage, 0, 100) / 100.0
 	var force : float = lerp(250.0, 1500.0, lerp_weight)
 	self.visual.play_death_anim(force * dir)
-	self.visual.death_anim_finished.connect(self.queue_free)
+	self.visual.death_anim_finished.connect(func():
+		get_tree().create_timer(1.0).timeout.connect(self.queue_free)
+	)
 	self.stop_timers()
 	self.char_info_container.visible = false
 	self.status_icon_container.visible = false
