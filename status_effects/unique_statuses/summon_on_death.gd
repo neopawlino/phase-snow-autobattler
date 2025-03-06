@@ -4,7 +4,7 @@ class_name SummonOnDeath
 
 
 @export var summons : Array[CharacterDefinition]
-var tooltip_text_template := "On death, summon %s."
+var tooltip_text_template := "Summon on Death: On death, summon %s."
 
 
 func _init() -> void:
@@ -20,4 +20,4 @@ func get_summon_names() -> String:
 	var summon_names := summons.map(func(char_def : CharacterDefinition):
 		return char_def.character_name
 	)
-	return ", ".join(summon_names)
+	return " and ".join(summon_names)
