@@ -72,6 +72,7 @@ func start_combat():
 		character_container.add_child(char)
 		slots.set_char_pos(char, i)
 		char.make_timers()
+		char.died.connect(kill_character.bind(char))
 		i += 1
 	i = 0
 	for char in enemy_team:
@@ -79,6 +80,7 @@ func start_combat():
 		character_container.add_child(char)
 		slots.set_char_pos(char, i)
 		char.make_timers()
+		char.died.connect(kill_character.bind(char))
 		i += 1
 	in_combat = true
 	proc_start_combat_items()
@@ -131,15 +133,9 @@ func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int],
 			continue
 		var target_char := team[target_index]
 		target_char.receive_ability(ability, caster_statuses)
-		check_character_dead(target_char)
 
 
-func check_character_dead(char: Character):
-	if char.hp <= 0:
-		kill_character(char)
-
-
-func kill_character(char: Character):
+func kill_character(char : Character):
 	var player_index := player_team.find(char)
 	var enemy_index := enemy_team.find(char)
 	if player_index >= 0:
@@ -165,7 +161,6 @@ func kill_character(char: Character):
 		# character died to 2 sources on the same tick
 		return
 	GlobalSignals.character_died.emit(char)
-	char.queue_free()
 
 
 func summon_character(char_def : CharacterDefinition, team : Character.Team, pos : int = 0):
@@ -179,6 +174,7 @@ func summon_character(char_def : CharacterDefinition, team : Character.Team, pos
 		enemy_team.insert(pos, char)
 	update_positions()
 	char.make_timers()
+	char.died.connect(kill_character.bind(char))
 
 
 func update_positions():

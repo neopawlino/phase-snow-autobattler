@@ -136,6 +136,10 @@ var char_def : CharacterDefinition
 @export var drag_component : Draggable
 
 
+signal died
+var is_dead : bool = false
+
+
 static var character_scene : PackedScene = preload("res://character.tscn")
 
 
@@ -174,6 +178,17 @@ func _process(delta: float):
 			self.sprite.frame = sell_sprite_frame
 		else:
 			self.sprite.frame = drag_sprite_frame
+
+
+func die(damage : int):
+	var dir : float = 1.0 if self.team == Team.ENEMY else -1.0
+	var lerp_weight : float = clampi(damage, 0, 100) / 100.0
+	var force : float = lerp(250.0, 1500.0, lerp_weight)
+	self.visual.play_death_anim(force * dir)
+	self.visual.death_anim_finished.connect(self.queue_free)
+	self.stop_timers()
+	self.char_info_container.visible = false
+	self.status_icon_container.visible = false
 
 
 func handle_drag_ended():
@@ -457,7 +472,6 @@ func cast_ability(ability: AbilityLevel):
 		if toxic_value > 0:
 			take_damage(toxic_value)
 			self.add_status(StatusEffect.StatusId.TOXIC, -1)
-			GameState.combat_manager.check_character_dead(self)
 
 
 func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
@@ -487,6 +501,9 @@ func take_damage(amount : int):
 	sprite.damage_flash()
 	sprite.damage_shake(6)
 	SoundManager.play_sound_2d(self.global_position, damage_audio)
+	if self.hp <= 0 and not is_dead:
+		died.emit()
+		die(amount)
 
 
 func add_status(status: StatusEffect.StatusId, value: int):
