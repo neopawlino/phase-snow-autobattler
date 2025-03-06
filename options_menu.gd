@@ -11,20 +11,15 @@ class_name OptionsMenu
 
 signal back_button_pressed
 
-@export var master_bus_name := "Master"
-@onready var master_bus := AudioServer.get_bus_index(master_bus_name)
-@export var music_bus_name := "Music"
-@onready var music_bus := AudioServer.get_bus_index(music_bus_name)
-@export var sound_bus_name := "Sound"
-@onready var sound_bus := AudioServer.get_bus_index(sound_bus_name)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hard_mode.button_pressed = GameState.hard_mode
 	cheats.button_pressed = GameState.cheats_enabled
-	volume_slider.value = db_to_linear(AudioServer.get_bus_volume_db(master_bus))
-	music_vol_slider.value = db_to_linear(AudioServer.get_bus_volume_db(music_bus))
-	sound_vol_slider.value = db_to_linear(AudioServer.get_bus_volume_db(sound_bus))
+	volume_slider.value = Settings.get_master_volume()
+	music_vol_slider.value = Settings.get_music_volume()
+	sound_vol_slider.value = Settings.get_sound_volume()
 
 
 func _on_back_button_pressed() -> void:
@@ -32,6 +27,7 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_hard_mode_check_toggled(toggled_on: bool) -> void:
+	Settings.set_value("hard_mode", toggled_on)
 	GameState.hard_mode = toggled_on
 
 
@@ -40,12 +36,12 @@ func _on_cheats_check_toggled(toggled_on: bool) -> void:
 
 
 func _on_h_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(master_bus, linear_to_db(value))
+	Settings.set_master_volume(value)
 
 
 func _on_music_vol_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(music_bus, linear_to_db(value))
+	Settings.set_music_volume(value)
 
 
 func _on_sound_vol_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(sound_bus, linear_to_db(value))
+	Settings.set_sound_volume(value)
