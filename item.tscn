@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbb2jc53khyem"]
+[gd_scene load_steps=10 format=3 uid="uid://dbb2jc53khyem"]
 
 [ext_resource type="Script" uid="uid://ddxs564fhf7bf" path="res://item.gd" id="1_drrui"]
 [ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://visual_follow.gd" id="2_8n1u8"]
-[ext_resource type="Texture2D" uid="uid://bv7f15tib0ilm" path="res://my_assets/brokenvase.png" id="2_pagk8"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="4_6lc6i"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="5_nrwl3"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="6_mx8ia"]
@@ -115,15 +114,16 @@ position = Vector2(0, -60)
 
 [node name="Sprite2D" type="Sprite2D" parent="Visual"]
 texture_filter = 1
-texture = ExtResource("2_pagk8")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_6lc6i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_bty2k")
+&"": SubResource("AnimationLibrary_bty2k")
 }
 
 [node name="Price" type="Node2D" parent="Visual"]
-position = Vector2(0, -100)
+position = Vector2(0, -64)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Visual/Price"]
 position = Vector2(-10, 0)
@@ -137,7 +137,7 @@ offset_right = 35.0
 offset_bottom = 15.0
 theme = ExtResource("5_nrwl3")
 theme_override_colors/font_color = Color(0.803922, 0.360784, 0.360784, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 text = "0"
 vertical_alignment = 1
 

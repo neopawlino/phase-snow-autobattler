@@ -7,5 +7,6 @@ custom_minimum_size = Vector2(80, 10)
 offset_right = 80.0
 offset_bottom = 10.0
 theme = ExtResource("1_yi0dv")
-value = 50.0
+theme_type_variation = &"AbilityBar"
+value = 90.0
 show_percentage = false

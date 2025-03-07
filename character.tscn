@@ -148,15 +148,15 @@ damage_audio = ExtResource("8_qi5as")
 damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
 price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
-hp_label = NodePath("Visual/VBoxContainer/HPBar/HPLabel")
-hp_bar = NodePath("Visual/VBoxContainer/HPBar")
-level_label = NodePath("Visual/VBoxContainer/LvLabel")
-xp_label = NodePath("Visual/VBoxContainer/XPBar/XPLabel")
-xp_bar = NodePath("Visual/VBoxContainer/XPBar")
+hp_label = NodePath("Visual/VBoxContainer2/HPBar/HPLabel")
+hp_bar = NodePath("Visual/VBoxContainer2/HPBar")
+level_label = NodePath("Visual/VBoxContainer/VBoxContainer/LvLabel")
+xp_label = NodePath("Visual/VBoxContainer/VBoxContainer/XPBar/XPLabel")
+xp_bar = NodePath("Visual/VBoxContainer/VBoxContainer/XPBar")
 ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
 name_label = NodePath("Visual/VBoxContainer/NameLabel")
 char_info_container = NodePath("Visual/VBoxContainer")
-status_icon_container = NodePath("Visual/StatusContainer")
+status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
 drag_component = NodePath("Draggable")
 
 [node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "smoke_particles")]
@@ -195,8 +195,7 @@ libraries = {
 }
 
 [node name="Price" type="Node2D" parent="Visual"]
-visible = false
-position = Vector2(0, -160)
+position = Vector2(0, -170)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Visual/Price"]
 position = Vector2(-10, 0)
@@ -210,7 +209,7 @@ offset_right = 35.0
 offset_bottom = 15.0
 theme = ExtResource("4_18dhx")
 theme_override_colors/font_color = Color(0.803922, 0.360784, 0.360784, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 text = "0"
 vertical_alignment = 1
 
@@ -221,37 +220,29 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -70.0
-offset_right = 40.0
-offset_bottom = -50.0
+offset_left = -48.0
+offset_top = -150.0
+offset_right = 48.0
+offset_bottom = -70.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 mouse_filter = 2
 theme = ExtResource("4_18dhx")
-theme_override_constants/separation = 6
 alignment = 2
+
+[node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
 
 [node name="NameLabel" type="Label" parent="Visual/VBoxContainer"]
 layout_mode = 2
 text = "He may"
 horizontal_alignment = 1
 
-[node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="LvLabel" type="Label" parent="Visual/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("4_18dhx")
-theme_type_variation = &"TextSmall"
-text = "Lv.1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="SkillPointsLabel" type="Label" parent="Visual/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme = ExtResource("4_18dhx")
 theme_type_variation = &"TextSmall"
@@ -259,15 +250,30 @@ text = "SP:0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="XPBar" type="ProgressBar" parent="Visual/VBoxContainer"]
-custom_minimum_size = Vector2(80, 10)
+[node name="HBoxContainer" type="HBoxContainer" parent="Visual/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Visual/VBoxContainer"]
+layout_mode = 2
+
+[node name="LvLabel" type="Label" parent="Visual/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_18dhx")
+theme_type_variation = &"TextSmall"
+text = "Lv.1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XPBar" type="ProgressBar" parent="Visual/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 16)
+layout_mode = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"XPBar"
 max_value = 5.0
 value = 3.0
 show_percentage = false
 
-[node name="XPLabel" type="Label" parent="Visual/VBoxContainer/XPBar"]
+[node name="XPLabel" type="Label" parent="Visual/VBoxContainer/VBoxContainer/XPBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -275,9 +281,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -17.0
+offset_top = -19.0
 offset_right = 20.0
-offset_bottom = 17.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_18dhx")
@@ -286,8 +292,14 @@ text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="Visual/VBoxContainer"]
-custom_minimum_size = Vector2(80, 10)
+[node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
+offset_left = -48.0
+offset_top = 64.0
+offset_right = 48.0
+offset_bottom = 78.0
+
+[node name="HPBar" type="ProgressBar" parent="Visual/VBoxContainer2"]
+custom_minimum_size = Vector2(80, 16)
 layout_mode = 2
 theme = ExtResource("4_18dhx")
 theme_type_variation = &"HPBar"
@@ -295,7 +307,7 @@ max_value = 5.0
 value = 3.0
 show_percentage = false
 
-[node name="HPLabel" type="Label" parent="Visual/VBoxContainer/HPBar"]
+[node name="HPLabel" type="Label" parent="Visual/VBoxContainer2/HPBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -303,9 +315,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -17.0
+offset_top = -19.0
 offset_right = 20.0
-offset_bottom = 17.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_f484m")
@@ -314,11 +326,8 @@ text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatusContainer" type="HBoxContainer" parent="Visual"]
-offset_left = -40.0
-offset_top = 40.0
-offset_right = 959.0
-offset_bottom = 72.0
+[node name="StatusContainer" type="HBoxContainer" parent="Visual/VBoxContainer2"]
+layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]

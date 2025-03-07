@@ -4,4 +4,5 @@
 
 [node name="Sprite2D" type="Sprite2D"]
 z_index = -2
+scale = Vector2(0.34, 0.34)
 texture = ExtResource("1_nbw73")

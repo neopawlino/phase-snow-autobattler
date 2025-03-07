@@ -37,6 +37,7 @@ theme_override_constants/separation = 16
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"TextTitle"
 text = "I'm Gonna ****ing Shoot Up A W*lm*rt"
 
 [node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -65,14 +66,12 @@ size_flags_horizontal = 3
 [node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("1_ppw0l")
 theme_type_variation = &"TextSmall"
 text = "Type"
 
 [node name="DamageLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/StatsContainer1"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("1_ppw0l")
 theme_type_variation = &"TextSmall"
 bbcode_enabled = true
 text = "Damage: 1->[color=lime_green]2[/color]"

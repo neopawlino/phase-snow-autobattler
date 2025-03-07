@@ -30,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" parent="Control" instance=ExtResource("1_ihq3p")]
-scale = Vector2(0.67, 0.67)
+scale = Vector2(0.66, 0.66)
 
 [node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "result_screen", "combat_summary", "team_manager", "shop_manager", "slots")]
 script = ExtResource("4_0nq41")
@@ -113,24 +113,23 @@ text = "Reroll: $x"
 [node name="ShopSlots" type="Control" parent="ShopManager"]
 z_index = -1
 layout_mode = 3
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -40.0
+offset_top = -20.0
 offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="CharacterSlotsContainer" type="HBoxContainer" parent="ShopManager/ShopSlots"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_left = -600.0
-offset_top = -400.0
 offset_right = -400.0
-offset_bottom = -400.0
 theme_override_constants/separation = 100
 alignment = 1
 
@@ -138,9 +137,7 @@ alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_left = -322.0
-offset_top = -400.0
 offset_right = -122.0
-offset_bottom = -400.0
 theme_override_constants/separation = 100
 alignment = 1
 
@@ -199,15 +196,13 @@ enemy_slot_container = NodePath("EnemyTeam/HBoxContainer")
 [node name="Team" type="Control" parent="CharacterSlots"]
 z_index = -1
 layout_mode = 3
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_top = -270.0
-offset_bottom = -270.0
+anchor_bottom = 0.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 size_flags_horizontal = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/Team"]
@@ -219,7 +214,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 20.0
+offset_top = 120.0
 offset_right = 620.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 100
@@ -227,15 +224,13 @@ alignment = 1
 
 [node name="EnemyTeam" type="Control" parent="CharacterSlots"]
 layout_mode = 3
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_top = -270.0
-offset_bottom = -270.0
+anchor_bottom = 0.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/EnemyTeam"]
 layout_direction = 2
@@ -246,7 +241,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 20.0
+offset_top = 120.0
 offset_right = 620.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 100

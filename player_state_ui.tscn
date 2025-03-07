@@ -17,8 +17,8 @@ script = ExtResource("2_v0kog")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 370.0
+offset_bottom = 54.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -28,7 +28,7 @@ layout_mode = 2
 
 [node name="MoneyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(38, 0)
 layout_mode = 2
 texture = ExtResource("3_e0p42")
 expand_mode = 4
@@ -44,7 +44,7 @@ layout_mode = 2
 
 [node name="HeartIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(38, 0)
 layout_mode = 2
 texture = ExtResource("3_d6syb")
 expand_mode = 1
@@ -60,7 +60,7 @@ layout_mode = 2
 
 [node name="WinsIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(38, 0)
 layout_mode = 2
 texture = ExtResource("5_k4ufb")
 expand_mode = 4
@@ -76,7 +76,7 @@ layout_mode = 2
 
 [node name="RoundIcon" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(38, 0)
 layout_mode = 2
 texture = ExtResource("6_0pwgu")
 expand_mode = 4
