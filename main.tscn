@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://bg.tscn" id="1_ihq3p"]
 [ext_resource type="PackedScene" uid="uid://wy1eg3kmeqq7" path="res://pause.tscn" id="1_q1rts"]
 [ext_resource type="PackedScene" uid="uid://v3pc2y7lhn1w" path="res://result_screen.tscn" id="3_w720u"]
-[ext_resource type="Script" uid="uid://jy312ljf0dr8" path="res://combat_manager.gd" id="4_0nq41"]
+[ext_resource type="Script" uid="uid://jy312ljf0dr8" path="res://stream_manager.gd" id="4_0nq41"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="5_5nd4k"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_ipiyh"]
 [ext_resource type="Resource" uid="uid://doc6nuduyiunp" path="res://enemy_layouts/base_layouts.tres" id="7_2cqfq"]
@@ -32,13 +32,10 @@ grow_vertical = 2
 [node name="Sprite2D" parent="Control" instance=ExtResource("1_ihq3p")]
 scale = Vector2(0.66, 0.66)
 
-[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "result_screen", "combat_summary", "team_manager", "shop_manager", "slots")]
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "result_screen", "slots")]
 script = ExtResource("4_0nq41")
 character_container = NodePath("CharacterContainer")
 result_screen = NodePath("../ResultScreen")
-combat_summary = NodePath("CombatSummary")
-team_manager = NodePath("../TeamManager")
-shop_manager = NodePath("../ShopManager")
 slots = NodePath("../CharacterSlots")
 win_reward = 5
 lose_reward = 5

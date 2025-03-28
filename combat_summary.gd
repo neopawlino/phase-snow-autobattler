@@ -23,6 +23,10 @@ enum CombatResult {
 @onready var title : Label = %TitleLabel
 
 
+func _ready() -> void:
+	GlobalSignals.stream_ended.connect(show_combat_summary)
+
+
 func show_combat_summary(result: CombatResult, money: int, income: int = 0, hp_gain: int = 0):
 	var title_text : String
 	match result:

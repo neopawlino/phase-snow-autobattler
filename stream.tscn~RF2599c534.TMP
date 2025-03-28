@@ -34,9 +34,6 @@ grow_vertical = 2
 texture = ExtResource("1_4pdcm")
 expand_mode = 1
 
-[node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("4_t8krr")]
-visible = false
-
 [node name="CharacterSlots" type="Control" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
 layout_mode = 1
 anchors_preset = 8
@@ -120,6 +117,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="CombatSummary" parent="StreamManager" instance=ExtResource("4_t8krr")]
+visible = false
+
 [node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
 script = ExtResource("5_4now3")
 max_slots = 4
@@ -138,4 +138,4 @@ offset_bottom = 40.0
 offset = Vector2(320, 360)
 zoom = Vector2(2, 2)
 
-[connection signal="continue_button_pressed" from="CanvasLayer/CombatSummary" to="StreamManager" method="_on_combat_summary_continue_button_pressed"]
+[connection signal="continue_button_pressed" from="StreamManager/CombatSummary" to="StreamManager" method="_on_combat_summary_continue_button_pressed"]

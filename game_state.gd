@@ -5,8 +5,6 @@ var items : Items
 var combat_manager : CombatManager
 var shop_manager : ShopManager
 
-var character_tooltip : CharacterTooltip
-
 var is_dragging : bool = false:
 	set(val):
 		is_dragging = val
@@ -67,6 +65,8 @@ var cheats_enabled : bool:
 signal cheats_enabled_changed(value : bool)
 
 
+var viewer_goal : float = 10
+
 func get_interest() -> int:
 	var interest_cap := get_interest_cap()
 	return min(int(player_money / 5), interest_cap)
@@ -74,13 +74,10 @@ func get_interest() -> int:
 
 func get_interest_cap() -> int:
 	var interest_cap := max_interest
-	for item in items.get_items(&"interest_cap_up"):
-		interest_cap += 5
+	if items:
+		for item in items.get_items(&"interest_cap_up"):
+			interest_cap += 5
 	return interest_cap
-
-
-func close_character_tooltip():
-	GameState.character_tooltip.hide()
 
 
 var paused : bool = false:

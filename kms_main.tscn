@@ -172,7 +172,7 @@ size_flags_vertical = 0
 text = "Items
 "
 
-[node name="Button" type="Button" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="StartStreamingButton" type="Button" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -203,4 +203,4 @@ render_target_update_mode = 4
 
 [node name="Stream" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport" instance=ExtResource("11_0cxrm")]
 
-[connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Button" to="MainViewport/KBS/PreviewViewportContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/StartStreamingButton" to="MainViewport/KBS/PreviewViewportContainer" method="_on_button_pressed"]

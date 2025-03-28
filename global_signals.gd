@@ -9,4 +9,8 @@ signal player_character_died(char : Character)
 
 
 signal stream_anim_started
+
+signal stream_started
+signal stream_ended(result: CombatSummary.CombatResult, money: int, income: int, hp_gain: int)
+
 signal rewards_screen_finished

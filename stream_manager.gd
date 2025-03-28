@@ -11,15 +11,11 @@ var enemy_team : Array[Character]
 
 @export var result_screen : ResultScreen
 
-@export var combat_summary : CombatSummary
-
-@export var team_manager : TeamManager
-@export var shop_manager : ShopManager
 @export var slots : Slots
 
 @export var combat_visual_follow_speed : float = 10
 
-var in_combat : bool = false
+var in_stream : bool = false
 
 @export var win_reward : int = 3
 @export var lose_reward : int = 0
@@ -31,18 +27,41 @@ var hp_gain : int
 
 var result : CombatSummary.CombatResult
 
+var viewer_goal : float
+
+var viewers : float
+var peak_viewers : float
+var views_per_sec : float
+
+var damage_tick_timer : float
+
 
 func _ready():
 	GameState.combat_manager = self
 	GlobalSignals.ability_applied.connect(apply_ability)
 	GlobalSignals.character_died.connect(on_character_died)
 	GlobalSignals.player_character_died.connect(on_player_character_died)
+	GlobalSignals.stream_started.connect(start_stream)
 	hide_teams()
 
 
-func _physics_process(_delta):
-	if in_combat:
-		check_combat_over()
+func _physics_process(delta : float):
+	if not in_stream:
+		return
+	viewers += views_per_sec * delta
+	peak_viewers = maxf(viewers, peak_viewers)
+	damage_tick_timer += delta
+	if damage_tick_timer >= 1.0:
+		damage_all_characters(1)
+		damage_tick_timer -= 1.0
+	check_stream_over()
+
+
+func damage_all_characters(hp : int):
+	for char in player_team:
+		char.take_damage(hp)
+	for char in enemy_team:
+		char.take_damage(hp)
 
 
 func hide_teams():
@@ -53,18 +72,19 @@ func show_teams():
 	character_container.visible = true
 
 
-func start_combat():
-	GameState.close_character_tooltip()
+func start_stream():
+	viewers = 0
+	views_per_sec = 0
+
 	slots.set_player_slots_pickable(false)
 	clear_teams()
-	GameState.items.set_items_draggable(false)
+	#GameState.items.set_items_draggable(false)
 	for slot in slots.player_team:
 		if slot.slot_obj != null:
 			player_team.append(slot.slot_obj.my_duplicate())
-	for slot in slots.enemy_team:
-		if slot.slot_obj != null:
-			enemy_team.append(slot.slot_obj.my_duplicate())
-	team_manager.hide_teams()
+	#for slot in slots.enemy_team:
+		#if slot.slot_obj != null:
+			#enemy_team.append(slot.slot_obj.my_duplicate())
 	show_teams()
 	var i := 0
 	for char in player_team:
@@ -82,12 +102,14 @@ func start_combat():
 		char.make_timers()
 		char.died.connect(kill_character.bind(char))
 		i += 1
-	in_combat = true
-	proc_start_combat_items()
+	in_stream = true
+	proc_start_stream_items()
 	apply_front_character_items()
 
 
-func proc_start_combat_items():
+func proc_start_stream_items():
+	if not GameState.items:
+		return
 	for item in GameState.items.get_items(&"str_item"):
 		for char in player_team:
 			char.add_status(StatusEffect.StatusId.STRENGTH, 1)
@@ -106,7 +128,7 @@ func proc_start_combat_items():
 
 
 func apply_front_character_items():
-	if player_team.is_empty():
+	if not GameState.items or player_team.is_empty():
 		return
 	var char := player_team[0]
 	char.hp_changed.connect(func(new_hp: int, old_hp: int):
@@ -133,6 +155,8 @@ func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int],
 			continue
 		var target_char := team[target_index]
 		target_char.receive_ability(ability, caster_statuses)
+	# for testing
+	viewers += 10
 
 
 func kill_character(char : Character):
@@ -194,36 +218,27 @@ func on_character_died(char : Character):
 
 
 func on_player_character_died(char : Character):
-	for item in GameState.items.get_items(&"buff_on_death"):
-		for team_char in player_team:
-			team_char.add_status(StatusEffect.StatusId.STRENGTH, 1)
-			team_char.add_status(StatusEffect.StatusId.ARMOR, 1)
+	if GameState.items:
+		for item in GameState.items.get_items(&"buff_on_death"):
+			for team_char in player_team:
+				team_char.add_status(StatusEffect.StatusId.STRENGTH, 1)
+				team_char.add_status(StatusEffect.StatusId.ARMOR, 1)
 
 
-func check_combat_over():
-	var player_win := enemy_team.is_empty()
-	var enemy_win := player_team.is_empty()
-	if not player_win and not enemy_win:
+func check_stream_over():
+	if not player_team.is_empty():
 		return
-	if player_win and enemy_win:
-		result = CombatSummary.CombatResult.DRAW
-		reward = draw_reward
-		hp_gain = 0
-	elif player_win:
+	if self.peak_viewers >= GameState.viewer_goal:
 		result = CombatSummary.CombatResult.WIN
-		reward = win_reward
-		hp_gain = 0
-	elif enemy_win:
+	else:
 		result = CombatSummary.CombatResult.LOSE
-		reward = lose_reward
-		hp_gain = -team_manager.enemy_layouts.damage_on_loss
 	for char in player_team:
 		char.stop_timers()
 	for char in enemy_team:
 		char.stop_timers()
-	in_combat = false
+	in_stream = false
 	income = get_player_income()
-	combat_summary.show_combat_summary(result, reward, income, hp_gain)
+	GlobalSignals.stream_ended.emit(result, 0, income, 0)
 
 
 func get_player_income() -> int:
@@ -236,6 +251,8 @@ func get_player_income() -> int:
 
 
 func get_item_income() -> int:
+	if not GameState.items:
+		return 0
 	var income := 0
 	for item in GameState.items.get_items(&"income_up"):
 		income += 4
@@ -244,7 +261,6 @@ func get_item_income() -> int:
 
 func _on_combat_summary_continue_button_pressed() -> void:
 	hide_teams()
-	combat_summary.hide()
 
 	GameState.player_money += GameState.get_interest()
 	GameState.player_money += reward
@@ -263,23 +279,10 @@ func _on_combat_summary_continue_button_pressed() -> void:
 		result_screen.result_label.text = "You win!"
 		result_screen.hard_mode_label.visible = not GameState.hard_mode
 		result_screen.show()
-		team_manager.clear_enemy_slots()
-		team_manager.show_teams()
 		return
 
 	slots.set_player_slots_pickable(true)
 	GameState.items.set_items_draggable(true)
-
-	team_manager.show_teams()
-
-	if GameState.hard_mode:
-		team_manager.load_enemy_team_for_round(GameState.round_number)
-	else:
-		team_manager.load_enemy_team_for_round(GameState.wins)
-
-	shop_manager.show_shop()
-	shop_manager.reroll_all()
-	shop_manager.reset_reroll_price()
 
 	proc_end_combat_items()
 

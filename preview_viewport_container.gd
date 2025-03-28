@@ -43,11 +43,15 @@ func _on_button_pressed() -> void:
 
 	GlobalSignals.stream_anim_started.emit()
 
-	get_tree().create_timer(2.0).timeout.connect(func():
-		var end_tween := get_tree().create_tween()
-		end_tween.tween_property(camera, "zoom", Vector2(1.0, 1.0), 1.0).set_trans(Tween.TRANS_QUAD)
-		end_tween.parallel().tween_property(camera, "offset", Vector2(0, 0), 1.0).set_trans(Tween.TRANS_QUAD)
-		get_tree().create_timer(1.0).timeout.connect(func():
-			GlobalSignals.rewards_screen_finished.emit()
-		)
+	get_tree().create_timer(1.0).timeout.connect(func():
+		GlobalSignals.stream_started.emit()
 	)
+
+	#get_tree().create_timer(2.0).timeout.connect(func():
+		#var end_tween := get_tree().create_tween()
+		#end_tween.tween_property(camera, "zoom", Vector2(1.0, 1.0), 1.0).set_trans(Tween.TRANS_QUAD)
+		#end_tween.parallel().tween_property(camera, "offset", Vector2(0, 0), 1.0).set_trans(Tween.TRANS_QUAD)
+		#get_tree().create_timer(1.0).timeout.connect(func():
+			#GlobalSignals.rewards_screen_finished.emit()
+		#)
+	#)

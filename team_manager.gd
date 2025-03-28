@@ -26,6 +26,7 @@ func _ready():
 	GameState.wins_needed = enemy_layouts.wins_needed
 	GameState.player_hp = enemy_layouts.initial_lives
 	GameState.wins = 0
+	GlobalSignals.stream_started.connect(hide_teams)
 
 
 func load_initial_teams():
