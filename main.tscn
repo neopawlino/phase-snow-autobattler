@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://jy312ljf0dr8" path="res://combat_manager.gd" id="4_0nq41"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="5_5nd4k"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_ipiyh"]
+[ext_resource type="Resource" uid="uid://doc6nuduyiunp" path="res://enemy_layouts/base_layouts.tres" id="7_2cqfq"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="7_51m7k"]
-[ext_resource type="Resource" uid="uid://ddns1s6uuyfgc" path="res://enemy_layouts/postjam_balance_1_layouts.tres" id="7_ntw4x"]
 [ext_resource type="Script" uid="uid://dpq7fbl6dtbdd" path="res://shop_manager.gd" id="8_efko3"]
 [ext_resource type="Script" uid="uid://bw07bfnlqx2ud" path="res://team_manager.gd" id="9_o3mlt"]
 [ext_resource type="Script" uid="uid://33x87s58a4er" path="res://items.gd" id="10_eetyq"]
@@ -56,7 +56,7 @@ visible = false
 [node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
 script = ExtResource("9_o3mlt")
 initial_player_team = Array[ExtResource("6_ipiyh")]([ExtResource("7_51m7k")])
-enemy_layouts = ExtResource("7_ntw4x")
+enemy_layouts = ExtResource("7_2cqfq")
 test_character = ExtResource("7_51m7k")
 character_container = NodePath("../CharacterContainer")
 slots = NodePath("../CharacterSlots")
