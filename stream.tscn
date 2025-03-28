@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctphvxmiwu62f"]
+[gd_scene load_steps=8 format=3 uid="uid://ctphvxmiwu62f"]
 
 [ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://character_slots.gd" id="1_3tm05"]
 [ext_resource type="Texture2D" uid="uid://bqtt0m2k884gl" path="res://my_assets/neo_background_2.png" id="1_4pdcm"]
 [ext_resource type="Script" uid="uid://jy312ljf0dr8" path="res://stream_manager.gd" id="3_4pdcm"]
-[ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="4_t8krr"]
 [ext_resource type="Script" uid="uid://bw07bfnlqx2ud" path="res://team_manager.gd" id="5_4now3"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_sr8sl"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="7_o2rjw"]
@@ -21,10 +20,10 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BGCanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="BGCanvasLayer"]
 z_index = -99
 custom_minimum_size = Vector2(1280, 720)
 offset_right = 1280.0
@@ -33,9 +32,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_4pdcm")
 expand_mode = 1
-
-[node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("4_t8krr")]
-visible = false
 
 [node name="CharacterSlots" type="Control" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
 layout_mode = 1
@@ -137,5 +133,3 @@ offset_bottom = 40.0
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(320, 360)
 zoom = Vector2(2, 2)
-
-[connection signal="continue_button_pressed" from="CanvasLayer/CombatSummary" to="StreamManager" method="_on_combat_summary_continue_button_pressed"]

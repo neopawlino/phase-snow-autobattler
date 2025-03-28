@@ -47,8 +47,9 @@ func show_combat_summary(result: CombatResult, money: int, income: int = 0, hp_g
 	damage_label.text = str(hp_gain)
 	income_label.text = str(income)
 	interest_info.text = "1 per 5, max %s)" % GameState.get_interest_cap()
-	visible = true
+	self.show()
 
 
 func _on_button_pressed() -> void:
-	continue_button_pressed.emit()
+	GlobalSignals.stream_results_confirmed.emit()
+	self.hide()

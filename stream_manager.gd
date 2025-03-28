@@ -52,7 +52,7 @@ func _physics_process(delta : float):
 	peak_viewers = maxf(viewers, peak_viewers)
 	damage_tick_timer += delta
 	if damage_tick_timer >= 1.0:
-		damage_all_characters(1)
+		damage_all_characters(10)
 		damage_tick_timer -= 1.0
 	check_stream_over()
 

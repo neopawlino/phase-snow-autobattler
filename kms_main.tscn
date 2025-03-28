@@ -1,33 +1,40 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=17 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
+[ext_resource type="Script" uid="uid://c8at01qjju0ml" path="res://main_camera.gd" id="2_ioy5u"]
 [ext_resource type="Script" uid="uid://da6i7bw7i7w3j" path="res://preview_viewport_container.gd" id="2_sak01"]
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://icon.svg" id="2_sukj3"]
-[ext_resource type="Script" uid="uid://7heqv5r7uqsi" path="res://main_viewport_sprite.gd" id="3_todjn"]
+[ext_resource type="Script" uid="uid://7heqv5r7uqsi" path="res://viewport_push_input.gd" id="3_todjn"]
 [ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://custom_window.gd" id="3_uobf4"]
 [ext_resource type="Texture2D" uid="uid://cn84stjrpsjkq" path="res://my_assets/bg_tile.png" id="5_todjn"]
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://kms_theme.tres" id="6_dse3q"]
 [ext_resource type="Script" uid="uid://bo6wef6d3l071" path="res://window_shortcut.gd" id="6_hrlxh"]
 [ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://my_assets/link.png" id="8_7a1vo"]
 [ext_resource type="PackedScene" uid="uid://ctphvxmiwu62f" path="res://stream.tscn" id="11_0cxrm"]
+[ext_resource type="Script" uid="uid://c1jmk3fb78k88" path="res://stream_viewport_manager.gd" id="12_hvt5d"]
+[ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="13_h8i6l"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("MainViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0cxrm"]
+viewport_path = NodePath("MainViewport/KBS/PreviewViewportContainer/PreviewViewport")
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("kbs_window")]
 script = ExtResource("1_5fqus")
 kbs_window = NodePath("MainViewport/KBS")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("preview_viewport_container", "preview_center", "kbs_window")]
+script = ExtResource("2_ioy5u")
+preview_viewport_container = NodePath("../MainViewport/KBS/PreviewViewportContainer")
+preview_center = NodePath("../MainViewport/KBS/PanelContainer/VBoxContainer/PreviewContainer/PreviewCenter")
+kbs_window = NodePath("../MainViewport/KBS")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-texture = ExtResource("2_sukj3")
-
-[node name="MainViewportSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("main_viewport")]
+[node name="MainViewportSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("viewport")]
 texture = SubResource("ViewportTexture_1bvp3")
 script = ExtResource("3_todjn")
-main_viewport = NodePath("../MainViewport")
+viewport = NodePath("../MainViewport")
 
 [node name="MainViewport" type="SubViewport" parent="."]
 gui_embed_subwindows = true
@@ -93,60 +100,60 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer"]
+[node name="KBSControlsContainer" type="HBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Panel" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("6_dse3q")
 theme_type_variation = &"KbsPanel"
 
-[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel"]
+[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel"]
 layout_mode = 2
 offset_right = 197.0
 offset_bottom = 250.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel/Container"]
+[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel/Container"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 
-[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel/Container/MarginContainer"]
+[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "Abilities"
 
-[node name="Panel2" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel2" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("6_dse3q")
 theme_type_variation = &"KbsPanel"
 
-[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel2"]
+[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel2"]
 layout_mode = 2
 offset_right = 197.0
 offset_bottom = 250.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel2/Container"]
+[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel2/Container"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 
-[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel2/Container/MarginContainer"]
+[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel2/Container/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "Food"
 
-[node name="Panel3" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel3" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -154,32 +161,32 @@ size_flags_stretch_ratio = 1.5
 theme = ExtResource("6_dse3q")
 theme_type_variation = &"KbsPanel"
 
-[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel3"]
+[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel3"]
 layout_mode = 2
 offset_right = 197.0
 offset_bottom = 250.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel3/Container"]
+[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel3/Container"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 
-[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel3/Container/MarginContainer"]
+[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/Panel3/Container/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "Items
 "
 
-[node name="StartStreamingButton" type="Button" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="StartStreamingButton" type="Button" parent="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Start
 Streaming"
 
-[node name="PreviewViewportContainer" type="SubViewportContainer" parent="MainViewport/KBS" node_paths=PackedStringArray("window", "preview_container", "preview_center", "camera")]
+[node name="PreviewViewportContainer" type="SubViewportContainer" parent="MainViewport/KBS" node_paths=PackedStringArray("window", "preview_center", "controls_container")]
 custom_minimum_size = Vector2(1280, 720)
 offset_left = -243.5
 offset_top = -295.5
@@ -191,10 +198,8 @@ size_flags_vertical = 4
 stretch = true
 script = ExtResource("2_sak01")
 window = NodePath("..")
-preview_container = NodePath("../PanelContainer/VBoxContainer/PreviewContainer")
 preview_center = NodePath("../PanelContainer/VBoxContainer/PreviewContainer/PreviewCenter")
-camera = NodePath("../../../Camera2D")
-bottom_margin = 150.0
+controls_container = NodePath("../PanelContainer/VBoxContainer/KBSControlsContainer")
 
 [node name="PreviewViewport" type="SubViewport" parent="MainViewport/KBS/PreviewViewportContainer"]
 handle_input_locally = false
@@ -203,4 +208,19 @@ render_target_update_mode = 4
 
 [node name="Stream" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport" instance=ExtResource("11_0cxrm")]
 
-[connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/StartStreamingButton" to="MainViewport/KBS/PreviewViewportContainer" method="_on_button_pressed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="StreamViewportManager" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("stream_viewport_texture")]
+script = ExtResource("12_hvt5d")
+stream_viewport_texture = NodePath("../StreamViewportTexture")
+
+[node name="StreamViewportTexture" type="TextureRect" parent="CanvasLayer"]
+visible = false
+texture = SubResource("ViewportTexture_0cxrm")
+
+[node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
+visible = false
+
+[connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/StartStreamingButton" to="Camera2D" method="_on_start_streaming_button_pressed"]
+[connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/StartStreamingButton" to="MainViewport/KBS/PreviewViewportContainer" method="_on_button_pressed"]
