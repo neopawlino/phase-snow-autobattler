@@ -236,6 +236,7 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="NameLabel" type="Label" parent="Visual/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "He may"
 horizontal_alignment = 1

@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctphvxmiwu62f"]
+
+[ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://character_slots.gd" id="1_3tm05"]
+[ext_resource type="Script" uid="uid://jy312ljf0dr8" path="res://combat_manager.gd" id="3_4pdcm"]
+[ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="4_t8krr"]
+[ext_resource type="Script" uid="uid://bw07bfnlqx2ud" path="res://team_manager.gd" id="5_4now3"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_sr8sl"]
+[ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="7_o2rjw"]
+[ext_resource type="Resource" uid="uid://doc6nuduyiunp" path="res://enemy_layouts/base_layouts.tres" id="8_g1ecy"]
+
+[sub_resource type="Gradient" id="Gradient_g3kee"]
+offsets = PackedFloat32Array(0.169916, 0.456825, 1)
+colors = PackedColorArray(0.741553, 0.4838, 0.82, 1, 0.543754, 0.644189, 0.895503, 1, 0.27, 0.866167, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cpkq3"]
+gradient = SubResource("Gradient_g3kee")
+fill_from = Vector2(1, 1)
+
+[node name="Stream" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -99
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_cpkq3")
+expand_mode = 1
+
+[node name="CharacterSlots" type="Control" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3tm05")
+max_slots = 4
+player_slot_container = NodePath("Team/HBoxContainer")
+enemy_slot_container = NodePath("EnemyTeam/HBoxContainer")
+
+[node name="Team" type="Control" parent="CharacterSlots"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/Team"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="EnemyTeam" type="Control" parent="CharacterSlots"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/EnemyTeam"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 700.0
+offset_top = 120.0
+offset_right = 1300.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "combat_summary", "team_manager", "slots")]
+script = ExtResource("3_4pdcm")
+character_container = NodePath("CombatCharacterContainer")
+combat_summary = NodePath("CombatSummary")
+team_manager = NodePath("")
+slots = NodePath("../CharacterSlots")
+win_reward = 5
+lose_reward = 5
+draw_reward = 5
+
+[node name="CombatCharacterContainer" type="Control" parent="CombatManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CombatSummary" parent="CombatManager" instance=ExtResource("4_t8krr")]
+visible = false
+
+[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
+script = ExtResource("5_4now3")
+max_slots = 4
+initial_player_team = Array[ExtResource("6_sr8sl")]([ExtResource("7_o2rjw")])
+enemy_layouts = ExtResource("8_g1ecy")
+test_character = ExtResource("7_o2rjw")
+character_container = NodePath("../CharacterContainer")
+slots = NodePath("../CharacterSlots")
+
+[node name="CharacterContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(320, 360)
+zoom = Vector2(2, 2)
+
+[connection signal="continue_button_pressed" from="CombatManager/CombatSummary" to="CombatManager" method="_on_combat_summary_continue_button_pressed"]

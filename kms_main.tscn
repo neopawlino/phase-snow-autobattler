@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=13 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
@@ -10,6 +10,7 @@
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://kms_theme.tres" id="6_dse3q"]
 [ext_resource type="Script" uid="uid://bo6wef6d3l071" path="res://window_shortcut.gd" id="6_hrlxh"]
 [ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://my_assets/link.png" id="8_7a1vo"]
+[ext_resource type="PackedScene" uid="uid://ctphvxmiwu62f" path="res://stream.tscn" id="11_0cxrm"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("MainViewport")
@@ -69,7 +70,6 @@ texture = ExtResource("8_7a1vo")
 title = "KBS v0.0.1"
 position = Vector2i(20, 36)
 size = Vector2i(800, 600)
-visible = false
 min_size = Vector2i(500, 500)
 theme = ExtResource("6_dse3q")
 script = ExtResource("3_uobf4")
@@ -199,31 +199,8 @@ bottom_margin = 250.0
 [node name="PreviewViewport" type="SubViewport" parent="MainViewport/KBS/PreviewViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1280, 720)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_sukj3")
-expand_mode = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport"]
-custom_minimum_size = Vector2(100, 100)
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport/PanelContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_sukj3")
-expand_mode = 1
-
-[node name="Button" type="Button" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport/PanelContainer"]
-layout_mode = 2
-text = "Foo"
+[node name="Stream" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport" instance=ExtResource("11_0cxrm")]
 
 [connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Button" to="MainViewport/KBS/PreviewViewportContainer" method="_on_button_pressed"]
