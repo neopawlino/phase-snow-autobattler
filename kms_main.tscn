@@ -94,7 +94,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 8
 
@@ -194,7 +194,7 @@ window = NodePath("..")
 preview_container = NodePath("../PanelContainer/VBoxContainer/PreviewContainer")
 preview_center = NodePath("../PanelContainer/VBoxContainer/PreviewContainer/PreviewCenter")
 camera = NodePath("../../../Camera2D")
-bottom_margin = 250.0
+bottom_margin = 150.0
 
 [node name="PreviewViewport" type="SubViewport" parent="MainViewport/KBS/PreviewViewportContainer"]
 handle_input_locally = false

@@ -42,6 +42,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_top = 60.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3tm05")
@@ -72,7 +74,7 @@ anchor_bottom = 0.5
 offset_right = 640.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 160
 alignment = 1
 
 [node name="EnemyTeam" type="Control" parent="CharacterSlots"]
@@ -102,11 +104,11 @@ grow_vertical = 2
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "combat_summary", "team_manager", "slots")]
+[node name="CombatManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "result_screen", "combat_summary", "slots")]
 script = ExtResource("3_4pdcm")
 character_container = NodePath("CombatCharacterContainer")
+result_screen = NodePath("../../../../../../../../../../../../../@EditorBottomPanel@7933/@VBoxContainer@7918/@ThemeEditor@19025/@HSplitContainer@18743/@ThemeTypeEditor@19024/@VBoxContainer@18090/@TabContainer@18105/@VBoxContainer@18136/@ScrollContainer@18137/@VBoxContainer@18138/@HBoxContainer@268461/@HBoxContainer@268454")
 combat_summary = NodePath("CombatSummary")
-team_manager = NodePath("")
 slots = NodePath("../CharacterSlots")
 win_reward = 5
 lose_reward = 5

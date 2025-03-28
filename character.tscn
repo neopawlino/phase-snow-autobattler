@@ -148,8 +148,8 @@ damage_audio = ExtResource("8_qi5as")
 damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
 price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
-hp_label = NodePath("Visual/VBoxContainer2/HPBar/HPLabel")
-hp_bar = NodePath("Visual/VBoxContainer2/HPBar")
+hp_label = NodePath("Visual/VBoxContainer/HPBar/HPLabel")
+hp_bar = NodePath("Visual/VBoxContainer/HPBar")
 level_label = NodePath("Visual/VBoxContainer/VBoxContainer/LvLabel")
 xp_label = NodePath("Visual/VBoxContainer/VBoxContainer/XPBar/XPLabel")
 xp_bar = NodePath("Visual/VBoxContainer/VBoxContainer/XPBar")
@@ -293,13 +293,7 @@ text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
-offset_left = -48.0
-offset_top = 64.0
-offset_right = 48.0
-offset_bottom = 78.0
-
-[node name="HPBar" type="ProgressBar" parent="Visual/VBoxContainer2"]
+[node name="HPBar" type="ProgressBar" parent="Visual/VBoxContainer"]
 custom_minimum_size = Vector2(80, 16)
 layout_mode = 2
 theme = ExtResource("4_18dhx")
@@ -308,7 +302,7 @@ max_value = 5.0
 value = 3.0
 show_percentage = false
 
-[node name="HPLabel" type="Label" parent="Visual/VBoxContainer2/HPBar"]
+[node name="HPLabel" type="Label" parent="Visual/VBoxContainer/HPBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -327,7 +321,30 @@ text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AbillityContainer" type="PanelContainer" parent="Visual/VBoxContainer/AbilitiesContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="AbillityContainer2" type="PanelContainer" parent="Visual/VBoxContainer/AbilitiesContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="AbillityContainer3" type="PanelContainer" parent="Visual/VBoxContainer/AbilitiesContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
+offset_left = -60.0
+offset_top = 48.0
+offset_right = 60.0
+offset_bottom = 92.0
+
 [node name="StatusContainer" type="HBoxContainer" parent="Visual/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_constants/separation = 0
 
