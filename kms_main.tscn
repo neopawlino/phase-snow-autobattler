@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=10 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://icon.svg" id="2_sukj3"]
 [ext_resource type="Script" uid="uid://7heqv5r7uqsi" path="res://main_viewport_sprite.gd" id="3_todjn"]
 [ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://custom_window.gd" id="3_uobf4"]
+[ext_resource type="Texture2D" uid="uid://cn84stjrpsjkq" path="res://my_assets/bg_tile.png" id="5_todjn"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("MainViewport")
@@ -31,8 +32,25 @@ gui_embed_subwindows = true
 size = Vector2i(1280, 720)
 script = ExtResource("1_028yr")
 
+[node name="TextureRect" type="TextureRect" parent="MainViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_todjn")
+stretch_mode = 1
+
+[node name="KBSShortcut" type="Button" parent="MainViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "KBS"
+icon = ExtResource("2_sukj3")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
 [node name="KBS" type="Window" parent="MainViewport"]
-title = "my window"
+title = "KBS v0.0.1"
 position = Vector2i(0, 36)
 size = Vector2i(512, 512)
 min_size = Vector2i(400, 300)
