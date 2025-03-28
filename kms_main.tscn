@@ -44,6 +44,7 @@ stretch_mode = 1
 [node name="KBSShortcut" type="Button" parent="MainViewport" node_paths=PackedStringArray("window")]
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("6_dse3q")
 text = "KBS"
 icon = ExtResource("2_sukj3")
 icon_alignment = 1
@@ -53,45 +54,112 @@ window = NodePath("../KBS")
 
 [node name="KBS" type="Window" parent="MainViewport"]
 title = "KBS v0.0.1"
-position = Vector2i(0, 36)
+position = Vector2i(20, 36)
 size = Vector2i(800, 600)
-visible = false
-min_size = Vector2i(400, 300)
+min_size = Vector2i(500, 500)
 theme = ExtResource("6_dse3q")
 script = ExtResource("3_uobf4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainViewport/KBS"]
+[node name="PanelContainer" type="PanelContainer" parent="MainViewport/KBS"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PreviewContainer" type="PanelContainer" parent="MainViewport/KBS/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer"]
+layout_mode = 2
+
+[node name="PreviewContainer" type="PanelContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PreviewCenter" type="Control" parent="MainViewport/KBS/VBoxContainer/PreviewContainer"]
+[node name="PreviewCenter" type="Control" parent="MainViewport/KBS/PanelContainer/VBoxContainer/PreviewContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainViewport/KBS/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="HBoxContainer" type="HBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="MainViewport/KBS/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Lorem"
+size_flags_vertical = 3
+theme = ExtResource("6_dse3q")
+theme_type_variation = &"KbsPanel"
 
-[node name="Label2" type="Label" parent="MainViewport/KBS/VBoxContainer/HBoxContainer"]
+[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 2
+offset_right = 197.0
+offset_bottom = 250.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel/Container/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Ipsum"
+size_flags_vertical = 0
+text = "Abilities"
 
-[node name="Button" type="Button" parent="MainViewport/KBS/VBoxContainer/HBoxContainer"]
+[node name="Panel2" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("6_dse3q")
+theme_type_variation = &"KbsPanel"
+
+[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 2
+offset_right = 197.0
+offset_bottom = 250.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel2/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel2/Container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Food"
+
+[node name="Panel3" type="Panel" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("6_dse3q")
+theme_type_variation = &"KbsPanel"
+
+[node name="Container" type="VBoxContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel3"]
+layout_mode = 2
+offset_right = 197.0
+offset_bottom = 250.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel3/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Panel3/Container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Items
+"
+
+[node name="Button" type="Button" parent="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Start
@@ -103,19 +171,21 @@ offset_left = -243.5
 offset_top = -295.5
 offset_right = 1036.5
 offset_bottom = 424.5
+scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 script = ExtResource("2_sak01")
 window = NodePath("..")
-preview_container = NodePath("../VBoxContainer/PreviewContainer")
-preview_center = NodePath("../VBoxContainer/PreviewContainer/PreviewCenter")
+preview_container = NodePath("../PanelContainer/VBoxContainer/PreviewContainer")
+preview_center = NodePath("../PanelContainer/VBoxContainer/PreviewContainer/PreviewCenter")
 camera = NodePath("../../../Camera2D")
+bottom_margin = 250.0
 
 [node name="PreviewViewport" type="SubViewport" parent="MainViewport/KBS/PreviewViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1280, 720)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport"]
 anchors_preset = 15
@@ -142,4 +212,4 @@ expand_mode = 1
 layout_mode = 2
 text = "Foo"
 
-[connection signal="pressed" from="MainViewport/KBS/VBoxContainer/HBoxContainer/Button" to="MainViewport/KBS/PreviewViewportContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/HBoxContainer/Button" to="MainViewport/KBS/PreviewViewportContainer" method="_on_button_pressed"]

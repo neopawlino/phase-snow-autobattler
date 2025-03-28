@@ -1,9 +1,39 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cf7m6ltsqcbhq"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cf7m6ltsqcbhq"]
 
 [ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_vgl0v"]
 [ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="2_1b8q7"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bakvj"]
+bg_color = Color(0.152941, 0.164706, 0.2, 1)
+border_width_top = 32
+border_color = Color(0.235294, 0.25098, 0.301961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b8q7"]
+bg_color = Color(0.113725, 0.121569, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgl0v"]
+bg_color = Color(0.2144, 0.232, 0.32, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 34.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
 [resource]
 Button/fonts/font = ExtResource("1_vgl0v")
+KbsPanel/base_type = &"Panel"
+KbsPanel/styles/panel = SubResource("StyleBoxFlat_bakvj")
 Label/fonts/font = ExtResource("1_vgl0v")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_1b8q7")
+Window/constants/resize_margin = 8
 Window/fonts/title_font = ExtResource("2_1b8q7")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_vgl0v")
