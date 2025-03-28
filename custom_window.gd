@@ -5,6 +5,7 @@ func _ready() -> void:
 	size_changed.connect(clamp_to_viewport)
 	GlobalSignals.stream_anim_started.connect(disable_interactable)
 	GlobalSignals.rewards_screen_finished.connect(enable_interactable)
+	close_requested.connect(on_close_requested)
 
 
 func _process(delta: float) -> void:
@@ -30,3 +31,7 @@ func enable_interactable():
 	self.unresizable = false
 	self.unfocusable = false
 	self.gui_disable_input = false
+
+
+func on_close_requested():
+	self.visible = false

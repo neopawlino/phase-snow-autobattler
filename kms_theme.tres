@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cf7m6ltsqcbhq"]
+
+[ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_vgl0v"]
+[ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="2_1b8q7"]
+
+[resource]
+Button/fonts/font = ExtResource("1_vgl0v")
+Label/fonts/font = ExtResource("1_vgl0v")
+Window/fonts/title_font = ExtResource("2_1b8q7")

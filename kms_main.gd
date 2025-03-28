@@ -4,4 +4,3 @@ extends Node2D
 
 func _ready() -> void:
 	get_viewport().gui_embed_subwindows = true
-	kbs_window.popup_centered()
