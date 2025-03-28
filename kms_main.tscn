@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=12 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cn84stjrpsjkq" path="res://my_assets/bg_tile.png" id="5_todjn"]
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://kms_theme.tres" id="6_dse3q"]
 [ext_resource type="Script" uid="uid://bo6wef6d3l071" path="res://window_shortcut.gd" id="6_hrlxh"]
+[ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://my_assets/link.png" id="8_7a1vo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("MainViewport")
@@ -41,21 +42,34 @@ grow_vertical = 2
 texture = ExtResource("5_todjn")
 stretch_mode = 1
 
-[node name="KBSShortcut" type="Button" parent="MainViewport" node_paths=PackedStringArray("window")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainViewport"]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="KBSShortcut" type="Button" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window")]
+layout_mode = 2
 theme = ExtResource("6_dse3q")
-text = "KBS"
+theme_type_variation = &"DesktopIconButton"
+text = "Stream"
 icon = ExtResource("2_sukj3")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("6_hrlxh")
-window = NodePath("../KBS")
+window = NodePath("../../KBS")
+
+[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/KBSShortcut"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 92.0
+offset_right = 44.0
+offset_bottom = 132.0
+texture = ExtResource("8_7a1vo")
 
 [node name="KBS" type="Window" parent="MainViewport"]
 title = "KBS v0.0.1"
 position = Vector2i(20, 36)
 size = Vector2i(800, 600)
+visible = false
 min_size = Vector2i(500, 500)
 theme = ExtResource("6_dse3q")
 script = ExtResource("3_uobf4")
@@ -185,7 +199,7 @@ bottom_margin = 250.0
 [node name="PreviewViewport" type="SubViewport" parent="MainViewport/KBS/PreviewViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1280, 720)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="TextureRect" type="TextureRect" parent="MainViewport/KBS/PreviewViewportContainer/PreviewViewport"]
 anchors_preset = 15
