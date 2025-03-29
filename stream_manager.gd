@@ -30,8 +30,11 @@ var result : CombatSummary.CombatResult
 var viewer_goal : float
 
 var viewers : float
+signal viewers_changed(amt: float)
 var peak_viewers : float
+signal peak_viewers_changed(amt: float)
 var views_per_sec : float
+signal views_per_sec_changed(amt: float)
 
 var damage_tick_timer : float
 
