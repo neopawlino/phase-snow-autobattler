@@ -27,13 +27,26 @@ var hp_gain : int
 
 var result : CombatSummary.CombatResult
 
-var viewer_goal : float
+var viewer_goal : float:
+	set(amt):
+		viewer_goal = amt
+		viewer_goal_changed.emit(amt)
+signal viewer_goal_changed(amt: float)
 
-var viewers : float
+var viewers : float:
+	set(amt):
+		viewers = amt
+		viewers_changed.emit(amt)
 signal viewers_changed(amt: float)
-var peak_viewers : float
+var peak_viewers : float:
+	set(amt):
+		peak_viewers = amt
+		peak_viewers_changed.emit(amt)
 signal peak_viewers_changed(amt: float)
-var views_per_sec : float
+var views_per_sec : float:
+	set(amt):
+		views_per_sec = amt
+		views_per_sec_changed.emit(amt)
 signal views_per_sec_changed(amt: float)
 
 var damage_tick_timer : float
@@ -55,7 +68,7 @@ func _physics_process(delta : float):
 	peak_viewers = maxf(viewers, peak_viewers)
 	damage_tick_timer += delta
 	if damage_tick_timer >= 1.0:
-		damage_all_characters(10)
+		damage_all_characters(1)
 		damage_tick_timer -= 1.0
 	check_stream_over()
 
@@ -78,6 +91,7 @@ func show_teams():
 func start_stream():
 	viewers = 0
 	views_per_sec = 0
+	viewer_goal = 10
 
 	clear_teams()
 	#GameState.items.set_items_draggable(false)
@@ -158,7 +172,8 @@ func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int],
 		var target_char := team[target_index]
 		target_char.receive_ability(ability, caster_statuses)
 	# for testing
-	viewers += 10
+	viewers += 0
+	views_per_sec += 1
 
 
 func kill_character(char : Character):
