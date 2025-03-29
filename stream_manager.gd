@@ -76,7 +76,6 @@ func start_stream():
 	viewers = 0
 	views_per_sec = 0
 
-	slots.set_player_slots_pickable(false)
 	clear_teams()
 	#GameState.items.set_items_draggable(false)
 	for slot in slots.player_team:
@@ -281,7 +280,6 @@ func _on_combat_summary_continue_button_pressed() -> void:
 		result_screen.show()
 		return
 
-	slots.set_player_slots_pickable(true)
 	GameState.items.set_items_draggable(true)
 
 	proc_end_combat_items()

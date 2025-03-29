@@ -12,6 +12,8 @@ var slot_index : int
 var slot_obj : Node
 
 @export var select_container : Container
+@export var sprite : Sprite2D
+var sprite_base_scale : Vector2
 
 @onready var merge_swap_timer : Timer = %MergeSwapTimer
 
@@ -28,8 +30,9 @@ var pickable : bool
 
 
 func _ready() -> void:
-	merge_swap_timer.timeout.connect(drag_swap)
-	mouseover_changed.connect(func(is_mouseover : bool):
+	self.sprite_base_scale = sprite.scale
+	self.merge_swap_timer.timeout.connect(drag_swap)
+	self.mouseover_changed.connect(func(is_mouseover : bool):
 		if is_mouseover:
 			on_mouse_entered()
 		else:
@@ -42,9 +45,9 @@ func _process(delta: float) -> void:
 		return
 	var rect := select_container.get_global_rect()
 	var mouse_pos := self.get_global_mouse_position()
-	if !rect.has_point(mouse_pos) and GameState.is_dragging:
+	if !rect.has_point(mouse_pos) or not GameState.is_dragging:
 		mouseover = false
-	elif GameState.is_dragging:
+	elif GameState.is_dragging: # and dragging a character?
 		mouseover = true
 
 
@@ -61,6 +64,7 @@ func drag_swap():
 
 
 func on_mouse_entered() -> void:
+	self.sprite.scale = self.sprite_base_scale * 1.1
 	if not GameState.is_dragging:
 		return
 	if GameState.drag_object is Character and self.slot_type == SlotType.CHARACTER:
@@ -88,6 +92,7 @@ func is_empty() -> bool:
 
 
 func on_mouse_exited() -> void:
+	self.sprite.scale = self.sprite_base_scale
 	if not GameState.is_dragging:
 		return
 	if GameState.drag_end_slot == self:

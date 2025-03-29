@@ -15,6 +15,12 @@ var character_slot_scene : PackedScene = preload("res://character_slot.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameState.slots = self
+	GlobalSignals.stream_anim_started.connect(func():
+		set_player_slots_pickable(false)
+	)
+	GlobalSignals.rewards_screen_finished.connect(func():
+		set_player_slots_pickable(true)
+	)
 	for i in range(max_slots):
 		var slot : Slot = character_slot_scene.instantiate()
 		slot.set_pickable(true)
