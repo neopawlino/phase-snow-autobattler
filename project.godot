@@ -31,7 +31,7 @@ SoundManager="*res://sound_manager.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
