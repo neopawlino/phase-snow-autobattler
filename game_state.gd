@@ -84,8 +84,8 @@ signal members_changed(value: int)
 
 var base_views_per_sec : float = 10.0
 var base_viewer_retention : float = 0.1
-var base_subscriber_rate : float = 0.02
-var base_member_rate : float = 0.01
+var base_subscriber_rate : float = 0.1
+var base_member_rate : float = 0.1
 
 func get_interest() -> int:
 	var interest_cap := get_interest_cap()

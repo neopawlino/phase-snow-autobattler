@@ -25,6 +25,7 @@ Settings="*res://settings.gd"
 Bgm="*res://bgm.tscn"
 Popups="*res://popups.tscn"
 SoundManager="*res://sound_manager.gd"
+RandomUtil="*res://random_util.gd"
 
 [display]
 

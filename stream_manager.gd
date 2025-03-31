@@ -41,6 +41,14 @@ var viewers : float:
 		viewers_changed.emit(amt)
 signal viewers_changed(amt: float)
 
+var views : float:
+	set(amt):
+		if amt > views:
+			self.on_views_gained(amt - views)
+		views = amt
+		views_changed.emit(amt)
+signal views_changed(amt: float)
+
 var peak_viewers : float:
 	set(amt):
 		peak_viewers = amt
@@ -90,8 +98,9 @@ func _ready():
 func _physics_process(delta : float):
 	if not in_stream:
 		return
-	viewers += views_per_sec * delta
+	views += views_per_sec * delta
 	peak_viewers = maxf(viewers, peak_viewers)
+
 	damage_tick_timer += delta
 	if damage_tick_timer >= 1.0:
 		damage_all_characters(1)
@@ -99,8 +108,17 @@ func _physics_process(delta : float):
 	check_stream_over()
 
 
+static func calc_amt_gained(amt_gained : float, prob : float) -> float:
+	return roundf(RandomUtil.binomial(floorf(amt_gained), prob)) \
+		+ RandomUtil.bernoulli(prob * fmod(amt_gained, 1.0))
+
+
+func on_views_gained(amt_gained : float):
+	self.viewers += calc_amt_gained(amt_gained, viewer_retention)
+
+
 func on_viewers_gained(amt_gained : float):
-	GameState.subscribers += amt_gained * subscriber_rate
+	GameState.subscribers += calc_amt_gained(amt_gained, subscriber_rate)
 
 
 func on_subscribers_changed(new_amt : float):
@@ -112,7 +130,7 @@ func on_subscribers_changed(new_amt : float):
 
 func on_subscribers_gained(amt_gained : float):
 	if in_stream:
-		GameState.members += amt_gained * member_rate
+		GameState.members += calc_amt_gained(amt_gained, member_rate)
 
 
 func damage_all_characters(hp : int):
@@ -130,14 +148,19 @@ func show_teams():
 	character_container.visible = true
 
 
-func start_stream():
+func reset_stats():
 	viewers = 0
 	views_per_sec = GameState.base_views_per_sec
 	subscriber_rate = GameState.base_subscriber_rate
 	member_rate = GameState.base_member_rate
 	viewer_retention = GameState.base_viewer_retention
 	prev_subscribers = GameState.subscribers
-	viewer_goal = 10
+	views = 0
+
+
+func start_stream():
+	reset_stats()
+	viewer_goal = GameState.viewer_goal
 
 	clear_teams()
 	#GameState.items.set_items_draggable(false)
@@ -219,7 +242,7 @@ func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int],
 		target_char.receive_ability(ability, caster_statuses)
 	# for testing
 	viewers += 0
-	views_per_sec += 1
+	#views_per_sec += 1
 
 
 func kill_character(char : Character):
