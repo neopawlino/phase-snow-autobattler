@@ -19,6 +19,8 @@ var drag_object : Node:
 signal drag_object_changed(drag_obj : Node)
 var drag_original_slot : Slot
 var drag_end_slot : Slot
+var drag_original_parent : Node
+var drag_parent : Node
 var drag_sell_button : bool
 var drag_initial_mouse_pos : Vector2
 

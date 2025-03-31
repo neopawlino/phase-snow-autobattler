@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=18 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ctphvxmiwu62f" path="res://stream.tscn" id="11_0cxrm"]
 [ext_resource type="Script" uid="uid://c1jmk3fb78k88" path="res://stream_viewport_manager.gd" id="12_hvt5d"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="13_h8i6l"]
+[ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://drag_container.gd" id="15_mldad"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("MainViewport")
@@ -222,6 +223,9 @@ texture = SubResource("ViewportTexture_0cxrm")
 
 [node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
 visible = false
+
+[node name="DragContainer" type="Node" parent="CanvasLayer"]
+script = ExtResource("15_mldad")
 
 [connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/StartStreamingButton" to="Camera2D" method="_on_start_streaming_button_pressed"]
 [connection signal="pressed" from="MainViewport/KBS/PanelContainer/VBoxContainer/KBSControlsContainer/StartStreamingButton" to="MainViewport/KBS/PreviewViewportContainer" method="_on_button_pressed"]

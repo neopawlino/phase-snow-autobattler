@@ -25,8 +25,9 @@ func _process(delta: float) -> void:
 		if self.is_oob():
 			death_anim_finished.emit()
 	else:
-		var offset := follow_target.global_position - self.global_position
-		self.global_position += offset * visual_follow_speed * delta
+		#var offset := follow_target.global_position - self.global_position
+		#self.global_position += offset * visual_follow_speed * delta
+		pass
 
 
 func play_death_anim(force_x : float) -> void:

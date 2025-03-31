@@ -58,12 +58,16 @@ func _process(delta: float) -> void:
 			GameState.drag_original_slot = self.cur_slot
 			GameState.drag_end_slot = self.cur_slot
 			GameState.drag_initial_mouse_pos = get_global_mouse_position()
+			GameState.drag_original_parent = self.drag_object.get_parent()
+			self.drag_object.reparent(GameState.drag_parent, true)
 			self.drag_started.emit()
 		if Input.is_action_pressed("click") and GameState.drag_object == self.drag_object:
 			drag_object.global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click") and GameState.drag_object == self.drag_object:
 			GameState.is_dragging = false
 			GameState.drag_object = null
+			self.drag_object.reparent(GameState.drag_original_parent, true)
+			GameState.drag_original_parent = null
 			self.drag_ended.emit()
 
 

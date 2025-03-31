@@ -160,7 +160,6 @@ status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
 drag_component = NodePath("Draggable")
 
 [node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "smoke_particles")]
-top_level = true
 script = ExtResource("2_0vcty")
 follow_target = NodePath("..")
 smoke_particles = NodePath("CPUParticles2D")
