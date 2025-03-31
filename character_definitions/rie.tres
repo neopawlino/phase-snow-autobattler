@@ -8,15 +8,15 @@
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://status_effects/status_effect.gd" id="6_y1j6c"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://status_effects/unique_status.gd" id="7_d62pp"]
 
+[sub_resource type="Resource" id="Resource_evq0x"]
+script = ExtResource("2_fuv3c")
+stat = 5
+amount = 0.02
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
 [sub_resource type="Resource" id="Resource_2048t"]
 script = ExtResource("2_fuv3c")
 stat = 1
-amount = 10.0
-metadata/_custom_type_script = "uid://5vwcxgum5ovh"
-
-[sub_resource type="Resource" id="Resource_fuv3c"]
-script = ExtResource("2_fuv3c")
-stat = 5
 amount = 1.0
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
@@ -24,9 +24,9 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 script = ExtResource("1_167rq")
 ability_name = "Pafu Bite"
 description = "add 10 views/1 sec"
-stat_changes = Array[ExtResource("2_fuv3c")]([SubResource("Resource_2048t"), SubResource("Resource_fuv3c")])
+stat_changes = Array[ExtResource("2_fuv3c")]([SubResource("Resource_2048t")])
 cooldown = 1.0
-scaling = Array[ExtResource("2_fuv3c")]([])
+scaling = Array[ExtResource("2_fuv3c")]([SubResource("Resource_evq0x")])
 ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_3pnjp"]

@@ -268,7 +268,7 @@ func apply_ability(ability: AbilityDefinition, caster_statuses: Dictionary, cast
 func calc_stat_scaling_amount(ability: AbilityDefinition, caster: Character) -> float:
 	var amt : float = 0
 	for stat_val in ability.scaling:
-		match stat_val:
+		match stat_val.stat:
 			StatValue.Stat.VIEWS:
 				amt += self.views * stat_val.amount
 			StatValue.Stat.VIEWS_PER_SEC:
