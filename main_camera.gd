@@ -8,9 +8,10 @@ extends Camera2D
 
 func _ready() -> void:
 	GlobalSignals.stream_results_confirmed.connect(on_stream_results_confirmed)
+	GlobalSignals.stream_anim_started.connect(on_stream_anim_started)
 
 
-func _on_start_streaming_button_pressed() -> void:
+func on_stream_anim_started() -> void:
 	# zoom into me, then switch to a different viewport if necessary
 	var root_size := self.get_viewport_rect().size
 	var dest_size := preview_viewport_container.size * preview_viewport_container.scale
@@ -24,8 +25,6 @@ func _on_start_streaming_button_pressed() -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "zoom", target_zoom, 1.0).set_trans(Tween.TRANS_QUAD)
 	tween.parallel().tween_property(self, "offset", window_offset + preview_offset, 1.0).set_trans(Tween.TRANS_QUAD)
-
-	GlobalSignals.stream_anim_started.emit()
 
 	get_tree().create_timer(1.0).timeout.connect(func():
 		GlobalSignals.stream_started.emit()

@@ -1,0 +1,192 @@
+[gd_scene load_steps=6 format=3 uid="uid://buhn71elsgfi3"]
+
+[ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://kms_theme.tres" id="1_4p8mj"]
+[ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://custom_window.gd" id="2_0dw17"]
+[ext_resource type="Script" uid="uid://bfvu87lg824h7" path="res://start_streaming_button.gd" id="3_0dw17"]
+[ext_resource type="Script" uid="uid://da6i7bw7i7w3j" path="res://preview_viewport_container.gd" id="3_mj7rv"]
+[ext_resource type="PackedScene" uid="uid://ctphvxmiwu62f" path="res://stream.tscn" id="4_fw664"]
+
+[node name="KBS" type="Window"]
+auto_translate_mode = 1
+title = "KBS v0.0.1"
+position = Vector2i(20, 36)
+size = Vector2i(800, 600)
+min_size = Vector2i(500, 500)
+theme = ExtResource("1_4p8mj")
+script = ExtResource("2_0dw17")
+
+[node name="KBSMain" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KBSMain"]
+layout_mode = 2
+
+[node name="PreviewContainer" type="PanelContainer" parent="KBSMain/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PreviewCenter" type="Control" parent="KBSMain/VBoxContainer/PreviewContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="KBSControlsContainer" type="HBoxContainer" parent="KBSMain/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="KBSMain/VBoxContainer/KBSControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_4p8mj")
+theme_type_variation = &"KbsPanel"
+
+[node name="Container" type="VBoxContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel"]
+layout_mode = 2
+offset_right = 178.0
+offset_bottom = 189.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Abilities"
+
+[node name="MarginContainer2" type="MarginContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2"]
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="AbilitySlotsContainer" type="HFlowContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="PanelContainer5" type="PanelContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="PanelContainer6" type="PanelContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="PanelContainer7" type="PanelContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="KBSMain/VBoxContainer/KBSControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_4p8mj")
+theme_type_variation = &"KbsPanel"
+
+[node name="Container" type="VBoxContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel2"]
+layout_mode = 2
+offset_right = 197.0
+offset_bottom = 250.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel2/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel2/Container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Food"
+
+[node name="Panel3" type="Panel" parent="KBSMain/VBoxContainer/KBSControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("1_4p8mj")
+theme_type_variation = &"KbsPanel"
+
+[node name="Container" type="VBoxContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel3"]
+layout_mode = 2
+offset_right = 197.0
+offset_bottom = 250.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel3/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel3/Container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Items
+"
+
+[node name="StartStreamingButton" type="Button" parent="KBSMain/VBoxContainer/KBSControlsContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start
+Streaming"
+script = ExtResource("3_0dw17")
+
+[node name="PreviewViewportContainer" type="SubViewportContainer" parent="." node_paths=PackedStringArray("window", "preview_center", "controls_container")]
+custom_minimum_size = Vector2(1280, 720)
+offset_left = -243.5
+offset_top = -295.5
+offset_right = 1036.5
+offset_bottom = 424.5
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch = true
+script = ExtResource("3_mj7rv")
+window = NodePath("..")
+preview_center = NodePath("../KBSMain/VBoxContainer/PreviewContainer/PreviewCenter")
+controls_container = NodePath("../KBSMain/VBoxContainer/KBSControlsContainer")
+
+[node name="PreviewViewport" type="SubViewport" parent="PreviewViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Stream" parent="PreviewViewportContainer/PreviewViewport" instance=ExtResource("4_fw664")]
