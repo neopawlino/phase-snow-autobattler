@@ -98,7 +98,7 @@ func _ready():
 func _physics_process(delta : float):
 	if not in_stream:
 		return
-	views += views_per_sec * delta
+	views += randfn(views_per_sec * delta, (views_per_sec * delta) * 0.5)
 	peak_viewers = maxf(viewers, peak_viewers)
 
 	damage_tick_timer += delta

@@ -87,6 +87,7 @@ var base_viewer_retention : float = 0.1
 var base_subscriber_rate : float = 0.1
 var base_member_rate : float = 0.1
 
+
 func get_interest() -> int:
 	var interest_cap := get_interest_cap()
 	return min(int(player_money / 5), interest_cap)
