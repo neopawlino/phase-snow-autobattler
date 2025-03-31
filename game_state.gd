@@ -65,7 +65,27 @@ var cheats_enabled : bool:
 signal cheats_enabled_changed(value : bool)
 
 
-var viewer_goal : float = 10
+var viewer_goal : float = 10:
+	set(val):
+		viewer_goal = val
+		viewer_goal_changed.emit(val)
+signal viewer_goal_changed(value: int)
+
+var subscribers : float = 1:
+	set(val):
+		subscribers = val
+		subscribers_changed.emit(val)
+signal subscribers_changed(value: int)
+var members : float = 0:
+	set(val):
+		members = val
+		members_changed.emit(val)
+signal members_changed(value: int)
+
+var base_views_per_sec : float = 10.0
+var base_viewer_retention : float = 0.1
+var base_subscriber_rate : float = 0.02
+var base_member_rate : float = 0.01
 
 func get_interest() -> int:
 	var interest_cap := get_interest_cap()

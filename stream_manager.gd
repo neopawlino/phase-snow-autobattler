@@ -35,19 +35,44 @@ signal viewer_goal_changed(amt: float)
 
 var viewers : float:
 	set(amt):
+		if amt > viewers:
+			self.on_viewers_gained(amt - viewers)
 		viewers = amt
 		viewers_changed.emit(amt)
 signal viewers_changed(amt: float)
+
 var peak_viewers : float:
 	set(amt):
 		peak_viewers = amt
 		peak_viewers_changed.emit(amt)
 signal peak_viewers_changed(amt: float)
+
 var views_per_sec : float:
 	set(amt):
 		views_per_sec = amt
 		views_per_sec_changed.emit(amt)
 signal views_per_sec_changed(amt: float)
+
+var viewer_retention : float:
+	set(amt):
+		viewer_retention = amt
+		viewer_retention_changed.emit(amt)
+signal viewer_retention_changed(amt: float)
+
+var subscriber_rate : float:
+	set(amt):
+		subscriber_rate = amt
+		subscriber_rate_changed.emit(amt)
+signal subscriber_rate_changed(amt: float)
+
+# to calculate change in subscribers
+var prev_subscribers : float
+
+var member_rate : float:
+	set(amt):
+		member_rate = amt
+		member_rate_changed.emit(amt)
+signal member_rate_changed(amt: float)
 
 var damage_tick_timer : float
 
@@ -58,6 +83,7 @@ func _ready():
 	GlobalSignals.character_died.connect(on_character_died)
 	GlobalSignals.player_character_died.connect(on_player_character_died)
 	GlobalSignals.stream_started.connect(start_stream)
+	GameState.subscribers_changed.connect(on_subscribers_changed)
 	hide_teams()
 
 
@@ -71,6 +97,22 @@ func _physics_process(delta : float):
 		damage_all_characters(1)
 		damage_tick_timer -= 1.0
 	check_stream_over()
+
+
+func on_viewers_gained(amt_gained : float):
+	GameState.subscribers += amt_gained * subscriber_rate
+
+
+func on_subscribers_changed(new_amt : float):
+	var change := new_amt - prev_subscribers
+	if change > 0:
+		on_subscribers_gained(change)
+	prev_subscribers = new_amt
+
+
+func on_subscribers_gained(amt_gained : float):
+	if in_stream:
+		GameState.members += amt_gained * member_rate
 
 
 func damage_all_characters(hp : int):
@@ -90,7 +132,11 @@ func show_teams():
 
 func start_stream():
 	viewers = 0
-	views_per_sec = 0
+	views_per_sec = GameState.base_views_per_sec
+	subscriber_rate = GameState.base_subscriber_rate
+	member_rate = GameState.base_member_rate
+	viewer_retention = GameState.base_viewer_retention
+	prev_subscribers = GameState.subscribers
 	viewer_goal = 10
 
 	clear_teams()
