@@ -1,7 +1,7 @@
 extends Node
 
 
-signal ability_applied(ability : AbilityLevel, team : int, targets : Array[int], caster_statuses : Dictionary)
+signal ability_applied(ability : AbilityDefinition, caster_statuses : Dictionary)
 signal character_tooltip_opened(char : Character)
 
 signal character_died(char : Character)

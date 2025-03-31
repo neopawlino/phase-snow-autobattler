@@ -413,21 +413,17 @@ func make_timers():
 		var ability_level_index := ability_levels[i] - 1
 		if ability_level_index < 0:
 			continue
-		var ability_level := ability_def.ability_levels[ability_level_index]
 		var timer := Timer.new()
 		var ability_char := char
-		timer.wait_time = ability_level.cooldown
+		timer.wait_time = ability_def.cooldown
 		timer.timeout.connect(func():
-			var effective_range := ability_level.ability_range - self.pos
-			if effective_range <= 0 and not ability_level.ability_type == AbilityLevel.AbilityType.BUFF:
-				return
 			if flipped:
 				anim_player.play(&"attack_flipped")
 			else:
 				anim_player.play(&"attack")
 			await get_tree().create_timer(anim_delay).timeout
 			if self.is_inside_tree():
-				cast_ability(ability_level)
+				cast_ability(ability_def)
 		)
 		timer.autostart = true
 		self.add_child(timer)
@@ -449,33 +445,34 @@ func stop_timers():
 	ability_bars.clear()
 
 
-func cast_ability(ability: AbilityLevel):
-	var target_team : int = Team.ENEMY if self.team == Team.PLAYER else Team.PLAYER
-	var targets : Array[int] = []
+func cast_ability(ability: AbilityDefinition):
+	#var target_team : int = Team.ENEMY if self.team == Team.PLAYER else Team.PLAYER
+	#var targets : Array[int] = []
 
-	if ability.ability_type == AbilityLevel.AbilityType.BUFF:
-		target_team = self.team
-		var start_index = maxi(0, self.pos - ability.ability_range)
-		var end_index = mini(GameState.combat_manager.slots.max_slots, self.pos + ability.ability_range + 1)
-		for i in range(start_index, end_index):
-			targets.append(i)
-	else:
-		var effective_range := ability.ability_range - self.pos
-		var pierce := ability.pierce
-		var i := 0
-		while i < effective_range and pierce >= 0:
-			if i >= GameState.combat_manager.slots.max_slots:
-				break
-			targets.append(i)
-			i += 1
-			pierce -= 1
+	#if ability.ability_type == AbilityLevel.AbilityType.BUFF:
+		#target_team = self.team
+		#var start_index = maxi(0, self.pos - ability.ability_range)
+		#var end_index = mini(GameState.combat_manager.slots.max_slots, self.pos + ability.ability_range + 1)
+		#for i in range(start_index, end_index):
+			#targets.append(i)
+	#else:
+		#var effective_range := ability.ability_range - self.pos
+		#var pierce := ability.pierce
+		#var i := 0
+		#while i < effective_range and pierce >= 0:
+			#if i >= GameState.combat_manager.slots.max_slots:
+				#break
+			#targets.append(i)
+			#i += 1
+			#pierce -= 1
 
-	if not targets.is_empty():
-		GlobalSignals.ability_applied.emit(ability, target_team, targets, self.statuses)
-		var toxic_value : int = get_status_value(StatusEffect.StatusId.TOXIC)
-		if toxic_value > 0:
-			take_damage(toxic_value)
-			self.add_status(StatusEffect.StatusId.TOXIC, -1)
+	#if not targets.is_empty():
+		#GlobalSignals.ability_applied.emit(ability, target_team, targets, self.statuses)
+		#var toxic_value : int = get_status_value(StatusEffect.StatusId.TOXIC)
+		#if toxic_value > 0:
+			#take_damage(toxic_value)
+			#self.add_status(StatusEffect.StatusId.TOXIC, -1)
+	GlobalSignals.ability_applied.emit(ability, self.statuses, self)
 
 
 func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
@@ -540,13 +537,13 @@ func get_unique_statuses(status_name : StringName) -> Array[UniqueStatus]:
 
 func get_income() -> int:
 	var income := 0
-	for i in range(len(abilities)):
-		var ability_def := abilities[i]
-		var ability_level_index := ability_levels[i] - 1
-		if ability_level_index < 0:
-			continue
-		var ability_level := ability_def.ability_levels[ability_level_index]
-		income += ability_level.income
+	#for i in range(len(abilities)):
+		#var ability_def := abilities[i]
+		#var ability_level_index := ability_levels[i] - 1
+		#if ability_level_index < 0:
+			#continue
+		#var ability_level := ability_def.ability_levels[ability_level_index]
+		#income += ability_level.income
 	return income
 
 

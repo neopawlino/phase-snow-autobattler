@@ -232,17 +232,62 @@ func clear_teams():
 	enemy_team.clear()
 
 
-func apply_ability(ability: AbilityLevel, target_team: int, targets: Array[int], caster_statuses: Dictionary):
-	var team := self.enemy_team if target_team == Character.Team.ENEMY else self.player_team
-	for target_index in targets:
-		assert(target_index >= 0)
-		if target_index >= len(team):
-			continue
-		var target_char := team[target_index]
-		target_char.receive_ability(ability, caster_statuses)
-	# for testing
-	viewers += 0
-	#views_per_sec += 1
+func apply_ability(ability: AbilityDefinition, caster_statuses: Dictionary, caster: Character):
+	#var team := self.enemy_team if target_team == Character.Team.ENEMY else self.player_team
+	#for target_index in targets:
+		#assert(target_index >= 0)
+		#if target_index >= len(team):
+			#continue
+		#var target_char := team[target_index]
+		#target_char.receive_ability(ability, caster_statuses)
+	var amount_add := calc_stat_scaling_amount(ability, caster)
+	for stat_change in ability.stat_changes:
+		match stat_change.stat:
+			StatValue.Stat.VIEWS:
+				self.views += stat_change.amount + amount_add
+			StatValue.Stat.VIEWS_PER_SEC:
+				self.views_per_sec += stat_change.amount + amount_add
+			StatValue.Stat.VIEWER_RETENTION:
+				self.viewer_retention += stat_change.amount + amount_add
+			StatValue.Stat.VIEWERS:
+				self.viewers += stat_change.amount + amount_add
+			StatValue.Stat.SUBSCRIBER_RATE:
+				self.subscriber_rate += stat_change.amount + amount_add
+			StatValue.Stat.SUBSCRIBERS:
+				GameState.subscribers += stat_change.amount + amount_add
+			StatValue.Stat.MEMBER_RATE:
+				self.member_rate += stat_change.amount + amount_add
+			StatValue.Stat.MEMBERS:
+				GameState.members += stat_change.amount + amount_add
+			StatValue.Stat.STAMINA:
+				caster.hp += stat_change.amount + amount_add
+			_:
+				print_debug("Couldn't match stat: %s" % stat_change.stat)
+
+
+func calc_stat_scaling_amount(ability: AbilityDefinition, caster: Character) -> float:
+	var amt : float = 0
+	for stat_val in ability.scaling:
+		match stat_val:
+			StatValue.Stat.VIEWS:
+				amt += self.views * stat_val.amount
+			StatValue.Stat.VIEWS_PER_SEC:
+				amt += self.views_per_sec * stat_val.amount
+			StatValue.Stat.VIEWER_RETENTION:
+				amt += self.viewer_retention * stat_val.amount
+			StatValue.Stat.VIEWERS:
+				amt += self.viewers * stat_val.amount
+			StatValue.Stat.SUBSCRIBER_RATE:
+				amt += self.subscriber_rate * stat_val.amount
+			StatValue.Stat.SUBSCRIBERS:
+				amt += GameState.subscribers * stat_val.amount
+			StatValue.Stat.MEMBER_RATE:
+				amt += self.member_rate * stat_val.amount
+			StatValue.Stat.MEMBERS:
+				amt += GameState.members * stat_val.amount
+			StatValue.Stat.STAMINA:
+				amt += caster.hp * stat_val.amount
+	return amt
 
 
 func kill_character(char : Character):
