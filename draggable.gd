@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 	self.global_position = drag_object.global_position
 	if not GameState.is_dragging and cur_slot:
 		drag_object.global_position = cur_slot.global_position
-	if not draggable:
+	if not draggable or GameState.stream_manager.in_stream:
 		return
 	var rect := container.get_global_rect()
 	var mouse_pos := self.get_global_mouse_position()
