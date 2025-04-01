@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=18 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://visual_follow.gd" id="2_0vcty"]
 [ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://character.gd" id="2_1four"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="5_bv4aq"]
 [ext_resource type="Script" uid="uid://b1n7n8i4cjf7l" path="res://character_sprite.gd" id="5_wdpcj"]
 [ext_resource type="AudioStream" uid="uid://cs4qsoh8stgi3" path="res://assets/punch_general_body_impact_03.wav" id="8_qi5as"]
+[ext_resource type="PackedScene" uid="uid://bvhhm87ldr8h4" path="res://ability_slot.tscn" id="9_jb3kq"]
 
 [sub_resource type="Gradient" id="Gradient_qi5as"]
 offsets = PackedFloat32Array(0, 0.549296, 1)
@@ -324,16 +325,13 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="AbillityContainer" type="PanelContainer" parent="Visual/VBoxContainer/AbilitiesContainer"]
-custom_minimum_size = Vector2(48, 48)
+[node name="AbilitySlot" parent="Visual/VBoxContainer/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
 layout_mode = 2
 
-[node name="AbillityContainer2" type="PanelContainer" parent="Visual/VBoxContainer/AbilitiesContainer"]
-custom_minimum_size = Vector2(48, 48)
+[node name="AbilitySlot2" parent="Visual/VBoxContainer/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
 layout_mode = 2
 
-[node name="AbillityContainer3" type="PanelContainer" parent="Visual/VBoxContainer/AbilitiesContainer"]
-custom_minimum_size = Vector2(48, 48)
+[node name="AbilitySlot3" parent="Visual/VBoxContainer/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
