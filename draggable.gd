@@ -2,6 +2,8 @@ extends Control
 
 class_name Draggable
 
+var tooltip_scene := preload("res://custom_tooltip.tscn")
+
 var mouseover : bool:
 	set(val):
 		var changed := mouseover != val
@@ -73,3 +75,12 @@ func _process(delta: float) -> void:
 
 func set_container_mouse_filter(is_dragging: bool):
 	container.mouse_filter = Control.MOUSE_FILTER_IGNORE if is_dragging else Control.MOUSE_FILTER_PASS
+
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	var tooltip : CustomTooltip = tooltip_scene.instantiate()
+	if drag_object is Ability:
+		tooltip.update_from_ability_definition(drag_object.ability_definition)
+	elif drag_object is Item:
+		tooltip.update_from_item_definition(drag_object.item_definition)
+	return tooltip

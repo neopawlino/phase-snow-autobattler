@@ -8,4 +8,3 @@ void fragment() {
 	color = mix(color, flash_color, flash_intensity);
 	COLOR.rgb = color.rgb;
 }
-

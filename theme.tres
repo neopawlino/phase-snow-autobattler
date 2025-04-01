@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ddip2yriujj48"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ddip2yriujj48"]
 
 [ext_resource type="FontFile" uid="uid://d31aiqold0as0" path="res://assets/m5x7.ttf" id="2_cjfk0"]
 [ext_resource type="FontFile" uid="uid://cyf4ilchh31t0" path="res://assets/m3x6.ttf" id="2_vj6dk"]
@@ -19,6 +19,9 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 0.505882)
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05tig"]
+bg_color = Color(0.2, 0.2, 0.2, 0.737255)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gf707"]
 bg_color = Color(0.803922, 0.360784, 0.360784, 1)
@@ -56,6 +59,8 @@ anti_aliasing = false
 AbilityBar/base_type = &"ProgressBar"
 AbilityBar/styles/background = SubResource("StyleBoxFlat_110ce")
 AbilityBar/styles/fill = SubResource("StyleBoxFlat_vj6dk")
+AbilityProgressBar/base_type = &"ProgressBar"
+AbilityProgressBar/styles/fill = SubResource("StyleBoxFlat_05tig")
 HPBar/base_type = &"ProgressBar"
 HPBar/styles/fill = SubResource("StyleBoxFlat_gf707")
 Label/colors/font_shadow_color = Color(0, 0, 0, 0.662745)

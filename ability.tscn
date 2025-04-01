@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://38txeh7hqff"]
+[gd_scene load_steps=8 format=3 uid="uid://38txeh7hqff"]
 
+[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_fs08f"]
 [ext_resource type="Script" uid="uid://7wlbp1eggga0" path="res://ability.gd" id="1_sfoxn"]
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://icon.svg" id="1_uvmqb"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="2_sfoxn"]
@@ -23,6 +24,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 48.0
 offset_bottom = 48.0
+theme = ExtResource("1_fs08f")
 script = ExtResource("1_sfoxn")
 drag_component = NodePath("Draggable")
 icon = NodePath("TextureRect")
@@ -39,7 +41,19 @@ texture = ExtResource("1_uvmqb")
 expand_mode = 3
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object", "container") instance=ExtResource("2_sfoxn")]
+tooltip_text = "draggable tooltip!"
 draggable = true
 drag_object = NodePath("..")
 rect_offset = Vector2(0, 0)
 container = NodePath("../TextureRect")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+theme_type_variation = &"AbilityProgressBar"
+value = 50.0
+fill_mode = 2
+show_percentage = false

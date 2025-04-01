@@ -1,16 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://pbsxgn245l4d"]
 
 [ext_resource type="Script" uid="uid://7hv04ypb02ar" path="res://popups.gd" id="1_3kh1f"]
-[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="2_ntgy4"]
+[ext_resource type="PackedScene" uid="uid://cdqtalteor7m" path="res://custom_tooltip.tscn" id="2_2lnam"]
 
-[node name="Popups" type="Control" node_paths=PackedStringArray("title_label", "description_label", "item_popup")]
+[node name="Popups" type="Control" node_paths=PackedStringArray("item_popup")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_3kh1f")
-title_label = NodePath("CanvasLayer/PopupPanel/MarginContainer/VBoxContainer/TitleLabel")
-description_label = NodePath("CanvasLayer/PopupPanel/MarginContainer/VBoxContainer/DescriptionLabel")
 item_popup = NodePath("CanvasLayer/PopupPanel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -20,26 +18,8 @@ layer = 3
 size = Vector2i(208, 1426)
 visible = true
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PopupPanel"]
-custom_minimum_size = Vector2(200, 200)
+[node name="MarginContainer" parent="CanvasLayer/PopupPanel" instance=ExtResource("2_2lnam")]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 204.0
 offset_bottom = 1422.0
-theme = ExtResource("2_ntgy4")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PopupPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="CanvasLayer/PopupPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Test Name"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/PopupPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="DescriptionLabel" type="RichTextLabel" parent="CanvasLayer/PopupPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Test description lorem ipsum dolor alkjdfl;ajkl;sdfj"
-fit_content = true
