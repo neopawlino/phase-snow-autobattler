@@ -74,6 +74,8 @@ var viewer_goal : float = 10:
 		viewer_goal_changed.emit(val)
 signal viewer_goal_changed(value: int)
 
+var base_viewer_goal : float = 10.0
+
 var subscribers : float = 1:
 	set(val):
 		subscribers = val
@@ -110,3 +112,14 @@ var paused : bool = false:
 		paused_changed.emit(val)
 		get_tree().paused = val
 signal paused_changed(is_paused : bool)
+
+
+func _ready() -> void:
+	GlobalSignals.rewards_screen_finished.connect(func():
+		round_number += 1
+		viewer_goal = get_viewer_goal(round_number)
+	)
+
+
+func get_viewer_goal(round_num : int) -> float:
+	return base_viewer_goal * pow(1.3, round_num-1)
