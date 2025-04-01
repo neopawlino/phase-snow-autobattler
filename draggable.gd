@@ -34,8 +34,6 @@ signal drag_ended
 
 
 func _ready() -> void:
-	GameState.is_dragging_changed.connect(set_container_mouse_filter)
-
 	self.was_draggable = self.draggable
 
 	GlobalSignals.stream_anim_started.connect(func():
@@ -45,6 +43,13 @@ func _ready() -> void:
 	)
 	GlobalSignals.rewards_screen_finished.connect(func():
 		self.draggable = self.was_draggable
+	)
+
+	self.mouse_entered.connect(func():
+		self.mouseover = true
+	)
+	self.mouse_exited.connect(func():
+		self.mouseover = false
 	)
 
 	# Setting the position in the scene seems to reset when instantiating.
@@ -59,28 +64,23 @@ func _process(delta: float) -> void:
 		drag_object.global_position = cur_slot.global_position
 	if not draggable:
 		return
-	var rect := container.get_global_rect()
-	var mouse_pos := self.get_global_mouse_position()
-	if !rect.has_point(mouse_pos) and !GameState.is_dragging:
+	if GameState.is_dragging:
 		mouseover = false
-	elif !GameState.is_dragging:
-		mouseover = true
-	if mouseover and draggable:
-		if Input.is_action_just_pressed("click") and not GameState.is_dragging:
-			drag_initial_pos = drag_object.global_position
-			drag_offset = get_global_mouse_position() - self.global_position
-			GameState.is_dragging = true
-			GameState.drag_object = self.drag_object
-			GameState.drag_original_slot = self.cur_slot
-			GameState.drag_end_slot = self.cur_slot
-			GameState.drag_initial_mouse_pos = get_global_mouse_position()
-			GameState.drag_original_parent = self.drag_object.get_parent()
-			self.drag_object.reparent(GameState.drag_parent, true)
-			self.drag_started.emit()
-		if Input.is_action_pressed("click") and GameState.drag_object == self.drag_object:
-			drag_object.global_position = get_global_mouse_position() - drag_offset
-		elif Input.is_action_just_released("click") and GameState.drag_object == self.drag_object:
-			on_drag_release()
+	if mouseover and Input.is_action_just_pressed("click") and not GameState.is_dragging:
+		drag_initial_pos = drag_object.global_position
+		drag_offset = get_global_mouse_position() - self.global_position
+		GameState.is_dragging = true
+		GameState.drag_object = self.drag_object
+		GameState.drag_original_slot = self.cur_slot
+		GameState.drag_end_slot = self.cur_slot
+		GameState.drag_initial_mouse_pos = get_global_mouse_position()
+		GameState.drag_original_parent = self.drag_object.get_parent()
+		self.drag_object.reparent(GameState.drag_parent, true)
+		self.drag_started.emit()
+	if Input.is_action_pressed("click") and GameState.drag_object == self.drag_object:
+		drag_object.global_position = get_global_mouse_position() - drag_offset
+	elif Input.is_action_just_released("click") and GameState.drag_object == self.drag_object:
+		on_drag_release()
 
 
 func on_drag_release():

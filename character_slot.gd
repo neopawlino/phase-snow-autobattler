@@ -41,17 +41,12 @@ func _ready() -> void:
 		else:
 			on_mouse_exited()
 	)
-
-
-func _process(delta: float) -> void:
-	if not pickable:
-		return
-	var rect := select_container.get_global_rect()
-	var mouse_pos := self.get_global_mouse_position()
-	if !rect.has_point(mouse_pos) or not GameState.is_dragging:
-		mouseover = false
-	elif GameState.is_dragging: # and dragging a character?
-		mouseover = true
+	self.mouse_entered.connect(func():
+		self.mouseover = true
+	)
+	self.mouse_exited.connect(func():
+		self.mouseover = false
+	)
 
 
 func set_pickable(pickable : bool):

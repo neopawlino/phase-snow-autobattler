@@ -37,6 +37,7 @@ script = ExtResource("3_todjn")
 viewport = NodePath("../MainViewport")
 
 [node name="MainViewport" type="SubViewport" parent="."]
+handle_input_locally = false
 gui_embed_subwindows = true
 size = Vector2i(1280, 720)
 script = ExtResource("1_028yr")
@@ -76,6 +77,7 @@ texture = ExtResource("8_7a1vo")
 [node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
 
 [node name="Ability" parent="MainViewport" instance=ExtResource("11_ioy5u")]
+visible = false
 offset_left = 900.0
 offset_top = 500.0
 offset_right = 948.0

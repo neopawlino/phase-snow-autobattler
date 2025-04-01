@@ -38,9 +38,8 @@ theme_type_variation = &"AbilityProgressBar"
 fill_mode = 2
 show_percentage = false
 
-[node name="Draggable" parent="." node_paths=PackedStringArray("drag_object", "container") instance=ExtResource("2_sfoxn")]
+[node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("2_sfoxn")]
 tooltip_text = "draggable tooltip!"
 draggable = true
 drag_object = NodePath("..")
 rect_offset = Vector2(0, 0)
-container = NodePath("../TextureRect")
