@@ -99,6 +99,9 @@ _data = {
 [node name="Item" type="Node2D" node_paths=PackedStringArray("price_label", "price", "drag_component", "sprite")]
 texture_filter = 1
 script = ExtResource("1_drrui")
+price_color = null
+price_unaffordable_color = null
+mouseover_scale = null
 price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
 drag_component = NodePath("Draggable")

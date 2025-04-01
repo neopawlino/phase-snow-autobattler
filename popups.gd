@@ -6,10 +6,8 @@ extends Control
 @export var item_popup : Popup
 
 
-func show_item_popup(item_rect : Rect2i, item_def : ItemDefinition):
-	if item_def != null:
-		update_from_item_definition(item_def)
-		item_popup.size = Vector2i.ZERO
+func show_item_popup(item_rect : Rect2i):
+	item_popup.size = Vector2i.ZERO
 
 	var mouse_pos := get_viewport().get_mouse_position()
 	var correction : Vector2i
@@ -30,3 +28,8 @@ func hide_item_popup():
 func update_from_item_definition(item_def : ItemDefinition):
 	title_label.text = item_def.display_name
 	description_label.text = item_def.description_text
+
+
+func update_from_ability_definition(ability_def : AbilityDefinition):
+	title_label.text = ability_def.ability_name
+	description_label.text = ability_def.description

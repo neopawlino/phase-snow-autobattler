@@ -51,7 +51,8 @@ func _ready() -> void:
 func on_drag_component_mouseover_changed(is_mouseover : bool):
 	if is_mouseover:
 		var rect_offset := drag_component.size / 2
-		Popups.show_item_popup(Rect2i(Vector2i(drag_component.global_position - rect_offset), Vector2i(drag_component.size)), item_definition)
+		Popups.update_from_item_definition(item_definition)
+		Popups.show_item_popup(Rect2i(Vector2i(drag_component.global_position - rect_offset), Vector2i(drag_component.size)))
 	else:
 		Popups.hide_item_popup()
 	if not drag_component.draggable:

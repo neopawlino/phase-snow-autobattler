@@ -1,10 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://38txeh7hqff"]
+[gd_scene load_steps=7 format=3 uid="uid://38txeh7hqff"]
 
 [ext_resource type="Script" uid="uid://7wlbp1eggga0" path="res://ability.gd" id="1_sfoxn"]
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://icon.svg" id="1_uvmqb"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="2_sfoxn"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://stat_value.gd" id="3_0oypb"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="4_fs08f"]
 
-[node name="Ability" type="Control" node_paths=PackedStringArray("drag_component")]
+[sub_resource type="Resource" id="Resource_yujsf"]
+script = ExtResource("4_fs08f")
+ability_name = "Test Ability"
+icon = ExtResource("1_uvmqb")
+description = "Does test things"
+stat_changes = Array[ExtResource("3_0oypb")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("3_0oypb")]([])
+ability_keys = Array[StringName]([])
+metadata/_custom_type_script = "uid://cgaytqa18e8dx"
+
+[node name="Ability" type="Control" node_paths=PackedStringArray("drag_component", "icon")]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
 anchors_preset = 0
@@ -12,6 +25,8 @@ offset_right = 48.0
 offset_bottom = 48.0
 script = ExtResource("1_sfoxn")
 drag_component = NodePath("Draggable")
+icon = NodePath("TextureRect")
+ability_definition = SubResource("Resource_yujsf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

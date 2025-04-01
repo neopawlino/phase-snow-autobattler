@@ -75,9 +75,9 @@ texture = ExtResource("8_7a1vo")
 [node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
 
 [node name="Ability" parent="MainViewport" instance=ExtResource("11_ioy5u")]
-offset_left = 500.0
+offset_left = 900.0
 offset_top = 500.0
-offset_right = 548.0
+offset_right = 948.0
 offset_bottom = 548.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

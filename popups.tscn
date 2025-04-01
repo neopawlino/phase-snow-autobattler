@@ -14,9 +14,10 @@ description_label = NodePath("CanvasLayer/PopupPanel/MarginContainer/VBoxContain
 item_popup = NodePath("CanvasLayer/PopupPanel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="PopupPanel" type="PopupPanel" parent="CanvasLayer"]
-size = Vector2i(208, 1243)
+size = Vector2i(208, 1426)
 visible = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PopupPanel"]
@@ -24,7 +25,7 @@ custom_minimum_size = Vector2(200, 200)
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 204.0
-offset_bottom = 1239.0
+offset_bottom = 1422.0
 theme = ExtResource("2_ntgy4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PopupPanel/MarginContainer"]
