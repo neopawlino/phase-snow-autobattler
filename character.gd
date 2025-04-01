@@ -71,10 +71,6 @@ var hp : int:
 		hp_changed.emit(hp, old_hp)
 signal hp_changed(new_hp : int, old_hp : int)
 
-var abilities : Array[AbilityDefinition]
-var ability_levels : Array[int]
-signal ability_levels_changed(levels : Array[int])
-
 var cur_level : int = 0:
 	set(value):
 		cur_level = value
@@ -96,8 +92,7 @@ var skill_points : int = 0:
 		skill_points_changed.emit(value)
 signal skill_points_changed(value : int)
 
-var ability_timers : Array[Timer]
-var ability_bars : Array[ProgressBar]
+var ability_timers : Array[CustomTimer]
 
 # StatusId -> int (number of stacks)
 var statuses : Dictionary
@@ -134,6 +129,8 @@ var char_def : CharacterDefinition
 
 @onready var skill_points_label : Label = %SkillPointsLabel
 @export var drag_component : Draggable
+
+@export var ability_slots : Array[Slot]
 
 
 signal died
@@ -172,7 +169,6 @@ func _ready() -> void:
 
 
 func _process(delta: float):
-	update_ability_bars()
 	if GameState.is_dragging and GameState.drag_object == self:
 		if GameState.drag_sell_button:
 			self.sprite.frame = sell_sprite_frame
@@ -265,15 +261,6 @@ func remove_self():
 	self.queue_free()
 
 
-func update_ability_bars():
-	# future: interpolate/smooth bar visual updates
-	for i in range(len(ability_bars)):
-		var ability_timer := ability_timers[i]
-		var ability_bar := ability_bars[i]
-		ability_bar.max_value = ability_timer.wait_time
-		ability_bar.value = ability_timer.wait_time - ability_timer.time_left
-
-
 func update_hp_bar(hp : int, max_hp : int):
 	hp_bar.max_value = max_hp
 	hp_bar.value = hp
@@ -306,8 +293,6 @@ func update_skill_points(value : int):
 func my_duplicate() -> Character:
 	var char_scene : PackedScene = preload("res://character.tscn")
 	var new_char : Character = char_scene.instantiate()
-	new_char.abilities = self.abilities.duplicate()
-	new_char.ability_levels = self.ability_levels.duplicate()
 	new_char.max_hp = self.max_hp
 	new_char.hp = self.max_hp
 	new_char.pos = self.pos
@@ -325,6 +310,15 @@ func my_duplicate() -> Character:
 		new_char.add_unique_status(status)
 	for status_id in self.statuses:
 		new_char.add_status(status_id, self.statuses[status_id])
+
+	# add abilities
+	var abilities := self.get_abilities()
+	for i in range(len(abilities)):
+		var new_ability : Ability = abilities[i].duplicate()
+		var new_slot := new_char.ability_slots[i]
+		new_slot.slot_obj = new_ability
+		new_slot.add_child(new_ability)
+		new_ability.global_position = new_slot.global_position
 
 	new_char.global_position = self.global_position
 	new_char.visual.global_position = self.visual.global_position
@@ -346,8 +340,6 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.character_name = char_def.character_name
 	self.max_hp = char_def.max_hp
 	self.hp = max_hp
-	self.abilities = char_def.abilities.duplicate()
-	self.ability_levels = char_def.initial_ability_levels.duplicate()
 	self.levels = char_def.levels.duplicate()
 	self.level_requirements = char_def.level_requirements.duplicate()
 	self.cur_level = char_def.initial_level
@@ -394,26 +386,24 @@ func level_up():
 	cur_level += 1
 
 
-func level_up_ability(ability_index : int):
-	if skill_points <= 0:
-		return
-	skill_points -= 1
-	ability_levels[ability_index] += 1
-	ability_levels_changed.emit(ability_levels)
-
-
 func add_max_hp(hp: int):
 	self.max_hp += hp
 	self.hp += hp
 
 
+func get_abilities() -> Array[Ability]:
+	var abilities : Array[Ability] = []
+	for slot in ability_slots:
+		if slot.slot_obj is Ability:
+			abilities.append(slot.slot_obj)
+	return abilities
+
+
 func make_timers():
-	for i in range(len(abilities)):
-		var ability_def := abilities[i]
-		var ability_level_index := ability_levels[i] - 1
-		if ability_level_index < 0:
-			continue
-		var timer := Timer.new()
+	var abilities := get_abilities()
+	for ability in abilities:
+		var ability_def := ability.ability_definition
+		var timer := CustomTimer.new()
 		var ability_char := char
 		timer.wait_time = ability_def.cooldown
 		timer.timeout.connect(func():
@@ -425,24 +415,16 @@ func make_timers():
 			if self.is_inside_tree():
 				cast_ability(ability_def)
 		)
-		timer.autostart = true
+		timer.started = true
+		timer.progress_bar = ability.progress_bar
 		self.add_child(timer)
 		self.ability_timers.append(timer)
-
-		var ability_bar : ProgressBar = ability_bar_scene.instantiate()
-		self.ability_bars.append(ability_bar)
-		self.ability_bar_container.add_child(ability_bar)
 
 
 func stop_timers():
 	for timer in ability_timers:
-		timer.stop()
 		timer.queue_free()
 	ability_timers.clear()
-
-	for bar in ability_bars:
-		bar.queue_free()
-	ability_bars.clear()
 
 
 func cast_ability(ability: AbilityDefinition):

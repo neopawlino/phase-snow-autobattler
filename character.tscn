@@ -139,7 +139,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component")]
+[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots")]
 texture_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/SpriteParent/Sprite2D")
@@ -159,6 +159,7 @@ name_label = NodePath("Visual/VBoxContainer/NameLabel")
 char_info_container = NodePath("Visual/VBoxContainer")
 status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
 drag_component = NodePath("Draggable")
+ability_slots = [NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot"), NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot2"), NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot3")]
 
 [node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "smoke_particles")]
 script = ExtResource("2_0vcty")

@@ -165,7 +165,7 @@ func start_stream():
 	clear_teams()
 	#GameState.items.set_items_draggable(false)
 	for slot in slots.player_team:
-		if slot.slot_obj != null:
+		if slot.slot_obj is Character:
 			player_team.append(slot.slot_obj.my_duplicate())
 	#for slot in slots.enemy_team:
 		#if slot.slot_obj != null:

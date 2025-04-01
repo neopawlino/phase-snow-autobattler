@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://38txeh7hqff"]
+[gd_scene load_steps=10 format=3 uid="uid://38txeh7hqff"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_fs08f"]
 [ext_resource type="Script" uid="uid://7wlbp1eggga0" path="res://ability.gd" id="1_sfoxn"]
@@ -7,18 +7,30 @@
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://stat_value.gd" id="3_0oypb"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="4_fs08f"]
 
+[sub_resource type="Resource" id="Resource_fs08f"]
+script = ExtResource("3_0oypb")
+stat = 5
+amount = 0.1
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_2hbn7"]
+script = ExtResource("3_0oypb")
+stat = 1
+amount = 1.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
 [sub_resource type="Resource" id="Resource_yujsf"]
 script = ExtResource("4_fs08f")
 ability_name = "Test Ability"
 icon = ExtResource("1_uvmqb")
 description = "Does test things"
-stat_changes = Array[ExtResource("3_0oypb")]([])
+stat_changes = Array[ExtResource("3_0oypb")]([SubResource("Resource_2hbn7")])
 cooldown = 1.0
-scaling = Array[ExtResource("3_0oypb")]([])
+scaling = Array[ExtResource("3_0oypb")]([SubResource("Resource_fs08f")])
 ability_keys = Array[StringName]([])
 metadata/_custom_type_script = "uid://cgaytqa18e8dx"
 
-[node name="Ability" type="Control" node_paths=PackedStringArray("drag_component", "icon")]
+[node name="Ability" type="Control" node_paths=PackedStringArray("drag_component", "icon", "progress_bar")]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
 anchors_preset = 0
@@ -29,6 +41,7 @@ script = ExtResource("1_sfoxn")
 drag_component = NodePath("Draggable")
 icon = NodePath("TextureRect")
 ability_definition = SubResource("Resource_yujsf")
+progress_bar = NodePath("ProgressBar")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -40,20 +53,18 @@ grow_vertical = 2
 texture = ExtResource("1_uvmqb")
 expand_mode = 3
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_type_variation = &"AbilityProgressBar"
+fill_mode = 2
+show_percentage = false
+
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object", "container") instance=ExtResource("2_sfoxn")]
 tooltip_text = "draggable tooltip!"
 draggable = true
 drag_object = NodePath("..")
 rect_offset = Vector2(0, 0)
 container = NodePath("../TextureRect")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
-theme_type_variation = &"AbilityProgressBar"
-value = 50.0
-fill_mode = 2
-show_percentage = false
