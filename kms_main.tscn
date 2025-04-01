@@ -19,7 +19,7 @@
 viewport_path = NodePath("MainViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0cxrm"]
-viewport_path = NodePath("MainViewport/KBS/PreviewViewportContainer/PreviewViewport")
+viewport_path = NodePath("PreviewViewportContainer/PreviewViewport")
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_5fqus")
@@ -83,18 +83,22 @@ offset_bottom = 548.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="StreamViewportManager" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("stream_viewport_texture")]
-script = ExtResource("12_hvt5d")
-stream_viewport_texture = NodePath("../StreamViewportTexture")
-
-[node name="StreamViewportTexture" type="TextureRect" parent="CanvasLayer"]
+[node name="StreamViewportTexture" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("viewport")]
 visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
 texture = SubResource("ViewportTexture_0cxrm")
+script = ExtResource("3_todjn")
+viewport = NodePath("../../MainViewport/KBS/PreviewViewportContainer/PreviewViewport")
 
 [node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
 visible = false
 
 [node name="DragContainer" type="Node" parent="CanvasLayer"]
 script = ExtResource("15_mldad")
+
+[node name="StreamViewportManager" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("stream_viewport_texture")]
+script = ExtResource("12_hvt5d")
+stream_viewport_texture = NodePath("../StreamViewportTexture")
 
 [editable path="MainViewport/KBS"]

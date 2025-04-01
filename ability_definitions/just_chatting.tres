@@ -1,14 +1,28 @@
-[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=3 format=3 uid="uid://cn5wsgbf1r7t2"]
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=6 format=3 uid="uid://cn5wsgbf1r7t2"]
 
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://stat_value.gd" id="1_0gipy"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://icon.svg" id="1_ndq4w"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="2_ndq4w"]
+
+[sub_resource type="Resource" id="Resource_3vjuy"]
+script = ExtResource("1_0gipy")
+stat = 5
+amount = 0.02
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_4jnqx"]
+script = ExtResource("1_0gipy")
+stat = 1
+amount = 5.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
 [resource]
 script = ExtResource("2_ndq4w")
-ability_name = ""
-description = ""
-stat_changes = Array[ExtResource("1_0gipy")]([])
-cooldown = 1.0
-scaling = Array[ExtResource("1_0gipy")]([])
+ability_name = "Just Chatting"
+icon = ExtResource("1_ndq4w")
+description = "Gain %d Views/sec (2%% subscribers)"
+stat_changes = Array[ExtResource("1_0gipy")]([SubResource("Resource_4jnqx")])
+cooldown = 3.0
+scaling = Array[ExtResource("1_0gipy")]([SubResource("Resource_3vjuy")])
 ability_keys = Array[StringName]([])
 metadata/_custom_type_script = "uid://cgaytqa18e8dx"

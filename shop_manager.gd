@@ -3,7 +3,7 @@ extends Node
 class_name ShopManager
 
 @export var shop_ui : Control
-@export var combat_manager : CombatManager
+@export var stream_manager : StreamManager
 
 var shop_slots : Array[Slot]
 var item_slots : Array[Slot]
@@ -162,7 +162,7 @@ func hide_shop():
 
 func _on_button_pressed() -> void:
 	hide_shop()
-	combat_manager.start_combat()
+	stream_manager.start_combat()
 
 
 func _on_reroll_button_pressed() -> void:

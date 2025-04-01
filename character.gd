@@ -428,32 +428,6 @@ func stop_timers():
 
 
 func cast_ability(ability: AbilityDefinition):
-	#var target_team : int = Team.ENEMY if self.team == Team.PLAYER else Team.PLAYER
-	#var targets : Array[int] = []
-
-	#if ability.ability_type == AbilityLevel.AbilityType.BUFF:
-		#target_team = self.team
-		#var start_index = maxi(0, self.pos - ability.ability_range)
-		#var end_index = mini(GameState.combat_manager.slots.max_slots, self.pos + ability.ability_range + 1)
-		#for i in range(start_index, end_index):
-			#targets.append(i)
-	#else:
-		#var effective_range := ability.ability_range - self.pos
-		#var pierce := ability.pierce
-		#var i := 0
-		#while i < effective_range and pierce >= 0:
-			#if i >= GameState.combat_manager.slots.max_slots:
-				#break
-			#targets.append(i)
-			#i += 1
-			#pierce -= 1
-
-	#if not targets.is_empty():
-		#GlobalSignals.ability_applied.emit(ability, target_team, targets, self.statuses)
-		#var toxic_value : int = get_status_value(StatusEffect.StatusId.TOXIC)
-		#if toxic_value > 0:
-			#take_damage(toxic_value)
-			#self.add_status(StatusEffect.StatusId.TOXIC, -1)
 	GlobalSignals.ability_applied.emit(ability, self.statuses, self)
 
 

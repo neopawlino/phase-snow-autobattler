@@ -2,7 +2,7 @@ extends Node
 
 var slots : Slots
 var items : Items
-var combat_manager : CombatManager
+var stream_manager : StreamManager
 var shop_manager : ShopManager
 
 var is_dragging : bool = false:

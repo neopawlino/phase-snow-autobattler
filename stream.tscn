@@ -24,7 +24,6 @@ grow_vertical = 2
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StreamUI" parent="UICanvasLayer" node_paths=PackedStringArray("stream_manager") instance=ExtResource("1_t8krr")]
-visible = false
 stream_manager = NodePath("../../StreamManager")
 
 [node name="BGCanvasLayer" type="CanvasLayer" parent="."]

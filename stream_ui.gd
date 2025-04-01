@@ -1,6 +1,6 @@
 extends Control
 
-@export var stream_manager : CombatManager
+@export var stream_manager : StreamManager
 
 @export var viewer_goal : Label
 @export var views : Label

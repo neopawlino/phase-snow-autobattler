@@ -1,6 +1,6 @@
 extends Node
 
-class_name CombatManager
+class_name StreamManager
 
 var character_scene : PackedScene = preload("res://character.tscn")
 
@@ -86,11 +86,12 @@ var damage_tick_timer : float
 
 
 func _ready():
-	GameState.combat_manager = self
+	GameState.stream_manager = self
 	GlobalSignals.ability_applied.connect(apply_ability)
 	GlobalSignals.character_died.connect(on_character_died)
 	GlobalSignals.player_character_died.connect(on_player_character_died)
 	GlobalSignals.stream_started.connect(start_stream)
+	GlobalSignals.stream_results_confirmed.connect(reset_stats)
 	GameState.subscribers_changed.connect(on_subscribers_changed)
 	hide_teams()
 
