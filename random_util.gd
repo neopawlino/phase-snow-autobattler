@@ -28,3 +28,7 @@ func _ready() -> void:
 	all_characters_rg.load_all_into(all_character_definitions)
 	all_items_rg.load_all_into(all_item_definitions)
 	all_abilities_rg.load_all_into(all_ability_definitions)
+
+
+func random_ability() -> AbilityDefinition:
+	return all_ability_definitions.pick_random()

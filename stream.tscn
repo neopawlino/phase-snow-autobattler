@@ -111,13 +111,13 @@ alignment = 1
 
 [node name="StreamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
 script = ExtResource("3_4pdcm")
-character_container = NodePath("CombatCharacterContainer")
+character_container = NodePath("StreamCharacterContainer")
 slots = NodePath("../CharacterSlots")
 win_reward = 5
 lose_reward = 5
 draw_reward = 5
 
-[node name="CombatCharacterContainer" type="Control" parent="StreamManager"]
+[node name="StreamCharacterContainer" type="Control" parent="StreamManager"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

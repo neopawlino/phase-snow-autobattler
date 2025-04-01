@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_o78bw")
-base_folder = ""
-includes = Array[String]([])
+base_folder = "res://ability_definitions"
+includes = Array[String](["*.tres"])
 excludes = Array[String]([])
-paths = Array[String]([])
+paths = Array[String](["res://ability_definitions/just_chatting.tres"])
 metadata/_custom_type_script = "uid://bbdbym8di10nf"

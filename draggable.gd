@@ -26,6 +26,8 @@ var cur_slot : Slot
 var drag_initial_pos : Vector2
 var drag_offset : Vector2
 
+var was_draggable : bool
+
 
 signal drag_started
 signal drag_ended
@@ -33,6 +35,18 @@ signal drag_ended
 
 func _ready() -> void:
 	GameState.is_dragging_changed.connect(set_container_mouse_filter)
+
+	self.was_draggable = self.draggable
+
+	GlobalSignals.stream_anim_started.connect(func():
+		self.was_draggable = self.draggable
+		self.draggable = false
+		self.on_drag_release()
+	)
+	GlobalSignals.rewards_screen_finished.connect(func():
+		self.draggable = self.was_draggable
+	)
+
 	# Setting the position in the scene seems to reset when instantiating.
 	# Setting it in code here seems to fix that
 	container.position = rect_offset
@@ -43,7 +57,7 @@ func _process(delta: float) -> void:
 	self.global_position = drag_object.global_position
 	if not GameState.is_dragging and cur_slot:
 		drag_object.global_position = cur_slot.global_position
-	if not draggable or GameState.stream_manager.in_stream:
+	if not draggable:
 		return
 	var rect := container.get_global_rect()
 	var mouse_pos := self.get_global_mouse_position()
@@ -66,11 +80,16 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("click") and GameState.drag_object == self.drag_object:
 			drag_object.global_position = get_global_mouse_position() - drag_offset
 		elif Input.is_action_just_released("click") and GameState.drag_object == self.drag_object:
-			GameState.is_dragging = false
-			GameState.drag_object = null
-			self.drag_object.reparent(GameState.drag_original_parent, true)
-			GameState.drag_original_parent = null
-			self.drag_ended.emit()
+			on_drag_release()
+
+
+func on_drag_release():
+	GameState.is_dragging = false
+	GameState.drag_object = null
+	if GameState.drag_original_parent:
+		self.drag_object.reparent(GameState.drag_original_parent, true)
+	GameState.drag_original_parent = null
+	self.drag_ended.emit()
 
 
 func set_container_mouse_filter(is_dragging: bool):

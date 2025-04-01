@@ -195,7 +195,7 @@ func handle_drag_ended():
 		last_tween.kill()
 	if GameState.drag_sell_button and not from_shop:
 		self.sell_character()
-	elif GameState.drag_end_slot and GameState.drag_end_slot.slot_obj \
+	elif GameState.drag_end_slot and GameState.drag_end_slot.slot_obj is Character \
 		and GameState.drag_end_slot.slot_obj.can_merge(self):
 		merge_character(GameState.drag_end_slot.slot_obj)
 	elif GameState.drag_end_slot and not GameState.drag_end_slot.slot_obj:

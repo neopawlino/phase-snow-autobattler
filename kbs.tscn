@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://buhn71elsgfi3"]
+[gd_scene load_steps=8 format=3 uid="uid://buhn71elsgfi3"]
 
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://kms_theme.tres" id="1_4p8mj"]
 [ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://custom_window.gd" id="2_0dw17"]
 [ext_resource type="Script" uid="uid://bfvu87lg824h7" path="res://start_streaming_button.gd" id="3_0dw17"]
+[ext_resource type="Script" uid="uid://ctwyrt1e74foh" path="res://ability_slots.gd" id="3_a1e8s"]
 [ext_resource type="PackedScene" uid="uid://bvhhm87ldr8h4" path="res://ability_slot.tscn" id="3_fw664"]
 [ext_resource type="Script" uid="uid://da6i7bw7i7w3j" path="res://preview_viewport_container.gd" id="3_mj7rv"]
 [ext_resource type="PackedScene" uid="uid://ctphvxmiwu62f" path="res://stream.tscn" id="4_fw664"]
@@ -84,6 +85,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
+script = ExtResource("3_a1e8s")
 
 [node name="AbilitySlot" parent="KBSMain/VBoxContainer/KBSControlsContainer/Panel/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
 layout_mode = 2

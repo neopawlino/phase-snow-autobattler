@@ -4,6 +4,7 @@ var slots : Slots
 var items : Items
 var stream_manager : StreamManager
 var shop_manager : ShopManager
+var ability_slots : AbilitySlots
 
 var is_dragging : bool = false:
 	set(val):
