@@ -83,4 +83,6 @@ func _make_custom_tooltip(for_text: String) -> Object:
 		tooltip.update_from_ability_definition(drag_object.ability_definition)
 	elif drag_object is Item:
 		tooltip.update_from_item_definition(drag_object.item_definition)
+	elif drag_object is Character:
+		tooltip.update_from_character_definition(drag_object.char_def)
 	return tooltip

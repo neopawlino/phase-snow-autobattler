@@ -15,11 +15,11 @@ item_popup = NodePath("CanvasLayer/PopupPanel")
 layer = 3
 
 [node name="PopupPanel" type="PopupPanel" parent="CanvasLayer"]
-size = Vector2i(208, 1426)
+size = Vector2i(368, 1426)
 visible = true
 
 [node name="MarginContainer" parent="CanvasLayer/PopupPanel" instance=ExtResource("2_2lnam")]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 204.0
+offset_right = 364.0
 offset_bottom = 1422.0

@@ -13,6 +13,12 @@ func update_from_item_definition(item_def : ItemDefinition):
 	cooldown_container.hide()
 
 
+func update_from_character_definition(char_def : CharacterDefinition):
+	title_label.text = char_def.character_name
+	description_label.text = char_def.character_name
+	cooldown_container.hide()
+
+
 func update_from_ability_definition(ability_def : AbilityDefinition):
 	title_label.text = ability_def.ability_name
 	description_label.text = ability_def.description
