@@ -5,9 +5,10 @@ class_name Slot
 enum SlotType {
 	CHARACTER,
 	ITEM,
+	ABILITY
 }
 
-var slot_type : SlotType
+@export var slot_type : SlotType
 var slot_index : int
 var slot_obj : Node
 
@@ -15,7 +16,7 @@ var slot_obj : Node
 @export var sprite : Sprite2D
 var sprite_base_scale : Vector2
 
-@onready var merge_swap_timer : Timer = %MergeSwapTimer
+@export var merge_swap_timer : Timer
 
 
 var mouseover : bool:
@@ -26,12 +27,14 @@ var mouseover : bool:
 			mouseover_changed.emit(val)
 signal mouseover_changed(is_mouseover: bool)
 
-var pickable : bool
+@export var pickable : bool
 
 
 func _ready() -> void:
-	self.sprite_base_scale = sprite.scale
-	self.merge_swap_timer.timeout.connect(drag_swap)
+	if self.sprite:
+		self.sprite_base_scale = sprite.scale
+	if self.merge_swap_timer:
+		self.merge_swap_timer.timeout.connect(drag_swap)
 	self.mouseover_changed.connect(func(is_mouseover : bool):
 		if is_mouseover:
 			on_mouse_entered()
@@ -64,7 +67,8 @@ func drag_swap():
 
 
 func on_mouse_entered() -> void:
-	self.sprite.scale = self.sprite_base_scale * 1.1
+	if sprite:
+		self.sprite.scale = self.sprite_base_scale * 1.1
 	if not GameState.is_dragging:
 		return
 	if GameState.drag_object is Character and self.slot_type == SlotType.CHARACTER:
@@ -78,6 +82,8 @@ func on_mouse_entered() -> void:
 		GameState.drag_end_slot = self
 		if GameState.drag_can_swap and self.slot_obj != null and GameState.drag_object.cur_slot:
 			drag_item_swap()
+	elif GameState.drag_object is Ability and self.slot_type == SlotType.ABILITY:
+		GameState.drag_end_slot = self
 
 
 func drag_item_swap():
@@ -92,9 +98,11 @@ func is_empty() -> bool:
 
 
 func on_mouse_exited() -> void:
-	self.sprite.scale = self.sprite_base_scale
+	if sprite:
+		self.sprite.scale = self.sprite_base_scale
 	if not GameState.is_dragging:
 		return
 	if GameState.drag_end_slot == self:
 		GameState.drag_end_slot = null
-	merge_swap_timer.stop()
+	if merge_swap_timer:
+		merge_swap_timer.stop()

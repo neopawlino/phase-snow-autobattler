@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=17 format=3 uid="uid://baiyj43bn6b1k"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=18 format=3 uid="uid://baiyj43bn6b1k"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="1_167rq"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://icon.svg" id="2_2048t"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://stat_value.gd" id="2_fuv3c"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="3_chc5m"]
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://my_assets/SAPC_Rie_Sheet.png" id="4_e8q58"]
@@ -17,6 +18,7 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 [sub_resource type="Resource" id="Resource_d0bo2"]
 script = ExtResource("1_167rq")
 ability_name = "Pafu Bite"
+icon = ExtResource("2_2048t")
 description = "add 10 views/1 sec"
 stat_changes = Array[ExtResource("2_fuv3c")]([SubResource("Resource_2048t")])
 cooldown = 1.0

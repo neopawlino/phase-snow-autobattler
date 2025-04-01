@@ -1,152 +1,39 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=33 format=3 uid="uid://cl2jphos1r0ne"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=17 format=3 uid="uid://cl2jphos1r0ne"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="1_dsskw"]
-[ext_resource type="Script" uid="uid://s8flvcmw4ywi" path="res://ability_level.gd" id="2_5bprv"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://stat_value.gd" id="2_xq82b"]
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://status_effects/status_effect.gd" id="3_6efyn"]
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://my_assets/SAPC_Rie_Sheet.png" id="4_xis48"]
 [ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://character_level.gd" id="5_mojwf"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_jhfa5"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://status_effects/unique_status.gd" id="7_xq82b"]
 
-[sub_resource type="Resource" id="Resource_0x04l"]
-script = ExtResource("2_5bprv")
-ability_type = 0
-physical_damage = 2
-cooldown = 1.0
-ability_range = 2
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([])
-
-[sub_resource type="Resource" id="Resource_qi428"]
-script = ExtResource("2_5bprv")
-ability_type = 0
-physical_damage = 3
-cooldown = 0.9
-ability_range = 2
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([])
-
-[sub_resource type="Resource" id="Resource_0npco"]
-script = ExtResource("3_6efyn")
-status_id = 1
-value = 1
-
-[sub_resource type="Resource" id="Resource_rvljk"]
-script = ExtResource("2_5bprv")
-ability_type = 0
-physical_damage = 3
-cooldown = 0.8
-ability_range = 3
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([SubResource("Resource_0npco")])
-
 [sub_resource type="Resource" id="Resource_d0bo2"]
 script = ExtResource("1_dsskw")
 ability_name = "Pafu Bite"
-ability_levels = Array[ExtResource("2_5bprv")]([SubResource("Resource_0x04l"), SubResource("Resource_qi428"), SubResource("Resource_rvljk")])
-
-[sub_resource type="Resource" id="Resource_ktxeh"]
-script = ExtResource("3_6efyn")
-status_id = 1
-value = 5
-
-[sub_resource type="Resource" id="Resource_cviki"]
-script = ExtResource("2_5bprv")
-ability_type = 1
-physical_damage = 0
-cooldown = 2.0
-ability_range = 1
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([SubResource("Resource_ktxeh")])
-
-[sub_resource type="Resource" id="Resource_50ysd"]
-script = ExtResource("3_6efyn")
-status_id = 1
-value = 7
-
-[sub_resource type="Resource" id="Resource_17l2b"]
-script = ExtResource("2_5bprv")
-ability_type = 1
-physical_damage = 0
-cooldown = 1.8
-ability_range = 1
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([SubResource("Resource_50ysd")])
-
-[sub_resource type="Resource" id="Resource_68et2"]
-script = ExtResource("3_6efyn")
-status_id = 1
-value = 9
-
-[sub_resource type="Resource" id="Resource_1okb1"]
-script = ExtResource("2_5bprv")
-ability_type = 1
-physical_damage = 0
-cooldown = 1.6
-ability_range = 2
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([SubResource("Resource_68et2")])
+description = ""
+stat_changes = Array[ExtResource("2_xq82b")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_xq82b")]([])
+ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_3pnjp"]
 script = ExtResource("1_dsskw")
 ability_name = "\"Love\" Potion #520"
-ability_levels = Array[ExtResource("2_5bprv")]([SubResource("Resource_cviki"), SubResource("Resource_17l2b"), SubResource("Resource_1okb1")])
-
-[sub_resource type="Resource" id="Resource_aeaox"]
-script = ExtResource("3_6efyn")
-status_id = 1
-value = 10
-
-[sub_resource type="Resource" id="Resource_lnent"]
-script = ExtResource("2_5bprv")
-ability_type = 0
-physical_damage = 10
-cooldown = 10.0
-ability_range = 99
-pierce = 99
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([SubResource("Resource_aeaox")])
-
-[sub_resource type="Resource" id="Resource_y22am"]
-script = ExtResource("3_6efyn")
-status_id = 1
-value = 15
-
-[sub_resource type="Resource" id="Resource_d74b7"]
-script = ExtResource("2_5bprv")
-ability_type = 0
-physical_damage = 15
-cooldown = 9.0
-ability_range = 99
-pierce = 99
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([SubResource("Resource_y22am")])
-
-[sub_resource type="Resource" id="Resource_foo17"]
-script = ExtResource("3_6efyn")
-status_id = 1
-value = 20
-
-[sub_resource type="Resource" id="Resource_8hxs4"]
-script = ExtResource("2_5bprv")
-ability_type = 0
-physical_damage = 20
-cooldown = 8.0
-ability_range = 99
-pierce = 99
-income = 0
-applied_statuses = Array[ExtResource("3_6efyn")]([SubResource("Resource_foo17")])
+description = ""
+stat_changes = Array[ExtResource("2_xq82b")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_xq82b")]([])
+ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_olj2m"]
 script = ExtResource("1_dsskw")
 ability_name = "Requiem"
-ability_levels = Array[ExtResource("2_5bprv")]([SubResource("Resource_lnent"), SubResource("Resource_d74b7"), SubResource("Resource_8hxs4")])
+description = ""
+stat_changes = Array[ExtResource("2_xq82b")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_xq82b")]([])
+ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_s0rwx"]
 script = ExtResource("5_mojwf")

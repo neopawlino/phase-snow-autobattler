@@ -3,6 +3,7 @@ extends Resource
 class_name AbilityDefinition
 
 @export var ability_name : String
+@export var icon : Texture2D
 @export var description : String
 @export var stat_changes : Array[StatValue]
 

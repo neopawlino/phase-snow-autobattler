@@ -1,132 +1,39 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=28 format=3 uid="uid://110qt3emx8hl"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=16 format=3 uid="uid://110qt3emx8hl"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://ability_definition.gd" id="1_gfe1s"]
-[ext_resource type="Script" uid="uid://s8flvcmw4ywi" path="res://ability_level.gd" id="2_o0sek"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://stat_value.gd" id="2_bxlyt"]
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://status_effects/status_effect.gd" id="3_inkqf"]
 [ext_resource type="Texture2D" uid="uid://c6kreiov0lvdg" path="res://my_assets/SAPC_Pippa_Sheet.png" id="4_1d2hq"]
 [ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://character_level.gd" id="5_2leud"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_j07mt"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://status_effects/unique_status.gd" id="7_gkwi3"]
 
-[sub_resource type="Resource" id="Resource_hljlv"]
-script = ExtResource("2_o0sek")
-ability_type = 0
-physical_damage = 2
-cooldown = 1.0
-ability_range = 1
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([])
-
-[sub_resource type="Resource" id="Resource_ox18q"]
-script = ExtResource("2_o0sek")
-ability_type = 0
-physical_damage = 3
-cooldown = 0.9
-ability_range = 1
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([])
-
-[sub_resource type="Resource" id="Resource_g4p21"]
-script = ExtResource("2_o0sek")
-ability_type = 0
-physical_damage = 4
-cooldown = 0.8
-ability_range = 1
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([])
-
 [sub_resource type="Resource" id="Resource_muout"]
 script = ExtResource("1_gfe1s")
 ability_name = "The Ripper"
-ability_levels = Array[ExtResource("2_o0sek")]([SubResource("Resource_hljlv"), SubResource("Resource_ox18q"), SubResource("Resource_g4p21")])
-
-[sub_resource type="Resource" id="Resource_vm3rt"]
-script = ExtResource("2_o0sek")
-ability_type = 0
-physical_damage = 10
-cooldown = 3.0
-ability_range = 2
-pierce = 1
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([])
-
-[sub_resource type="Resource" id="Resource_hdg7o"]
-script = ExtResource("2_o0sek")
-ability_type = 0
-physical_damage = 15
-cooldown = 2.8
-ability_range = 3
-pierce = 1
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([])
-
-[sub_resource type="Resource" id="Resource_oyir6"]
-script = ExtResource("2_o0sek")
-ability_type = 0
-physical_damage = 20
-cooldown = 2.5
-ability_range = 4
-pierce = 2
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([])
+description = ""
+stat_changes = Array[ExtResource("2_bxlyt")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_bxlyt")]([])
+ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_ip3ax"]
 script = ExtResource("1_gfe1s")
 ability_name = "I'm Gonna ****ing Shoot Up A W*lm*rt"
-ability_levels = Array[ExtResource("2_o0sek")]([SubResource("Resource_vm3rt"), SubResource("Resource_hdg7o"), SubResource("Resource_oyir6")])
-
-[sub_resource type="Resource" id="Resource_takjd"]
-script = ExtResource("3_inkqf")
-status_id = 0
-value = 1
-
-[sub_resource type="Resource" id="Resource_dps5n"]
-script = ExtResource("2_o0sek")
-ability_type = 2
-physical_damage = 0
-cooldown = 1.8
-ability_range = 1
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([SubResource("Resource_takjd")])
-
-[sub_resource type="Resource" id="Resource_nvlcn"]
-script = ExtResource("3_inkqf")
-status_id = 0
-value = 1
-
-[sub_resource type="Resource" id="Resource_3y43s"]
-script = ExtResource("2_o0sek")
-ability_type = 2
-physical_damage = 0
-cooldown = 1.6
-ability_range = 1
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([SubResource("Resource_nvlcn")])
-
-[sub_resource type="Resource" id="Resource_s8fo7"]
-script = ExtResource("3_inkqf")
-status_id = 0
-value = 2
-
-[sub_resource type="Resource" id="Resource_0nvcp"]
-script = ExtResource("2_o0sek")
-ability_type = 2
-physical_damage = 0
-cooldown = 1.5
-ability_range = 1
-pierce = 0
-income = 0
-applied_statuses = Array[ExtResource("3_inkqf")]([SubResource("Resource_s8fo7")])
+description = ""
+stat_changes = Array[ExtResource("2_bxlyt")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_bxlyt")]([])
+ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_edjr2"]
 script = ExtResource("1_gfe1s")
 ability_name = "Gamer Rage"
-ability_levels = Array[ExtResource("2_o0sek")]([SubResource("Resource_dps5n"), SubResource("Resource_3y43s"), SubResource("Resource_0nvcp")])
+description = ""
+stat_changes = Array[ExtResource("2_bxlyt")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_bxlyt")]([])
+ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_cbdyu"]
 script = ExtResource("5_2leud")

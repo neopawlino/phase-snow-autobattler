@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://38txeh7hqff"]
+
+[ext_resource type="Script" uid="uid://7wlbp1eggga0" path="res://ability.gd" id="1_sfoxn"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://icon.svg" id="1_uvmqb"]
+[ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://draggable.tscn" id="2_sfoxn"]
+
+[node name="Ability" type="Control" node_paths=PackedStringArray("drag_component")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 48.0
+script = ExtResource("1_sfoxn")
+drag_component = NodePath("Draggable")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_uvmqb")
+expand_mode = 3
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("drag_object", "container") instance=ExtResource("2_sfoxn")]
+draggable = true
+drag_object = NodePath("..")
+rect_offset = Vector2(0, 0)
+container = NodePath("../TextureRect")
