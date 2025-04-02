@@ -7,6 +7,8 @@ var character_scene : PackedScene = preload("res://character.tscn")
 var player_team : Array[Character]
 var enemy_team : Array[Character]
 
+var original_player_team : Array[Character]
+
 @export var character_container : Control
 
 @export var result_screen : ResultScreen
@@ -91,6 +93,7 @@ func _ready():
 	GlobalSignals.character_died.connect(on_character_died)
 	GlobalSignals.player_character_died.connect(on_player_character_died)
 	GlobalSignals.stream_started.connect(start_stream)
+	GlobalSignals.stream_end_anim_finished.connect(show_orig_team)
 	GlobalSignals.stream_results_confirmed.connect(reset_stats)
 	GameState.subscribers_changed.connect(on_subscribers_changed)
 	hide_teams()
@@ -149,6 +152,16 @@ func show_teams():
 	character_container.visible = true
 
 
+func hide_orig_team():
+	for char in original_player_team:
+		char.hide()
+
+
+func show_orig_team():
+	for char in original_player_team:
+		char.show()
+
+
 func reset_stats():
 	viewers = 0
 	views_per_sec = GameState.base_views_per_sec
@@ -164,13 +177,15 @@ func start_stream():
 	viewer_goal = GameState.viewer_goal
 
 	clear_teams()
-	#GameState.items.set_items_draggable(false)
+	original_player_team.clear()
 	for slot in slots.player_team:
 		if slot.slot_obj is Character:
+			original_player_team.append(slot.slot_obj)
 			player_team.append(slot.slot_obj.my_duplicate())
 	#for slot in slots.enemy_team:
 		#if slot.slot_obj != null:
 			#enemy_team.append(slot.slot_obj.my_duplicate())
+	hide_orig_team()
 	show_teams()
 	var i := 0
 	for char in player_team:
@@ -391,6 +406,7 @@ func get_item_income() -> int:
 	return income
 
 
+# TODO currently unused
 func _on_combat_summary_continue_button_pressed() -> void:
 	hide_teams()
 

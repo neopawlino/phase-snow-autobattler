@@ -26,8 +26,6 @@ func _ready():
 	GameState.wins_needed = enemy_layouts.wins_needed
 	GameState.player_hp = enemy_layouts.initial_lives
 	GameState.wins = 0
-	GlobalSignals.stream_started.connect(hide_teams)
-	GlobalSignals.stream_results_confirmed.connect(show_teams)
 
 
 func load_initial_teams():
@@ -98,11 +96,3 @@ func add_test_character():
 
 	char.global_position = slot.global_position
 	self.character_container.add_child(char)
-
-
-func hide_teams():
-	character_container.visible = false
-
-
-func show_teams():
-	character_container.visible = true
