@@ -37,7 +37,10 @@ func update_from_character_definition(char_def : CharacterDefinition):
 
 func update_from_ability_definition(ability_def : AbilityDefinition):
 	title_label.text = ability_def.ability_name
-	description_label.text = ability_def.description % ability_def.get_format_string_values()
+	if ability_def.scaling.is_empty():
+		description_label.text = ability_def.description
+	else:
+		description_label.text = ability_def.description % ability_def.get_format_string_values()
 	cooldown_label.text = "%.1fs" % ability_def.cooldown
 	cooldown_container.show()
 	self.ability_def = ability_def

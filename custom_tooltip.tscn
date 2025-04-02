@@ -61,5 +61,8 @@ layout_mode = 2
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Test description lorem ipsum dolor alkjdfl;ajkl;sdfj"
+bbcode_enabled = true
+text = "Test description lorem ipsum dolor \\nalkj
+
+dfl;ajkl;sdfj[n][\\n]"
 fit_content = true
