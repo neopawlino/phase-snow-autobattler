@@ -328,6 +328,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/VBoxContainer"]
+layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 
