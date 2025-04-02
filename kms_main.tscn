@@ -95,6 +95,7 @@ viewport = NodePath("../../MainViewport/KBS/PreviewViewportContainer/PreviewView
 
 [node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
 visible = false
+mouse_filter = 1
 
 [node name="DragContainer" type="Node" parent="CanvasLayer"]
 script = ExtResource("15_mldad")

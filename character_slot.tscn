@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dhkgqtjouosqu" path="res://my_assets/slot.png" id="2_2h50i"]
 
 [node name="CharacterSlot" type="Control" node_paths=PackedStringArray("sprite", "merge_swap_timer")]
-custom_minimum_size = Vector2(100, 200)
+custom_minimum_size = Vector2(120, 200)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 100.0
@@ -15,7 +15,7 @@ merge_swap_timer = NodePath("MergeSwapTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(50, 100)
+position = Vector2(60, 100)
 scale = Vector2(0.67, 0.67)
 texture = ExtResource("2_2h50i")
 offset = Vector2(0, 30)
