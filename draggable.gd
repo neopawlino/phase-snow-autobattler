@@ -15,8 +15,7 @@ signal mouseover_changed(is_mouseover: bool)
 @export var draggable : bool = true:
 	set(val):
 		draggable = val
-		var cursor := Control.CURSOR_POINTING_HAND if val else Control.CURSOR_ARROW
-		self.mouse_default_cursor_shape = cursor
+		update_cursor_shape()
 
 var cur_slot : Slot
 
@@ -52,6 +51,13 @@ func _ready() -> void:
 	self.mouse_exited.connect(func():
 		self.mouseover = false
 	)
+
+	update_cursor_shape()
+
+
+func update_cursor_shape():
+	var cursor := Control.CURSOR_POINTING_HAND if self.draggable else Control.CURSOR_ARROW
+	self.mouse_default_cursor_shape = cursor
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
