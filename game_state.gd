@@ -115,7 +115,7 @@ signal paused_changed(is_paused : bool)
 
 
 func _ready() -> void:
-	GlobalSignals.rewards_screen_finished.connect(func():
+	GlobalSignals.stream_end_anim_finished.connect(func():
 		round_number += 1
 		viewer_goal = get_viewer_goal(round_number)
 	)
