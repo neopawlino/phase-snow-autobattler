@@ -296,8 +296,8 @@ func kill_character(char : Character):
 	var enemy_index := enemy_team.find(char)
 	if player_index >= 0:
 		player_team.remove_at(player_index)
-		if char.cur_character_slot:
-			char.cur_character_slot.slot_obj = null
+		if char.drag_component.cur_slot:
+			char.drag_component.cur_slot.slot_obj = null
 		for i in range(char.pos, len(player_team)):
 			var char_to_move := player_team[i]
 			var new_pos := char_to_move.pos - 1
@@ -307,8 +307,8 @@ func kill_character(char : Character):
 		GlobalSignals.player_character_died.emit(char)
 	elif enemy_index >= 0:
 		enemy_team.remove_at(enemy_index)
-		if char.cur_character_slot:
-			char.cur_character_slot.slot_obj = null
+		if char.drag_component.cur_slot:
+			char.drag_component.cur_slot.slot_obj = null
 		for i in range(char.pos, len(enemy_team)):
 			var char_to_move := enemy_team[i]
 			var new_pos := char_to_move.pos - 1

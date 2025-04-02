@@ -66,10 +66,10 @@ func move_to_slot_index(char : Character, i : int):
 
 
 func move_to_slot(char : Character, slot : Slot):
-	if char.cur_character_slot and char.cur_character_slot.slot_obj == char:
-		char.cur_character_slot.slot_obj = null
+	if char.drag_component.cur_slot and char.drag_component.cur_slot.slot_obj == char:
+		char.drag_component.cur_slot.slot_obj = null
 	slot.slot_obj = char
-	char.cur_character_slot = slot
+	char.drag_component.cur_slot = slot
 	char.global_position = slot.global_position
 	char.pos = slot.slot_index
 

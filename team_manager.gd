@@ -38,7 +38,7 @@ func load_initial_teams():
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.PLAYER
 		char.pos = slot.slot_index
-		char.cur_character_slot = slot
+		char.drag_component.cur_slot = slot
 		char.drag_component.draggable = true
 
 		char.global_position = slot.global_position
@@ -63,7 +63,7 @@ func load_enemy_team_for_round(round_number : int):
 		char.team = Character.Team.ENEMY
 		char.set_flipped(true)
 		char.pos = slot.slot_index
-		char.cur_character_slot = slot
+		char.drag_component.cur_slot = slot
 		char.drag_component.draggable = false
 
 		char.global_position = slot.global_position
@@ -92,7 +92,7 @@ func add_test_character():
 	char.load_from_character_definition(test_character)
 	char.team = Character.Team.PLAYER
 	char.pos = slot.slot_index
-	char.cur_character_slot = slot
+	char.drag_component.cur_slot = slot
 	slot.slot_obj = char
 	char.drag_component.draggable = true
 

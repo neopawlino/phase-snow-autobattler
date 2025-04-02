@@ -194,12 +194,14 @@ func handle_drag_ended():
 	if last_tween:
 		last_tween.kill()
 	if GameState.drag_sell_button and not from_shop:
+		# dragging to recycle bin: move to signal, handle separately (character, item, ability)
 		self.sell_character()
 	elif GameState.drag_end_slot and GameState.drag_end_slot.slot_obj is Character \
 		and GameState.drag_end_slot.slot_obj.can_merge(self):
+		# dragging onto same type: move to a signal, make the object handle it (character, item, ability)
 		merge_character(GameState.drag_end_slot.slot_obj)
 	elif GameState.drag_end_slot and not GameState.drag_end_slot.slot_obj:
-		# dragging to an empty slot
+		# dragging to an empty slot - move to draggable
 		GameState.slots.move_to_slot(self, GameState.drag_end_slot)
 		if from_shop:
 			buy_character()
@@ -207,7 +209,7 @@ func handle_drag_ended():
 		#last_tween.tween_property(self, "global_position", GameState.drag_end_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 		self.global_position = GameState.drag_end_slot.global_position
 	elif GameState.drag_original_slot:
-		# dragging nowhere in particular, or letting go after swapping
+		# dragging nowhere in particular, or letting go after swapping - move to draggable
 		#last_tween = get_tree().create_tween()
 		#last_tween.tween_property(self, "global_position", GameState.drag_original_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
 		self.global_position = GameState.drag_original_slot.global_position
@@ -249,15 +251,15 @@ func buy_character():
 
 func sell_character():
 	GameState.player_money += sell_price
-	if cur_character_slot:
-		cur_character_slot.slot_obj = null
+	if drag_component.cur_slot:
+		drag_component.cur_slot.slot_obj = null
 	self.queue_free()
 	GameState.drag_sell_button = false
 
 
 func remove_self():
-	if cur_character_slot:
-		cur_character_slot.slot_obj = null
+	if drag_component.cur_slot:
+		drag_component.cur_slot.slot_obj = null
 	self.queue_free()
 
 

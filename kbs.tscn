@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://buhn71elsgfi3"]
+[gd_scene load_steps=12 format=3 uid="uid://buhn71elsgfi3"]
 
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://kms_theme.tres" id="1_4p8mj"]
 [ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://custom_window.gd" id="2_0dw17"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bxetmxmtuknft" path="res://ability_reward.gd" id="3_ynl0e"]
 [ext_resource type="PackedScene" uid="uid://ctphvxmiwu62f" path="res://stream.tscn" id="4_fw664"]
 [ext_resource type="PackedScene" uid="uid://38txeh7hqff" path="res://ability.tscn" id="4_pvfrd"]
+[ext_resource type="PackedScene" uid="uid://drgpkq08jre2r" path="res://kbs_character_slot.tscn" id="8_bvb3y"]
 
 [node name="KBS" type="Window"]
 auto_translate_mode = 1
@@ -173,7 +174,6 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 script = ExtResource("3_a1e8s")
 
@@ -235,6 +235,46 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HFlowContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CharacterSlot" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvb3y")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CharacterSlot2" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvb3y")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CharacterSlot3" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvb3y")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CharacterSlot4" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvb3y")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CharacterSlot5" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvb3y")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CharacterSlot6" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvb3y")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CharacterSlot7" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvb3y")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CharacterSlot8" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer/Bench/MarginContainer/Container/MarginContainer2/ScrollContainer/HBoxContainer" instance=ExtResource("8_bvb3y")]
+layout_mode = 2
+size_flags_vertical = 4
 
 [node name="Food" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/HSplitContainer/TabContainer"]
 visible = false

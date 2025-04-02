@@ -7,8 +7,6 @@ class_name Ability
 @export var ability_definition : AbilityDefinition
 @export var progress_bar : ProgressBar
 
-var cur_slot : Slot
-
 var is_ability_reward : bool
 
 func _ready() -> void:
@@ -41,8 +39,8 @@ func on_drag_ended():
 
 
 func move_to_slot(slot : Slot, use_tween : bool = false):
-	if self.cur_slot:
-		self.cur_slot.slot_obj = null
+	if self.drag_component.cur_slot:
+		self.drag_component.cur_slot.slot_obj = null
 	self.reparent(slot)
 	if use_tween:
 		var tween := self.create_tween()
@@ -50,7 +48,7 @@ func move_to_slot(slot : Slot, use_tween : bool = false):
 	else:
 		self.global_position = slot.global_position
 	slot.slot_obj = self
-	self.cur_slot = slot
+	self.drag_component.cur_slot = slot
 
 
 func on_mouseover_changed(is_mouseover : bool):
