@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=17 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://38txeh7hqff" path="res://ability.tscn" id="11_ioy5u"]
 [ext_resource type="Script" uid="uid://c1jmk3fb78k88" path="res://stream_viewport_manager.gd" id="12_hvt5d"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="13_h8i6l"]
-[ext_resource type="PackedScene" uid="uid://dhgg0evem2l3m" path="res://ability_reward.tscn" id="15_ken1c"]
 [ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://drag_container.gd" id="15_mldad"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
@@ -28,7 +27,7 @@ script = ExtResource("1_5fqus")
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("preview_viewport_container", "preview_center", "kbs_window")]
 script = ExtResource("2_ioy5u")
 preview_viewport_container = NodePath("../MainViewport/KBS/PreviewViewportContainer")
-preview_center = NodePath("../MainViewport/KBS/KBSMain/VBoxContainer/PreviewContainer/PreviewCenter")
+preview_center = NodePath("../MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer/PreviewContainer/PreviewCenter")
 kbs_window = NodePath("../MainViewport/KBS")
 
 [node name="MainViewportSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("viewport")]
@@ -103,8 +102,5 @@ script = ExtResource("15_mldad")
 [node name="StreamViewportManager" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("stream_viewport_texture")]
 script = ExtResource("12_hvt5d")
 stream_viewport_texture = NodePath("../StreamViewportTexture")
-
-[node name="AbilityReward" parent="CanvasLayer" instance=ExtResource("15_ken1c")]
-visible = false
 
 [editable path="MainViewport/KBS"]

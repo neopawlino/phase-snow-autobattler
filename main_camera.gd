@@ -35,3 +35,4 @@ func on_stream_results_confirmed() -> void:
 	var end_tween := get_tree().create_tween()
 	end_tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 1.0).set_trans(Tween.TRANS_QUAD)
 	end_tween.parallel().tween_property(self, "offset", Vector2(0, 0), 1.0).set_trans(Tween.TRANS_QUAD)
+	end_tween.tween_callback(GlobalSignals.stream_end_anim_finished.emit)

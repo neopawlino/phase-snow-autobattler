@@ -20,6 +20,7 @@ cooldown_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Coold
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(360, 200)
+layout_mode = 0
 offset_right = 200.0
 offset_bottom = 1418.0
 theme = ExtResource("1_wgoo6")

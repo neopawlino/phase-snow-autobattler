@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cf7m6ltsqcbhq"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cf7m6ltsqcbhq"]
 
 [ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_vgl0v"]
 [ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="2_1b8q7"]
+[ext_resource type="StyleBox" uid="uid://1pvuwmhfx0xe" path="res://theme/kbs/kbs_panel_stylebox.tres" id="2_bakvj"]
+[ext_resource type="StyleBox" uid="uid://dpapv2p3xk8xt" path="res://theme/kbs/kbs_panel_highlighted.tres" id="3_bakvj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgl0v"]
 content_margin_left = 4.0
@@ -36,15 +38,6 @@ content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.354, 0.3704, 0.6, 0.282353)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bakvj"]
-bg_color = Color(0.152941, 0.164706, 0.2, 1)
-border_width_top = 32
-border_color = Color(0.235294, 0.25098, 0.301961, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b8q7"]
 bg_color = Color(0.113725, 0.121569, 0.14902, 1)
 
@@ -74,7 +67,9 @@ DesktopIconButton/styles/hover_pressed = SubResource("StyleBoxFlat_3k1qh")
 DesktopIconButton/styles/normal = SubResource("StyleBoxEmpty_3k1qh")
 DesktopIconButton/styles/pressed = SubResource("StyleBoxFlat_o2ech")
 KbsPanel/base_type = &"Panel"
-KbsPanel/styles/panel = SubResource("StyleBoxFlat_bakvj")
+KbsPanel/styles/panel = ExtResource("2_bakvj")
+KbsPanelHighlighted/base_type = &"PanelContainer"
+KbsPanelHighlighted/styles/panel = ExtResource("3_bakvj")
 Label/fonts/font = ExtResource("1_vgl0v")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_1b8q7")
 Window/constants/resize_margin = 8

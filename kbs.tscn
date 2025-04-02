@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://buhn71elsgfi3"]
+[gd_scene load_steps=11 format=3 uid="uid://buhn71elsgfi3"]
 
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://kms_theme.tres" id="1_4p8mj"]
 [ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://custom_window.gd" id="2_0dw17"]
@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://ctwyrt1e74foh" path="res://ability_slots.gd" id="3_a1e8s"]
 [ext_resource type="PackedScene" uid="uid://bvhhm87ldr8h4" path="res://ability_slot.tscn" id="3_fw664"]
 [ext_resource type="Script" uid="uid://da6i7bw7i7w3j" path="res://preview_viewport_container.gd" id="3_mj7rv"]
+[ext_resource type="StyleBox" uid="uid://dpapv2p3xk8xt" path="res://theme/kbs/kbs_panel_highlighted.tres" id="3_pvfrd"]
+[ext_resource type="Script" uid="uid://bxetmxmtuknft" path="res://ability_reward.gd" id="3_ynl0e"]
 [ext_resource type="PackedScene" uid="uid://ctphvxmiwu62f" path="res://stream.tscn" id="4_fw664"]
+[ext_resource type="PackedScene" uid="uid://38txeh7hqff" path="res://ability.tscn" id="4_pvfrd"]
 
 [node name="KBS" type="Window"]
 auto_translate_mode = 1
@@ -27,11 +30,86 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="KBSMain"]
 layout_mode = 2
 
-[node name="PreviewContainer" type="PanelContainer" parent="KBSMain/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="KBSMain/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PreviewCenter" type="Control" parent="KBSMain/VBoxContainer/PreviewContainer"]
+[node name="AbilityRewardControl" type="Control" parent="KBSMain/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl"]
+layout_mode = 2
+offset_right = 202.0
+offset_bottom = 446.0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+
+[node name="AbilityReward" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer" node_paths=PackedStringArray("abilities_container", "title_label", "ability_reward_control", "skip_button")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_4p8mj")
+theme_type_variation = &"KbsPanelHighlighted"
+theme_override_styles/panel = ExtResource("3_pvfrd")
+script = ExtResource("3_ynl0e")
+abilities_container = NodePath("MarginContainer/Container/AbilitiesContainer")
+title_label = NodePath("MarginContainer/Container/MarginContainer/Label")
+ability_reward_control = NodePath("../..")
+skip_button = NodePath("MarginContainer/Container/MarginContainer2/SkipButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward"]
+layout_mode = 2
+theme_override_constants/margin_top = -32
+
+[node name="Container" type="VBoxContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Choose an Ability!"
+
+[node name="AbilitiesContainer" type="VBoxContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Ability" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container/AbilitiesContainer" instance=ExtResource("4_pvfrd")]
+layout_mode = 2
+
+[node name="Ability2" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container/AbilitiesContainer" instance=ExtResource("4_pvfrd")]
+layout_mode = 2
+
+[node name="Ability3" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container/AbilitiesContainer" instance=ExtResource("4_pvfrd")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 32
+
+[node name="SkipButton" type="Button" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container/MarginContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+text = "Skip"
+
+[node name="PreviewContainer" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PreviewCenter" type="Control" parent="KBSMain/VBoxContainer/HBoxContainer/PreviewContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -173,19 +251,18 @@ text = "Start
 Streaming"
 script = ExtResource("3_0dw17")
 
-[node name="PreviewViewportContainer" type="SubViewportContainer" parent="." node_paths=PackedStringArray("window", "preview_center", "controls_container")]
+[node name="PreviewViewportContainer" type="SubViewportContainer" parent="." node_paths=PackedStringArray("preview_center", "preview_container", "controls_container")]
 custom_minimum_size = Vector2(1280, 720)
-offset_left = -243.5
-offset_top = -295.5
-offset_right = 1036.5
-offset_bottom = 424.5
+offset_left = 320.0
+offset_right = 1600.0
+offset_bottom = 720.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
 script = ExtResource("3_mj7rv")
-window = NodePath("..")
-preview_center = NodePath("../KBSMain/VBoxContainer/PreviewContainer/PreviewCenter")
+preview_center = NodePath("../KBSMain/VBoxContainer/HBoxContainer/PreviewContainer/PreviewCenter")
+preview_container = NodePath("../KBSMain/VBoxContainer/HBoxContainer/PreviewContainer")
 controls_container = NodePath("../KBSMain/VBoxContainer/KBSControlsContainer")
 
 [node name="PreviewViewport" type="SubViewport" parent="PreviewViewportContainer"]

@@ -13,5 +13,6 @@ signal stream_anim_started
 signal stream_started
 signal stream_ended(result: CombatSummary.CombatResult, money: int, income: int, hp_gain: int)
 signal stream_results_confirmed
+signal stream_end_anim_finished
 
 signal rewards_screen_finished

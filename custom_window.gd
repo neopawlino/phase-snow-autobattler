@@ -4,7 +4,7 @@ extends Window
 func _ready() -> void:
 	size_changed.connect(clamp_to_viewport)
 	GlobalSignals.stream_anim_started.connect(disable_interactable)
-	GlobalSignals.rewards_screen_finished.connect(enable_interactable)
+	GlobalSignals.stream_end_anim_finished.connect(enable_interactable)
 	close_requested.connect(on_close_requested)
 
 
