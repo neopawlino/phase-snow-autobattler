@@ -139,8 +139,13 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots")]
+[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots")]
 texture_filter = 1
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 160.0
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/SpriteParent/Sprite2D")
 anim_player = NodePath("Visual/SpriteParent/Sprite2D/AnimationPlayer")
@@ -161,9 +166,9 @@ status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
 drag_component = NodePath("Draggable")
 ability_slots = [NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot"), NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot2"), NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot3")]
 
-[node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "smoke_particles")]
+[node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("smoke_particles")]
+position = Vector2(60, 80)
 script = ExtResource("2_0vcty")
-follow_target = NodePath("..")
 smoke_particles = NodePath("CPUParticles2D")
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
@@ -348,8 +353,5 @@ theme_override_constants/separation = 0
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]
 unique_name_in_owner = true
-offset_left = -40.0
-offset_top = -60.0
-offset_right = 40.0
-offset_bottom = 60.0
+custom_minimum_size = Vector2(120, 160)
 drag_object = NodePath("..")

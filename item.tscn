@@ -96,21 +96,21 @@ _data = {
 &"attack_flipped": SubResource("Animation_c15sm")
 }
 
-[node name="Item" type="Node2D" node_paths=PackedStringArray("price_label", "price", "drag_component", "sprite")]
+[node name="Item" type="Control" node_paths=PackedStringArray("price_label", "price", "drag_component", "sprite")]
 texture_filter = 1
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_drrui")
 price_label = NodePath("Visual/Price/Label")
 price = NodePath("Visual/Price")
-price_color = null
-price_unaffordable_color = null
 drag_component = NodePath("Draggable")
 sprite = NodePath("Visual/Sprite2D")
-mouseover_scale = null
 
-[node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+[node name="Visual" type="Node2D" parent="."]
 top_level = true
+position = Vector2(60, 80)
 script = ExtResource("2_8n1u8")
-follow_target = NodePath("..")
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
 position = Vector2(0, -60)
@@ -146,8 +146,5 @@ vertical_alignment = 1
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("6_mx8ia")]
 unique_name_in_owner = true
-offset_left = -40.0
-offset_top = -60.0
-offset_right = 40.0
-offset_bottom = 60.0
+custom_minimum_size = Vector2(120, 160)
 drag_object = NodePath("..")

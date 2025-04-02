@@ -12,7 +12,6 @@ enum SlotType {
 var slot_index : int
 var slot_obj : Node
 
-@export var select_container : Container
 @export var sprite : Sprite2D
 var sprite_base_scale : Vector2
 
@@ -50,7 +49,7 @@ func _ready() -> void:
 
 
 func set_pickable(pickable : bool):
-	select_container.mouse_filter = Control.MOUSE_FILTER_PASS if pickable else Control.MOUSE_FILTER_IGNORE
+	self.mouse_filter = Control.MOUSE_FILTER_PASS if pickable else Control.MOUSE_FILTER_IGNORE
 	self.pickable = pickable
 
 
@@ -68,7 +67,7 @@ func on_mouse_entered() -> void:
 		return
 	if GameState.drag_object is Character and self.slot_type == SlotType.CHARACTER:
 		GameState.drag_end_slot = self
-		if GameState.drag_can_swap and self.slot_obj != null:
+		if GameState.drag_can_swap and self.slot_obj != null and self.slot_obj != GameState.drag_object:
 			if self.slot_obj.can_merge(GameState.drag_object):
 				merge_swap_timer.start()
 			else:

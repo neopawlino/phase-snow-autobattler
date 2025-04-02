@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 class_name Character
 
@@ -200,25 +200,6 @@ func handle_drag_ended():
 		and GameState.drag_end_slot.slot_obj.can_merge(self):
 		# dragging onto same type: move to a signal, make the object handle it (character, item, ability)
 		merge_character(GameState.drag_end_slot.slot_obj)
-	elif GameState.drag_end_slot and not GameState.drag_end_slot.slot_obj:
-		# dragging to an empty slot - move to draggable
-		GameState.slots.move_to_slot(self, GameState.drag_end_slot)
-		if from_shop:
-			buy_character()
-		#last_tween = get_tree().create_tween()
-		#last_tween.tween_property(self, "global_position", GameState.drag_end_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
-		self.global_position = GameState.drag_end_slot.global_position
-	elif GameState.drag_original_slot:
-		# dragging nowhere in particular, or letting go after swapping - move to draggable
-		#last_tween = get_tree().create_tween()
-		#last_tween.tween_property(self, "global_position", GameState.drag_original_slot.global_position, 0.2).set_ease(Tween.EASE_OUT)
-		self.global_position = GameState.drag_original_slot.global_position
-		GameState.drag_original_slot = null
-		if GameState.drag_initial_mouse_pos.distance_to(get_global_mouse_position()) < 50.0:
-			if was_tooltip_open_for_character:
-				was_tooltip_open_for_character = false
-			else:
-				GlobalSignals.character_tooltip_opened.emit(self)
 
 
 func set_info_z_index(val : int):

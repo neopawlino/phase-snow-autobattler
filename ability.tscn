@@ -10,8 +10,6 @@
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 48.0
-offset_bottom = 48.0
 theme = ExtResource("1_fs08f")
 script = ExtResource("1_sfoxn")
 drag_component = NodePath("Draggable")
@@ -34,12 +32,11 @@ custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
+mouse_filter = 1
 theme_type_variation = &"AbilityProgressBar"
 fill_mode = 2
 show_percentage = false
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("2_sfoxn")]
-tooltip_text = "draggable tooltip!"
-draggable = true
+custom_minimum_size = Vector2(48, 48)
 drag_object = NodePath("..")
-rect_offset = Vector2(0, 0)

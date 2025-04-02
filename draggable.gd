@@ -12,16 +12,17 @@ var mouseover : bool:
 			mouseover_changed.emit(val)
 signal mouseover_changed(is_mouseover: bool)
 
-@export var draggable : bool = false:
+@export var draggable : bool = true:
 	set(val):
 		draggable = val
-		container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if val else Control.CURSOR_ARROW
+		var cursor := Control.CURSOR_POINTING_HAND if val else Control.CURSOR_ARROW
+		self.mouse_default_cursor_shape = cursor
 
 var cur_slot : Slot
 
 @export var drag_object : Node
-@export var rect_offset : Vector2
-@export var container : Control
+#@export var container : Control
+#@export var set_mouse_cursor : Array[Control]
 
 var drag_initial_pos : Vector2
 var drag_offset : Vector2
@@ -52,14 +53,9 @@ func _ready() -> void:
 		self.mouseover = false
 	)
 
-	# Setting the position in the scene seems to reset when instantiating.
-	# Setting it in code here seems to fix that
-	container.position = rect_offset
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	self.global_position = drag_object.global_position
 	if not GameState.is_dragging and cur_slot:
 		drag_object.global_position = cur_slot.global_position
 	if not draggable:
@@ -68,17 +64,17 @@ func _process(delta: float) -> void:
 		mouseover = false
 	if mouseover and Input.is_action_just_pressed("click") and not GameState.is_dragging:
 		drag_initial_pos = drag_object.global_position
-		drag_offset = get_global_mouse_position() - self.global_position
+		drag_offset = self.get_global_mouse_position() - self.global_position
 		GameState.is_dragging = true
 		GameState.drag_object = self.drag_object
 		GameState.drag_original_slot = self.cur_slot
 		GameState.drag_end_slot = self.cur_slot
-		GameState.drag_initial_mouse_pos = get_global_mouse_position()
+		GameState.drag_initial_mouse_pos = self.get_global_mouse_position()
 		GameState.drag_original_parent = self.drag_object.get_parent()
 		self.drag_object.reparent(GameState.drag_parent, true)
 		self.drag_started.emit()
 	if Input.is_action_pressed("click") and GameState.drag_object == self.drag_object:
-		drag_object.global_position = get_global_mouse_position() - drag_offset
+		drag_object.global_position = self.get_global_mouse_position() - drag_offset
 	elif Input.is_action_just_released("click") and GameState.drag_object == self.drag_object:
 		on_drag_release()
 
@@ -89,11 +85,34 @@ func on_drag_release():
 	if GameState.drag_original_parent:
 		self.drag_object.reparent(GameState.drag_original_parent, true)
 	GameState.drag_original_parent = null
+	if GameState.drag_end_slot and GameState.drag_end_slot.slot_obj:
+		# TODO swap
+		self.drag_object.global_position = GameState.drag_original_slot.global_position
+	elif GameState.drag_end_slot and not GameState.drag_end_slot.slot_obj:
+		# moving to an empty slot
+		self.move_to_slot(GameState.drag_end_slot)
+	elif GameState.drag_original_slot:
+		# dragging nowhere in particular, or letting go after swapping
+		self.drag_object.global_position = GameState.drag_original_slot.global_position
+		GameState.drag_original_slot = null
 	self.drag_ended.emit()
 
 
+func move_to_slot(slot : Slot, use_tween : bool = false):
+	if self.cur_slot:
+		self.cur_slot.slot_obj = null
+	self.drag_object.reparent(slot)
+	if use_tween:
+		var tween := self.create_tween()
+		tween.tween_property(self.drag_object, "global_position", slot.global_position, 1.0).set_trans(Tween.TRANS_QUAD)
+	else:
+		self.drag_object.global_position = slot.global_position
+	slot.slot_obj = self.drag_object
+	self.cur_slot = slot
+
+
 func set_container_mouse_filter(is_dragging: bool):
-	container.mouse_filter = Control.MOUSE_FILTER_IGNORE if is_dragging else Control.MOUSE_FILTER_PASS
+	self.mouse_filter = Control.MOUSE_FILTER_IGNORE if is_dragging else Control.MOUSE_FILTER_PASS
 
 
 func _make_custom_tooltip(for_text: String) -> Object:

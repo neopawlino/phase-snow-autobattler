@@ -43,7 +43,7 @@ func load_initial_teams():
 
 		char.global_position = slot.global_position
 		slot.slot_obj = char
-		self.character_container.add_child(char)
+		slot.add_child(char)
 		i += 1
 	load_enemy_team_for_round(GameState.round_number)
 

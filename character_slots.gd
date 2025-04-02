@@ -21,6 +21,8 @@ func _ready() -> void:
 	GlobalSignals.stream_end_anim_finished.connect(func():
 		set_player_slots_pickable(true)
 	)
+	for slot in player_slot_container.get_children():
+		slot.queue_free()
 	for i in range(max_slots):
 		var slot : Slot = character_slot_scene.instantiate()
 		slot.set_pickable(true)

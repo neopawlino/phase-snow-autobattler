@@ -37,6 +37,7 @@ func show_anim():
 	skip_button.modulate.a = 0
 	ability_reward_control.custom_minimum_size.x = 0
 	ability_reward_control.show()
+	abilities_container.show()
 	tween.tween_property(ability_reward_control, "custom_minimum_size:x", 200, 0.4).set_trans(Tween.TransitionType.TRANS_QUAD)
 	tween.tween_callback(title_label.show)
 	tween.tween_property(title_label, "modulate:a", 1, 0.1)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5ilf8qew1tt1" path="res://character_slot.gd" id="1_tyx83"]
 
-[node name="CharacterSlot" type="PanelContainer" node_paths=PackedStringArray("select_container", "merge_swap_timer")]
+[node name="CharacterSlot" type="PanelContainer" node_paths=PackedStringArray("merge_swap_timer")]
 custom_minimum_size = Vector2(48, 48)
 anchors_preset = 8
 anchor_left = 0.5
@@ -16,7 +16,6 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tyx83")
-select_container = NodePath(".")
 merge_swap_timer = NodePath("MergeSwapTimer")
 
 [node name="MergeSwapTimer" type="Timer" parent="."]
