@@ -18,7 +18,7 @@ func _ready() -> void:
 	GlobalSignals.stream_anim_started.connect(func():
 		set_player_slots_pickable(false)
 	)
-	GlobalSignals.rewards_screen_finished.connect(func():
+	GlobalSignals.stream_end_anim_finished.connect(func():
 		set_player_slots_pickable(true)
 	)
 	for i in range(max_slots):

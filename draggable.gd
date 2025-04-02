@@ -41,7 +41,7 @@ func _ready() -> void:
 		self.draggable = false
 		self.on_drag_release()
 	)
-	GlobalSignals.rewards_screen_finished.connect(func():
+	GlobalSignals.stream_end_anim_finished.connect(func():
 		self.draggable = self.was_draggable
 	)
 
