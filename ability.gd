@@ -45,7 +45,7 @@ func move_to_slot(slot : Slot, use_tween : bool = false):
 		self.cur_slot.slot_obj = null
 	self.reparent(slot)
 	if use_tween:
-		var tween := get_tree().create_tween()
+		var tween := self.create_tween()
 		tween.tween_property(self, "global_position", slot.global_position, 1.0).set_trans(Tween.TRANS_QUAD)
 	else:
 		self.global_position = slot.global_position

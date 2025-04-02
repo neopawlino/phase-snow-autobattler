@@ -3,7 +3,6 @@ extends SubViewportContainer
 @export var preview_center : Control
 @export var preview_container : Control
 @export var base_size : Vector2 = Vector2(1280, 720)
-@export var controls_container : Control
 
 
 func _process(delta: float) -> void:
@@ -13,7 +12,6 @@ func _process(delta: float) -> void:
 
 
 func update_size():
-	var bottom_margin := controls_container.custom_minimum_size.y
 	# maintain aspect ratio
 	var aspect_ratio := base_size.x / base_size.y
 	var window_size := get_viewport_rect().size

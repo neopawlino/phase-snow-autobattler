@@ -1,9 +1,11 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cf7m6ltsqcbhq"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://cf7m6ltsqcbhq"]
 
 [ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_vgl0v"]
 [ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="2_1b8q7"]
 [ext_resource type="StyleBox" uid="uid://1pvuwmhfx0xe" path="res://theme/kbs/kbs_panel_stylebox.tres" id="2_bakvj"]
 [ext_resource type="StyleBox" uid="uid://dpapv2p3xk8xt" path="res://theme/kbs/kbs_panel_highlighted.tres" id="3_bakvj"]
+[ext_resource type="StyleBox" uid="uid://dfy0ijtexai2x" path="res://theme/kbs/tab_selected.tres" id="5_3k1qh"]
+[ext_resource type="StyleBox" uid="uid://dqtj43ceown7c" path="res://theme/kbs/tab_unselected.tres" id="6_o2ech"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgl0v"]
 content_margin_left = 4.0
@@ -41,6 +43,32 @@ bg_color = Color(0.354, 0.3704, 0.6, 0.282353)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b8q7"]
 bg_color = Color(0.113725, 0.121569, 0.14902, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvjoq"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.156863, 0.298039, 0.721569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.235294, 0.25098, 0.301961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucrh8"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.27451, 0.294118, 0.34902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color(0.235294, 0.25098, 0.301961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgl0v"]
 bg_color = Color(0.2144, 0.232, 0.32, 1)
 corner_radius_top_left = 4
@@ -66,12 +94,20 @@ DesktopIconButton/styles/hover = SubResource("StyleBoxFlat_iw8ea")
 DesktopIconButton/styles/hover_pressed = SubResource("StyleBoxFlat_3k1qh")
 DesktopIconButton/styles/normal = SubResource("StyleBoxEmpty_3k1qh")
 DesktopIconButton/styles/pressed = SubResource("StyleBoxFlat_o2ech")
+HSplitContainer/constants/separation = 0
 KbsPanel/base_type = &"Panel"
 KbsPanel/styles/panel = ExtResource("2_bakvj")
 KbsPanelHighlighted/base_type = &"PanelContainer"
 KbsPanelHighlighted/styles/panel = ExtResource("3_bakvj")
 Label/fonts/font = ExtResource("1_vgl0v")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_1b8q7")
+TabContainer/constants/side_margin = 0
+TabContainer/font_sizes/font_size = 14
+TabContainer/fonts/font = ExtResource("2_1b8q7")
+TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_bvjoq")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_ucrh8")
+TabContainer/styles/tab_selected = ExtResource("5_3k1qh")
+TabContainer/styles/tab_unselected = ExtResource("6_o2ech")
 Window/constants/resize_margin = 8
 Window/fonts/title_font = ExtResource("2_1b8q7")
 Window/styles/embedded_border = SubResource("StyleBoxFlat_vgl0v")
