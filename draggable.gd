@@ -125,8 +125,8 @@ func move_to_slot(slot : Slot, use_tween : bool = false):
 			self.drag_object.global_position = slot.global_position
 			self.drag_object.reparent(slot)
 		)
-	else:
-		self.drag_object.reparent(slot)
+	elif GameState.is_dragging and GameState.drag_object == self.drag_object:
+		GameState.drag_original_slot = slot
 
 	slot.slot_obj = self.drag_object
 	self.cur_slot = slot

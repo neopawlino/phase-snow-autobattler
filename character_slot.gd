@@ -49,11 +49,9 @@ func set_pickable(pickable : bool):
 
 
 func drag_swap():
-	if GameState.is_dragging and GameState.drag_end_slot == self:
-		var slots : SlotContainer = self.get_slot_container()
+	var slots : SlotContainer = self.get_slot_container()
+	if GameState.is_dragging and GameState.drag_end_slot == self and slots == GameState.drag_original_slot.get_slot_container():
 		slots.reorder_char(GameState.drag_object, slot_index)
-		GameState.drag_original_slot = self
-		GameState.drag_end_slot = null
 
 
 func get_slot_container():

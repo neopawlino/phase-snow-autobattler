@@ -205,6 +205,11 @@ func handle_drag_occupied_slot(slot : Slot):
 		merge_character(GameState.drag_end_slot.slot_obj)
 	elif slot.slot_obj == self:
 		drag_component.move_to_original_slot()
+	else:
+		# swap
+		var other : Character = slot.slot_obj
+		drag_component.move_to_slot(slot)
+		other.drag_component.move_to_slot(GameState.drag_original_slot)
 
 
 func set_info_z_index(val : int):
