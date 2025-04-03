@@ -1,11 +1,19 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dy3ejfj58drwu"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dy3ejfj58drwu"]
 
 [ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_vcxpn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcxpn"]
+bg_color = Color(0.890196, 0.901961, 0.901961, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73gda"]
 bg_color = Color(0.0745098, 0.0980392, 0.129412, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s0xq"]
+bg_color = Color(1, 1, 1, 1)
+
 [resource]
+BgPanel/base_type = &"PanelContainer"
+BgPanel/styles/panel = SubResource("StyleBoxFlat_vcxpn")
 HeaderLabel/base_type = &"Label"
 HeaderLabel/colors/font_color = Color(1, 1, 1, 1)
 HeaderPanel/base_type = &"PanelContainer"
@@ -17,3 +25,4 @@ MarginContainer/constants/margin_bottom = 0
 MarginContainer/constants/margin_left = 16
 MarginContainer/constants/margin_right = 0
 MarginContainer/constants/margin_top = 16
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_0s0xq")
