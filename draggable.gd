@@ -28,6 +28,8 @@ var drag_offset : Vector2
 
 var was_draggable : bool
 
+var tween : Tween
+
 
 signal drag_started
 signal drag_ended
@@ -65,7 +67,8 @@ func update_cursor_shape():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not GameState.is_dragging and cur_slot:
+	var tween_running := tween and tween.is_running()
+	if not GameState.is_dragging and cur_slot and not tween_running:
 		drag_object.global_position = cur_slot.global_position
 	if not draggable:
 		return
@@ -91,8 +94,8 @@ func _process(delta: float) -> void:
 func on_drag_release():
 	GameState.is_dragging = false
 	GameState.drag_object = null
-	if GameState.drag_original_parent:
-		self.drag_object.reparent(GameState.drag_original_parent, true)
+	#if GameState.drag_original_parent:
+		#self.drag_object.reparent(GameState.drag_original_parent, true)
 	GameState.drag_original_parent = null
 	if GameState.drag_end_slot and GameState.drag_end_slot.slot_obj:
 		self.drag_occupied_slot.emit(GameState.drag_end_slot)
@@ -112,12 +115,11 @@ func move_to_original_slot(use_tween : bool = false):
 func move_to_slot(slot : Slot, use_tween : bool = false):
 	if self.cur_slot and self.cur_slot.slot_obj == self.drag_object:
 		self.cur_slot.slot_obj = null
-	self.drag_object.reparent(slot)
-	if use_tween:
-		var tween := self.create_tween()
-		tween.tween_property(self.drag_object, "global_position", slot.global_position, 1.0).set_trans(Tween.TRANS_QUAD)
-	else:
-		self.drag_object.global_position = slot.global_position
+	var viewport_pos := slot.get_global_transform().origin
+	var result_pos := ScreenSpaceUtil.get_screenspace_position(slot, viewport_pos)
+	tween = self.create_tween()
+	tween.tween_property(self.drag_object, "global_position", result_pos, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(self.drag_object.reparent.bind(slot))
 	slot.slot_obj = self.drag_object
 	self.cur_slot = slot
 

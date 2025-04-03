@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctphvxmiwu62f"]
+[gd_scene load_steps=11 format=3 uid="uid://ctphvxmiwu62f"]
 
 [ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://character_slots.gd" id="1_3tm05"]
 [ext_resource type="Texture2D" uid="uid://bqtt0m2k884gl" path="res://my_assets/neo_background_2.png" id="1_4pdcm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://character_definition.gd" id="6_sr8sl"]
 [ext_resource type="Resource" uid="uid://baiyj43bn6b1k" path="res://character_definitions/rie.tres" id="7_o2rjw"]
 [ext_resource type="Resource" uid="uid://doc6nuduyiunp" path="res://enemy_layouts/base_layouts.tres" id="8_g1ecy"]
+[ext_resource type="Script" uid="uid://dha8cy8kjnmqu" path="res://stream_camera.gd" id="10_4now3"]
 
 [node name="Stream" type="Control"]
 layout_mode = 3
@@ -153,3 +154,4 @@ offset_bottom = 40.0
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(320, 360)
 zoom = Vector2(2, 2)
+script = ExtResource("10_4now3")

@@ -203,6 +203,8 @@ func handle_drag_occupied_slot(slot : Slot):
 	if slot.slot_obj is Character and slot.slot_obj.can_merge(self):
 		# dragging onto same type: move to a signal, make the object handle it (character, item, ability)
 		merge_character(GameState.drag_end_slot.slot_obj)
+	elif slot.slot_obj == self:
+		drag_component.move_to_original_slot()
 
 
 func set_info_z_index(val : int):

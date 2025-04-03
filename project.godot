@@ -26,6 +26,7 @@ Bgm="*res://bgm.tscn"
 Popups="*res://popups.tscn"
 SoundManager="*res://sound_manager.gd"
 RandomUtil="*res://random_util.gd"
+ScreenSpaceUtil="*res://screen_space_util.gd"
 
 [display]
 
