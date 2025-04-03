@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://tkfw2aqo8uiy"]
+[gd_scene load_steps=5 format=3 uid="uid://tkfw2aqo8uiy"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_npxhq"]
 [ext_resource type="Script" uid="uid://d224tldmixo5n" path="res://stream_ui.gd" id="2_qybfq"]
+[ext_resource type="Script" uid="uid://dyd8qxaxy06b1" path="res://speed_button.gd" id="3_qybfq"]
 
 [sub_resource type="Theme" id="Theme_vo0gr"]
 
 [node name="StreamUI" type="Control" node_paths=PackedStringArray("viewer_goal", "views", "views_per_sec", "viewer_retention", "viewers", "subscriber_rate", "subscribers", "member_rate", "members")]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_npxhq")
 script = ExtResource("2_qybfq")
 viewer_goal = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ViewerGoalLabel")
@@ -160,3 +165,20 @@ text = "10000"
 [node name="MembersLabel2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer/HBoxContainer4"]
 layout_mode = 2
 text = "Members"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.0
+offset_right = 71.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 32
+
+[node name="SpeedButton" type="Button" parent="MarginContainer2"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+text = "Speed: 1x"
+script = ExtResource("3_qybfq")
