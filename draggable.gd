@@ -105,13 +105,12 @@ func on_drag_release():
 	self.drag_ended.emit()
 
 
-func move_to_original_slot():
-	self.drag_object.global_position = GameState.drag_original_slot.global_position
-	GameState.drag_original_slot = null
+func move_to_original_slot(use_tween : bool = false):
+	self.move_to_slot(GameState.drag_original_slot, use_tween)
 
 
 func move_to_slot(slot : Slot, use_tween : bool = false):
-	if self.cur_slot:
+	if self.cur_slot and self.cur_slot.slot_obj == self.drag_object:
 		self.cur_slot.slot_obj = null
 	self.drag_object.reparent(slot)
 	if use_tween:

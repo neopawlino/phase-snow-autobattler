@@ -26,7 +26,7 @@ func on_drag_started():
 
 
 func on_drag_occupied_slot(slot : Slot):
-	if not slot.slot_obj is Ability:
+	if not slot.slot_obj is Ability or slot.slot_obj == self:
 		drag_component.move_to_original_slot()
 		return
 	# swap

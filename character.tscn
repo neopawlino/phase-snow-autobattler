@@ -146,6 +146,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 120.0
 offset_bottom = 160.0
+mouse_filter = 1
 script = ExtResource("2_1four")
 sprite = NodePath("Visual/SpriteParent/Sprite2D")
 anim_player = NodePath("Visual/SpriteParent/Sprite2D/AnimationPlayer")
@@ -355,5 +356,4 @@ theme_override_constants/separation = 0
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 160)
-draggable = true
 drag_object = NodePath("..")
