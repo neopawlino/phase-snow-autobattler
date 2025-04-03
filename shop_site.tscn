@@ -1,0 +1,134 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0vebfhhnx8ng"]
+
+[ext_resource type="Theme" uid="uid://dy3ejfj58drwu" path="res://theme/jamazon.tres" id="1_pybh5"]
+[ext_resource type="PackedScene" uid="uid://drgpkq08jre2r" path="res://kbs_character_slot.tscn" id="2_b2b50"]
+[ext_resource type="Script" uid="uid://bj83sngk6nd4t" path="res://debug.gd" id="3_b2b50"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmb2m"]
+bg_color = Color(0.890196, 0.901961, 0.901961, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pybh5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gmb2m")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Jamazon"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Talents"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="CharacterSlot" parent="ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="CharacterSlot2" parent="ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="CharacterSlot3" parent="ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Items"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="CharacterSlot" parent="ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="CharacterSlot2" parent="ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="CharacterSlot3" parent="ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Food"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="CharacterSlot" parent="ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="CharacterSlot2" parent="ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="CharacterSlot3" parent="ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+layout_mode = 2
+
+[node name="Debug" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_b2b50")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Debug"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Debug/VBoxContainer"]
+layout_mode = 2
+text = "Debug"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Debug/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 24
+
+[node name="AddTalent" type="Button" parent="ScrollContainer/VBoxContainer/Debug/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "Add test talent"
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Debug/VBoxContainer/HBoxContainer/AddTalent" to="ScrollContainer/VBoxContainer/Debug" method="_on_button_pressed"]

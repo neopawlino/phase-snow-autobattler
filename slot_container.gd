@@ -83,21 +83,21 @@ func push_char_front(char : Character):
 
 
 func insert_char(char : Character, i : int):
-	if all_slots_full(char.team):
+	if all_slots_full():
 		# no room! (show text or something)
 		return
 	push_char(char)
 	reorder_char(char, i)
 
 
-func all_slots_full(team : Character.Team = Character.Team.PLAYER) -> bool:
+func all_slots_full() -> bool:
 	for slot in slots:
 		if not slot.slot_obj:
 			return false
 	return true
 
 
-func is_slot_empty(team : Character.Team, i : int) -> bool:
+func is_slot_empty(i : int) -> bool:
 	var slot := slots[i]
 	return slot.slot_obj == null
 
