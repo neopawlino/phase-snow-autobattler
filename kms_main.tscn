@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=16 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://bo6wef6d3l071" path="res://window_shortcut.gd" id="6_hrlxh"]
 [ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://my_assets/link.png" id="8_7a1vo"]
 [ext_resource type="PackedScene" uid="uid://buhn71elsgfi3" path="res://kbs.tscn" id="10_h8i6l"]
-[ext_resource type="PackedScene" uid="uid://38txeh7hqff" path="res://ability.tscn" id="11_ioy5u"]
 [ext_resource type="Script" uid="uid://c1jmk3fb78k88" path="res://stream_viewport_manager.gd" id="12_hvt5d"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="13_h8i6l"]
 [ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://drag_container.gd" id="15_mldad"]
@@ -74,13 +73,6 @@ offset_bottom = 132.0
 texture = ExtResource("8_7a1vo")
 
 [node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
-
-[node name="Ability" parent="MainViewport" instance=ExtResource("11_ioy5u")]
-visible = false
-offset_left = 900.0
-offset_top = 500.0
-offset_right = 948.0
-offset_bottom = 548.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

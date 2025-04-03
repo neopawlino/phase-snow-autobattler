@@ -11,6 +11,7 @@ var is_ability_reward : bool
 
 func _ready() -> void:
 	drag_component.drag_started.connect(on_drag_started)
+	drag_component.drag_occupied_slot.connect(on_drag_occupied_slot)
 	if ability_definition:
 		icon.texture = ability_definition.icon
 
@@ -22,3 +23,13 @@ func on_drag_started():
 	self.drag_component.on_drag_release()
 	self.drag_component.move_to_slot(GameState.ability_slots.get_next_free_slot(), true)
 	GlobalSignals.rewards_screen_finished.emit()
+
+
+func on_drag_occupied_slot(slot : Slot):
+	if not slot.slot_obj is Ability:
+		drag_component.move_to_original_slot()
+		return
+	# swap
+	var other : Ability = slot.slot_obj
+	drag_component.move_to_slot(slot)
+	other.drag_component.move_to_slot(GameState.drag_original_slot)

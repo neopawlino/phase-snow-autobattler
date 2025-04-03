@@ -355,4 +355,5 @@ theme_override_constants/separation = 0
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 160)
+draggable = true
 drag_object = NodePath("..")

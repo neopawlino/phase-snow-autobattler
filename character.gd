@@ -166,6 +166,7 @@ func _ready() -> void:
 		GameState.drag_can_swap = not from_shop
 	)
 	drag_component.drag_ended.connect(handle_drag_ended)
+	drag_component.drag_occupied_slot.connect(handle_drag_occupied_slot)
 
 
 func _process(delta: float):
@@ -196,8 +197,10 @@ func handle_drag_ended():
 	if GameState.drag_sell_button and not from_shop:
 		# dragging to recycle bin: move to signal, handle separately (character, item, ability)
 		self.sell_character()
-	elif GameState.drag_end_slot and GameState.drag_end_slot.slot_obj is Character \
-		and GameState.drag_end_slot.slot_obj.can_merge(self):
+
+
+func handle_drag_occupied_slot(slot : Slot):
+	if slot.slot_obj is Character and slot.slot_obj.can_merge(self):
 		# dragging onto same type: move to a signal, make the object handle it (character, item, ability)
 		merge_character(GameState.drag_end_slot.slot_obj)
 

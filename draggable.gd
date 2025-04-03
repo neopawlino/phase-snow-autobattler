@@ -32,6 +32,8 @@ var was_draggable : bool
 signal drag_started
 signal drag_ended
 
+signal drag_occupied_slot(slot : Slot)
+
 
 func _ready() -> void:
 	self.was_draggable = self.draggable
@@ -39,7 +41,8 @@ func _ready() -> void:
 	GlobalSignals.stream_anim_started.connect(func():
 		self.was_draggable = self.draggable
 		self.draggable = false
-		self.on_drag_release()
+		if GameState.is_dragging and GameState.drag_object == self.drag_object:
+			self.on_drag_release()
 	)
 	GlobalSignals.stream_end_anim_finished.connect(func():
 		self.draggable = self.was_draggable
@@ -92,16 +95,19 @@ func on_drag_release():
 		self.drag_object.reparent(GameState.drag_original_parent, true)
 	GameState.drag_original_parent = null
 	if GameState.drag_end_slot and GameState.drag_end_slot.slot_obj:
-		# TODO swap
-		self.drag_object.global_position = GameState.drag_original_slot.global_position
+		self.drag_occupied_slot.emit(GameState.drag_end_slot)
 	elif GameState.drag_end_slot and not GameState.drag_end_slot.slot_obj:
 		# moving to an empty slot
 		self.move_to_slot(GameState.drag_end_slot)
 	elif GameState.drag_original_slot:
 		# dragging nowhere in particular, or letting go after swapping
-		self.drag_object.global_position = GameState.drag_original_slot.global_position
-		GameState.drag_original_slot = null
+		self.move_to_original_slot()
 	self.drag_ended.emit()
+
+
+func move_to_original_slot():
+	self.drag_object.global_position = GameState.drag_original_slot.global_position
+	GameState.drag_original_slot = null
 
 
 func move_to_slot(slot : Slot, use_tween : bool = false):
