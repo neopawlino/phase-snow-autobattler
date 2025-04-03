@@ -221,6 +221,7 @@ text = "0"
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Visual"]
+z_index = 1
 custom_minimum_size = Vector2(96, 10)
 anchors_preset = 7
 anchor_left = 0.5
