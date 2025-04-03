@@ -82,7 +82,6 @@ func _process(delta: float) -> void:
 		GameState.drag_original_slot = self.cur_slot
 		GameState.drag_end_slot = self.cur_slot
 		GameState.drag_initial_mouse_pos = self.get_global_mouse_position()
-		GameState.drag_original_parent = self.drag_object.get_parent()
 		self.drag_object.reparent(GameState.drag_parent, true)
 		self.drag_started.emit()
 	if Input.is_action_pressed("click") and GameState.drag_object == self.drag_object:
@@ -93,10 +92,6 @@ func _process(delta: float) -> void:
 
 func on_drag_release():
 	GameState.is_dragging = false
-	GameState.drag_object = null
-	#if GameState.drag_original_parent:
-		#self.drag_object.reparent(GameState.drag_original_parent, true)
-	GameState.drag_original_parent = null
 	if GameState.drag_end_slot and GameState.drag_end_slot.slot_obj:
 		self.drag_occupied_slot.emit(GameState.drag_end_slot)
 	elif GameState.drag_end_slot and not GameState.drag_end_slot.slot_obj:
@@ -105,6 +100,7 @@ func on_drag_release():
 	elif GameState.drag_original_slot:
 		# dragging nowhere in particular, or letting go after swapping
 		self.move_to_original_slot()
+	GameState.drag_object = null
 	self.drag_ended.emit()
 
 
@@ -118,12 +114,20 @@ func move_to_slot(slot : Slot, use_tween : bool = false):
 	var viewport_pos := slot.get_global_transform().origin
 	var result_pos := ScreenSpaceUtil.get_screenspace_position(slot, viewport_pos)
 
-	tween = self.create_tween()
-	tween.tween_property(self.drag_object, "global_position", result_pos, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(func():
-		self.drag_object.global_position = slot.global_position
+	if GameState.drag_object != self.drag_object:
+		var from_pos := ScreenSpaceUtil.get_screenspace_position(self, self.get_global_transform().origin)
+		self.drag_object.global_position = from_pos
+		self.drag_object.reparent(GameState.drag_parent)
+	if not GameState.is_dragging or GameState.drag_object != self.drag_object:
+		tween = self.create_tween()
+		tween.tween_property(self.drag_object, "global_position", result_pos, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_callback(func():
+			self.drag_object.global_position = slot.global_position
+			self.drag_object.reparent(slot)
+		)
+	else:
 		self.drag_object.reparent(slot)
-	)
+
 	slot.slot_obj = self.drag_object
 	self.cur_slot = slot
 

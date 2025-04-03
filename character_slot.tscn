@@ -3,14 +3,13 @@
 [ext_resource type="Script" uid="uid://c5ilf8qew1tt1" path="res://character_slot.gd" id="1_x2ymd"]
 [ext_resource type="Texture2D" uid="uid://dhkgqtjouosqu" path="res://my_assets/slot.png" id="2_2h50i"]
 
-[node name="CharacterSlot" type="Control" node_paths=PackedStringArray("sprite", "merge_swap_timer")]
+[node name="CharacterSlot" type="Control" node_paths=PackedStringArray("merge_swap_timer")]
 custom_minimum_size = Vector2(120, 200)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 100.0
 offset_bottom = 200.0
 script = ExtResource("1_x2ymd")
-sprite = NodePath("Sprite2D")
 merge_swap_timer = NodePath("MergeSwapTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

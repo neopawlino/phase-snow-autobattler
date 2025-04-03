@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bw07bfnlqx2ud" path="res://team_manager.gd" id="9_o3mlt"]
 [ext_resource type="Script" uid="uid://33x87s58a4er" path="res://items.gd" id="10_eetyq"]
 [ext_resource type="PackedScene" uid="uid://d2rrv6nlpencx" path="res://debug_menu.tscn" id="10_sb6nl"]
-[ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://character_slots.gd" id="12_y3foa"]
+[ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://slot_container.gd" id="12_y3foa"]
 [ext_resource type="PackedScene" uid="uid://mvolvkvd21yr" path="res://character_tooltip.tscn" id="13_4h68e"]
 [ext_resource type="PackedScene" uid="uid://bb02d6qe3f5go" path="res://sell.tscn" id="13_cmt5l"]
 [ext_resource type="PackedScene" uid="uid://b70hwns4rlfpw" path="res://player_state_ui.tscn" id="13_y2f8g"]

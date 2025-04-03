@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ctphvxmiwu62f"]
 
-[ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://character_slots.gd" id="1_3tm05"]
+[ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://slot_container.gd" id="1_3tm05"]
 [ext_resource type="Texture2D" uid="uid://bqtt0m2k884gl" path="res://my_assets/neo_background_2.png" id="1_4pdcm"]
 [ext_resource type="PackedScene" uid="uid://tkfw2aqo8uiy" path="res://stream_ui.tscn" id="1_t8krr"]
 [ext_resource type="Script" uid="uid://jy312ljf0dr8" path="res://stream_manager.gd" id="3_4pdcm"]
@@ -43,7 +43,7 @@ texture = ExtResource("1_4pdcm")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="CharacterSlots" type="Control" parent="." node_paths=PackedStringArray("player_slot_container", "enemy_slot_container")]
+[node name="CharacterSlots" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -51,10 +51,6 @@ anchor_bottom = 0.5
 offset_left = 320.0
 offset_right = 320.0
 grow_vertical = 2
-script = ExtResource("1_3tm05")
-max_slots = 4
-player_slot_container = NodePath("Team/HBoxContainer")
-enemy_slot_container = NodePath("EnemyTeam/HBoxContainer")
 
 [node name="Team" type="Control" parent="CharacterSlots"]
 z_index = -1
@@ -68,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/Team"]
+[node name="PlayerSlots" type="HBoxContainer" parent="CharacterSlots/Team" node_paths=PackedStringArray("slots")]
 layout_direction = 3
 layout_mode = 1
 anchors_preset = 8
@@ -81,19 +77,22 @@ offset_right = 248.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 40
 alignment = 1
+script = ExtResource("1_3tm05")
+slots = [NodePath("CharacterSlot"), NodePath("CharacterSlot2"), NodePath("CharacterSlot3"), NodePath("CharacterSlot4")]
+is_main_slots = true
 
-[node name="CharacterSlot" parent="CharacterSlots/Team/HBoxContainer" instance=ExtResource("4_t8krr")]
+[node name="CharacterSlot" parent="CharacterSlots/Team/PlayerSlots" instance=ExtResource("4_t8krr")]
 layout_mode = 2
 
-[node name="CharacterSlot2" parent="CharacterSlots/Team/HBoxContainer" instance=ExtResource("4_t8krr")]
+[node name="CharacterSlot2" parent="CharacterSlots/Team/PlayerSlots" instance=ExtResource("4_t8krr")]
 layout_mode = 2
 
-[node name="CharacterSlot3" parent="CharacterSlots/Team/HBoxContainer" instance=ExtResource("4_t8krr")]
+[node name="CharacterSlot3" parent="CharacterSlots/Team/PlayerSlots" instance=ExtResource("4_t8krr")]
 layout_mode = 2
 
-[node name="CharacterSlot4" parent="CharacterSlots/Team/HBoxContainer" instance=ExtResource("4_t8krr")]
+[node name="CharacterSlot4" parent="CharacterSlots/Team/PlayerSlots" instance=ExtResource("4_t8krr")]
 layout_mode = 2
 
 [node name="EnemyTeam" type="Control" parent="CharacterSlots"]
@@ -123,10 +122,9 @@ grow_vertical = 2
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="StreamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
+[node name="StreamManager" type="Node" parent="." node_paths=PackedStringArray("character_container")]
 script = ExtResource("3_4pdcm")
 character_container = NodePath("StreamCharacterContainer")
-slots = NodePath("../CharacterSlots")
 win_reward = 5
 lose_reward = 5
 draw_reward = 5
@@ -137,14 +135,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container", "slots")]
+[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container")]
 script = ExtResource("5_4now3")
 max_slots = 4
 initial_player_team = Array[ExtResource("6_sr8sl")]([ExtResource("7_o2rjw")])
 enemy_layouts = ExtResource("8_g1ecy")
 test_character = ExtResource("7_o2rjw")
 character_container = NodePath("../CharacterContainer")
-slots = NodePath("../CharacterSlots")
 
 [node name="CharacterContainer" type="Control" parent="."]
 anchors_preset = 0

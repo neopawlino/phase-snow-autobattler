@@ -13,8 +13,6 @@ var original_player_team : Array[Character]
 
 @export var result_screen : ResultScreen
 
-@export var slots : Slots
-
 @export var combat_visual_follow_speed : float = 10
 
 var in_stream : bool = false
@@ -138,9 +136,12 @@ func on_subscribers_gained(amt_gained : float):
 
 
 func damage_all_characters(hp : int):
-	for char in player_team:
+	var current_team := player_team.duplicate()
+	for char in current_team:
 		char.take_damage(hp)
-	for char in enemy_team:
+
+	current_team = enemy_team.duplicate()
+	for char in current_team:
 		char.take_damage(hp)
 
 
@@ -178,28 +179,17 @@ func start_stream():
 
 	clear_teams()
 	original_player_team.clear()
-	for slot in slots.player_team:
+	for slot in GameState.main_slots.slots:
 		if slot.slot_obj is Character:
 			original_player_team.append(slot.slot_obj)
 			player_team.append(slot.slot_obj.my_duplicate())
-	#for slot in slots.enemy_team:
-		#if slot.slot_obj != null:
-			#enemy_team.append(slot.slot_obj.my_duplicate())
 	hide_orig_team()
 	show_teams()
 	var i := 0
 	for char in player_team:
 		char.drag_component.draggable = false
 		character_container.add_child(char)
-		slots.set_char_pos(char, i)
-		char.make_timers()
-		char.died.connect(kill_character.bind(char))
-		i += 1
-	i = 0
-	for char in enemy_team:
-		char.drag_component.draggable = false
-		character_container.add_child(char)
-		slots.set_char_pos(char, i)
+		GameState.main_slots.set_char_pos(char, i)
 		char.make_timers()
 		char.died.connect(kill_character.bind(char))
 		i += 1
@@ -215,7 +205,7 @@ func proc_start_stream_items():
 		for char in player_team:
 			char.add_status(StatusEffect.StatusId.STRENGTH, 1)
 	for item in GameState.items.get_items(&"empty_slot_buff"):
-		var empty_slots := slots.max_slots - len(player_team)
+		var empty_slots := len(GameState.main_slots.slots) - len(player_team)
 		for char in player_team:
 			char.add_status(StatusEffect.StatusId.STRENGTH, empty_slots)
 			char.add_status(StatusEffect.StatusId.ARMOR, empty_slots)
@@ -313,10 +303,6 @@ func kill_character(char : Character):
 		player_team.remove_at(player_index)
 		if char.drag_component.cur_slot:
 			char.drag_component.cur_slot.slot_obj = null
-		for i in range(char.pos, len(player_team)):
-			var char_to_move := player_team[i]
-			var new_pos := char_to_move.pos - 1
-			slots.set_char_pos(char_to_move, new_pos)
 		if player_index == 0:
 			apply_front_character_items()
 		GlobalSignals.player_character_died.emit(char)
@@ -324,10 +310,6 @@ func kill_character(char : Character):
 		enemy_team.remove_at(enemy_index)
 		if char.drag_component.cur_slot:
 			char.drag_component.cur_slot.slot_obj = null
-		for i in range(char.pos, len(enemy_team)):
-			var char_to_move := enemy_team[i]
-			var new_pos := char_to_move.pos - 1
-			slots.set_char_pos(char_to_move, new_pos)
 	else:
 		# character died to 2 sources on the same tick
 		return
@@ -351,10 +333,10 @@ func summon_character(char_def : CharacterDefinition, team : Character.Team, pos
 func update_positions():
 	for i in len(player_team):
 		var char := player_team[i]
-		slots.set_char_pos(char, i)
+		char.cur_slot.get_slot_container().set_char_pos(char, i)
 	for i in len(enemy_team):
 		var char := enemy_team[i]
-		slots.set_char_pos(char, i)
+		char.cur_slot.get_slot_container().set_char_pos(char, i)
 
 
 func on_character_died(char : Character):
@@ -390,7 +372,7 @@ func check_stream_over():
 
 func get_player_income() -> int:
 	var income := 0
-	for slot in slots.player_team:
+	for slot in GameState.main_slots.slots:
 		if slot.slot_obj != null:
 			income += slot.slot_obj.get_income()
 	income += get_item_income()
@@ -436,6 +418,6 @@ func _on_combat_summary_continue_button_pressed() -> void:
 
 func proc_end_combat_items():
 	for item in GameState.items.get_items(&"hp_gain"):
-		slots.foreach_player_team(func(char: Character):
+		GameState.main_slots.foreach_slot_obj(func(char: Character):
 			char.add_max_hp(2)
 		)
