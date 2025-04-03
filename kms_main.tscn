@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=14 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
@@ -10,15 +10,11 @@
 [ext_resource type="Script" uid="uid://bo6wef6d3l071" path="res://window_shortcut.gd" id="6_hrlxh"]
 [ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://my_assets/link.png" id="8_7a1vo"]
 [ext_resource type="PackedScene" uid="uid://buhn71elsgfi3" path="res://kbs.tscn" id="10_h8i6l"]
-[ext_resource type="Script" uid="uid://c1jmk3fb78k88" path="res://stream_viewport_manager.gd" id="12_hvt5d"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="13_h8i6l"]
 [ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://drag_container.gd" id="15_mldad"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("MainViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_0cxrm"]
-viewport_path = NodePath("MainViewport/KBS/PreviewViewportContainer/PreviewViewport")
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_5fqus")
@@ -74,16 +70,11 @@ texture = ExtResource("8_7a1vo")
 
 [node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
 
+[node name="PreviewViewportContainer" parent="MainViewport/KBS" index="1" node_paths=PackedStringArray("in_stream_parent")]
+in_stream_parent = NodePath("../../../CanvasLayer")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-
-[node name="StreamViewportTexture" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("viewport")]
-visible = false
-offset_right = 1280.0
-offset_bottom = 720.0
-texture = SubResource("ViewportTexture_0cxrm")
-script = ExtResource("3_todjn")
-viewport = NodePath("../../MainViewport/KBS/PreviewViewportContainer/PreviewViewport")
 
 [node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
 visible = false
@@ -91,9 +82,5 @@ mouse_filter = 1
 
 [node name="DragContainer" type="Node" parent="CanvasLayer"]
 script = ExtResource("15_mldad")
-
-[node name="StreamViewportManager" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("stream_viewport_texture")]
-script = ExtResource("12_hvt5d")
-stream_viewport_texture = NodePath("../StreamViewportTexture")
 
 [editable path="MainViewport/KBS"]
