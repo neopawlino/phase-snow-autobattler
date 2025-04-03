@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 	var tween_running := tween and tween.is_running()
 	if not GameState.is_dragging and cur_slot and not tween_running:
 		drag_object.global_position = cur_slot.global_position
-	if not draggable:
+	if not draggable or tween_running:
 		return
 	if GameState.is_dragging:
 		mouseover = false
@@ -117,9 +117,13 @@ func move_to_slot(slot : Slot, use_tween : bool = false):
 		self.cur_slot.slot_obj = null
 	var viewport_pos := slot.get_global_transform().origin
 	var result_pos := ScreenSpaceUtil.get_screenspace_position(slot, viewport_pos)
+
 	tween = self.create_tween()
 	tween.tween_property(self.drag_object, "global_position", result_pos, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(self.drag_object.reparent.bind(slot))
+	tween.tween_callback(func():
+		self.drag_object.global_position = slot.global_position
+		self.drag_object.reparent(slot)
+	)
 	slot.slot_obj = self.drag_object
 	self.cur_slot = slot
 
