@@ -169,6 +169,7 @@ layout_mode = 2
 
 [node name="MarginContainer4" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_right = 16
 
 [node name="PanelContainer2" type="PanelContainer" parent="ScrollContainer/VBoxContainer/MarginContainer4"]
 layout_mode = 2
