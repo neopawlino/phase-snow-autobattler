@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://buhn71elsgfi3" path="res://kbs.tscn" id="10_h8i6l"]
 [ext_resource type="PackedScene" uid="uid://bpfgksmlwxjfc" path="res://shop.tscn" id="11_h8i6l"]
 [ext_resource type="PackedScene" uid="uid://d3ptx7wx54jxf" path="res://analytics.tscn" id="12_ioy5u"]
-[ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="13_h8i6l"]
+[ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://stream_summary.tscn" id="13_h8i6l"]
 [ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://drag_container.gd" id="15_mldad"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
