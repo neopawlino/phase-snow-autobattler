@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://buhn71elsgfi3"]
+[gd_scene load_steps=15 format=3 uid="uid://buhn71elsgfi3"]
 
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://kms_theme.tres" id="1_4p8mj"]
 [ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://custom_window.gd" id="2_0dw17"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bxp0b3eq4gb5p" path="res://item_slot.tscn" id="6_isgns"]
 [ext_resource type="PackedScene" uid="uid://drgpkq08jre2r" path="res://kbs_character_slot.tscn" id="8_bvb3y"]
 [ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://slot_container.gd" id="9_8issb"]
+[ext_resource type="Script" uid="uid://byu50a7qmuldb" path="res://viewer_goal_label.gd" id="11_www6x"]
 
 [node name="KBS" type="Window"]
 auto_translate_mode = 1
@@ -344,9 +345,51 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="StartStreamingButton" type="Button" parent="KBSMain/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="KBSMain/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Bench" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("1_4p8mj")
+theme_type_variation = &"KbsPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/VBoxContainer/Bench"]
+layout_mode = 2
+theme_override_constants/margin_top = -32
+
+[node name="Container" type="VBoxContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/VBoxContainer/Bench/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/VBoxContainer/Bench/MarginContainer/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="KBSMain/VBoxContainer/HBoxContainer2/VBoxContainer/Bench/MarginContainer/Container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Next Viewer Goal:"
+
+[node name="MarginContainer2" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/VBoxContainer/Bench/MarginContainer/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ViewerGoalLabel" type="Label" parent="KBSMain/VBoxContainer/HBoxContainer2/VBoxContainer/Bench/MarginContainer/Container/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "1.8e308"
+horizontal_alignment = 1
+script = ExtResource("11_www6x")
+
+[node name="StartStreamingButton" type="Button" parent="KBSMain/VBoxContainer/HBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(200, 120)
 layout_mode = 2
+size_flags_vertical = 3
 text = "Start
 Streaming"
 script = ExtResource("3_0dw17")
