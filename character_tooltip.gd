@@ -39,20 +39,20 @@ func load_char_and_show(char: Character):
 
 
 func update_all():
-	update_level_up_buttons(character.skill_points)
+	#update_level_up_buttons(character.skill_points)
 	update_skill_points(character.skill_points)
 	update_ability_levels(character.ability_levels)
 	update_char_level_bonuses(character.cur_level)
 
 
-func update_level_up_buttons(sp : int):
-	for i in range(len(ability_infos)):
-		var ability_level := character.ability_levels[i]
-		var info := ability_infos[i]
-		var disabled : bool = sp == 0 or info.is_max_level(ability_level)
-		info.set_level_up_button_disabled(disabled)
-		if info.preview_levelup:
-			info.preview_levelup = not disabled
+#func update_level_up_buttons(sp : int):
+	#for i in range(len(ability_infos)):
+		#var ability_level := character.ability_levels[i]
+		#var info := ability_infos[i]
+		#var disabled : bool = sp == 0 or info.is_max_level(ability_level)
+		#info.set_level_up_button_disabled(disabled)
+		#if info.preview_levelup:
+			#info.preview_levelup = not disabled
 
 
 func update_skill_points(sp : int):
@@ -64,7 +64,7 @@ func update_ability_levels(levels : Array[int]):
 	for i in range(len(ability_infos)):
 		var info := ability_infos[i]
 		info.level = levels[i]
-	update_level_up_buttons(character.skill_points)
+	#update_level_up_buttons(character.skill_points)
 
 
 func update_char_level_bonuses(level : int):

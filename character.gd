@@ -44,11 +44,6 @@ var sell_sprite_frame : int = 3
 
 var FLASH_DURATION : float = 0.5
 
-var cur_character_slot : Slot:
-	set(slot):
-		cur_character_slot = slot
-		self.drag_component.cur_slot = slot
-
 var base_scale : Vector2 = Vector2.ONE
 var sprite_offset : Vector2
 var flipped : bool
@@ -104,10 +99,7 @@ var unique_status_icons : Array
 
 @export var status_icon_container : Container
 
-# character's position (index) in the team
-var pos : int
 var team : int
-
 
 var from_shop : bool:
 	set(value):
@@ -175,6 +167,10 @@ func _process(delta: float):
 			self.sprite.frame = sell_sprite_frame
 		else:
 			self.sprite.frame = drag_sprite_frame
+
+
+func get_pos() -> int:
+	return self.drag_component.cur_slot.slot_index
 
 
 func die(damage : int):
@@ -288,7 +284,6 @@ func my_duplicate() -> Character:
 	var new_char : Character = char_scene.instantiate()
 	new_char.max_hp = self.max_hp
 	new_char.hp = self.max_hp
-	new_char.pos = self.pos
 	new_char.team = self.team
 	new_char.cur_level = self.cur_level
 	new_char.xp = self.xp

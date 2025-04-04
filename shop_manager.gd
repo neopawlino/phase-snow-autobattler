@@ -122,7 +122,7 @@ func reroll_all():
 
 func add_character_to_slot(char: Character, slot : Slot, buy_price : int):
 	char.team = Character.Team.PLAYER
-	char.pos = slot.slot_index
+	#char.pos = slot.slot_index
 	char.drag_component.cur_slot = slot
 	slot.slot_obj = char
 	char.drag_component.draggable = true

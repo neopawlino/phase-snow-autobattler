@@ -135,13 +135,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TeamManager" type="Node" parent="." node_paths=PackedStringArray("character_container")]
+[node name="TeamManager" type="Node" parent="."]
 script = ExtResource("5_4now3")
 max_slots = 4
 initial_player_team = Array[ExtResource("6_sr8sl")]([ExtResource("7_o2rjw")])
 enemy_layouts = ExtResource("8_g1ecy")
 test_character = ExtResource("7_o2rjw")
-character_container = NodePath("../CharacterContainer")
 
 [node name="CharacterContainer" type="Control" parent="."]
 anchors_preset = 0

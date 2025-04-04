@@ -212,7 +212,7 @@ func start_stream():
 	for char in player_team:
 		char.drag_component.draggable = false
 		character_container.add_child(char)
-		GameState.main_slots.set_char_pos(char, i)
+		GameState.main_slots.set_char_visual_pos(char, i)
 		char.make_timers()
 		char.died.connect(kill_character.bind(char))
 		i += 1
@@ -356,10 +356,10 @@ func summon_character(char_def : CharacterDefinition, team : Character.Team, pos
 func update_positions():
 	for i in len(player_team):
 		var char := player_team[i]
-		char.cur_slot.get_slot_container().set_char_pos(char, i)
+		char.cur_slot.get_slot_container().set_char_visual_pos(char, i)
 	for i in len(enemy_team):
 		var char := enemy_team[i]
-		char.cur_slot.get_slot_container().set_char_pos(char, i)
+		char.cur_slot.get_slot_container().set_char_visual_pos(char, i)
 
 
 func on_character_died(char : Character):

@@ -32,7 +32,7 @@ func set_slots_pickable(pickable: bool):
 
 
 func reorder_char(char : Character, to : int):
-	var from := char.pos
+	var from := char.get_pos()
 	if from < to:
 		for i in range(from + 1, to + 1):
 			var cur_char := slots[i].slot_obj
@@ -54,14 +54,12 @@ func move_to_slot_index(char : Character, i : int):
 
 
 func move_to_slot(char : Character, slot : Slot):
-	char.pos = slot.slot_index
 	char.drag_component.move_to_slot(slot)
 
 
-func set_char_pos(char : Character, i : int):
+func set_char_visual_pos(char : Character, i : int):
 	assert(i >= 0)
 	assert(i < len(slots))
-	char.pos = i
 	var slot := slots[i]
 	char.global_position = slot.global_position
 

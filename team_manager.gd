@@ -12,8 +12,6 @@ class_name TeamManager
 var character_scene : PackedScene = preload("res://character.tscn")
 var character_slot_scene : PackedScene = preload("res://character_slot.tscn")
 
-# just used for visibility, not positioning
-@export var character_container : Control
 
 func _ready():
 	GameState.round_number = 1
@@ -31,7 +29,6 @@ func load_initial_teams():
 		var slot : Slot = GameState.main_slots.slots[i]
 		char.load_from_character_definition(char_def)
 		char.team = Character.Team.PLAYER
-		char.pos = slot.slot_index
 		char.drag_component.cur_slot = slot
 		char.drag_component.draggable = true
 
