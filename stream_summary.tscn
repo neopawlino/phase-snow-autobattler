@@ -22,27 +22,26 @@ width = 720
 height = 405
 fill_from = Vector2(1, 1)
 
-[node name="StreamSummary" type="Control" node_paths=PackedStringArray("views_label", "viewers_label", "subscribers_label", "members_label", "overlay")]
+[node name="StreamSummary" type="Control" node_paths=PackedStringArray("views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "overlay", "stream_finished_container", "revenue_breakdown_container")]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+mouse_filter = 1
 theme = ExtResource("1_0f2ul")
 script = ExtResource("2_gi83k")
-views_label = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer/ViewsLabel")
-viewers_label = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer/ViewersLabel")
-subscribers_label = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer/SubscribersLabel")
-members_label = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer/MembersLabel")
+views_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer/ViewsLabel")
+viewers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer/ViewersLabel")
+subscribers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer/SubscribersLabel")
+subscribers_container = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3")
+members_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer/MembersLabel")
+members_container = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4")
 overlay = NodePath("BGOverlay")
+stream_finished_container = NodePath("Control/StreamFinishedContainer")
+revenue_breakdown_container = NodePath("Control/RevenueBreakdownContainer")
 
 [node name="BGOverlay" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(9999, 9999)
@@ -58,44 +57,56 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_wr6po")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(720, 0)
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="StreamFinishedContainer" type="PanelContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -39.5
-offset_top = -20.0
-offset_right = 39.5
-offset_bottom = 20.0
+offset_left = -360.0
+offset_top = -441.5
+offset_right = 360.0
+offset_bottom = 441.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"StreamResultsPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/StreamFinishedContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer"]
+custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"ResultsHeaderPanel"
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 32
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer2"]
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer2"]
 layout_mode = 2
 theme_type_variation = &"ResultsHeader"
 text = "Stream Finished"
 
-[node name="VBoxContainer" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="Control" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(705, 405)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(720, 405)
 layout_mode = 2
@@ -104,13 +115,13 @@ offset_bottom = 405.0
 texture = ExtResource("3_4n7bs")
 expand_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 offset_right = 720.0
 offset_bottom = 64.0
 texture = SubResource("GradientTexture2D_oih2q")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -120,22 +131,22 @@ offset_right = 752.0
 grow_vertical = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="StreamTitle" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="StreamTitle" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(688, 0)
 layout_mode = 2
 text = "the bestest greatest stream ever fort night"
 autowrap_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 16
 
-[node name="ChannelName" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="ChannelName" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(688, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_0f2ul")
@@ -143,119 +154,266 @@ theme_override_font_sizes/font_size = 24
 text = "very real channel name"
 autowrap_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 text = "Views"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 0
 
-[node name="ViewsLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="ViewsLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "9999"
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 text = "Peak Viewers"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 0
 
-[node name="ViewersLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+[node name="ViewersLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "9999999999"
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 text = "New Subscribers"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 0
 
-[node name="SubscribersLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer"]
+[node name="SubscribersLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "100K"
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 text = "New Members"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 0
 
-[node name="MembersLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer"]
+[node name="MembersLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "9999999999"
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer5" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "Total Revenue"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="BaseRevenueLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "$5.00"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 0
+
+[node name="Button" type="Button" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_default_cursor_shape = 2
 text = "Continue"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="RevenueBreakdownContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 460)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -780.0
+offset_top = -230.0
+offset_right = -378.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_type_variation = &"RevenueBreakdownPanel"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/RevenueBreakdownContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+theme_type_variation = &"ResultsHeader"
+text = "Revenue Breakdown"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="HSeparator" type="HSeparator" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="BaseRevenueContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/BaseRevenueContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Base Salary"
+
+[node name="BaseRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/BaseRevenueContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[node name="AdRevenueContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Ad Revenue"
+
+[node name="AdRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[node name="MembershipsContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/MembershipsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Memberships"
+
+[node name="MembershipsRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/MembershipsContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[node name="ItemsContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/ItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Items"
+
+[node name="ItemsRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/ItemsContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[node name="AbilitiesContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AbilitiesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Abilities"
+
+[node name="AbilitiesRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AbilitiesContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[connection signal="pressed" from="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]

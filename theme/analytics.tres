@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://b48mbnqi45i7o"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://b48mbnqi45i7o"]
 
 [ext_resource type="FontFile" uid="uid://cxcacr51lhhr0" path="res://assets/Roboto-SemiBold.ttf" id="1_obvub"]
 [ext_resource type="FontFile" uid="uid://dp4732uu1v8hg" path="res://assets/Roboto-Bold.ttf" id="2_1x4yr"]
@@ -13,11 +13,28 @@ corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pw5vg"]
+color = Color(0.243137, 0.243137, 0.243137, 1)
+grow_begin = 2.0
+grow_end = 2.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmout"]
 bg_color = Color(0.156863, 0.156863, 0.156863, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2iip"]
 bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pw5vg"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.32549, 0.32549, 0.32549, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onyd0"]
 bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
@@ -33,6 +50,7 @@ Button/fonts/font = ExtResource("1_obvub")
 Button/styles/hover = SubResource("StyleBoxFlat_gdkca")
 Button/styles/normal = ExtResource("2_pw5vg")
 Button/styles/pressed = ExtResource("3_0q5ag")
+HSeparator/styles/separator = SubResource("StyleBoxLine_pw5vg")
 Label/font_sizes/font_size = 40
 Label/fonts/font = ExtResource("2_1x4yr")
 LabelSmall/base_type = &"Label"
@@ -48,5 +66,10 @@ ResultsHeader/font_sizes/font_size = 32
 ResultsHeader/fonts/font = ExtResource("1_obvub")
 ResultsHeaderPanel/base_type = &"PanelContainer"
 ResultsHeaderPanel/styles/panel = SubResource("StyleBoxFlat_f2iip")
+RevenueBreakdownPanel/base_type = &"PanelContainer"
+RevenueBreakdownPanel/styles/panel = SubResource("StyleBoxFlat_pw5vg")
+RevenueLabel/base_type = &"Label"
+RevenueLabel/font_sizes/font_size = 24
+RevenueLabel/fonts/font = ExtResource("3_pw5vg")
 StreamResultsPanel/base_type = &"PanelContainer"
 StreamResultsPanel/styles/panel = SubResource("StyleBoxFlat_onyd0")

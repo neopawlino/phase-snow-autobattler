@@ -70,11 +70,11 @@ func _ready() -> void:
 	call_deferred("reroll_items")
 
 
-func update_reroll_button_enabled(money: int = GameState.player_money):
+func update_reroll_button_enabled(money: float = GameState.player_money):
 	reroll_button.disabled = money < reroll_price
 
 
-func update_shop_draggable(money: int = GameState.player_money):
+func update_shop_draggable(money: float = GameState.player_money):
 	for slot in shop_slots:
 		if not slot.slot_obj:
 			continue

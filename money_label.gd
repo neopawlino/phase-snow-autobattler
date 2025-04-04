@@ -6,5 +6,5 @@ func _ready() -> void:
 	update_text(GameState.player_money)
 
 
-func update_text(val : int):
-	self.text = "$%s" % val
+func update_text(val : float):
+	self.text = "$%.2f" % val

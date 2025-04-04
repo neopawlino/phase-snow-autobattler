@@ -87,6 +87,12 @@ var new_subscribers : float
 # members gained this stream
 var new_members : float
 
+var base_revenue : float = 5.0
+var ad_revenue : float
+var ad_rpm : float = 2.5
+var member_revenue : float
+var revenue_per_member : float = 1.0
+
 var damage_tick_timer : float
 
 func _ready():
@@ -182,6 +188,9 @@ func reset_stats():
 	new_subscribers = 0
 	new_members = 0
 	views = 0
+
+	ad_revenue = 0
+	member_revenue = 0
 
 
 func start_stream():
@@ -390,6 +399,11 @@ func get_player_income() -> int:
 	return income
 
 
+func calc_revenue() -> void:
+	self.ad_revenue = self.views * self.ad_rpm / 1000.0
+	self.member_revenue = self.revenue_per_member * GameState.members
+
+
 func get_item_income() -> int:
 	if not GameState.items:
 		return 0
@@ -397,34 +411,6 @@ func get_item_income() -> int:
 	for item in GameState.items.get_items(&"income_up"):
 		income += 4
 	return income
-
-
-# TODO currently unused
-func _on_combat_summary_continue_button_pressed() -> void:
-	hide_teams()
-
-	GameState.player_money += GameState.get_interest()
-	GameState.player_money += reward
-	GameState.player_money += income
-	GameState.player_hp += hp_gain
-	if GameState.player_hp <= 0:
-		result_screen.result_label.text = "You lose!"
-		result_screen.hard_mode_label.visible = false
-		result_screen.show()
-		return
-
-	if result == StreamSummary.StreamResult.WIN:
-		GameState.wins += 1
-	GameState.round_number += 1
-	if GameState.wins >= GameState.wins_needed:
-		result_screen.result_label.text = "You win!"
-		result_screen.hard_mode_label.visible = not GameState.hard_mode
-		result_screen.show()
-		return
-
-	GameState.items.set_items_draggable(true)
-
-	proc_end_combat_items()
 
 
 func proc_end_combat_items():

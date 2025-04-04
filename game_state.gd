@@ -25,11 +25,11 @@ var drag_parent : Node
 var drag_sell_button : bool
 var drag_initial_mouse_pos : Vector2
 
-var player_money : int:
+var player_money : float:
 	set(val):
 		player_money = val
 		player_money_changed.emit(val)
-signal player_money_changed(value: int)
+signal player_money_changed(value: float)
 
 var player_hp : int:
 	set(val):

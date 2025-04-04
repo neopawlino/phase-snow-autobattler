@@ -19,7 +19,7 @@ func _ready() -> void:
 	update_round_label(GameState.round_number)
 
 
-func update_money_label(value : int):
+func update_money_label(value : float):
 	money_label.text = str(value)
 
 

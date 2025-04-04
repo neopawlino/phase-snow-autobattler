@@ -18,12 +18,12 @@ var from_shop : bool:
 	set(value):
 		from_shop = value
 		set_price_visible(value)
-var buy_price : int:
+var buy_price : float:
 	set(value):
 		buy_price = value
 		set_price_text(value)
 		update_price_color(GameState.player_money)
-var sell_price : int = 2
+var sell_price : float = 2
 
 var base_scale : Vector2 = Vector2.ONE
 
@@ -95,11 +95,11 @@ func sell_item():
 	GameState.drag_sell_button = false
 
 
-func can_afford(money: int) -> bool:
+func can_afford(money: float) -> bool:
 	return buy_price <= money
 
 
-func update_price_color(money: int):
+func update_price_color(money: float):
 	set_price_color(can_afford(money))
 
 
