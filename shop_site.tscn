@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0vebfhhnx8ng"]
+[gd_scene load_steps=6 format=3 uid="uid://d0vebfhhnx8ng"]
 
 [ext_resource type="Theme" uid="uid://dy3ejfj58drwu" path="res://theme/jamazon.tres" id="1_pybh5"]
 [ext_resource type="PackedScene" uid="uid://drgpkq08jre2r" path="res://kbs_character_slot.tscn" id="2_b2b50"]
+[ext_resource type="Script" uid="uid://cpmir3lbe3kps" path="res://money_label.gd" id="2_pwe80"]
 [ext_resource type="Script" uid="uid://bj83sngk6nd4t" path="res://debug.gd" id="3_b2b50"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmb2m"]
@@ -28,17 +29,43 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_type_variation = &"HeaderPanel"
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Jamazon"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 16
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MoneyTitle" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Balance:"
+
+[node name="MoneyLabel" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLabel"
-text = "Jamazon"
+text = "$9999999"
+script = ExtResource("2_pwe80")
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2

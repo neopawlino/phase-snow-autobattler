@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dy3ejfj58drwu"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dy3ejfj58drwu"]
 
+[ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="1_73gda"]
 [ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_vcxpn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcxpn"]
@@ -18,6 +19,10 @@ HeaderLabel/base_type = &"Label"
 HeaderLabel/colors/font_color = Color(1, 1, 1, 1)
 HeaderPanel/base_type = &"PanelContainer"
 HeaderPanel/styles/panel = SubResource("StyleBoxFlat_73gda")
+HeaderSmall/base_type = &"Label"
+HeaderSmall/colors/font_color = Color(1, 1, 1, 1)
+HeaderSmall/font_sizes/font_size = 14
+HeaderSmall/fonts/font = ExtResource("1_73gda")
 Label/colors/font_color = Color(0.0588235, 0.0666667, 0.0666667, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_vcxpn")
