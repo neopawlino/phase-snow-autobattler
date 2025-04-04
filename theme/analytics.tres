@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b48mbnqi45i7o"]
+
+[ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_qvoic"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmout"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[resource]
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_qvoic")
+LabelSmall/base_type = &"Label"
+LabelSmall/colors/font_color = Color(0.666667, 0.666667, 0.666667, 1)
+LabelSmall/font_sizes/font_size = 16
+LabelSmall/fonts/font = ExtResource("1_qvoic")
+MarginContainer/constants/margin_left = 32
+MarginContainer/constants/margin_right = 32
+MarginContainer/constants/margin_top = 32
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_fmout")

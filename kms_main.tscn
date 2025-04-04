@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=16 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://main_viewport.gd" id="1_028yr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://my_assets/link.png" id="8_7a1vo"]
 [ext_resource type="PackedScene" uid="uid://buhn71elsgfi3" path="res://kbs.tscn" id="10_h8i6l"]
 [ext_resource type="PackedScene" uid="uid://bpfgksmlwxjfc" path="res://shop.tscn" id="11_h8i6l"]
+[ext_resource type="PackedScene" uid="uid://d3ptx7wx54jxf" path="res://analytics.tscn" id="12_ioy5u"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://combat_summary.tscn" id="13_h8i6l"]
 [ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://drag_container.gd" id="15_mldad"]
 
@@ -90,6 +91,26 @@ offset_right = 44.0
 offset_bottom = 132.0
 texture = ExtResource("8_7a1vo")
 
+[node name="AnalyticsShortcut" type="Button" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window")]
+layout_mode = 2
+theme = ExtResource("6_dse3q")
+theme_type_variation = &"DesktopIconButton"
+text = "Analytics"
+icon = ExtResource("2_sukj3")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("6_hrlxh")
+window = NodePath("../../Analytics")
+
+[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/AnalyticsShortcut"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 92.0
+offset_right = 44.0
+offset_bottom = 132.0
+texture = ExtResource("8_7a1vo")
+
 [node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
 min_size = Vector2i(1024, 500)
 
@@ -97,6 +118,9 @@ min_size = Vector2i(1024, 500)
 in_stream_parent = NodePath("../../../CanvasLayer")
 
 [node name="Shop" parent="MainViewport" instance=ExtResource("11_h8i6l")]
+
+[node name="Analytics" parent="MainViewport" instance=ExtResource("12_ioy5u")]
+position = Vector2i(900, 400)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
