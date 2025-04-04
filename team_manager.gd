@@ -22,7 +22,6 @@ func _ready():
 	GameState.wins = 0
 
 	load_initial_teams()
-	add_test_character()
 
 
 func load_initial_teams():
@@ -40,24 +39,3 @@ func load_initial_teams():
 		slot.slot_obj = char
 		slot.add_child(char)
 		i += 1
-
-
-func add_test_character():
-	var char : Character = character_scene.instantiate()
-	var slot_i := 0
-	var slot : Slot = null
-	for cur_slot in GameState.main_slots.slots:
-		if not cur_slot.slot_obj:
-			slot = cur_slot
-			break
-	if not slot:
-		return
-	char.load_from_character_definition(test_character)
-	char.team = Character.Team.PLAYER
-	char.pos = slot.slot_index
-	char.drag_component.cur_slot = slot
-	slot.slot_obj = char
-	char.drag_component.draggable = true
-
-	char.global_position = slot.global_position
-	self.character_container.add_child(char)
