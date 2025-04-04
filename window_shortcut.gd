@@ -16,3 +16,4 @@ func on_pressed():
 		window.size = self.default_size
 		window.position = self.default_pos
 		window.visible = true
+	window.grab_focus()
