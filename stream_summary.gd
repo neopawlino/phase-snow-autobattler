@@ -1,10 +1,10 @@
 extends Control
 
-class_name CombatSummary
+class_name StreamSummary
 
 signal continue_button_pressed
 
-enum CombatResult {
+enum StreamResult {
 	WIN,
 	LOSE,
 	DRAW
@@ -27,14 +27,14 @@ func _ready() -> void:
 	GlobalSignals.stream_ended.connect(show_combat_summary)
 
 
-func show_combat_summary(result: CombatResult, money: int, income: int = 0, hp_gain: int = 0):
+func show_combat_summary(result: StreamResult, money: int, income: int = 0, hp_gain: int = 0):
 	var title_text : String
 	match result:
-		CombatResult.WIN:
+		StreamResult.WIN:
 			title_text = "Victory!"
-		CombatResult.LOSE:
+		StreamResult.LOSE:
 			title_text = "Defeat!"
-		CombatResult.DRAW:
+		StreamResult.DRAW:
 			title_text = "Draw!"
 	title.text = title_text
 	var interest := GameState.get_interest()

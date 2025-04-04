@@ -20,7 +20,7 @@ func _ready() -> void:
 		self.set_speed(speed_index)
 		self.show()
 	)
-	GlobalSignals.stream_ended.connect(func(_result: CombatSummary.CombatResult, _money: int, _income: int, _hp_gain: int):
+	GlobalSignals.stream_ended.connect(func(_result: StreamSummary.StreamResult, _money: int, _income: int, _hp_gain: int):
 		self.set_speed(0)
 		self.hide()
 	)

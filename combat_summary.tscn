@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://b47gfxy22e6n2"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_eqcgx"]
-[ext_resource type="Script" uid="uid://dan3hyi6x0mqf" path="res://combat_summary.gd" id="2_gi83k"]
+[ext_resource type="Script" uid="uid://dan3hyi6x0mqf" path="res://stream_summary.gd" id="2_gi83k"]
 [ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_8l2ao"]
 [ext_resource type="Texture2D" uid="uid://bt6gg4cs87c6h" path="res://my_assets/heart.png" id="3_osu63"]
 
-[node name="CombatSummary" type="Control"]
+[node name="StreamSummary" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

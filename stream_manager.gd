@@ -25,7 +25,7 @@ var reward : int
 var income : int
 var hp_gain : int
 
-var result : CombatSummary.CombatResult
+var result : StreamSummary.StreamResult
 
 var viewer_goal : float:
 	set(amt):
@@ -358,9 +358,9 @@ func check_stream_over():
 	if not player_team.is_empty():
 		return
 	if self.peak_viewers >= GameState.viewer_goal:
-		result = CombatSummary.CombatResult.WIN
+		result = StreamSummary.StreamResult.WIN
 	else:
-		result = CombatSummary.CombatResult.LOSE
+		result = StreamSummary.StreamResult.LOSE
 	for char in player_team:
 		char.stop_timers()
 	for char in enemy_team:
@@ -402,7 +402,7 @@ func _on_combat_summary_continue_button_pressed() -> void:
 		result_screen.show()
 		return
 
-	if result == CombatSummary.CombatResult.WIN:
+	if result == StreamSummary.StreamResult.WIN:
 		GameState.wins += 1
 	GameState.round_number += 1
 	if GameState.wins >= GameState.wins_needed:
