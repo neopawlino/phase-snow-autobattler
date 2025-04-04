@@ -1,9 +1,12 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://cf7m6ltsqcbhq"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://cf7m6ltsqcbhq"]
 
 [ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_vgl0v"]
 [ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="2_1b8q7"]
 [ext_resource type="StyleBox" uid="uid://1pvuwmhfx0xe" path="res://theme/kbs/kbs_panel_stylebox.tres" id="2_bakvj"]
+[ext_resource type="StyleBox" uid="uid://b1uy7he4dqamf" path="res://theme/kbs/kbs_button_hover.tres" id="2_ucrh8"]
+[ext_resource type="StyleBox" uid="uid://d4iahh57fmpfq" path="res://theme/kbs/kbs_button_normal.tres" id="3_7gw4t"]
 [ext_resource type="StyleBox" uid="uid://dpapv2p3xk8xt" path="res://theme/kbs/kbs_panel_highlighted.tres" id="3_bakvj"]
+[ext_resource type="StyleBox" uid="uid://cxb6ambud4oyp" path="res://theme/kbs/kbs_button_pressed.tres" id="4_kmlje"]
 [ext_resource type="StyleBox" uid="uid://dfy0ijtexai2x" path="res://theme/kbs/tab_selected.tres" id="5_3k1qh"]
 [ext_resource type="StyleBox" uid="uid://dqtj43ceown7c" path="res://theme/kbs/tab_unselected.tres" id="6_o2ech"]
 
@@ -85,6 +88,14 @@ shadow_offset = Vector2(2, 2)
 [resource]
 Button/constants/icon_max_width = 128
 Button/fonts/font = ExtResource("1_vgl0v")
+Button/styles/hover = ExtResource("2_ucrh8")
+Button/styles/hover_mirrored = ExtResource("2_ucrh8")
+Button/styles/hover_pressed = ExtResource("4_kmlje")
+Button/styles/hover_pressed_mirrored = ExtResource("4_kmlje")
+Button/styles/normal = ExtResource("3_7gw4t")
+Button/styles/normal_mirrored = ExtResource("3_7gw4t")
+Button/styles/pressed = ExtResource("4_kmlje")
+Button/styles/pressed_mirrored = ExtResource("4_kmlje")
 DesktopIconButton/base_type = &"Button"
 DesktopIconButton/colors/font_outline_color = Color(0.186, 0.202533, 0.31, 1)
 DesktopIconButton/constants/icon_max_width = 128

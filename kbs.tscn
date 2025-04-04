@@ -110,6 +110,7 @@ theme_override_constants/margin_bottom = 16
 [node name="SkipButton" type="Button" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer/AbilityReward/MarginContainer/Container/MarginContainer2"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Skip"
 
 [node name="Items" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer"]
@@ -390,6 +391,8 @@ script = ExtResource("11_www6x")
 custom_minimum_size = Vector2(200, 120)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+toggle_mode = true
 text = "Start
 Streaming"
 script = ExtResource("3_0dw17")

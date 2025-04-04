@@ -255,6 +255,7 @@ text_overrun_behavior = 3
 custom_minimum_size = Vector2(160, 50)
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
 text = "Continue"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
