@@ -19,6 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tyx83")
 merge_swap_timer = NodePath("MergeSwapTimer")
+pickable = true
 
 [node name="MergeSwapTimer" type="Timer" parent="."]
 unique_name_in_owner = true

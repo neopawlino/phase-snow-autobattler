@@ -11,6 +11,7 @@ offset_right = 100.0
 offset_bottom = 200.0
 script = ExtResource("1_x2ymd")
 merge_swap_timer = NodePath("MergeSwapTimer")
+pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1

@@ -14,7 +14,6 @@ var slot_obj : Node
 
 @export var merge_swap_timer : Timer
 
-
 var mouseover : bool:
 	set(val):
 		var changed := mouseover != val
@@ -59,7 +58,7 @@ func get_slot_container():
 
 
 func on_mouse_entered() -> void:
-	if not GameState.is_dragging:
+	if not GameState.is_dragging or not self.pickable:
 		return
 	if GameState.drag_object is Character and self.slot_type == SlotType.CHARACTER:
 		GameState.drag_end_slot = self

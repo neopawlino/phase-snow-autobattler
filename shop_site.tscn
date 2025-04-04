@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0vebfhhnx8ng"]
+[gd_scene load_steps=7 format=3 uid="uid://d0vebfhhnx8ng"]
 
 [ext_resource type="Theme" uid="uid://dy3ejfj58drwu" path="res://theme/jamazon.tres" id="1_pybh5"]
 [ext_resource type="PackedScene" uid="uid://drgpkq08jre2r" path="res://kbs_character_slot.tscn" id="2_b2b50"]
 [ext_resource type="Script" uid="uid://cpmir3lbe3kps" path="res://money_label.gd" id="2_pwe80"]
+[ext_resource type="PackedScene" uid="uid://dd3yd21lrvjcv" path="res://shop_slot.tscn" id="3_8xggp"]
 [ext_resource type="Script" uid="uid://bj83sngk6nd4t" path="res://debug.gd" id="3_b2b50"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmb2m"]
@@ -91,13 +92,13 @@ text = "Talents"
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="CharacterSlot" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+[node name="ShopSlot" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_8xggp")]
 layout_mode = 2
 
-[node name="CharacterSlot2" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+[node name="ShopSlot2" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_8xggp")]
 layout_mode = 2
 
-[node name="CharacterSlot3" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_b2b50")]
+[node name="ShopSlot3" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_8xggp")]
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
