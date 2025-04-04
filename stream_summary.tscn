@@ -22,7 +22,7 @@ width = 720
 height = 405
 fill_from = Vector2(1, 1)
 
-[node name="StreamSummary" type="Control" node_paths=PackedStringArray("views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "overlay", "stream_finished_container", "revenue_breakdown_container")]
+[node name="StreamSummary" type="Control" node_paths=PackedStringArray("views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "base_revenue_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +39,18 @@ subscribers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBox
 subscribers_container = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3")
 members_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer/MembersLabel")
 members_container = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4")
+total_revenue_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer/MarginContainer/TotalRevenueLabel")
 overlay = NodePath("BGOverlay")
+base_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/BaseRevenueContainer/BaseRevenueLabel")
+ad_revenue_container = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer")
+ad_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer/AdRevenueLabel")
+rpm_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer/VBoxContainer/RPMLabel")
+member_revenue_container = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/MembershipsContainer")
+member_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/MembershipsContainer/MembershipsRevenueLabel")
+item_revenue_container = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/ItemsContainer")
+item_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/ItemsContainer/ItemsRevenueLabel")
+abilities_revenue_container = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AbilitiesContainer")
+abilities_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AbilitiesContainer/AbilitiesRevenueLabel")
 stream_finished_container = NodePath("Control/StreamFinishedContainer")
 revenue_breakdown_container = NodePath("Control/RevenueBreakdownContainer")
 
@@ -185,7 +196,9 @@ theme_override_constants/margin_right = 0
 [node name="ViewsLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
-text = "9999"
+text = "99999999999"
+clip_text = true
+text_overrun_behavior = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
 layout_mode = 2
@@ -233,7 +246,7 @@ theme_override_constants/margin_right = 0
 [node name="SubscribersLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
-text = "100K"
+text = "999999999"
 clip_text = true
 text_overrun_behavior = 3
 
@@ -280,10 +293,12 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 0
 
-[node name="BaseRevenueLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer/MarginContainer"]
+[node name="TotalRevenueLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
-text = "$5.00"
+text = "$9999999.99"
+clip_text = true
+text_overrun_behavior = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -304,10 +319,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -780.0
-offset_top = -230.0
-offset_right = -378.0
-offset_bottom = 230.0
+offset_left = -792.5
+offset_top = -238.0
+offset_right = -372.5
+offset_bottom = 238.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -363,11 +378,20 @@ text = "$5.00"
 [node name="AdRevenueContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer/VBoxContainer"]
+layout_mode = 2
 theme_type_variation = &"RevenueLabel"
 text = "Ad Revenue"
+
+[node name="RPMLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LabelSmall"
+text = "($2.50 per 1,000 views)"
 
 [node name="AdRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer"]
 layout_mode = 2

@@ -93,6 +93,8 @@ var ad_rpm : float = 2.5
 var member_revenue : float
 var revenue_per_member : float = 1.0
 
+var total_revenue : float
+
 var damage_tick_timer : float
 
 func _ready():
@@ -102,6 +104,7 @@ func _ready():
 	GlobalSignals.player_character_died.connect(on_player_character_died)
 	GlobalSignals.stream_started.connect(start_stream)
 	GlobalSignals.stream_end_anim_finished.connect(show_orig_team)
+
 	GlobalSignals.stream_results_confirmed.connect(reset_stats)
 	GameState.subscribers_changed.connect(on_subscribers_changed)
 	hide_teams()
@@ -386,31 +389,18 @@ func check_stream_over():
 	for char in enemy_team:
 		char.stop_timers()
 	in_stream = false
-	income = get_player_income()
+	self.update_revenue()
 	GlobalSignals.stream_ended.emit(result, 0, income, 0)
 
 
-func get_player_income() -> int:
-	var income := 0
-	for slot in GameState.main_slots.slots:
-		if slot.slot_obj != null:
-			income += slot.slot_obj.get_income()
-	income += get_item_income()
-	return income
-
-
-func calc_revenue() -> void:
+func update_revenue() -> void:
 	self.ad_revenue = self.views * self.ad_rpm / 1000.0
 	self.member_revenue = self.revenue_per_member * GameState.members
+	self.total_revenue = self.get_total_revenue()
 
 
-func get_item_income() -> int:
-	if not GameState.items:
-		return 0
-	var income := 0
-	for item in GameState.items.get_items(&"income_up"):
-		income += 4
-	return income
+func get_total_revenue() -> float:
+	return self.base_revenue + self.ad_revenue + self.member_revenue
 
 
 func proc_end_combat_items():

@@ -119,6 +119,9 @@ func _ready() -> void:
 		round_number += 1
 		viewer_goal = get_viewer_goal(round_number)
 	)
+	GlobalSignals.stream_end_anim_finished.connect(func():
+		self.player_money += self.stream_manager.total_revenue
+	)
 
 
 func get_viewer_goal(round_num : int) -> float:

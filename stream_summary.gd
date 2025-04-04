@@ -16,8 +16,20 @@ enum StreamResult {
 @export var subscribers_container : Control
 @export var members_label : Label
 @export var members_container : Control
+@export var total_revenue_label : Label
 
 @export var overlay : CanvasItem
+
+@export var base_revenue_label : Label
+@export var ad_revenue_container : Control
+@export var ad_revenue_label : Label
+@export var rpm_label : Label
+@export var member_revenue_container : Control
+@export var member_revenue_label : Label
+@export var item_revenue_container : Control
+@export var item_revenue_label : Label
+@export var abilities_revenue_container : Control
+@export var abilities_revenue_label : Label
 
 @export var stream_finished_container : Control
 @export var revenue_breakdown_container : Control
@@ -40,14 +52,29 @@ func show_stream_summary(result: StreamResult, money: int, income: int = 0, hp_g
 func update_stream_finished():
 	self.views_label.text = "%d" % GameState.stream_manager.views
 	self.viewers_label.text = "%d" % GameState.stream_manager.peak_viewers
-	self.subscribers_label.text = "%d" % GameState.stream_manager.new_subscribers
 	self.subscribers_container.visible = GameState.stream_manager.new_subscribers > 0
-	self.members_label.text = "%d" % GameState.stream_manager.new_members
+	self.subscribers_label.text = "%d" % GameState.stream_manager.new_subscribers
 	self.members_container.visible = GameState.stream_manager.new_members > 0
+	self.members_label.text = "%d" % GameState.stream_manager.new_members
+
+	self.total_revenue_label.text = "$%.2f" % GameState.stream_manager.total_revenue
 
 
 func update_revenue_breakdown():
-	pass
+	self.base_revenue_label.text = "$%.2f" % GameState.stream_manager.base_revenue
+
+	self.ad_revenue_container.visible = GameState.stream_manager.ad_revenue > 0
+	self.ad_revenue_label.text = "$%.2f" % GameState.stream_manager.ad_revenue
+	self.rpm_label.text = "($%.2f per 1,000 views)" % GameState.stream_manager.ad_rpm
+
+	self.member_revenue_container.visible = GameState.members > 0
+	self.member_revenue_label.text = "$%.2f" % GameState.stream_manager.member_revenue
+
+	# no item revenue yet
+	self.item_revenue_container.visible = false
+
+	# no abilities revenue yet
+	self.abilities_revenue_container.visible = false
 
 
 func show_anim():
