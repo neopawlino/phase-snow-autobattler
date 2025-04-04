@@ -1,11 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://b47gfxy22e6n2"]
+[gd_scene load_steps=9 format=3 uid="uid://b47gfxy22e6n2"]
 
-[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://theme.tres" id="1_eqcgx"]
+[ext_resource type="Theme" uid="uid://b48mbnqi45i7o" path="res://theme/analytics.tres" id="1_0f2ul"]
 [ext_resource type="Script" uid="uid://dan3hyi6x0mqf" path="res://stream_summary.gd" id="2_gi83k"]
-[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://my_assets/coffee.png" id="3_8l2ao"]
-[ext_resource type="Texture2D" uid="uid://bt6gg4cs87c6h" path="res://my_assets/heart.png" id="3_osu63"]
+[ext_resource type="Texture2D" uid="uid://dej01nwaqw7fa" path="res://my_assets/stream_bg_dither.png" id="3_4n7bs"]
+[ext_resource type="FontFile" uid="uid://dtt6dtx6rgxr" path="res://assets/Roboto-Regular.ttf" id="4_0f2ul"]
 
-[node name="StreamSummary" type="Control"]
+[sub_resource type="Gradient" id="Gradient_oih2q"]
+offsets = PackedFloat32Array(0.997214)
+colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 0.501961)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wr6po"]
+gradient = SubResource("Gradient_oih2q")
+
+[sub_resource type="Gradient" id="Gradient_0f2ul"]
+offsets = PackedFloat32Array(0, 0.696379, 1)
+colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 0.792157, 0.654902, 0.654902, 0.654902, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oih2q"]
+gradient = SubResource("Gradient_0f2ul")
+width = 720
+height = 405
+fill_from = Vector2(1, 1)
+
+[node name="StreamSummary" type="Control" node_paths=PackedStringArray("views_label", "viewers_label", "subscribers_label", "members_label", "overlay")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -18,11 +35,31 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eqcgx")
+scale = Vector2(0.8, 0.8)
+theme = ExtResource("1_0f2ul")
 script = ExtResource("2_gi83k")
+views_label = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer/ViewsLabel")
+viewers_label = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer/ViewersLabel")
+subscribers_label = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer/SubscribersLabel")
+members_label = NodePath("PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer/MembersLabel")
+overlay = NodePath("BGOverlay")
+
+[node name="BGOverlay" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(9999, 9999)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4979.5
+offset_top = -4979.5
+offset_right = 4979.5
+offset_bottom = 4979.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_wr6po")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(720, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,117 +72,189 @@ offset_right = 39.5
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"StreamResultsPanel"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ResultsHeaderPanel"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer2"]
+layout_mode = 2
+theme_type_variation = &"ResultsHeader"
+text = "Stream Finished"
+
+[node name="VBoxContainer" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(705, 405)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(720, 405)
 layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "VictoryDefeatDraw"
-horizontal_alignment = 1
-
-[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="DamageContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Damage" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/DamageContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Damage"
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/DamageContainer"]
-layout_mode = 2
-texture = ExtResource("3_osu63")
+offset_right = 720.0
+offset_bottom = 405.0
+texture = ExtResource("3_4n7bs")
 expand_mode = 2
 
-[node name="DamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/DamageContainer"]
-unique_name_in_owner = true
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "-2"
-horizontal_alignment = 2
+offset_right = 720.0
+offset_bottom = 64.0
+texture = SubResource("GradientTexture2D_oih2q")
 
-[node name="RewardContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -163.0
+offset_right = 752.0
+grow_vertical = 0
+theme_override_constants/margin_bottom = 32
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/RewardContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Reward"
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/RewardContainer"]
-layout_mode = 2
-texture = ExtResource("3_8l2ao")
-expand_mode = 2
-
-[node name="RewardLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/RewardContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "999"
-horizontal_alignment = 2
-
-[node name="IncomeContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/IncomeContainer"]
+[node name="StreamTitle" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(688, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Income"
+text = "the bestest greatest stream ever fort night"
+autowrap_mode = 3
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/IncomeContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
-texture = ExtResource("3_8l2ao")
-expand_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 16
 
-[node name="IncomeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/IncomeContainer"]
-unique_name_in_owner = true
+[node name="ChannelName" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(688, 0)
 layout_mode = 2
-text = "999"
-horizontal_alignment = 2
+theme_override_fonts/font = ExtResource("4_0f2ul")
+theme_override_font_sizes/font_size = 24
+text = "very real channel name"
+autowrap_mode = 3
 
-[node name="InterestContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 32
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/InterestContainer"]
-layout_mode = 2
-text = "Interest ("
-
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/InterestContainer"]
-layout_mode = 2
-texture = ExtResource("3_8l2ao")
-expand_mode = 2
-
-[node name="InterestInfo" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/InterestContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "1 per 5, max 5)"
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/InterestContainer"]
-layout_mode = 2
-texture = ExtResource("3_8l2ao")
-expand_mode = 2
-
-[node name="InterestLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/InterestContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "1"
-horizontal_alignment = 2
-
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "Views"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="ViewsLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "9999"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "Peak Viewers"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="ViewersLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "9999999999"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "New Subscribers"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="SubscribersLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "100K"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "New Members"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="MembersLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "9999999999"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+size_flags_horizontal = 8
 text = "Continue"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

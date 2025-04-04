@@ -82,8 +82,12 @@ var member_rate : float:
 		member_rate_changed.emit(amt)
 signal member_rate_changed(amt: float)
 
-var damage_tick_timer : float
+# subscribers gained this stream
+var new_subscribers : float
+# members gained this stream
+var new_members : float
 
+var damage_tick_timer : float
 
 func _ready():
 	GameState.stream_manager = self
@@ -120,19 +124,24 @@ func on_views_gained(amt_gained : float):
 
 
 func on_viewers_gained(amt_gained : float):
-	GameState.subscribers += calc_amt_gained(amt_gained, subscriber_rate)
+	var subscribers_gained := calc_amt_gained(amt_gained, subscriber_rate)
+	GameState.subscribers += subscribers_gained
+	self.new_subscribers += subscribers_gained
 
 
 func on_subscribers_changed(new_amt : float):
 	var change := new_amt - prev_subscribers
 	if change > 0:
 		on_subscribers_gained(change)
-	prev_subscribers = new_amt
+	self.prev_subscribers = new_amt
 
 
 func on_subscribers_gained(amt_gained : float):
-	if in_stream:
-		GameState.members += calc_amt_gained(amt_gained, member_rate)
+	if not self.in_stream:
+		return
+	var members_gained := calc_amt_gained(amt_gained, member_rate)
+	GameState.members += members_gained
+	self.new_members += members_gained
 
 
 func damage_all_characters(hp : int):
@@ -170,6 +179,8 @@ func reset_stats():
 	member_rate = GameState.base_member_rate
 	viewer_retention = GameState.base_viewer_retention
 	prev_subscribers = GameState.subscribers
+	new_subscribers = 0
+	new_members = 0
 	views = 0
 
 

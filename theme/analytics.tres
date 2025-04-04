@@ -1,18 +1,44 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b48mbnqi45i7o"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b48mbnqi45i7o"]
 
-[ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_qvoic"]
+[ext_resource type="FontFile" uid="uid://cxcacr51lhhr0" path="res://assets/Roboto-SemiBold.ttf" id="1_obvub"]
+[ext_resource type="FontFile" uid="uid://dp4732uu1v8hg" path="res://assets/Roboto-Bold.ttf" id="2_1x4yr"]
+[ext_resource type="FontFile" uid="uid://dtt6dtx6rgxr" path="res://assets/Roboto-Regular.ttf" id="3_pw5vg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q5ag"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmout"]
 bg_color = Color(0.156863, 0.156863, 0.156863, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2iip"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onyd0"]
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+
 [resource]
+Button/colors/font_color = Color(0.0117647, 0.0117647, 0.0117647, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_obvub")
+Button/styles/normal = SubResource("StyleBoxFlat_0q5ag")
 Label/font_sizes/font_size = 40
-Label/fonts/font = ExtResource("1_qvoic")
+Label/fonts/font = ExtResource("2_1x4yr")
 LabelSmall/base_type = &"Label"
 LabelSmall/colors/font_color = Color(0.666667, 0.666667, 0.666667, 1)
 LabelSmall/font_sizes/font_size = 16
-LabelSmall/fonts/font = ExtResource("1_qvoic")
+LabelSmall/fonts/font = ExtResource("3_pw5vg")
 MarginContainer/constants/margin_left = 32
 MarginContainer/constants/margin_right = 32
 MarginContainer/constants/margin_top = 32
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_fmout")
+ResultsHeader/base_type = &"Label"
+ResultsHeader/font_sizes/font_size = 32
+ResultsHeader/fonts/font = ExtResource("1_obvub")
+ResultsHeaderPanel/base_type = &"PanelContainer"
+ResultsHeaderPanel/styles/panel = SubResource("StyleBoxFlat_f2iip")
+StreamResultsPanel/base_type = &"PanelContainer"
+StreamResultsPanel/styles/panel = SubResource("StyleBoxFlat_onyd0")
