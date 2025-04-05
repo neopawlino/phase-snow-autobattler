@@ -115,6 +115,8 @@ var char_def : CharacterDefinition
 
 @export var ability_slots : Array[Slot]
 
+@export var character_ui : Control
+
 
 signal died
 var is_dead : bool = false
@@ -201,6 +203,10 @@ func set_info_z_index(val : int):
 	self.z_index = val
 	self.sprite.z_index = val
 	char_info_container.z_index = val
+
+
+func set_ui_visible(val : bool):
+	self.character_ui.visible = val
 
 
 func set_flipped(flipped: bool):

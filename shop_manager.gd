@@ -76,6 +76,7 @@ func on_talent_buy_button_pressed(slot : ShopSlot):
 	var character : Character = slot.slot_obj
 	GameState.bench_slots.push_char(character)
 	character.drag_component.draggable = true
+	character.set_ui_visible(true)
 	slot.set_sold_out(true)
 
 
@@ -106,6 +107,7 @@ func reroll_talents():
 			slot.slot_obj.queue_free()
 		var char : Character = character_scene.instantiate()
 		char.load_from_character_definition(RandomUtil.all_character_definitions.pick_random())
+		char.set_ui_visible(false)
 		add_character_to_slot(char, slot, buy_price)
 
 

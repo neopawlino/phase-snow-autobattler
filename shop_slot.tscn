@@ -14,11 +14,18 @@ title_label = NodePath("VBoxContainer/TitleLabel")
 price_label = NodePath("VBoxContainer/PriceLabel")
 buy_button = NodePath("VBoxContainer/BuyButton")
 
-[node name="CharacterSlot" type="Control" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="CharacterSlot" type="Control" parent="MarginContainer"]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CharacterSlot"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CharacterSlot"]
 self_modulate = Color(0.113725, 0.121569, 0.14902, 1)
 layout_mode = 1
 anchors_preset = 7
@@ -40,12 +47,11 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(120, 52)
+custom_minimum_size = Vector2(120, 18)
 layout_mode = 2
 theme_type_variation = &"ShopItemTitle"
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 autowrap_mode = 2
-clip_text = true
 text_overrun_behavior = 3
 
 [node name="PriceLabel" type="Label" parent="VBoxContainer"]

@@ -138,7 +138,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots")]
+[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots", "character_ui")]
 texture_filter = 1
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 3
@@ -152,17 +152,18 @@ anim_player = NodePath("Visual/SpriteParent/Sprite2D/AnimationPlayer")
 visual = NodePath("Visual")
 damage_audio = ExtResource("8_qi5as")
 damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
-hp_label = NodePath("Visual/VBoxContainer/HPBar/HPLabel")
-hp_bar = NodePath("Visual/VBoxContainer/HPBar")
-level_label = NodePath("Visual/VBoxContainer/VBoxContainer/LvLabel")
-xp_label = NodePath("Visual/VBoxContainer/VBoxContainer/XPBar/XPLabel")
-xp_bar = NodePath("Visual/VBoxContainer/VBoxContainer/XPBar")
-ability_bar_container = NodePath("Visual/VBoxContainer/AbilityBarContainer")
-name_label = NodePath("Visual/VBoxContainer/NameLabel")
-char_info_container = NodePath("Visual/VBoxContainer")
+hp_label = NodePath("Visual/CharacterUI/HPBar/HPLabel")
+hp_bar = NodePath("Visual/CharacterUI/HPBar")
+level_label = NodePath("Visual/CharacterUI/VBoxContainer/LvLabel")
+xp_label = NodePath("Visual/CharacterUI/VBoxContainer/XPBar/XPLabel")
+xp_bar = NodePath("Visual/CharacterUI/VBoxContainer/XPBar")
+ability_bar_container = NodePath("Visual/CharacterUI/AbilityBarContainer")
+name_label = NodePath("Visual/CharacterUI/NameLabel")
+char_info_container = NodePath("Visual/CharacterUI")
 status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
 drag_component = NodePath("Draggable")
-ability_slots = [NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot"), NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot2"), NodePath("Visual/VBoxContainer/AbilitiesContainer/AbilitySlot3")]
+ability_slots = [NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot"), NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot2"), NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot3")]
+character_ui = NodePath("Visual/CharacterUI")
 
 [node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("smoke_particles")]
 position = Vector2(60, 80)
@@ -198,7 +199,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_bty2k")
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Visual"]
+[node name="CharacterUI" type="VBoxContainer" parent="Visual"]
 z_index = 1
 custom_minimum_size = Vector2(96, 10)
 anchors_preset = 7
@@ -217,17 +218,17 @@ mouse_filter = 2
 theme = ExtResource("4_18dhx")
 alignment = 2
 
-[node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/VBoxContainer"]
+[node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/CharacterUI"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="NameLabel" type="Label" parent="Visual/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="Visual/CharacterUI"]
 visible = false
 layout_mode = 2
 text = "He may"
 horizontal_alignment = 1
 
-[node name="SkillPointsLabel" type="Label" parent="Visual/VBoxContainer"]
+[node name="SkillPointsLabel" type="Label" parent="Visual/CharacterUI"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -237,13 +238,13 @@ text = "SP:0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Visual/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Visual/CharacterUI"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Visual/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Visual/CharacterUI"]
 layout_mode = 2
 
-[node name="LvLabel" type="Label" parent="Visual/VBoxContainer/VBoxContainer"]
+[node name="LvLabel" type="Label" parent="Visual/CharacterUI/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_18dhx")
 theme_type_variation = &"TextSmall"
@@ -251,7 +252,7 @@ text = "Lv.1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="XPBar" type="ProgressBar" parent="Visual/VBoxContainer/VBoxContainer"]
+[node name="XPBar" type="ProgressBar" parent="Visual/CharacterUI/VBoxContainer"]
 custom_minimum_size = Vector2(80, 16)
 layout_mode = 2
 theme = ExtResource("4_18dhx")
@@ -260,7 +261,7 @@ max_value = 5.0
 value = 3.0
 show_percentage = false
 
-[node name="XPLabel" type="Label" parent="Visual/VBoxContainer/VBoxContainer/XPBar"]
+[node name="XPLabel" type="Label" parent="Visual/CharacterUI/VBoxContainer/XPBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -279,7 +280,7 @@ text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="Visual/VBoxContainer"]
+[node name="HPBar" type="ProgressBar" parent="Visual/CharacterUI"]
 custom_minimum_size = Vector2(80, 16)
 layout_mode = 2
 theme = ExtResource("4_18dhx")
@@ -288,7 +289,7 @@ max_value = 5.0
 value = 3.0
 show_percentage = false
 
-[node name="HPLabel" type="Label" parent="Visual/VBoxContainer/HPBar"]
+[node name="HPLabel" type="Label" parent="Visual/CharacterUI/HPBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -307,18 +308,18 @@ text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/VBoxContainer"]
+[node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/CharacterUI"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="AbilitySlot" parent="Visual/VBoxContainer/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
+[node name="AbilitySlot" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
 layout_mode = 2
 
-[node name="AbilitySlot2" parent="Visual/VBoxContainer/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
+[node name="AbilitySlot2" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
 layout_mode = 2
 
-[node name="AbilitySlot3" parent="Visual/VBoxContainer/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
+[node name="AbilitySlot3" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
