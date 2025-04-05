@@ -8,14 +8,14 @@ var item_slots : Array[Slot]
 @export var talent_slot_count : int = 3
 #@export var item_slot_count : int = 2
 @export var buy_price : float = 3
-@export var base_reroll_price : int = 2
-@export var reroll_increase : int = 1
+@export var base_reroll_price : float = 2
+@export var reroll_increase : float = 1
 
-#var reroll_price : int:
-	#set(value):
-		#reroll_price = value
-		#reroll_button.text = "Reroll: $%s" % reroll_price
-		#update_reroll_button_enabled(GameState.player_money)
+var reroll_price : float:
+	set(value):
+		reroll_price = value
+		update_reroll_button_enabled(GameState.player_money)
+		update_reroll_button_text(value)
 
 @export var talent_slot_container : Container
 #@export var item_slot_container : Container
@@ -23,7 +23,11 @@ var item_slots : Array[Slot]
 var character_scene : PackedScene = preload("res://character.tscn")
 var shop_slot_scene : PackedScene = preload("res://shop_slot.tscn")
 
-#@export var reroll_button : Button
+@export var reroll_button : Button
+@export var reroll_label : Label
+@export var reroll_price_label : Label
+@export var reroll_normal_text_color : Color = Color("0f1111")
+@export var reroll_disabled_text_color : Color = Color("00000089")
 
 
 func _ready() -> void:
@@ -48,8 +52,14 @@ func _ready() -> void:
 		#item_slot_container.add_child(slot)
 
 	GameState.shop_manager = self
+
+	GameState.player_money_changed.connect(update_reroll_button_enabled)
 	GlobalSignals.stream_end_anim_finished.connect(reroll_talents)
-	#reset_reroll_price()
+	GlobalSignals.stream_end_anim_finished.connect(reset_reroll_price)
+
+	reroll_button.pressed.connect(on_reroll_button_pressed)
+
+	reset_reroll_price()
 	call_deferred("reroll_talents")
 	#call_deferred("reroll_items")
 
@@ -69,16 +79,25 @@ func on_talent_buy_button_pressed(slot : ShopSlot):
 	slot.set_sold_out(true)
 
 
-#func update_reroll_button_enabled(money: float = GameState.player_money):
-	#reroll_button.disabled = money < reroll_price
+func update_reroll_button_enabled(money: float = GameState.player_money):
+	var disabled := money < reroll_price
+	reroll_button.disabled = disabled
+	# text color
+	var color := reroll_disabled_text_color if disabled else reroll_normal_text_color
+	reroll_label.add_theme_color_override(&"font_color", color)
+	reroll_price_label.add_theme_color_override(&"font_color", color)
 
 
-#func reset_reroll_price():
-	#reroll_price = base_reroll_price
+func reset_reroll_price():
+	reroll_price = base_reroll_price
 
 
-#func increase_reroll_price():
-	#reroll_price += reroll_increase
+func increase_reroll_price():
+	reroll_price += reroll_increase
+
+
+func update_reroll_button_text(value : float):
+	reroll_price_label.text = "$%.2f" % value
 
 
 func reroll_talents():
@@ -133,10 +152,11 @@ func add_item_to_slot(item : Item, slot : Slot, buy_price : int):
 	self.item_container.add_child(item)
 
 
-#func _on_reroll_button_pressed() -> void:
-	#if reroll_price > GameState.player_money:
-		## button should be disabled
-		#assert(false)
-	#GameState.player_money -= reroll_price
-	#increase_reroll_price()
-	#reroll_all()
+func on_reroll_button_pressed() -> void:
+	if reroll_price > GameState.player_money:
+		# button should be disabled
+		assert(false)
+		return
+	GameState.player_money -= reroll_price
+	increase_reroll_price()
+	reroll_all()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0vebfhhnx8ng"]
+[gd_scene load_steps=9 format=3 uid="uid://d0vebfhhnx8ng"]
 
 [ext_resource type="Theme" uid="uid://dy3ejfj58drwu" path="res://theme/jamazon.tres" id="1_pybh5"]
 [ext_resource type="PackedScene" uid="uid://drgpkq08jre2r" path="res://kbs_character_slot.tscn" id="2_b2b50"]
@@ -6,11 +6,12 @@
 [ext_resource type="Script" uid="uid://dpq7fbl6dtbdd" path="res://shop_manager.gd" id="2_tkxm1"]
 [ext_resource type="PackedScene" uid="uid://dd3yd21lrvjcv" path="res://shop_slot.tscn" id="3_8xggp"]
 [ext_resource type="Script" uid="uid://bj83sngk6nd4t" path="res://debug.gd" id="3_b2b50"]
+[ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="4_egwmr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmb2m"]
 bg_color = Color(0.890196, 0.901961, 0.901961, 1)
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("talent_slot_container")]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("talent_slot_container", "reroll_button", "reroll_label", "reroll_price_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,6 +22,9 @@ theme_type_variation = &"BgPanel"
 theme_override_styles/panel = SubResource("StyleBoxFlat_gmb2m")
 script = ExtResource("2_tkxm1")
 talent_slot_container = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/TalentSlotContainer")
+reroll_button = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton")
+reroll_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer/RerollLabel")
+reroll_price_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer/RerollPriceLabel")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -82,14 +86,48 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2"]
 layout_mode = 2
+theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Talents"
+
+[node name="RerollButton" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 32)
+layout_mode = 2
+
+[node name="RerollLabelContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -20.0
+offset_right = 61.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RerollLabel" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_egwmr")
+theme_override_font_sizes/font_size = 16
+text = "Restock: "
+
+[node name="RerollPriceLabel" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "$20.00"
 
 [node name="TalentSlotContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
