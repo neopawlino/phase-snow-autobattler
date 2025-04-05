@@ -48,6 +48,7 @@ func _ready() -> void:
 		#item_slot_container.add_child(slot)
 
 	GameState.shop_manager = self
+	GlobalSignals.stream_end_anim_finished.connect(reroll_talents)
 	#reset_reroll_price()
 	call_deferred("reroll_talents")
 	#call_deferred("reroll_items")
