@@ -138,7 +138,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "price_label", "price", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots")]
+[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots")]
 texture_filter = 1
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 3
@@ -152,8 +152,6 @@ anim_player = NodePath("Visual/SpriteParent/Sprite2D/AnimationPlayer")
 visual = NodePath("Visual")
 damage_audio = ExtResource("8_qi5as")
 damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
-price_label = NodePath("")
-price = NodePath("")
 hp_label = NodePath("Visual/VBoxContainer/HPBar/HPLabel")
 hp_bar = NodePath("Visual/VBoxContainer/HPBar")
 level_label = NodePath("Visual/VBoxContainer/VBoxContainer/LvLabel")

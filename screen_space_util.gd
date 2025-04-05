@@ -2,6 +2,7 @@ extends Node
 
 const KBS : String = "KBS"
 const PREVIEW_VIEWPORT_CONTAINER : String = "PreviewViewportContainer"
+const SHOP : String = "Shop"
 
 var stream_camera : Camera2D
 
@@ -14,10 +15,15 @@ func find_preview_viewport(node : Node):
 	return node.find_parent(PREVIEW_VIEWPORT_CONTAINER)
 
 
+func find_shop(node : Node):
+	return node.find_parent(SHOP)
+
+
 func get_screenspace_position(node : Node, viewport_position : Vector2) -> Vector2:
 	var result_pos := Vector2.ZERO
 	var screen_size := self.get_viewport().get_visible_rect().size
 	var kbs : Window = self.find_kbs(node)
+	var shop : Window = self.find_shop(node)
 	if kbs:
 		# top left corner of KBS
 		result_pos += Vector2(kbs.position)
@@ -32,5 +38,8 @@ func get_screenspace_position(node : Node, viewport_position : Vector2) -> Vecto
 			result_pos += node_pos_from_camera * stream_camera.zoom * preview_viewport.scale
 		else:
 			result_pos += viewport_position
-	# TODO shop window
+	if shop:
+		# top left corner
+		result_pos += Vector2(shop.position)
+		result_pos += viewport_position
 	return result_pos
