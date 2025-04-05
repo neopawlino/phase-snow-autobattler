@@ -138,7 +138,7 @@ func _ready() -> void:
 	update_level_label(cur_level)
 	update_skill_points(skill_points)
 	drag_component.mouseover_changed.connect(func(is_mouseover):
-		if is_mouseover:
+		if is_mouseover and drag_component.draggable:
 			self.sprite.scale = base_scale * mouseover_scale
 		else:
 			self.sprite.scale = base_scale
