@@ -10,9 +10,9 @@ offset_bottom = 40.0
 theme = ExtResource("1_oq217")
 theme_override_constants/separation = 0
 script = ExtResource("2_nd2g7")
-title_label = NodePath("MarginContainer/VBoxContainer/TitleLabel")
-price_label = NodePath("MarginContainer/VBoxContainer/PriceLabel")
-buy_button = NodePath("MarginContainer/VBoxContainer/BuyButton")
+title_label = NodePath("VBoxContainer/TitleLabel")
+price_label = NodePath("VBoxContainer/PriceLabel")
+buy_button = NodePath("VBoxContainer/BuyButton")
 
 [node name="CharacterSlot" type="Control" parent="."]
 custom_minimum_size = Vector2(120, 120)
@@ -35,17 +35,11 @@ grow_vertical = 0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_oq217")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(120, 52)
 layout_mode = 2
 theme_type_variation = &"ShopItemTitle"
@@ -54,14 +48,14 @@ autowrap_mode = 2
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="PriceLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="PriceLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "$24.99"
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="BuyButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="BuyButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Buy Now"
