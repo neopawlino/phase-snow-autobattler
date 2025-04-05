@@ -5,14 +5,19 @@ class_name ShopSlot
 @export var price_label : Label
 @export var buy_button : Button
 
-signal buy_button_pressed
+signal buy_button_pressed(slot : ShopSlot)
 
 var default_text := "Buy Now"
 var sold_out_text := "Sold Out"
 
 
+var buy_price : float
+
+
 func _ready() -> void:
-	buy_button.pressed.connect(buy_button_pressed.emit)
+	buy_button.pressed.connect(func():
+		self.buy_button_pressed.emit(self)
+	)
 
 
 func set_title(text : String):
@@ -21,6 +26,7 @@ func set_title(text : String):
 
 func set_price(val : float):
 	self.price_label.text = "$%.2f" % val
+	self.buy_price = val
 
 
 func set_sold_out(sold_out : bool):

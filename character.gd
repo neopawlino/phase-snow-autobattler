@@ -101,15 +101,6 @@ var unique_status_icons : Array
 
 var team : int
 
-var from_shop : bool:
-	set(value):
-		from_shop = value
-		set_price_visible(value)
-var buy_price : float:
-	set(value):
-		buy_price = value
-		set_price_text(value)
-		update_price_color(GameState.player_money)
 var sell_price : float = 2
 
 var last_tween : Tween
@@ -139,11 +130,9 @@ static func spawn_from_character_definition(char_def : CharacterDefinition) -> C
 
 
 func _ready() -> void:
-	GameState.player_money_changed.connect(update_price_color)
 	GlobalSignals.character_tooltip_opened.connect(func(char : Character):
 		self.was_tooltip_open_for_character = char == self
 	)
-	set_price_visible(from_shop)
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
 	update_level_label(cur_level)
@@ -155,7 +144,7 @@ func _ready() -> void:
 			self.sprite.scale = base_scale
 	)
 	drag_component.drag_started.connect(func():
-		GameState.drag_can_swap = not from_shop
+		GameState.drag_can_swap = true
 	)
 	drag_component.drag_ended.connect(handle_drag_ended)
 	drag_component.drag_occupied_slot.connect(handle_drag_occupied_slot)
@@ -190,7 +179,7 @@ func handle_drag_ended():
 	self.sprite.frame = idle_sprite_frame
 	if last_tween:
 		last_tween.kill()
-	if GameState.drag_sell_button and not from_shop:
+	if GameState.drag_sell_button:
 		# dragging to recycle bin: move to signal, handle separately (character, item, ability)
 		self.sell_character()
 
@@ -224,16 +213,8 @@ func set_flipped(flipped: bool):
 
 
 func merge_character(other: Character):
-	if from_shop:
-		buy_character()
 	other.add_xp(1)
 	remove_self()
-
-
-func buy_character():
-	GameState.player_money -= buy_price
-	self.set_info_z_index(0)
-	from_shop = false
 
 
 func sell_character():
@@ -499,20 +480,12 @@ func set_price_text(value: int):
 	price_label.text = str(value)
 
 
-func can_afford(money: float) -> bool:
-	return buy_price <= money
-
-
 func can_merge(other: Character) -> bool:
 	return other != null and other != self and !is_max_level() and other.character_name == self.character_name
 
 
 func is_max_level() -> bool:
 	return cur_level >= len(levels)
-
-
-func update_price_color(money: float):
-	set_price_color(can_afford(money))
 
 
 func set_price_color(affordable : bool):

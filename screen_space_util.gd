@@ -32,4 +32,5 @@ func get_screenspace_position(node : Node, viewport_position : Vector2) -> Vecto
 			result_pos += node_pos_from_camera * stream_camera.zoom * preview_viewport.scale
 		else:
 			result_pos += viewport_position
+	# TODO shop window
 	return result_pos
