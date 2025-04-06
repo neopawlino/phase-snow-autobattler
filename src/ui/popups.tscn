@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://pbsxgn245l4d"]
+
+[ext_resource type="Script" uid="uid://7hv04ypb02ar" path="res://src/ui/popups.gd" id="1_3kh1f"]
+[ext_resource type="PackedScene" uid="uid://cdqtalteor7m" path="res://src/ui/custom_tooltip.tscn" id="2_2lnam"]
+
+[node name="Popups" type="Control" node_paths=PackedStringArray("item_popup")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3kh1f")
+item_popup = NodePath("CanvasLayer/PopupPanel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="PopupPanel" type="PopupPanel" parent="CanvasLayer"]
+size = Vector2i(368, 1426)
+visible = true
+
+[node name="MarginContainer" parent="CanvasLayer/PopupPanel" instance=ExtResource("2_2lnam")]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 364.0
+offset_bottom = 1422.0

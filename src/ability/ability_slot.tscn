@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvhhm87ldr8h4"]
+
+[ext_resource type="Script" uid="uid://c5ilf8qew1tt1" path="res://src/item/character_slot.gd" id="1_au03e"]
+
+[node name="AbilitySlot" type="PanelContainer"]
+custom_minimum_size = Vector2(48, 48)
+script = ExtResource("1_au03e")
+slot_type = 2
+pickable = true

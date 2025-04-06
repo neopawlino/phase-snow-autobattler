@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://mpfewisjcl0y"]
+
+[ext_resource type="Texture2D" uid="uid://bt6gg4cs87c6h" path="res://assets/my_assets/heart.png" id="1_c5yf7"]
+[ext_resource type="Script" uid="uid://emeo5qgrpd0w" path="res://src/item/item_definition.gd" id="1_fhifs"]
+
+[resource]
+script = ExtResource("1_fhifs")
+name = &"hp_gain"
+display_name = "HP Gain"
+item_sprite = ExtResource("1_c5yf7")
+sprite_scale = Vector2(0.5, 0.5)
+description_text = "End of combat: All units gain +2 HP"
+price = 5
+sell_price = 3
+properties = {}

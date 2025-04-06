@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://cs485gjn3g3s7"]
+
+[ext_resource type="Script" uid="uid://bbdbym8di10nf" path="res://addons/godot_resource_groups/resource_group.gd" id="1_nexic"]
+
+[resource]
+script = ExtResource("1_nexic")
+base_folder = "res://resources/item_definitions"
+includes = Array[String](["*.tres"])
+excludes = Array[String]([])
+paths = Array[String](["res://resources/item_definitions/buff_on_death.tres", "res://resources/item_definitions/empty_slot_buff.tres", "res://resources/item_definitions/hp_gain.tres", "res://resources/item_definitions/income_up.tres", "res://resources/item_definitions/interest_cap_up.tres", "res://resources/item_definitions/str_item.tres", "res://resources/item_definitions/str_on_damage.tres", "res://resources/item_definitions/toxic_only.tres", "res://resources/item_definitions/toxic_up.tres"])

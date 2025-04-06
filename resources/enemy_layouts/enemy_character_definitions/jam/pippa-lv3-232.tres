@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=18 format=3 uid="uid://k28b888fa1gw"]
+
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_1ctps"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_xq1yr"]
+[ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="3_yo7mo"]
+[ext_resource type="Texture2D" uid="uid://c6kreiov0lvdg" path="res://assets/my_assets/SAPC_Pippa_Sheet.png" id="4_q2sg0"]
+[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="5_ke0ta"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="6_fgl14"]
+[ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_xq1yr"]
+
+[sub_resource type="Resource" id="Resource_muout"]
+script = ExtResource("1_1ctps")
+ability_name = "The Ripper"
+description = ""
+stat_changes = Array[ExtResource("2_xq1yr")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_xq1yr")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_ip3ax"]
+script = ExtResource("1_1ctps")
+ability_name = "I'm Gonna ****ing Shoot Up A W*lm*rt"
+description = ""
+stat_changes = Array[ExtResource("2_xq1yr")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_xq1yr")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_edjr2"]
+script = ExtResource("1_1ctps")
+ability_name = "Gamer Rage"
+description = ""
+stat_changes = Array[ExtResource("2_xq1yr")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_xq1yr")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_cbdyu"]
+script = ExtResource("5_ke0ta")
+hp = 8
+statuses = Array[ExtResource("3_yo7mo")]([])
+
+[sub_resource type="Resource" id="Resource_3tl47"]
+script = ExtResource("3_yo7mo")
+status_id = 2
+value = 1
+
+[sub_resource type="Resource" id="Resource_7bqur"]
+script = ExtResource("5_ke0ta")
+hp = 8
+statuses = Array[ExtResource("3_yo7mo")]([SubResource("Resource_3tl47")])
+
+[sub_resource type="Resource" id="Resource_r6e1p"]
+script = ExtResource("3_yo7mo")
+status_id = 0
+value = 2
+
+[sub_resource type="Resource" id="Resource_ks00s"]
+script = ExtResource("5_ke0ta")
+hp = 8
+statuses = Array[ExtResource("3_yo7mo")]([SubResource("Resource_r6e1p")])
+
+[sub_resource type="Resource" id="Resource_4wl7f"]
+script = ExtResource("3_yo7mo")
+status_id = 2
+value = 3
+
+[sub_resource type="Resource" id="Resource_h782w"]
+script = ExtResource("3_yo7mo")
+status_id = 0
+value = 3
+
+[resource]
+script = ExtResource("6_fgl14")
+character_name = "Pipkin Pippa"
+short_name = "Pippa"
+character_sprite = ExtResource("4_q2sg0")
+sprite_offset = Vector2(2, 0)
+sprite_scale = Vector2(3, 3)
+sprite_hframes = 4
+max_hp = 54
+abilities = Array[ExtResource("1_1ctps")]([SubResource("Resource_muout"), SubResource("Resource_ip3ax"), SubResource("Resource_edjr2")])
+level_requirements = Array[int]([1, 2, 3])
+levels = Array[ExtResource("5_ke0ta")]([SubResource("Resource_cbdyu"), SubResource("Resource_7bqur"), SubResource("Resource_ks00s")])
+initial_level = 1
+initial_ability_levels = Array[int]([2, 3, 2])
+statuses = Array[ExtResource("3_yo7mo")]([SubResource("Resource_4wl7f"), SubResource("Resource_h782w")])
+unique_statuses = Array[ExtResource("7_xq1yr")]([])

@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=17 format=3 uid="uid://dnsx5eu66ygqt"]
+
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_1x3qx"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_06iwj"]
+[ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="3_r64kk"]
+[ext_resource type="Texture2D" uid="uid://bnsb1suaykmh" path="res://assets/my_assets/SAPC_Jelly_Sheet.png" id="4_fpda5"]
+[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="5_g8r51"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="6_g1r46"]
+[ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_06iwj"]
+
+[sub_resource type="Resource" id="Resource_ggewj"]
+script = ExtResource("1_1x3qx")
+ability_name = "Ring Blast"
+description = ""
+stat_changes = Array[ExtResource("2_06iwj")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_06iwj")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_8jl4p"]
+script = ExtResource("1_1x3qx")
+ability_name = "Hackerman"
+description = ""
+stat_changes = Array[ExtResource("2_06iwj")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_06iwj")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_5rfat"]
+script = ExtResource("1_1x3qx")
+ability_name = "Secondhand Smoke"
+description = ""
+stat_changes = Array[ExtResource("2_06iwj")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_06iwj")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_kxool"]
+script = ExtResource("5_g8r51")
+hp = 6
+statuses = Array[ExtResource("3_r64kk")]([])
+
+[sub_resource type="Resource" id="Resource_bpsa8"]
+script = ExtResource("3_r64kk")
+status_id = 2
+value = 2
+
+[sub_resource type="Resource" id="Resource_8pm2k"]
+script = ExtResource("5_g8r51")
+hp = 6
+statuses = Array[ExtResource("3_r64kk")]([SubResource("Resource_bpsa8")])
+
+[sub_resource type="Resource" id="Resource_ipqmy"]
+script = ExtResource("3_r64kk")
+status_id = 2
+value = 3
+
+[sub_resource type="Resource" id="Resource_r666j"]
+script = ExtResource("5_g8r51")
+hp = 6
+statuses = Array[ExtResource("3_r64kk")]([SubResource("Resource_ipqmy")])
+
+[sub_resource type="Resource" id="Resource_13mt8"]
+script = ExtResource("3_r64kk")
+status_id = 2
+value = 2
+
+[resource]
+script = ExtResource("6_g1r46")
+character_name = "Jelly Hoshiumi"
+short_name = "Jelly"
+character_sprite = ExtResource("4_fpda5")
+sprite_offset = Vector2(-2, 0)
+sprite_scale = Vector2(3, 3)
+sprite_hframes = 4
+max_hp = 37
+abilities = Array[ExtResource("1_1x3qx")]([SubResource("Resource_ggewj"), SubResource("Resource_8jl4p"), SubResource("Resource_5rfat")])
+level_requirements = Array[int]([1, 2, 3])
+levels = Array[ExtResource("5_g8r51")]([SubResource("Resource_kxool"), SubResource("Resource_8pm2k"), SubResource("Resource_r666j")])
+initial_level = 2
+initial_ability_levels = Array[int]([2, 3, 0])
+statuses = Array[ExtResource("3_r64kk")]([SubResource("Resource_13mt8")])
+unique_statuses = Array[ExtResource("7_06iwj")]([])

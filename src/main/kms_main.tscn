@@ -1,0 +1,135 @@
+[gd_scene load_steps=16 format=3 uid="uid://c0spke4hrcfyf"]
+
+[ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://src/main/kms_main.gd" id="1_5fqus"]
+[ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://src/main/main_viewport.gd" id="1_028yr"]
+[ext_resource type="Script" uid="uid://c8at01qjju0ml" path="res://src/main/main_camera.gd" id="2_ioy5u"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://assets/icon.svg" id="2_sukj3"]
+[ext_resource type="Script" uid="uid://7heqv5r7uqsi" path="res://src/ui/viewport_push_input.gd" id="3_todjn"]
+[ext_resource type="Texture2D" uid="uid://cn84stjrpsjkq" path="res://assets/my_assets/bg_tile.png" id="5_todjn"]
+[ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://src/main/kms_theme.tres" id="6_dse3q"]
+[ext_resource type="Script" uid="uid://bo6wef6d3l071" path="res://src/main/window_shortcut.gd" id="6_hrlxh"]
+[ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://assets/my_assets/link.png" id="8_7a1vo"]
+[ext_resource type="PackedScene" uid="uid://buhn71elsgfi3" path="res://src/main/kbs.tscn" id="10_h8i6l"]
+[ext_resource type="PackedScene" uid="uid://bpfgksmlwxjfc" path="res://src/shop/shop.tscn" id="11_h8i6l"]
+[ext_resource type="PackedScene" uid="uid://d3ptx7wx54jxf" path="res://src/analytics/analytics.tscn" id="12_ioy5u"]
+[ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://src/stream/stream_summary.tscn" id="13_h8i6l"]
+[ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://src/item/drag_container.gd" id="15_mldad"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
+viewport_path = NodePath("MainViewport")
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_5fqus")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("preview_viewport_container", "preview_center", "kbs_window")]
+script = ExtResource("2_ioy5u")
+preview_viewport_container = NodePath("../MainViewport/KBS/PreviewViewportContainer")
+preview_center = NodePath("../MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer/PreviewContainer/PreviewCenter")
+kbs_window = NodePath("../MainViewport/KBS")
+
+[node name="MainViewportSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("viewport")]
+texture = SubResource("ViewportTexture_1bvp3")
+script = ExtResource("3_todjn")
+viewport = NodePath("../MainViewport")
+
+[node name="MainViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+gui_embed_subwindows = true
+size = Vector2i(1280, 720)
+script = ExtResource("1_028yr")
+
+[node name="TextureRect" type="TextureRect" parent="MainViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_todjn")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="KBSShortcut" type="Button" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window")]
+layout_mode = 2
+theme = ExtResource("6_dse3q")
+theme_type_variation = &"DesktopIconButton"
+text = "Stream"
+icon = ExtResource("2_sukj3")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("6_hrlxh")
+window = NodePath("../../KBS")
+
+[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/KBSShortcut"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 92.0
+offset_right = 44.0
+offset_bottom = 132.0
+texture = ExtResource("8_7a1vo")
+
+[node name="ShopShortcut" type="Button" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window")]
+layout_mode = 2
+theme = ExtResource("6_dse3q")
+theme_type_variation = &"DesktopIconButton"
+text = "Shopping"
+icon = ExtResource("2_sukj3")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("6_hrlxh")
+window = NodePath("../../Shop")
+
+[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/ShopShortcut"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 92.0
+offset_right = 44.0
+offset_bottom = 132.0
+texture = ExtResource("8_7a1vo")
+
+[node name="AnalyticsShortcut" type="Button" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window")]
+layout_mode = 2
+theme = ExtResource("6_dse3q")
+theme_type_variation = &"DesktopIconButton"
+text = "Analytics"
+icon = ExtResource("2_sukj3")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("6_hrlxh")
+window = NodePath("../../Analytics")
+
+[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/AnalyticsShortcut"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 92.0
+offset_right = 44.0
+offset_bottom = 132.0
+texture = ExtResource("8_7a1vo")
+
+[node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
+min_size = Vector2i(1024, 500)
+
+[node name="PreviewViewportContainer" parent="MainViewport/KBS" index="1" node_paths=PackedStringArray("in_stream_parent")]
+in_stream_parent = NodePath("../../../CanvasLayer")
+
+[node name="Shop" parent="MainViewport" instance=ExtResource("11_h8i6l")]
+
+[node name="Analytics" parent="MainViewport" instance=ExtResource("12_ioy5u")]
+position = Vector2i(900, 400)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
+visible = false
+pivot_offset = Vector2(640, 360)
+
+[node name="DragContainer" type="Node" parent="CanvasLayer"]
+script = ExtResource("15_mldad")
+
+[editable path="MainViewport/KBS"]

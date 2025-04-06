@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://dogl6do3cfhrw"]
+
+[ext_resource type="Script" uid="uid://bbdbym8di10nf" path="res://addons/godot_resource_groups/resource_group.gd" id="1_gi3x7"]
+
+[resource]
+script = ExtResource("1_gi3x7")
+base_folder = "res://resources/character_definitions"
+includes = Array[String](["**.tres"])
+excludes = Array[String]([])
+paths = Array[String](["res://resources/character_definitions/jelly.tres", "res://resources/character_definitions/pippa.tres", "res://resources/character_definitions/rie.tres"])

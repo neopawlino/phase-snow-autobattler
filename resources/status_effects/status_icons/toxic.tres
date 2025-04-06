@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusIconDefinition" load_steps=3 format=3 uid="uid://t4ekwuvcykxl"]
+
+[ext_resource type="Texture2D" uid="uid://qw78e5iu3bob" path="res://assets/my_assets/fishie.png" id="1_28blo"]
+[ext_resource type="Script" uid="uid://b5rbtmlfdycwb" path="res://resources/status_effects/status_icon_definition.gd" id="2_kfdb3"]
+
+[resource]
+script = ExtResource("2_kfdb3")
+status = 1
+icon = ExtResource("1_28blo")
+tooltip_text = "Toxic: When this unit casts an ability, take %s damage, then reduce Toxic by 1."
