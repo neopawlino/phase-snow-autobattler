@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxp0b3eq4gb5p"]
+
+[ext_resource type="Script" uid="uid://c5ilf8qew1tt1" path="res://src/item/character_slot.gd" id="1_n6cxc"]
+
+[node name="ItemSlot" type="Control" node_paths=PackedStringArray("merge_swap_timer")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n6cxc")
+slot_type = 1
+merge_swap_timer = NodePath("MergeSwapTimer")
+
+[node name="MergeSwapTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

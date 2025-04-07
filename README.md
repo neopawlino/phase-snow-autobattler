@@ -1,0 +1,1 @@
+# Kuro Management Simulator

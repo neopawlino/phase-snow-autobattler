@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ou3ss74ylrx"]
+
+[ext_resource type="Script" uid="uid://bnp7rsbxr4eho" path="res://src/item/draggable.gd" id="1_smc63"]
+
+[node name="Draggable" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+tooltip_text = "test"
+mouse_filter = 1
+script = ExtResource("1_smc63")

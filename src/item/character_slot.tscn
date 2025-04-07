@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3kuf2p6gvovk"]
+
+[ext_resource type="Script" uid="uid://c5ilf8qew1tt1" path="res://src/item/character_slot.gd" id="1_x2ymd"]
+[ext_resource type="Texture2D" uid="uid://dhkgqtjouosqu" path="res://public/my_assets/slot.png" id="2_2h50i"]
+
+[node name="CharacterSlot" type="Control" node_paths=PackedStringArray("merge_swap_timer")]
+custom_minimum_size = Vector2(120, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 200.0
+script = ExtResource("1_x2ymd")
+merge_swap_timer = NodePath("MergeSwapTimer")
+pickable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(60, 100)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("2_2h50i")
+offset = Vector2(0, 30)
+
+[node name="MergeSwapTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true

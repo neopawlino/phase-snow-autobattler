@@ -1,0 +1,341 @@
+[gd_scene load_steps=17 format=3 uid="uid://ds7ogdyno53ug"]
+
+[ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://src/ui/visual_follow.gd" id="2_0vcty"]
+[ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://src/character/character.gd" id="2_1four"]
+[ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://public/my_assets/SAPC_Rie_Sheet.png" id="2_y5mxj"]
+[ext_resource type="Shader" uid="uid://bowkvjqncd3p" path="res://src/ui/damage_flash.gdshader" id="3_yxww1"]
+[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="4_18dhx"]
+[ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://src/item/draggable.tscn" id="5_bv4aq"]
+[ext_resource type="Script" uid="uid://b1n7n8i4cjf7l" path="res://src/character/character_sprite.gd" id="5_wdpcj"]
+[ext_resource type="PackedScene" uid="uid://bvhhm87ldr8h4" path="res://src/ability/ability_slot.tscn" id="9_jb3kq"]
+
+[sub_resource type="Resource" id="Resource_wdpcj"]
+metadata/__load_path__ = "res://assets/punch_general_body_impact_03.wav"
+
+[sub_resource type="Gradient" id="Gradient_qi5as"]
+offsets = PackedFloat32Array(0, 0.549296, 1)
+colors = PackedColorArray(0.942823, 0.942823, 0.942823, 1, 0.856067, 0.856067, 0.856067, 1, 1, 1, 1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yxww1"]
+resource_local_to_scene = true
+shader = ExtResource("3_yxww1")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_intensity = 0.0
+
+[sub_resource type="Animation" id="Animation_68k1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_754d8"]
+resource_name = "attack"
+length = 0.7
+step = 0.0168
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.133333, 0.2, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(30, 0), Vector2(30, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.133333, 0.2, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(30, 0), Vector2(30, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c15sm"]
+resource_name = "attack_flipped"
+length = 0.7
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.133333, 0.2, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-30, 0), Vector2(-30, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.133333, 0.2, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-30, 0), Vector2(-30, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bty2k"]
+_data = {
+&"RESET": SubResource("Animation_68k1c"),
+&"attack": SubResource("Animation_754d8"),
+&"attack_flipped": SubResource("Animation_c15sm")
+}
+
+[sub_resource type="Theme" id="Theme_f484m"]
+
+[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots", "character_ui")]
+texture_filter = 1
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 160.0
+mouse_filter = 1
+script = ExtResource("2_1four")
+sprite = NodePath("Visual/SpriteParent/Sprite2D")
+anim_player = NodePath("Visual/SpriteParent/Sprite2D/AnimationPlayer")
+visual = NodePath("Visual")
+damage_audio = SubResource("Resource_wdpcj")
+damage_numbers_origin = NodePath("Visual/DamageNumbersOrigin")
+hp_label = NodePath("Visual/CharacterUI/HPBar/HPLabel")
+hp_bar = NodePath("Visual/CharacterUI/HPBar")
+level_label = NodePath("Visual/CharacterUI/VBoxContainer/LvLabel")
+xp_label = NodePath("Visual/CharacterUI/VBoxContainer/XPBar/XPLabel")
+xp_bar = NodePath("Visual/CharacterUI/VBoxContainer/XPBar")
+ability_bar_container = NodePath("Visual/CharacterUI/AbilityBarContainer")
+name_label = NodePath("Visual/CharacterUI/NameLabel")
+char_info_container = NodePath("Visual/CharacterUI")
+status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
+drag_component = NodePath("Draggable")
+ability_slots = [NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot"), NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot2"), NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot3")]
+character_ui = NodePath("Visual/CharacterUI")
+
+[node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("smoke_particles")]
+position = Vector2(60, 80)
+script = ExtResource("2_0vcty")
+smoke_particles = NodePath("CPUParticles2D")
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="Visual"]
+position = Vector2(0, -60)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual"]
+emitting = false
+amount = 64
+emission_shape = 1
+emission_sphere_radius = 32.0
+gravity = Vector2(0, -30)
+scale_amount_min = 16.0
+scale_amount_max = 32.0
+color_ramp = SubResource("Gradient_qi5as")
+
+[node name="SpriteParent" type="Node2D" parent="Visual"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual/SpriteParent"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_yxww1")
+scale = Vector2(3, 3)
+texture = ExtResource("2_y5mxj")
+offset = Vector2(4, -4)
+hframes = 4
+script = ExtResource("5_wdpcj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/SpriteParent/Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_bty2k")
+}
+
+[node name="CharacterUI" type="VBoxContainer" parent="Visual"]
+z_index = 1
+custom_minimum_size = Vector2(96, 10)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -150.0
+offset_right = 48.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+mouse_filter = 2
+theme = ExtResource("4_18dhx")
+alignment = 2
+
+[node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/CharacterUI"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="NameLabel" type="Label" parent="Visual/CharacterUI"]
+visible = false
+layout_mode = 2
+text = "He may"
+horizontal_alignment = 1
+
+[node name="SkillPointsLabel" type="Label" parent="Visual/CharacterUI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"TextSmall"
+text = "SP:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Visual/CharacterUI"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Visual/CharacterUI"]
+layout_mode = 2
+
+[node name="LvLabel" type="Label" parent="Visual/CharacterUI/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"TextSmall"
+text = "Lv.1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XPBar" type="ProgressBar" parent="Visual/CharacterUI/VBoxContainer"]
+custom_minimum_size = Vector2(80, 16)
+layout_mode = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"XPBar"
+max_value = 5.0
+value = 3.0
+show_percentage = false
+
+[node name="XPLabel" type="Label" parent="Visual/CharacterUI/VBoxContainer/XPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"TextSmall"
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="Visual/CharacterUI"]
+custom_minimum_size = Vector2(80, 16)
+layout_mode = 2
+theme = ExtResource("4_18dhx")
+theme_type_variation = &"HPBar"
+max_value = 5.0
+value = 3.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="Visual/CharacterUI/HPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f484m")
+theme_type_variation = &"TextSmall"
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/CharacterUI"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AbilitySlot" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
+layout_mode = 2
+
+[node name="AbilitySlot2" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
+layout_mode = 2
+
+[node name="AbilitySlot3" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
+offset_left = -60.0
+offset_top = 48.0
+offset_right = 60.0
+offset_bottom = 92.0
+
+[node name="StatusContainer" type="HBoxContainer" parent="Visual/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 160)
+drag_object = NodePath("..")

@@ -13,20 +13,24 @@ config_version=5
 config/name="Phase Snow Autobattler"
 run/main_scene="uid://c0spke4hrcfyf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://public/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
 [autoload]
 
-GameState="*res://game_state.gd"
-GlobalSignals="*res://global_signals.gd"
-DamageNumbers="*res://damage_numbers.gd"
-StatusIconLib="*res://status_effects/status_icon_lib.gd"
-Settings="*res://settings.gd"
-Bgm="*res://bgm.tscn"
-Popups="*res://popups.tscn"
-SoundManager="*res://sound_manager.gd"
-RandomUtil="*res://random_util.gd"
-ScreenSpaceUtil="*res://screen_space_util.gd"
+GameState="*res://src/game_state.gd"
+GlobalSignals="*res://src/global_signals.gd"
+DamageNumbers="*res://src/ui/damage_numbers.gd"
+StatusIconLib="*res://resources/status_effects/status_icon_lib.gd"
+Settings="*res://old/settings.gd"
+Bgm="*res://src/ui/bgm.tscn"
+Popups="*res://src/ui/popups.tscn"
+SoundManager="*res://src/ui/sound_manager.gd"
+RandomUtil="*res://src/random_util.gd"
+ScreenSpaceUtil="*res://src/ui/screen_space_util.gd"
 
 [display]
 

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://dgwe030kpj6lw"]
+
+[ext_resource type="Script" uid="uid://emeo5qgrpd0w" path="res://src/item/item_definition.gd" id="1_3h28k"]
+[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://public/my_assets/coffee.png" id="1_aw1fh"]
+
+[resource]
+script = ExtResource("1_3h28k")
+name = &"income_up"
+display_name = "Sales Manager"
+item_sprite = ExtResource("1_aw1fh")
+sprite_scale = Vector2(0.5, 0.5)
+description_text = "+4 income"
+price = 6
+sell_price = 3
+properties = {}
