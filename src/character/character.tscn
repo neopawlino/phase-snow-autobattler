@@ -140,7 +140,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slots", "character_ui")]
+[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slot_container", "character_ui")]
 texture_filter = 1
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 3
@@ -164,7 +164,7 @@ name_label = NodePath("Visual/CharacterUI/NameLabel")
 char_info_container = NodePath("Visual/CharacterUI")
 status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
 drag_component = NodePath("Draggable")
-ability_slots = [NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot"), NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot2"), NodePath("Visual/CharacterUI/AbilitiesContainer/AbilitySlot3")]
+ability_slot_container = NodePath("Visual/CharacterUI/AbilitiesContainer")
 character_ui = NodePath("Visual/CharacterUI")
 
 [node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("smoke_particles")]

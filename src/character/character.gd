@@ -113,7 +113,8 @@ var char_def : CharacterDefinition
 @onready var skill_points_label : Label = %SkillPointsLabel
 @export var drag_component : Draggable
 
-@export var ability_slots : Array[Slot]
+@onready var ability_slots : Array[Slot] = []
+@export var ability_slot_container : Control
 
 @export var character_ui : Control
 
@@ -123,7 +124,7 @@ var is_dead : bool = false
 
 
 static var character_scene : PackedScene = preload("res://src/character/character.tscn")
-
+static var ability_slot_scene : PackedScene = preload("res://src/ability/ability_slot.tscn")
 
 static func spawn_from_character_definition(char_def : CharacterDefinition) -> Character:
 	var char : Character = character_scene.instantiate()
@@ -150,6 +151,11 @@ func _ready() -> void:
 	)
 	drag_component.drag_ended.connect(handle_drag_ended)
 	drag_component.drag_occupied_slot.connect(handle_drag_occupied_slot)
+
+
+func clear_ability_slots():
+	for child in ability_slot_container.get_children():
+		child.queue_free()
 
 
 func _process(delta: float):
@@ -288,6 +294,10 @@ func my_duplicate() -> Character:
 
 	# add abilities
 	var abilities := self.get_abilities()
+	var ability_slot_count = len(self.ability_slots)
+	new_char.clear_ability_slots()
+	for i in range(ability_slot_count):
+		new_char.add_ability_slot()
 	for i in range(len(abilities)):
 		var new_ability : Ability = abilities[i].duplicate()
 		var new_slot := new_char.ability_slots[i]
@@ -336,6 +346,8 @@ func load_from_character_definition(char_def : CharacterDefinition):
 
 	self.char_def = char_def
 
+	self.clear_ability_slots()
+
 
 func add_xp(amount : int):
 	if is_max_level():
@@ -355,6 +367,8 @@ func level_up():
 
 	for status in char_level.statuses:
 		self.add_status(status.status_id, status.value)
+
+	self.add_ability_slot()
 
 	var cur_level_req := level_requirements[cur_level]
 	xp -= cur_level_req
@@ -400,6 +414,12 @@ func stop_timers():
 	for timer in ability_timers:
 		timer.queue_free()
 	ability_timers.clear()
+
+
+func add_ability_slot():
+	var new_slot := ability_slot_scene.instantiate()
+	self.ability_slots.append(new_slot)
+	ability_slot_container.add_child(new_slot)
 
 
 func cast_ability(ability: AbilityDefinition):
