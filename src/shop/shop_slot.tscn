@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd3yd21lrvjcv"]
+[gd_scene load_steps=5 format=3 uid="uid://dd3yd21lrvjcv"]
 
 [ext_resource type="Theme" uid="uid://dy3ejfj58drwu" path="res://resources/theme/jamazon.tres" id="1_oq217"]
 [ext_resource type="Script" uid="uid://b600krv6jfv4r" path="res://src/shop/shop_slot.gd" id="2_nd2g7"]
 [ext_resource type="Texture2D" uid="uid://bfyseo7apl6g" path="res://public/my_assets/tile.png" id="2_oq217"]
+[ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="4_76dj3"]
 
 [node name="ShopSlot" type="VBoxContainer" node_paths=PackedStringArray("title_label", "price_label", "buy_button")]
 offset_right = 40.0
@@ -57,6 +58,7 @@ text_overrun_behavior = 3
 [node name="PriceLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_76dj3")
 text = "$24.99"
 clip_text = true
 text_overrun_behavior = 3

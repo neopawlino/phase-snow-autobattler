@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://cf7m6ltsqcbhq"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://cf7m6ltsqcbhq"]
 
+[ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_ifyi5"]
 [ext_resource type="StyleBox" uid="uid://1pvuwmhfx0xe" path="res://resources/theme/kbs/kbs_panel_stylebox.tres" id="2_bakvj"]
 [ext_resource type="StyleBox" uid="uid://b1uy7he4dqamf" path="res://resources/theme/kbs/kbs_button_hover.tres" id="2_ucrh8"]
 [ext_resource type="StyleBox" uid="uid://d4iahh57fmpfq" path="res://resources/theme/kbs/kbs_button_normal.tres" id="3_7gw4t"]
@@ -7,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://cxb6ambud4oyp" path="res://resources/theme/kbs/kbs_button_pressed.tres" id="4_kmlje"]
 [ext_resource type="StyleBox" uid="uid://dfy0ijtexai2x" path="res://resources/theme/kbs/tab_selected.tres" id="5_3k1qh"]
 [ext_resource type="StyleBox" uid="uid://dqtj43ceown7c" path="res://resources/theme/kbs/tab_unselected.tres" id="6_o2ech"]
+[ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="7_mtu8u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgl0v"]
 content_margin_left = 4.0
@@ -85,7 +87,7 @@ shadow_offset = Vector2(2, 2)
 
 [resource]
 Button/constants/icon_max_width = 128
-Button/fonts/font = null
+Button/fonts/font = ExtResource("1_ifyi5")
 Button/styles/hover = ExtResource("2_ucrh8")
 Button/styles/hover_mirrored = ExtResource("2_ucrh8")
 Button/styles/hover_pressed = ExtResource("4_kmlje")
@@ -110,11 +112,11 @@ KbsPanel/base_type = &"Panel"
 KbsPanel/styles/panel = ExtResource("2_bakvj")
 KbsPanelHighlighted/base_type = &"PanelContainer"
 KbsPanelHighlighted/styles/panel = ExtResource("3_bakvj")
-Label/fonts/font = null
+Label/fonts/font = ExtResource("1_ifyi5")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_1b8q7")
 TabContainer/constants/side_margin = 0
 TabContainer/font_sizes/font_size = 14
-TabContainer/fonts/font = null
+TabContainer/fonts/font = ExtResource("7_mtu8u")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_bvjoq")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_ucrh8")
 TabContainer/styles/tab_selected = ExtResource("5_3k1qh")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0vebfhhnx8ng"]
+[gd_scene load_steps=10 format=3 uid="uid://d0vebfhhnx8ng"]
 
 [ext_resource type="Theme" uid="uid://dy3ejfj58drwu" path="res://resources/theme/jamazon.tres" id="1_pybh5"]
 [ext_resource type="PackedScene" uid="uid://drgpkq08jre2r" path="res://src/main/kbs_character_slot.tscn" id="2_b2b50"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" uid="uid://dpq7fbl6dtbdd" path="res://src/shop/shop_manager.gd" id="2_tkxm1"]
 [ext_resource type="PackedScene" uid="uid://dd3yd21lrvjcv" path="res://src/shop/shop_slot.tscn" id="3_8xggp"]
 [ext_resource type="Script" uid="uid://bj83sngk6nd4t" path="res://old/debug.gd" id="3_b2b50"]
-[ext_resource type="FontFile" path="res://assets/OpenSans-Regular.ttf" id="4_egwmr"]
+[ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="4_egwmr"]
+[ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="5_aqqgx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmb2m"]
 bg_color = Color(0.890196, 0.901961, 0.901961, 1)
@@ -126,6 +127,7 @@ text = "Restock: "
 
 [node name="RerollPriceLabel" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_aqqgx")
 theme_override_font_sizes/font_size = 16
 text = "$20.00"
 

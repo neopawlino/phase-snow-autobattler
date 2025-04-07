@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b48mbnqi45i7o" path="res://resources/theme/analytics.tres" id="1_0f2ul"]
 [ext_resource type="Script" uid="uid://dan3hyi6x0mqf" path="res://src/stream/stream_summary.gd" id="2_gi83k"]
 [ext_resource type="Texture2D" uid="uid://dej01nwaqw7fa" path="res://public/my_assets/stream_bg_dither.png" id="3_4n7bs"]
-[ext_resource type="FontFile" path="res://assets/Roboto-Regular.ttf" id="4_0f2ul"]
+[ext_resource type="FontFile" uid="uid://dtt6dtx6rgxr" path="res://assets/Roboto-Regular.ttf" id="4_0f2ul"]
 
 [sub_resource type="Gradient" id="Gradient_oih2q"]
 offsets = PackedFloat32Array(0.997214)

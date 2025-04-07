@@ -114,6 +114,30 @@ texture = ExtResource("8_7a1vo")
 [node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
 min_size = Vector2i(1024, 500)
 
+[node name="AbilitySlot" parent="MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" index="0"]
+script = null
+
+[node name="AbilitySlot2" parent="MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" index="1"]
+script = null
+
+[node name="AbilitySlot3" parent="MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" index="2"]
+script = null
+
+[node name="AbilitySlot4" parent="MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" index="3"]
+script = null
+
+[node name="AbilitySlot5" parent="MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" index="4"]
+script = null
+
+[node name="AbilitySlot6" parent="MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" index="5"]
+script = null
+
+[node name="AbilitySlot7" parent="MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" index="6"]
+script = null
+
+[node name="AbilitySlot8" parent="MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" index="7"]
+script = null
+
 [node name="PreviewViewportContainer" parent="MainViewport/KBS" index="1" node_paths=PackedStringArray("in_stream_parent")]
 in_stream_parent = NodePath("../../../CanvasLayer")
 
