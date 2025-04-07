@@ -23,7 +23,6 @@ buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
 GameState="*res://src/game_state.gd"
 GlobalSignals="*res://src/global_signals.gd"
-DamageNumbers="*res://src/ui/damage_numbers.gd"
 StatusIconLib="*res://resources/status_effects/status_icon_lib.gd"
 Settings="*res://old/settings.gd"
 Bgm="*res://src/ui/bgm.tscn"

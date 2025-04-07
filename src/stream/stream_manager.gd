@@ -11,8 +11,6 @@ var original_player_team : Array[Character]
 
 @export var character_container : Control
 
-@export var result_screen : ResultScreen
-
 @export var combat_visual_follow_speed : float = 10
 
 var in_stream : bool = false
@@ -20,6 +18,8 @@ var in_stream : bool = false
 @export var win_reward : int = 3
 @export var lose_reward : int = 0
 @export var draw_reward : int = 0
+
+@export var stat_colors : Dictionary[StatValue.Stat, Color]
 
 var reward : int
 var income : int
@@ -262,36 +262,33 @@ func clear_teams():
 
 
 func apply_ability(ability: AbilityDefinition, caster_statuses: Dictionary, caster: Character):
-	#var team := self.enemy_team if target_team == Character.Team.ENEMY else self.player_team
-	#for target_index in targets:
-		#assert(target_index >= 0)
-		#if target_index >= len(team):
-			#continue
-		#var target_char := team[target_index]
-		#target_char.receive_ability(ability, caster_statuses)
 	var amount_add := calc_stat_scaling_amount(ability, caster)
 	for stat_change in ability.stat_changes:
+		var amount := stat_change.amount + amount_add
 		match stat_change.stat:
 			StatValue.Stat.VIEWS:
-				self.views += stat_change.amount + amount_add
+				self.views += amount
 			StatValue.Stat.VIEWS_PER_SEC:
-				self.views_per_sec += stat_change.amount + amount_add
+				self.views_per_sec += amount
 			StatValue.Stat.VIEWER_RETENTION:
-				self.viewer_retention += stat_change.amount + amount_add
+				self.viewer_retention += amount
 			StatValue.Stat.VIEWERS:
-				self.viewers += stat_change.amount + amount_add
+				self.viewers += amount
 			StatValue.Stat.SUBSCRIBER_RATE:
-				self.subscriber_rate += stat_change.amount + amount_add
+				self.subscriber_rate += amount
 			StatValue.Stat.SUBSCRIBERS:
-				GameState.subscribers += stat_change.amount + amount_add
+				GameState.subscribers += amount
 			StatValue.Stat.MEMBER_RATE:
-				self.member_rate += stat_change.amount + amount_add
+				self.member_rate += amount
 			StatValue.Stat.MEMBERS:
-				GameState.members += stat_change.amount + amount_add
+				GameState.members += amount
 			StatValue.Stat.STAMINA:
-				caster.hp += stat_change.amount + amount_add
+				caster.hp += amount
 			_:
 				print_debug("Couldn't match stat: %s" % stat_change.stat)
+		var color : Color = self.stat_colors.get(stat_change.stat, Color.WHITE)
+		var change_string := StringUtil.get_stat_change_string(stat_change.stat, amount)
+		GlobalSignals.show_damage_number.emit(change_string, caster.global_position, color)
 
 
 func calc_stat_scaling_amount(ability: AbilityDefinition, caster: Character) -> float:

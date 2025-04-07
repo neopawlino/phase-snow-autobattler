@@ -7,6 +7,8 @@ signal character_tooltip_opened(char : Character)
 signal character_died(char : Character)
 signal player_character_died(char : Character)
 
+signal show_damage_number(value: String, pos: Vector2, color : Color)
+
 
 signal stream_anim_started
 

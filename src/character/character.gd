@@ -12,10 +12,7 @@ class_name Character
 
 @export var mouseover_scale : float = 1.1
 
-@export var damage_numbers_origin : Node2D
-
-@export var price_label : Label
-@export var price : Node2D
+@export var damage_numbers_origin : Control
 
 @export var hp_label : Label
 @export var hp_bar : ProgressBar
@@ -30,9 +27,6 @@ class_name Character
 @export var name_label : Label
 
 @export var char_info_container : Container
-
-@export var price_color : Color = Color.WHITE
-@export var price_unaffordable_color : Color = Color.INDIAN_RED
 
 var ability_bar_scene : PackedScene = preload("res://src/ability/ability_bar.tscn")
 
@@ -441,7 +435,7 @@ func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 
 func take_damage(amount : int):
 	self.hp -= amount
-	DamageNumbers.display_number(amount, damage_numbers_origin.global_position)
+	GlobalSignals.show_damage_number.emit(str(-amount), damage_numbers_origin.global_position, Color.FIREBRICK)
 	sprite.damage_flash()
 	sprite.damage_shake(6)
 	SoundManager.play_sound_2d(self.global_position, damage_audio)
@@ -490,22 +484,9 @@ func get_income() -> int:
 	return income
 
 
-func set_price_visible(is_visible: bool):
-	price.visible = is_visible
-
-
-func set_price_text(value: int):
-	price_label.text = str(value)
-
-
 func can_merge(other: Character) -> bool:
 	return other != null and other != self and !is_max_level() and other.character_name == self.character_name
 
 
 func is_max_level() -> bool:
 	return cur_level >= len(levels)
-
-
-func set_price_color(affordable : bool):
-	var color := price_color if affordable else price_unaffordable_color
-	price_label.add_theme_color_override(&"font_color", color)

@@ -7,6 +7,7 @@
 [sub_resource type="Theme" id="Theme_vo0gr"]
 
 [node name="StreamUI" type="Control" node_paths=PackedStringArray("viewer_goal", "views", "views_per_sec", "viewer_retention", "viewers", "subscriber_rate", "subscribers", "member_rate", "members")]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

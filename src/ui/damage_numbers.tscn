@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqwxvnhpjlljm"]
+
+[ext_resource type="Script" uid="uid://xdunpg26ldd6" path="res://src/ui/damage_numbers.gd" id="1_jc1y8"]
+[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="2_e6wt5"]
+
+[node name="DamageNumbers" type="CanvasLayer" node_paths=PackedStringArray("number_parent")]
+follow_viewport_enabled = true
+script = ExtResource("1_jc1y8")
+number_parent = NodePath("Control")
+
+[node name="Control" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_e6wt5")
+
+[node name="TestLabel" type="Label" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 38.0
+theme_type_variation = &"DamageNumber"
+text = "+2 lorem ipsum Asdf Asdf"

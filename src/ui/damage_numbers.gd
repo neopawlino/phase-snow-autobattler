@@ -1,44 +1,48 @@
 extends Node
 
+@export var number_parent : Node
+
 # based on a tutorial by DashNothing
 # https://www.youtube.com/watch?v=F0DQLSiLkjg
 
-func display_number(value: int, pos: Vector2):
+func _ready() -> void:
+	GlobalSignals.show_damage_number.connect(display_number)
+
+
+func display_number(value: String, pos: Vector2, color : Color = Color.WHITE):
 	var number := Label.new()
 	number.process_mode = Node.PROCESS_MODE_ALWAYS
 	number.global_position = pos
-	number.text = str(value)
+	number.text = value
 	number.z_index = 5
-	number.label_settings = LabelSettings.new()
+	number.theme_type_variation = &"DamageNumber"
+	number.add_theme_color_override(&"font_color", color)
 
-	var color = "#FFF"
-	# color logic based on damage type
-	number.label_settings.font_color = color
-	number.label_settings.font_size = 32
-	number.label_settings.outline_color = "#000"
-	number.label_settings.outline_size = 8
-
-	call_deferred(&"add_child", number)
+	number_parent.call_deferred(&"add_child", number)
 
 	await number.resized
 	number.pivot_offset = Vector2(number.size / 2)
+	number.global_position -= Vector2(number.size / 2)
 
-	var tween := get_tree().create_tween()
+	var tween := self.create_tween()
 	tween.set_parallel(true)
-	const max_x_offset := 64
+	const max_x_offset := 32
 	var x_offset = randf() * max_x_offset * (1 if randi_range(0, 1) == 0 else -1)
 	tween.tween_property(
-		number, "position:y", number.position.y - 64, 0.15
+		number, "position:y", number.position.y - 128, 2.0
 	).set_ease(Tween.EASE_OUT)
 	tween.tween_property(
-		number, "position:x", number.position.x + x_offset, 0.75
+		number, "position:x", number.position.x + x_offset, 2.0
 	).set_ease(Tween.EASE_IN)
 	tween.tween_property(
-		number, "position:y", number.position.y, 0.5
-	).set_ease(Tween.EASE_IN).set_delay(0.25)
+		number, "modulate", Color(1, 1, 1, 0), 1.0
+	).set_delay(1.0)
 	tween.tween_property(
-		number, "scale", Vector2.ZERO, 0.25
-	).set_ease(Tween.EASE_IN).set_delay(0.5)
+		number, "scale", Vector2.ONE * 1.5, 0.02
+	).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(
+		number, "scale", Vector2.ONE, 0.4
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_delay(0.1)
 
 	await tween.finished
 	number.queue_free()
