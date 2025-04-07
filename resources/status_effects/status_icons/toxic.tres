@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusIconDefinition" load_steps=3 format=3 uid="uid://t4ekwuvcykxl"]
 
-[ext_resource type="Texture2D" uid="uid://qw78e5iu3bob" path="res://assets/my_assets/fishie.png" id="1_28blo"]
+[ext_resource type="Texture2D" uid="uid://qw78e5iu3bob" path="res://public/my_assets/fishie.png" id="1_28blo"]
 [ext_resource type="Script" uid="uid://b5rbtmlfdycwb" path="res://resources/status_effects/status_icon_definition.gd" id="2_kfdb3"]
 
 [resource]

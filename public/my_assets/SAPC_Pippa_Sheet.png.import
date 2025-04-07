@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6kreiov0lvdg"
-path="res://.godot/imported/SAPC_Pippa_Sheet.png-82be88b52dcfe4df66ccf97f2d96f667.ctex"
+path="res://.godot/imported/SAPC_Pippa_Sheet.png-785b537a570b14993faf07e78d209b8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/my_assets/SAPC_Pippa_Sheet.png"
-dest_files=["res://.godot/imported/SAPC_Pippa_Sheet.png-82be88b52dcfe4df66ccf97f2d96f667.ctex"]
+source_file="res://public/my_assets/SAPC_Pippa_Sheet.png"
+dest_files=["res://.godot/imported/SAPC_Pippa_Sheet.png-785b537a570b14993faf07e78d209b8a.ctex"]
 
 [params]
 

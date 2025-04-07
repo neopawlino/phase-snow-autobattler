@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjure243sfp0j"
-path="res://.godot/imported/slimekin.png-aebd9c7a7d4625fe91f0d260c5c31083.ctex"
+path="res://.godot/imported/slimekin.png-7cd422d05b30ef1721845f2a097656cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/my_assets/slimekin.png"
-dest_files=["res://.godot/imported/slimekin.png-aebd9c7a7d4625fe91f0d260c5c31083.ctex"]
+source_file="res://public/my_assets/slimekin.png"
+dest_files=["res://.godot/imported/slimekin.png-7cd422d05b30ef1721845f2a097656cd.ctex"]
 
 [params]
 

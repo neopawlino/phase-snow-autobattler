@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcgreuvqjri3s"
-path="res://.godot/imported/pippa.png-bc2df8010389f2166d6fe9b061da50fb.ctex"
+path="res://.godot/imported/pippa.png-4037fb663eee5dcd48935f7eacb7fc17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/my_assets/pippa.png"
-dest_files=["res://.godot/imported/pippa.png-bc2df8010389f2166d6fe9b061da50fb.ctex"]
+source_file="res://public/my_assets/pippa.png"
+dest_files=["res://.godot/imported/pippa.png-4037fb663eee5dcd48935f7eacb7fc17.ctex"]
 
 [params]
 

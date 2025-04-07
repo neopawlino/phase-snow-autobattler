@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cenkmh8g0m6pf"
-path="res://.godot/imported/cover-square.png-91e7bcde25d8783c22727cb88c469631.ctex"
+path="res://.godot/imported/cover-square.png-6388d396d3c8c4a010a29a4846395440.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/my_assets/cover-square.png"
-dest_files=["res://.godot/imported/cover-square.png-91e7bcde25d8783c22727cb88c469631.ctex"]
+source_file="res://public/my_assets/cover-square.png"
+dest_files=["res://.godot/imported/cover-square.png-6388d396d3c8c4a010a29a4846395440.ctex"]
 
 [params]
 

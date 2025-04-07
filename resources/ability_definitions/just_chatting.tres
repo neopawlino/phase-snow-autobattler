@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AbilityDefinition" load_steps=6 format=3 uid="uid://cn5wsgbf1r7t2"]
 
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="1_0gipy"]
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://assets/icon.svg" id="1_ndq4w"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_ndq4w"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_ndq4w"]
 
 [sub_resource type="Resource" id="Resource_3vjuy"]

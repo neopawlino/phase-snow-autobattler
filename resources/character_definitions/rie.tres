@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="CharacterDefinition" load_steps=18 format=3 uid="uid://baiyj43bn6b1k"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_167rq"]
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://assets/icon.svg" id="2_2048t"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="2_2048t"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_fuv3c"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="3_chc5m"]
-[ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://assets/my_assets/SAPC_Rie_Sheet.png" id="4_e8q58"]
+[ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://public/my_assets/SAPC_Rie_Sheet.png" id="4_e8q58"]
 [ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="4_yhsmg"]
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="6_y1j6c"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_d62pp"]

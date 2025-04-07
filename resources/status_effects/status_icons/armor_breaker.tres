@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusIconDefinition" load_steps=3 format=3 uid="uid://cn7iq70idvshp"]
 
-[ext_resource type="Texture2D" uid="uid://bmkabwcmq22vj" path="res://assets/my_assets/breakingbad.png" id="1_o7tn2"]
+[ext_resource type="Texture2D" uid="uid://bmkabwcmq22vj" path="res://public/my_assets/breakingbad.png" id="1_o7tn2"]
 [ext_resource type="Script" uid="uid://b5rbtmlfdycwb" path="res://resources/status_effects/status_icon_definition.gd" id="2_rt1b2"]
 
 [resource]

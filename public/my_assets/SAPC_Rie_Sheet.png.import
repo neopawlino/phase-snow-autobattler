@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c48xyiiskpfks"
-path="res://.godot/imported/SAPC_Rie_Sheet.png-df253e41bbccefc0e5627a7ceef71a99.ctex"
+path="res://.godot/imported/SAPC_Rie_Sheet.png-c26c1f2d6b4bdccea51f99bb1c667ccb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/my_assets/SAPC_Rie_Sheet.png"
-dest_files=["res://.godot/imported/SAPC_Rie_Sheet.png-df253e41bbccefc0e5627a7ceef71a99.ctex"]
+source_file="res://public/my_assets/SAPC_Rie_Sheet.png"
+dest_files=["res://.godot/imported/SAPC_Rie_Sheet.png-c26c1f2d6b4bdccea51f99bb1c667ccb.ctex"]
 
 [params]
 

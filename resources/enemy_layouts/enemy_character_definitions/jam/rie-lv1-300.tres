@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_r36ux"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_nxsan"]
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="3_lnhmb"]
-[ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://assets/my_assets/SAPC_Rie_Sheet.png" id="4_5xgjc"]
+[ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://public/my_assets/SAPC_Rie_Sheet.png" id="4_5xgjc"]
 [ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="5_gee4h"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="6_pl0ia"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_nxsan"]

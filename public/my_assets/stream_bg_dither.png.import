@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dej01nwaqw7fa"
-path="res://.godot/imported/stream_bg_dither.png-5fe2df05014726c85924e0d8d75eef61.ctex"
+path="res://.godot/imported/stream_bg_dither.png-955c83b2c46dba5b4c7863ff5834b530.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/my_assets/stream_bg_dither.png"
-dest_files=["res://.godot/imported/stream_bg_dither.png-5fe2df05014726c85924e0d8d75eef61.ctex"]
+source_file="res://public/my_assets/stream_bg_dither.png"
+dest_files=["res://.godot/imported/stream_bg_dither.png-955c83b2c46dba5b4c7863ff5834b530.ctex"]
 
 [params]
 

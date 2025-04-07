@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AbilityDefinition" load_steps=5 format=3 uid="uid://nk4rplfteqop"]
 
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://assets/icon.svg" id="1_08nl4"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_08nl4"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_l43op"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_04cdj"]
 

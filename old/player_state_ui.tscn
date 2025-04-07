@@ -2,10 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_2y55o"]
 [ext_resource type="Script" uid="uid://ia5ov4yb0xxq" path="res://old/player_state_ui.gd" id="2_v0kog"]
-[ext_resource type="Texture2D" uid="uid://bt6gg4cs87c6h" path="res://assets/my_assets/heart.png" id="3_d6syb"]
-[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://assets/my_assets/coffee.png" id="3_e0p42"]
-[ext_resource type="Texture2D" uid="uid://cmv2xj5hg5jo2" path="res://assets/my_assets/trophy.png" id="5_k4ufb"]
-[ext_resource type="Texture2D" uid="uid://ccj1r160gllfe" path="res://assets/my_assets/hourglass.png" id="6_0pwgu"]
+[ext_resource type="Texture2D" uid="uid://bt6gg4cs87c6h" path="res://public/my_assets/heart.png" id="3_d6syb"]
+[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://public/my_assets/coffee.png" id="3_e0p42"]
+[ext_resource type="Texture2D" uid="uid://cmv2xj5hg5jo2" path="res://public/my_assets/trophy.png" id="5_k4ufb"]
+[ext_resource type="Texture2D" uid="uid://ccj1r160gllfe" path="res://public/my_assets/hourglass.png" id="6_0pwgu"]
 
 [node name="PlayerStateUI" type="Control"]
 layout_mode = 3

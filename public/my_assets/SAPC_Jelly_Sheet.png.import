@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnsb1suaykmh"
-path="res://.godot/imported/SAPC_Jelly_Sheet.png-5f27426922408d49f0fc3fced1f123ac.ctex"
+path="res://.godot/imported/SAPC_Jelly_Sheet.png-3173489023584fc5e42d798a9d16d9ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/my_assets/SAPC_Jelly_Sheet.png"
-dest_files=["res://.godot/imported/SAPC_Jelly_Sheet.png-5f27426922408d49f0fc3fced1f123ac.ctex"]
+source_file="res://public/my_assets/SAPC_Jelly_Sheet.png"
+dest_files=["res://.godot/imported/SAPC_Jelly_Sheet.png-3173489023584fc5e42d798a9d16d9ca.ctex"]
 
 [params]
 

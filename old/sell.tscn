@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_3e5gm"]
 [ext_resource type="Script" uid="uid://b8rfy07oxksfe" path="res://old/sell.gd" id="1_q1g5w"]
-[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://assets/my_assets/coffee.png" id="2_ctq74"]
+[ext_resource type="Texture2D" uid="uid://cuxfb0gktab5d" path="res://public/my_assets/coffee.png" id="2_ctq74"]
 
 [node name="Sell" type="Control"]
 layout_mode = 3

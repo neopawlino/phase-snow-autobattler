@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dy3ejfj58drwu" path="res://resources/theme/jamazon.tres" id="1_oq217"]
 [ext_resource type="Script" uid="uid://b600krv6jfv4r" path="res://src/shop/shop_slot.gd" id="2_nd2g7"]
-[ext_resource type="Texture2D" uid="uid://bfyseo7apl6g" path="res://assets/my_assets/tile.png" id="2_oq217"]
+[ext_resource type="Texture2D" uid="uid://bfyseo7apl6g" path="res://public/my_assets/tile.png" id="2_oq217"]
 
 [node name="ShopSlot" type="VBoxContainer" node_paths=PackedStringArray("title_label", "price_label", "buy_button")]
 offset_right = 40.0

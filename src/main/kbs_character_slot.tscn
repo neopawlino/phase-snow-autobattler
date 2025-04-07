@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drgpkq08jre2r"]
 
 [ext_resource type="Script" uid="uid://c5ilf8qew1tt1" path="res://src/item/character_slot.gd" id="1_tyx83"]
-[ext_resource type="Texture2D" uid="uid://bfyseo7apl6g" path="res://assets/my_assets/tile.png" id="2_tyx83"]
+[ext_resource type="Texture2D" uid="uid://bfyseo7apl6g" path="res://public/my_assets/tile.png" id="2_tyx83"]
 
 [node name="CharacterSlot" type="Control" node_paths=PackedStringArray("merge_swap_timer")]
 custom_minimum_size = Vector2(120, 120)

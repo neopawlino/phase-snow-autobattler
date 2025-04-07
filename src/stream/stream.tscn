@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ctphvxmiwu62f"]
 
 [ext_resource type="Script" uid="uid://b6fywb3xwv3i8" path="res://src/item/slot_container.gd" id="1_3tm05"]
-[ext_resource type="Texture2D" uid="uid://bqtt0m2k884gl" path="res://assets/my_assets/neo_background_2.png" id="1_4pdcm"]
+[ext_resource type="Texture2D" uid="uid://bqtt0m2k884gl" path="res://public/my_assets/neo_background_2.png" id="1_4pdcm"]
 [ext_resource type="PackedScene" uid="uid://tkfw2aqo8uiy" path="res://src/stream/stream_ui.tscn" id="1_t8krr"]
 [ext_resource type="Script" uid="uid://jy312ljf0dr8" path="res://src/stream/stream_manager.gd" id="3_4pdcm"]
 [ext_resource type="PackedScene" uid="uid://d3kuf2p6gvovk" path="res://src/item/character_slot.tscn" id="4_t8krr"]
