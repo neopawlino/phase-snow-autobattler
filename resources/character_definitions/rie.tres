@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=18 format=3 uid="uid://baiyj43bn6b1k"]
+
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_167rq"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="2_2048t"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_fuv3c"]
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="3_chc5m"]
+[ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://public/my_assets/SAPC_Rie_Sheet.png" id="4_e8q58"]
+[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="4_yhsmg"]
+[ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="6_y1j6c"]
+[ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_d62pp"]
+
+[sub_resource type="Resource" id="Resource_2048t"]
+script = ExtResource("2_fuv3c")
+stat = 1
+amount = 10.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_d0bo2"]
+script = ExtResource("1_167rq")
+ability_name = "Pafu Bite"
+icon = ExtResource("2_2048t")
+description = "add 10 views/1 sec"
+stat_changes = Array[ExtResource("2_fuv3c")]([SubResource("Resource_2048t")])
+cooldown = 1.0
+scaling = Array[ExtResource("2_fuv3c")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_3pnjp"]
+script = ExtResource("1_167rq")
+ability_name = "\"Love\" Potion #520"
+description = ""
+stat_changes = Array[ExtResource("2_fuv3c")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_fuv3c")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_olj2m"]
+script = ExtResource("1_167rq")
+ability_name = "Requiem"
+description = ""
+stat_changes = Array[ExtResource("2_fuv3c")]([])
+cooldown = 1.0
+scaling = Array[ExtResource("2_fuv3c")]([])
+ability_keys = Array[StringName]([])
+
+[sub_resource type="Resource" id="Resource_s0rwx"]
+script = ExtResource("4_yhsmg")
+hp = 5
+statuses = Array[ExtResource("6_y1j6c")]([])
+
+[sub_resource type="Resource" id="Resource_a7ikp"]
+script = ExtResource("6_y1j6c")
+status_id = 3
+value = 1
+
+[sub_resource type="Resource" id="Resource_klgkn"]
+script = ExtResource("4_yhsmg")
+hp = 5
+statuses = Array[ExtResource("6_y1j6c")]([SubResource("Resource_a7ikp")])
+
+[sub_resource type="Resource" id="Resource_u0chf"]
+script = ExtResource("6_y1j6c")
+status_id = 4
+value = 1
+
+[sub_resource type="Resource" id="Resource_l7yi4"]
+script = ExtResource("4_yhsmg")
+hp = 5
+statuses = Array[ExtResource("6_y1j6c")]([SubResource("Resource_u0chf")])
+
+[resource]
+script = ExtResource("3_chc5m")
+character_name = "Himemiya Rie"
+short_name = "Rie"
+character_sprite = ExtResource("4_e8q58")
+sprite_offset = Vector2(4, -4)
+sprite_scale = Vector2(2, 2)
+sprite_hframes = 4
+max_hp = 20
+abilities = Array[ExtResource("1_167rq")]([SubResource("Resource_d0bo2"), SubResource("Resource_3pnjp"), SubResource("Resource_olj2m")])
+level_requirements = Array[int]([1, 2, 3])
+levels = Array[ExtResource("4_yhsmg")]([SubResource("Resource_s0rwx"), SubResource("Resource_klgkn"), SubResource("Resource_l7yi4")])
+initial_level = 0
+initial_ability_levels = Array[int]([1, 0, 0])
+statuses = Array[ExtResource("6_y1j6c")]([])
+unique_statuses = Array[ExtResource("7_d62pp")]([])

@@ -11,24 +11,33 @@ config_version=5
 [application]
 
 config/name="Phase Snow Autobattler"
-run/main_scene="res://main_menu.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+run/main_scene="uid://c0spke4hrcfyf"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="res://public/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
 [autoload]
 
-GameState="*res://game_state.gd"
-GlobalSignals="*res://global_signals.gd"
-DamageNumbers="*res://damage_numbers.gd"
-StatusIconLib="*res://status_effects/status_icon_lib.gd"
-Bgm="*res://bgm.tscn"
+GameState="*res://src/game_state.gd"
+GlobalSignals="*res://src/global_signals.gd"
+DamageNumbers="*res://src/ui/damage_numbers.gd"
+StatusIconLib="*res://resources/status_effects/status_icon_lib.gd"
+Settings="*res://old/settings.gd"
+Bgm="*res://src/ui/bgm.tscn"
+Popups="*res://src/ui/popups.tscn"
+SoundManager="*res://src/ui/sound_manager.gd"
+RandomUtil="*res://src/random_util.gd"
+ScreenSpaceUtil="*res://src/ui/screen_space_util.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_width"
+window/size/resizable=false
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
@@ -40,7 +49,7 @@ auto_rebuild=true
 
 [gui]
 
-timers/tooltip_delay_sec=0.1
+timers/tooltip_delay_sec=0.0
 
 [input]
 
@@ -60,3 +69,4 @@ click={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true

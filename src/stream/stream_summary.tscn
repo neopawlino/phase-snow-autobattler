@@ -1,0 +1,443 @@
+[gd_scene load_steps=9 format=3 uid="uid://b47gfxy22e6n2"]
+
+[ext_resource type="Theme" uid="uid://b48mbnqi45i7o" path="res://resources/theme/analytics.tres" id="1_0f2ul"]
+[ext_resource type="Script" uid="uid://dan3hyi6x0mqf" path="res://src/stream/stream_summary.gd" id="2_gi83k"]
+[ext_resource type="Texture2D" uid="uid://dej01nwaqw7fa" path="res://public/my_assets/stream_bg_dither.png" id="3_4n7bs"]
+[ext_resource type="FontFile" uid="uid://dtt6dtx6rgxr" path="res://assets/Roboto-Regular.ttf" id="4_0f2ul"]
+
+[sub_resource type="Gradient" id="Gradient_oih2q"]
+offsets = PackedFloat32Array(0.997214)
+colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 0.501961)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wr6po"]
+gradient = SubResource("Gradient_oih2q")
+
+[sub_resource type="Gradient" id="Gradient_0f2ul"]
+offsets = PackedFloat32Array(0, 0.696379, 1)
+colors = PackedColorArray(0.0941176, 0.0941176, 0.0941176, 0.792157, 0.654902, 0.654902, 0.654902, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oih2q"]
+gradient = SubResource("Gradient_0f2ul")
+width = 720
+height = 405
+fill_from = Vector2(1, 1)
+
+[node name="StreamSummary" type="Control" node_paths=PackedStringArray("views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "base_revenue_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+mouse_filter = 1
+theme = ExtResource("1_0f2ul")
+script = ExtResource("2_gi83k")
+views_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer/ViewsLabel")
+viewers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer/ViewersLabel")
+subscribers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer/SubscribersLabel")
+subscribers_container = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3")
+members_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer/MembersLabel")
+members_container = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4")
+total_revenue_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer/MarginContainer/TotalRevenueLabel")
+overlay = NodePath("BGOverlay")
+base_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/BaseRevenueContainer/BaseRevenueLabel")
+ad_revenue_container = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer")
+ad_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer/AdRevenueLabel")
+rpm_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer/VBoxContainer/RPMLabel")
+member_revenue_container = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/MembershipsContainer")
+member_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/MembershipsContainer/MembershipsRevenueLabel")
+item_revenue_container = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/ItemsContainer")
+item_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/ItemsContainer/ItemsRevenueLabel")
+abilities_revenue_container = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AbilitiesContainer")
+abilities_revenue_label = NodePath("Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AbilitiesContainer/AbilitiesRevenueLabel")
+stream_finished_container = NodePath("Control/StreamFinishedContainer")
+revenue_breakdown_container = NodePath("Control/RevenueBreakdownContainer")
+
+[node name="BGOverlay" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(9999, 9999)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4979.5
+offset_top = -4979.5
+offset_right = 4979.5
+offset_bottom = 4979.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_wr6po")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="StreamFinishedContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -441.5
+offset_right = 360.0
+offset_bottom = 441.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"StreamResultsPanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/StreamFinishedContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer"]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ResultsHeaderPanel"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer2"]
+layout_mode = 2
+theme_type_variation = &"ResultsHeader"
+text = "Stream Finished"
+
+[node name="VBoxContainer" type="Control" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(705, 405)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(720, 405)
+layout_mode = 2
+offset_right = 720.0
+offset_bottom = 405.0
+texture = ExtResource("3_4n7bs")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 720.0
+offset_bottom = 64.0
+texture = SubResource("GradientTexture2D_oih2q")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -163.0
+offset_right = 752.0
+grow_vertical = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StreamTitle" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(688, 0)
+layout_mode = 2
+text = "the bestest greatest stream ever fort night"
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 16
+
+[node name="ChannelName" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(688, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0f2ul")
+theme_override_font_sizes/font_size = 24
+text = "very real channel name"
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "Views"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="ViewsLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "99999999999"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "Peak Viewers"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="ViewersLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "9999999999"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "New Subscribers"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="SubscribersLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "999999999"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginContainer4" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "New Members"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="MembersLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer4/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "9999999999"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginContainer5" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "Total Revenue"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+
+[node name="TotalRevenueLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer5/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "$9999999.99"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 0
+
+[node name="Button" type="Button" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+text = "Continue"
+
+[node name="RevenueBreakdownContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 460)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -792.5
+offset_top = -238.0
+offset_right = -372.5
+offset_bottom = 238.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_type_variation = &"RevenueBreakdownPanel"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/RevenueBreakdownContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+theme_type_variation = &"ResultsHeader"
+text = "Revenue Breakdown"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="HSeparator" type="HSeparator" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="BaseRevenueContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/BaseRevenueContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Base Salary"
+
+[node name="BaseRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/BaseRevenueContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[node name="AdRevenueContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "Ad Revenue"
+
+[node name="RPMLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LabelSmall"
+text = "($2.50 per 1,000 views)"
+
+[node name="AdRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AdRevenueContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[node name="MembershipsContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/MembershipsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Memberships"
+
+[node name="MembershipsRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/MembershipsContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[node name="ItemsContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/ItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Items"
+
+[node name="ItemsRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/ItemsContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[node name="AbilitiesContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AbilitiesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RevenueLabel"
+text = "Abilities"
+
+[node name="AbilitiesRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/AbilitiesContainer"]
+layout_mode = 2
+theme_type_variation = &"RevenueLabel"
+text = "$5.00"
+
+[connection signal="pressed" from="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]

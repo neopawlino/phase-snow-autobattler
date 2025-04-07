@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://kwmy8h0yalxx"]
+
+[ext_resource type="Texture2D" uid="uid://dpj27rbd3ntjh" path="res://public/my_assets/strengthbaby2.png" id="1_pbi16"]
+[ext_resource type="Script" uid="uid://emeo5qgrpd0w" path="res://src/item/item_definition.gd" id="2_2rct4"]
+
+[resource]
+script = ExtResource("2_2rct4")
+name = &"str_on_damage"
+display_name = "Str on damage"
+item_sprite = ExtResource("1_pbi16")
+sprite_scale = Vector2(0.8, 0.8)
+description_text = "Front unit: +1 str on taking damage"
+price = 4
+sell_price = 2
+properties = {}

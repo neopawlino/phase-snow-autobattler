@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyTeam" load_steps=8 format=3 uid="uid://byik5i64okvw5"]
+
+[ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="1_mjlvl"]
+[ext_resource type="Resource" uid="uid://cer2s1h8lpgey" path="res://resources/enemy_layouts/enemy_character_definitions/jam/jelly-lv3-133.tres" id="2_ldqxo"]
+[ext_resource type="Resource" uid="uid://2pkjbwy4f6ou" path="res://resources/enemy_layouts/enemy_character_definitions/jam/rie-lv3-331.tres" id="4_k0aw8"]
+[ext_resource type="Resource" uid="uid://blbkfsmhwvm84" path="res://resources/enemy_layouts/enemy_character_definitions/jam/pippa-lv2-202.tres" id="5_gll25"]
+[ext_resource type="Resource" uid="uid://c5aos2rj1tpbt" path="res://resources/character_definitions/jelly.tres" id="5_ud66t"]
+[ext_resource type="Resource" uid="uid://s87c0yojuadv" path="res://resources/enemy_layouts/enemy_character_definitions/jam/rie-lv1-102.tres" id="6_dhjxs"]
+[ext_resource type="Script" uid="uid://pgh10n561hi5" path="res://src/stream/enemy_team.gd" id="7_ddpdn"]
+
+[resource]
+script = ExtResource("7_ddpdn")
+characters = Array[ExtResource("1_mjlvl")]([ExtResource("2_ldqxo"), ExtResource("5_ud66t"), ExtResource("4_k0aw8"), ExtResource("5_gll25"), ExtResource("6_dhjxs")])

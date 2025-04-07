@@ -1,0 +1,103 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ddip2yriujj48"]
+
+[ext_resource type="FontFile" uid="uid://d31aiqold0as0" path="res://assets/m5x7.ttf" id="1_d4nwg"]
+[ext_resource type="FontFile" uid="uid://cyf4ilchh31t0" path="res://assets/m3x6.ttf" id="2_7ct1h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_110ce"]
+bg_color = Color(0.17, 0.17, 0.17, 0.490196)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj6dk"]
+bg_color = Color(0, 0.814667, 0.94, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.505882)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05tig"]
+bg_color = Color(0.2, 0.2, 0.2, 0.737255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gf707"]
+bg_color = Color(0.803922, 0.360784, 0.360784, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rg5kn"]
+bg_color = Color(0, 0, 0, 0.211765)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42deb"]
+bg_color = Color(0.75, 0.75, 0.75, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjfk0"]
+bg_color = Color(1, 0.833333, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[resource]
+AbilityBar/base_type = &"ProgressBar"
+AbilityBar/styles/background = SubResource("StyleBoxFlat_110ce")
+AbilityBar/styles/fill = SubResource("StyleBoxFlat_vj6dk")
+AbilityProgressBar/base_type = &"ProgressBar"
+AbilityProgressBar/styles/fill = SubResource("StyleBoxFlat_05tig")
+HPBar/base_type = &"ProgressBar"
+HPBar/styles/fill = SubResource("StyleBoxFlat_gf707")
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.662745)
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 48
+Label/fonts/font = ExtResource("1_d4nwg")
+MarginContainer/constants/margin_bottom = 8
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 8
+MarginContainer/constants/margin_top = 8
+ProgressBar/styles/background = SubResource("StyleBoxFlat_rg5kn")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_42deb")
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.662745)
+RichTextLabel/constants/shadow_offset_x = 2
+RichTextLabel/constants/shadow_offset_y = 2
+RichTextLabel/constants/shadow_outline_size = 0
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/normal_font = ExtResource("1_d4nwg")
+StatusIconText/base_type = &"Label"
+StatusIconText/colors/font_outline_color = Color(0, 0, 0, 1)
+StatusIconText/colors/font_shadow_color = Color(0, 0, 0, 0.772549)
+StatusIconText/constants/outline_size = 2
+StatusIconText/constants/shadow_offset_x = 0
+StatusIconText/constants/shadow_offset_y = 0
+StatusIconText/constants/shadow_outline_size = 0
+StatusIconText/font_sizes/font_size = 16
+StatusIconText/fonts/font = ExtResource("2_7ct1h")
+TextSmall/base_type = &"Label"
+TextSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+TextSmall/constants/shadow_offset_x = 0
+TextSmall/constants/shadow_offset_y = 2
+TextSmall/constants/shadow_outline_size = 0
+TextSmall/font_sizes/font_size = 32
+TextSmall/fonts/font = ExtResource("1_d4nwg")
+TextTitle/base_type = &"Label"
+TextTitle/font_sizes/font_size = 48
+XPBar/base_type = &"ProgressBar"
+XPBar/styles/fill = SubResource("StyleBoxFlat_cjfk0")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq15mv6xv0msb"]
+
+[ext_resource type="Script" uid="uid://bwe6mxrfv6cak" path="res://src/ui/bgm.gd" id="1_1yswl"]
+[ext_resource type="AudioStream" path="res://assets/メリーモール.mp3" id="1_g11j6"]
+
+[node name="BGM" type="Node" node_paths=PackedStringArray("player")]
+process_mode = 3
+script = ExtResource("1_1yswl")
+player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_g11j6")
+bus = &"Music"
+parameters/looping = true

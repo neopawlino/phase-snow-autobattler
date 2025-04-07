@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusIconDefinition" load_steps=3 format=3 uid="uid://btw1uqvp1nmuu"]
+
+[ext_resource type="Texture2D" uid="uid://di4amu2g8d3vt" path="res://public/my_assets/empoisen.png" id="1_bshsd"]
+[ext_resource type="Script" uid="uid://b5rbtmlfdycwb" path="res://resources/status_effects/status_icon_definition.gd" id="1_u1klu"]
+
+[resource]
+script = ExtResource("1_u1klu")
+status = 3
+icon = ExtResource("1_bshsd")
+tooltip_text = "Envenom: Unit's attacks apply an additional %s Toxic."

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://nk4demkx6c5p"]
+
+[ext_resource type="Texture2D" uid="uid://qw78e5iu3bob" path="res://public/my_assets/fishie.png" id="1_65tny"]
+[ext_resource type="Script" uid="uid://emeo5qgrpd0w" path="res://src/item/item_definition.gd" id="1_ht78x"]
+
+[resource]
+script = ExtResource("1_ht78x")
+name = &"toxic_up"
+display_name = "Toxic Up"
+item_sprite = ExtResource("1_65tny")
+sprite_scale = Vector2(0.5, 0.5)
+description_text = "All units: +1 envenom"
+price = 5
+sell_price = 3
+properties = {}

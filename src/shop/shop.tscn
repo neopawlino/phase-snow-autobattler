@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpfgksmlwxjfc"]
+
+[ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://src/main/kms_theme.tres" id="1_e7rdd"]
+[ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://src/ui/custom_window.gd" id="2_blqjs"]
+[ext_resource type="PackedScene" uid="uid://d0vebfhhnx8ng" path="res://src/shop/shop_site.tscn" id="3_blqjs"]
+
+[node name="Shop" type="Window"]
+auto_translate_mode = 1
+title = "Shopping"
+position = Vector2i(600, 40)
+size = Vector2i(600, 400)
+theme = ExtResource("1_e7rdd")
+script = ExtResource("2_blqjs")
+
+[node name="ShopSite" parent="." instance=ExtResource("3_blqjs")]
