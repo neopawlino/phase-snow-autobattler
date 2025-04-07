@@ -1,4 +1,7 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://ddip2yriujj48"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ddip2yriujj48"]
+
+[ext_resource type="FontFile" uid="uid://d31aiqold0as0" path="res://assets/m5x7.ttf" id="1_d4nwg"]
+[ext_resource type="FontFile" uid="uid://cyf4ilchh31t0" path="res://assets/m3x6.ttf" id="2_7ct1h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_110ce"]
 bg_color = Color(0.17, 0.17, 0.17, 0.490196)
@@ -61,31 +64,39 @@ AbilityProgressBar/styles/fill = SubResource("StyleBoxFlat_05tig")
 HPBar/base_type = &"ProgressBar"
 HPBar/styles/fill = SubResource("StyleBoxFlat_gf707")
 Label/colors/font_shadow_color = Color(0, 0, 0, 0.662745)
-Label/constants/outline_size = 4
-Label/constants/shadow_outline_size = 4
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
+Label/constants/shadow_outline_size = 0
 Label/font_sizes/font_size = 48
-Label/fonts/font = null
+Label/fonts/font = ExtResource("1_d4nwg")
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
 MarginContainer/constants/margin_top = 8
 ProgressBar/styles/background = SubResource("StyleBoxFlat_rg5kn")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_42deb")
-RichTextLabel/constants/shadow_outline_size = 2
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.662745)
+RichTextLabel/constants/shadow_offset_x = 2
+RichTextLabel/constants/shadow_offset_y = 2
+RichTextLabel/constants/shadow_outline_size = 0
 RichTextLabel/font_sizes/normal_font_size = 32
-RichTextLabel/fonts/normal_font = null
+RichTextLabel/fonts/normal_font = ExtResource("1_d4nwg")
 StatusIconText/base_type = &"Label"
 StatusIconText/colors/font_outline_color = Color(0, 0, 0, 1)
 StatusIconText/colors/font_shadow_color = Color(0, 0, 0, 0.772549)
-StatusIconText/constants/outline_size = 4
+StatusIconText/constants/outline_size = 2
+StatusIconText/constants/shadow_offset_x = 0
+StatusIconText/constants/shadow_offset_y = 0
 StatusIconText/constants/shadow_outline_size = 0
 StatusIconText/font_sizes/font_size = 16
-StatusIconText/fonts/font = null
+StatusIconText/fonts/font = ExtResource("2_7ct1h")
 TextSmall/base_type = &"Label"
-TextSmall/constants/outline_size = 2
+TextSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+TextSmall/constants/shadow_offset_x = 0
+TextSmall/constants/shadow_offset_y = 2
 TextSmall/constants/shadow_outline_size = 0
 TextSmall/font_sizes/font_size = 32
-TextSmall/fonts/font = null
+TextSmall/fonts/font = ExtResource("1_d4nwg")
 TextTitle/base_type = &"Label"
 TextTitle/font_sizes/font_size = 48
 XPBar/base_type = &"ProgressBar"
