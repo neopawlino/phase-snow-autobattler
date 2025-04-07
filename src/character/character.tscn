@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=16 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://src/ui/visual_follow.gd" id="2_0vcty"]
 [ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://src/character/character.gd" id="2_1four"]
@@ -7,7 +7,6 @@
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="4_18dhx"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://src/item/draggable.tscn" id="5_bv4aq"]
 [ext_resource type="Script" uid="uid://b1n7n8i4cjf7l" path="res://src/character/character_sprite.gd" id="5_wdpcj"]
-[ext_resource type="PackedScene" uid="uid://bvhhm87ldr8h4" path="res://src/ability/ability_slot.tscn" id="9_jb3kq"]
 
 [sub_resource type="Resource" id="Resource_wdpcj"]
 metadata/__load_path__ = "res://assets/punch_general_body_impact_03.wav"
@@ -314,15 +313,6 @@ vertical_alignment = 1
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="AbilitySlot" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
-layout_mode = 2
-
-[node name="AbilitySlot2" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
-layout_mode = 2
-
-[node name="AbilitySlot3" parent="Visual/CharacterUI/AbilitiesContainer" instance=ExtResource("9_jb3kq")]
-layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
 offset_left = -60.0

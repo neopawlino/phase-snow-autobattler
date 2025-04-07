@@ -113,7 +113,7 @@ var char_def : CharacterDefinition
 @onready var skill_points_label : Label = %SkillPointsLabel
 @export var drag_component : Draggable
 
-@onready var ability_slots : Array[Slot] = []
+@export_storage var ability_slots : Array[Slot] = []
 @export var ability_slot_container : Control
 
 @export var character_ui : Control
@@ -151,11 +151,6 @@ func _ready() -> void:
 	)
 	drag_component.drag_ended.connect(handle_drag_ended)
 	drag_component.drag_occupied_slot.connect(handle_drag_occupied_slot)
-
-
-func clear_ability_slots():
-	for child in ability_slot_container.get_children():
-		child.queue_free()
 
 
 func _process(delta: float):
@@ -295,7 +290,6 @@ func my_duplicate() -> Character:
 	# add abilities
 	var abilities := self.get_abilities()
 	var ability_slot_count = len(self.ability_slots)
-	new_char.clear_ability_slots()
 	for i in range(ability_slot_count):
 		new_char.add_ability_slot()
 	for i in range(len(abilities)):
@@ -345,8 +339,6 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.name_label.text = char_def.short_name
 
 	self.char_def = char_def
-
-	self.clear_ability_slots()
 
 
 func add_xp(amount : int):
