@@ -24,9 +24,22 @@ func _ready() -> void:
 	stream_manager.member_rate_changed.connect(update_member_rate)
 	GameState.members_changed.connect(update_members)
 
-	GlobalSignals.stream_started.connect(show)
+	GlobalSignals.stream_started.connect(show_anim)
 	GlobalSignals.stream_started.connect(update_all)
-	GlobalSignals.stream_results_confirmed.connect(hide)
+	GlobalSignals.stream_ended.connect(hide_anim)
+
+
+func show_anim():
+	self.modulate = Color(Color.WHITE, 0)
+	self.show()
+	var tween := self.create_tween()
+	tween.tween_property(self, "modulate", Color.WHITE, 0.5).set_trans(Tween.TRANS_SINE)
+
+
+func hide_anim():
+	var tween := self.create_tween()
+	tween.tween_property(self, "modulate", Color(Color.WHITE, 0), 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_callback(self.hide)
 
 
 func update_all():
