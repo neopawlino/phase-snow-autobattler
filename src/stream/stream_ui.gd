@@ -42,15 +42,15 @@ func update_all():
 
 
 func update_viewer_goal(amt : float):
-	viewer_goal.text = "Viewer Goal: %d" % amt
+	viewer_goal.text = "Viewer Goal: %s" % StringUtil.format_number(amt)
 
 
 func update_views(amt : float):
-	views.text = "%d" % amt
+	views.text = "%s" % StringUtil.format_number(amt)
 
 
 func update_views_per_sec(amt : float):
-	views_per_sec.text = "(%d/sec)" % amt
+	views_per_sec.text = "(%s/sec)" % StringUtil.format_number(amt)
 
 
 func update_viewer_retention(amt : float):
@@ -58,7 +58,7 @@ func update_viewer_retention(amt : float):
 
 
 func update_viewers(amt : float):
-	viewers.text = "%d" % amt
+	viewers.text = "%s" % StringUtil.format_number(amt)
 
 
 func update_subscriber_rate(amt : float):
@@ -66,7 +66,7 @@ func update_subscriber_rate(amt : float):
 
 
 func update_subscribers(amt : float):
-	subscribers.text = "%d" % amt
+	subscribers.text = "%s" % StringUtil.format_number(amt)
 
 
 func update_member_rate(amt : float):
@@ -74,4 +74,4 @@ func update_member_rate(amt : float):
 
 
 func update_members(amt : float):
-	members.text = "%d" % amt
+	members.text = "%s" % StringUtil.format_number(amt)

@@ -31,6 +31,7 @@ Popups="*res://src/ui/popups.tscn"
 SoundManager="*res://src/ui/sound_manager.gd"
 RandomUtil="*res://src/random_util.gd"
 ScreenSpaceUtil="*res://src/ui/screen_space_util.gd"
+StringUtil="*res://src/string_util.gd"
 
 [display]
 

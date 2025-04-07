@@ -50,12 +50,12 @@ func show_stream_summary(result: StreamResult, money: int, income: int = 0, hp_g
 
 
 func update_stream_finished():
-	self.views_label.text = "%d" % GameState.stream_manager.views
-	self.viewers_label.text = "%d" % GameState.stream_manager.peak_viewers
+	self.views_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.views)
+	self.viewers_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.peak_viewers)
 	self.subscribers_container.visible = GameState.stream_manager.new_subscribers > 0
-	self.subscribers_label.text = "%d" % GameState.stream_manager.new_subscribers
+	self.subscribers_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.new_subscribers)
 	self.members_container.visible = GameState.stream_manager.new_members > 0
-	self.members_label.text = "%d" % GameState.stream_manager.new_members
+	self.members_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.new_members)
 
 	self.total_revenue_label.text = "$%.2f" % GameState.stream_manager.total_revenue
 
