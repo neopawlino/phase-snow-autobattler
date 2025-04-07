@@ -6,4 +6,4 @@ func _ready() -> void:
 
 
 func update_text(val : float):
-	self.text = "%d" % val
+	self.text = "%s" % StringUtil.format_number(val)
