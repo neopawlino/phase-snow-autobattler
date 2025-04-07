@@ -387,7 +387,7 @@ func check_stream_over():
 		char.stop_timers()
 	in_stream = false
 	self.update_revenue()
-	GlobalSignals.stream_ended.emit(result, 0, income, 0)
+	GlobalSignals.stream_ended.emit()
 
 
 func update_revenue() -> void:

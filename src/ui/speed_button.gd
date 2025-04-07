@@ -18,11 +18,9 @@ func _ready() -> void:
 	self.speed_index = Settings.get_value(SETTINGS_KEY, 0)
 	GlobalSignals.stream_started.connect(func():
 		self.set_speed(speed_index)
-		self.show()
 	)
-	GlobalSignals.stream_ended.connect(func(_result: StreamSummary.StreamResult, _money: int, _income: int, _hp_gain: int):
+	GlobalSignals.stream_ended.connect(func():
 		self.set_speed(0)
-		self.hide()
 	)
 
 

@@ -43,7 +43,7 @@ func _ready() -> void:
 	self.revenue_breakdown_orig_position = self.revenue_breakdown_container.global_position
 
 
-func show_stream_summary(result: StreamResult, money: int, income: int = 0, hp_gain: int = 0):
+func show_stream_summary():
 	self.update_stream_finished()
 	self.update_revenue_breakdown()
 	self.show_anim()

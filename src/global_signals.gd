@@ -13,7 +13,7 @@ signal show_damage_number(value: String, pos: Vector2, color : Color)
 signal stream_anim_started
 
 signal stream_started
-signal stream_ended(result: StreamSummary.StreamResult, money: int, income: int, hp_gain: int)
+signal stream_ended
 signal stream_results_confirmed
 signal stream_end_anim_finished
 
