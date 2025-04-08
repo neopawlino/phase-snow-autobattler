@@ -15,11 +15,3 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("2_e6wt5")
-
-[node name="TestLabel" type="Label" parent="Control"]
-texture_filter = 1
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 38.0
-theme_type_variation = &"DamageNumber"
-text = "+2 lorem ipsum Asdf Asdf"
