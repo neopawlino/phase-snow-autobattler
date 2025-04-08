@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=18 format=3 uid="uid://baiyj43bn6b1k"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=14 format=3 uid="uid://baiyj43bn6b1k"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_167rq"]
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="2_2048t"]
@@ -17,28 +17,10 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
 [sub_resource type="Resource" id="Resource_d0bo2"]
 script = ExtResource("1_167rq")
-ability_name = "Pafu Bite"
+ability_name = "Test"
 icon = ExtResource("2_2048t")
-description = "add 10 views/1 sec"
+description = "Every 1 sec: add 10 views/sec"
 stat_changes = Array[ExtResource("2_fuv3c")]([SubResource("Resource_2048t")])
-cooldown = 1.0
-scaling = Array[ExtResource("2_fuv3c")]([])
-ability_keys = Array[StringName]([])
-
-[sub_resource type="Resource" id="Resource_3pnjp"]
-script = ExtResource("1_167rq")
-ability_name = "\"Love\" Potion #520"
-description = ""
-stat_changes = Array[ExtResource("2_fuv3c")]([])
-cooldown = 1.0
-scaling = Array[ExtResource("2_fuv3c")]([])
-ability_keys = Array[StringName]([])
-
-[sub_resource type="Resource" id="Resource_olj2m"]
-script = ExtResource("1_167rq")
-ability_name = "Requiem"
-description = ""
-stat_changes = Array[ExtResource("2_fuv3c")]([])
 cooldown = 1.0
 scaling = Array[ExtResource("2_fuv3c")]([])
 ability_keys = Array[StringName]([])
@@ -48,25 +30,15 @@ script = ExtResource("4_yhsmg")
 hp = 5
 statuses = Array[ExtResource("6_y1j6c")]([])
 
-[sub_resource type="Resource" id="Resource_a7ikp"]
-script = ExtResource("6_y1j6c")
-status_id = 3
-value = 1
-
 [sub_resource type="Resource" id="Resource_klgkn"]
 script = ExtResource("4_yhsmg")
 hp = 5
-statuses = Array[ExtResource("6_y1j6c")]([SubResource("Resource_a7ikp")])
-
-[sub_resource type="Resource" id="Resource_u0chf"]
-script = ExtResource("6_y1j6c")
-status_id = 4
-value = 1
+statuses = Array[ExtResource("6_y1j6c")]([])
 
 [sub_resource type="Resource" id="Resource_l7yi4"]
 script = ExtResource("4_yhsmg")
 hp = 5
-statuses = Array[ExtResource("6_y1j6c")]([SubResource("Resource_u0chf")])
+statuses = Array[ExtResource("6_y1j6c")]([])
 
 [resource]
 script = ExtResource("3_chc5m")
@@ -77,7 +49,7 @@ sprite_offset = Vector2(4, -4)
 sprite_scale = Vector2(2, 2)
 sprite_hframes = 4
 max_hp = 20
-abilities = Array[ExtResource("1_167rq")]([SubResource("Resource_d0bo2"), SubResource("Resource_3pnjp"), SubResource("Resource_olj2m")])
+abilities = Array[ExtResource("1_167rq")]([SubResource("Resource_d0bo2")])
 level_requirements = Array[int]([1, 2, 3])
 levels = Array[ExtResource("4_yhsmg")]([SubResource("Resource_s0rwx"), SubResource("Resource_klgkn"), SubResource("Resource_l7yi4")])
 initial_level = 0

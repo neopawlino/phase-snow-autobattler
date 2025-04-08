@@ -1,64 +1,26 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=16 format=3 uid="uid://c5aos2rj1tpbt"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=10 format=3 uid="uid://c5aos2rj1tpbt"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_4is70"]
 [ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="2_diko4"]
-[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_lustk"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="3_wdn4x"]
 [ext_resource type="Texture2D" uid="uid://bnsb1suaykmh" path="res://public/my_assets/SAPC_Jelly_Sheet.png" id="4_ngvhp"]
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="4_ue5ot"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_hb0ea"]
 
-[sub_resource type="Resource" id="Resource_ggewj"]
-script = ExtResource("1_4is70")
-ability_name = "Ring Blast"
-description = ""
-stat_changes = Array[ExtResource("2_lustk")]([])
-cooldown = 1.0
-scaling = Array[ExtResource("2_lustk")]([])
-ability_keys = Array[StringName]([])
-
-[sub_resource type="Resource" id="Resource_8jl4p"]
-script = ExtResource("1_4is70")
-ability_name = "Hackerman"
-description = ""
-stat_changes = Array[ExtResource("2_lustk")]([])
-cooldown = 1.0
-scaling = Array[ExtResource("2_lustk")]([])
-ability_keys = Array[StringName]([])
-
-[sub_resource type="Resource" id="Resource_5rfat"]
-script = ExtResource("1_4is70")
-ability_name = "Secondhand Smoke"
-description = ""
-stat_changes = Array[ExtResource("2_lustk")]([])
-cooldown = 1.0
-scaling = Array[ExtResource("2_lustk")]([])
-ability_keys = Array[StringName]([])
-
 [sub_resource type="Resource" id="Resource_kxool"]
 script = ExtResource("2_diko4")
-hp = 6
+hp = 5
 statuses = Array[ExtResource("4_ue5ot")]([])
-
-[sub_resource type="Resource" id="Resource_bpsa8"]
-script = ExtResource("4_ue5ot")
-status_id = 2
-value = 2
 
 [sub_resource type="Resource" id="Resource_8pm2k"]
 script = ExtResource("2_diko4")
-hp = 6
-statuses = Array[ExtResource("4_ue5ot")]([SubResource("Resource_bpsa8")])
-
-[sub_resource type="Resource" id="Resource_ipqmy"]
-script = ExtResource("4_ue5ot")
-status_id = 2
-value = 3
+hp = 5
+statuses = Array[ExtResource("4_ue5ot")]([])
 
 [sub_resource type="Resource" id="Resource_r666j"]
 script = ExtResource("2_diko4")
-hp = 6
-statuses = Array[ExtResource("4_ue5ot")]([SubResource("Resource_ipqmy")])
+hp = 5
+statuses = Array[ExtResource("4_ue5ot")]([])
 
 [resource]
 script = ExtResource("3_wdn4x")
@@ -68,8 +30,8 @@ character_sprite = ExtResource("4_ngvhp")
 sprite_offset = Vector2(-2, 0)
 sprite_scale = Vector2(2, 2)
 sprite_hframes = 4
-max_hp = 25
-abilities = Array[ExtResource("1_4is70")]([SubResource("Resource_ggewj"), SubResource("Resource_8jl4p"), SubResource("Resource_5rfat")])
+max_hp = 20
+abilities = Array[ExtResource("1_4is70")]([])
 level_requirements = Array[int]([1, 2, 3])
 levels = Array[ExtResource("2_diko4")]([SubResource("Resource_kxool"), SubResource("Resource_8pm2k"), SubResource("Resource_r666j")])
 initial_level = 0

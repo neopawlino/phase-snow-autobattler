@@ -74,6 +74,8 @@ var xp : int = 0:
 var level_requirements : Array[int]
 var levels : Array[CharacterLevel]
 
+var abilities : Array[AbilityDefinition]
+
 var ability_timers : Array[CustomTimer]
 
 # StatusId -> int (number of stacks)
@@ -298,6 +300,8 @@ func my_duplicate() -> Character:
 
 	new_char.name_label.text = self.name_label.text
 
+	new_char.abilities = self.abilities.duplicate(true)
+
 	return new_char
 
 
@@ -324,6 +328,7 @@ func load_from_character_definition(char_def : CharacterDefinition):
 
 	self.name_label.text = char_def.short_name
 
+	self.abilities = char_def.abilities.duplicate(true)
 	self.char_def = char_def
 
 
@@ -361,35 +366,41 @@ func add_max_hp(hp: int):
 
 
 func get_abilities() -> Array[Ability]:
-	var abilities : Array[Ability] = []
+	var all_abilities : Array[Ability] = []
 	for slot in ability_slots:
 		if slot.slot_obj is Ability:
-			abilities.append(slot.slot_obj)
-	return abilities
+			all_abilities.append(slot.slot_obj)
+	return all_abilities
 
 
 func make_timers():
-	for slot in ability_slots:
-		if not (slot.slot_obj is Ability):
-			continue
-		var ability : Ability = slot.slot_obj
-		var ability_def := ability.ability_definition
-		var timer := CustomTimer.new()
-		var ability_char := char
-		timer.wait_time = ability_def.cooldown
-		timer.timeout.connect(func():
-			if flipped:
-				anim_player.play(&"attack_flipped")
-			else:
-				anim_player.play(&"attack")
-			if self.is_inside_tree():
-				slot.play_anim()
-				cast_ability(ability_def)
-		)
-		timer.started = true
+	for ability in self.get_abilities():
+		make_ability_timer(ability.ability_definition, ability)
+	for ability_def in self.abilities:
+		make_ability_timer(ability_def)
+
+
+func make_ability_timer(ability_def : AbilityDefinition, ability : Ability = null):
+	var timer := CustomTimer.new()
+	var ability_char := char
+	timer.wait_time = ability_def.cooldown
+	timer.timeout.connect(func():
+		if flipped:
+			anim_player.play(&"attack_flipped")
+		else:
+			anim_player.play(&"attack")
+		if self.is_inside_tree():
+			if ability:
+				var slot := ability.drag_component.cur_slot
+				if slot:
+					slot.play_anim()
+			cast_ability(ability_def)
+	)
+	timer.started = true
+	if ability:
 		timer.progress_bar = ability.progress_bar
-		self.add_child(timer)
-		self.ability_timers.append(timer)
+	self.add_child(timer)
+	self.ability_timers.append(timer)
 
 
 func stop_timers():
