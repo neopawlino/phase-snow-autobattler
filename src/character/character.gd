@@ -7,6 +7,7 @@ class_name Character
 
 @export var visual : Node2D
 @export var damage_audio : AudioStream
+@export var die_audio : AudioStream
 
 @export var mouseover_scale : float = 1.1
 
@@ -168,6 +169,8 @@ func die(damage : int):
 	self.stop_timers()
 	self.char_info_container.visible = false
 	self.status_icon_container.visible = false
+
+	SoundManager.play_sound(die_audio)
 
 
 func handle_drag_ended():
@@ -439,7 +442,7 @@ func take_damage(amount : int):
 	GlobalSignals.show_damage_number.emit(str(-amount), damage_numbers_origin.global_position, Color.FIREBRICK)
 	sprite.damage_flash()
 	sprite.damage_shake(6)
-	SoundManager.play_sound_2d(self.global_position, damage_audio)
+	SoundManager.play_sound(damage_audio)
 	if self.hp <= 0 and not is_dead:
 		died.emit()
 		die(amount)
