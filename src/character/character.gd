@@ -8,6 +8,7 @@ class_name Character
 @export var visual : Node2D
 @export var damage_audio : AudioStream
 @export var die_audio : AudioStream
+@export var level_up_audio : AudioStream
 
 @export var mouseover_scale : float = 1.1
 
@@ -106,6 +107,9 @@ var char_def : CharacterDefinition
 
 signal died
 var is_dead : bool = false
+
+signal xp_gained
+signal level_gained
 
 
 static var character_scene : PackedScene = preload("res://src/character/character.tscn")
@@ -330,6 +334,7 @@ func add_xp(amount : int):
 	xp += amount
 	if xp >= cur_level_req:
 		level_up()
+	xp_gained.emit()
 
 
 func level_up():
@@ -346,6 +351,8 @@ func level_up():
 	var cur_level_req := level_requirements[cur_level]
 	xp -= cur_level_req
 	cur_level += 1
+	SoundManager.play_sound(level_up_audio)
+	level_gained.emit()
 
 
 func add_max_hp(hp: int):

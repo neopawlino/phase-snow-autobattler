@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=21 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://src/ui/visual_follow.gd" id="2_0vcty"]
 [ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://src/character/character.gd" id="2_1four"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://public/my_assets/SAPC_Rie_Sheet.png" id="2_y5mxj"]
 [ext_resource type="AudioStream" uid="uid://dqkrb4bkm77fe" path="res://public/sfx/die.wav" id="3_m366t"]
 [ext_resource type="Shader" uid="uid://bowkvjqncd3p" path="res://src/ui/damage_flash.gdshader" id="3_yxww1"]
+[ext_resource type="AudioStream" uid="uid://d3xy3u4e8hipl" path="res://public/sfx/levelup.wav" id="4_8cpw0"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="4_18dhx"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://src/item/draggable.tscn" id="5_bv4aq"]
 [ext_resource type="Script" uid="uid://b1n7n8i4cjf7l" path="res://src/character/character_sprite.gd" id="5_wdpcj"]
+[ext_resource type="Script" uid="uid://8dv01jb3ku2t" path="res://src/character/character_particles.gd" id="9_ykcix"]
 
 [sub_resource type="Gradient" id="Gradient_qi5as"]
 offsets = PackedFloat32Array(0, 0.549296, 1)
@@ -136,6 +138,13 @@ _data = {
 &"attack_flipped": SubResource("Animation_c15sm")
 }
 
+[sub_resource type="Curve" id="Curve_8cpw0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ykcix"]
+colors = PackedColorArray(0, 1, 0.983333, 1, 1, 1, 1, 0.352941)
+
 [sub_resource type="Theme" id="Theme_f484m"]
 
 [node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slot_container", "character_ui")]
@@ -152,6 +161,7 @@ anim_player = NodePath("Visual/SpriteParent/Sprite2D/AnimationPlayer")
 visual = NodePath("Visual")
 damage_audio = ExtResource("2_a5pac")
 die_audio = ExtResource("3_m366t")
+level_up_audio = ExtResource("4_8cpw0")
 damage_numbers_origin = NodePath("Visual/CharacterUI/HPBar/DamageNumbersOrigin")
 hp_label = NodePath("Visual/CharacterUI/HPBar/HPLabel")
 hp_bar = NodePath("Visual/CharacterUI/HPBar")
@@ -196,6 +206,42 @@ script = ExtResource("5_wdpcj")
 libraries = {
 &"": SubResource("AnimationLibrary_bty2k")
 }
+
+[node name="LevelUpParticles" type="CPUParticles2D" parent="Visual"]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 800.0
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_8cpw0")
+color_ramp = SubResource("Gradient_ykcix")
+script = ExtResource("9_ykcix")
+
+[node name="XPGainParticles" type="CPUParticles2D" parent="Visual"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_8cpw0")
+color_ramp = SubResource("Gradient_ykcix")
+script = ExtResource("9_ykcix")
 
 [node name="CharacterUI" type="VBoxContainer" parent="Visual"]
 z_index = 1
@@ -326,3 +372,6 @@ theme_override_constants/separation = 0
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 160)
 drag_object = NodePath("..")
+
+[connection signal="level_gained" from="." to="Visual/LevelUpParticles" method="emit_particles"]
+[connection signal="xp_gained" from="." to="Visual/XPGainParticles" method="emit_particles"]
