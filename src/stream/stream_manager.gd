@@ -317,7 +317,7 @@ func apply_ability(ability: AbilityDefinition, caster_statuses: Dictionary, cast
 			StatValue.Stat.MEMBERS:
 				GameState.members += amount
 			StatValue.Stat.STAMINA:
-				caster.hp += amount
+				caster.hp = mini(caster.hp + int(amount), caster.max_hp)
 			_:
 				print_debug("Couldn't match stat: %s" % stat_change.stat)
 		var color : Color = self.stat_colors.get(stat_change.stat, Color.WHITE)

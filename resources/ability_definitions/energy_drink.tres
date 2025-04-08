@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=5 format=3 uid="uid://eujdt67cw33r"]
+
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="1_jyiia"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_rd52b"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_rd52b"]
+
+[sub_resource type="Resource" id="Resource_vfoij"]
+script = ExtResource("1_jyiia")
+stat = 8
+amount = 8.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[resource]
+script = ExtResource("2_rd52b")
+ability_name = "Energy Drink"
+icon = ExtResource("1_rd52b")
+description = "+8 Stamina"
+stat_changes = Array[ExtResource("1_jyiia")]([SubResource("Resource_vfoij")])
+scaling = Array[ExtResource("1_jyiia")]([])
+trigger = 0
+cooldown = 6.0
+cast_chance = 1.0
+ability_keys = Array[StringName]([])
+metadata/_custom_type_script = "uid://cgaytqa18e8dx"
