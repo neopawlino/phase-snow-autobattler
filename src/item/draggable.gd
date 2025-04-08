@@ -20,8 +20,6 @@ signal mouseover_changed(is_mouseover: bool)
 var cur_slot : Slot
 
 @export var drag_object : Node
-#@export var container : Control
-#@export var set_mouse_cursor : Array[Control]
 
 var drag_initial_pos : Vector2
 var drag_offset : Vector2

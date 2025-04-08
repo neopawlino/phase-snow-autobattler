@@ -169,6 +169,7 @@ func on_subscribers_gained(amt_gained : float):
 	var members_gained := calc_amt_gained(amt_gained, member_rate)
 	GameState.members += members_gained
 	self.new_members += members_gained
+	GlobalSignals.subscribers_gained.emit(amt_gained)
 
 
 func damage_all_characters(hp : int):

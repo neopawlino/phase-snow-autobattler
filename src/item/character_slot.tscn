@@ -9,6 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 100.0
 offset_bottom = 200.0
+mouse_filter = 1
 script = ExtResource("1_x2ymd")
 merge_swap_timer = NodePath("MergeSwapTimer")
 pickable = true

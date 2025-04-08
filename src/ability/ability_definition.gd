@@ -6,17 +6,19 @@ enum Trigger {
 	COOLDOWN,
 	STREAM_START,
 	ABILITY_USED,
+	SUBSCRIBER_GAINED,
 }
 
 @export var ability_name : String
 @export var icon : Texture2D
 @export_multiline var description : String
 @export var stat_changes : Array[StatValue]
+@export var scaling : Array[StatValue]
 
 @export var trigger : Trigger
 @export var cooldown : float = 1.0
+@export var cast_chance : float = 1.0
 
-@export var scaling : Array[StatValue]
 @export var ability_keys : Array[StringName]
 
 

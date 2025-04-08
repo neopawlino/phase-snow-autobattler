@@ -132,6 +132,7 @@ func _ready() -> void:
 		self.was_tooltip_open_for_character = char == self
 	)
 	GlobalSignals.stream_setup_finished.connect(on_stream_setup_finished)
+	GlobalSignals.subscribers_gained.connect(on_subscribers_gained)
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
 	update_level_label(cur_level)
@@ -422,6 +423,12 @@ func on_stream_setup_finished():
 	self.cast_abilities_of_trigger(AbilityDefinition.Trigger.STREAM_START)
 
 
+func on_subscribers_gained(amt : float):
+	if not self.in_stream:
+		return
+	self.cast_abilities_of_trigger(AbilityDefinition.Trigger.SUBSCRIBER_GAINED)
+
+
 func cast_abilities_of_trigger(trigger : AbilityDefinition.Trigger):
 	for ability in self.get_abilities():
 		if ability.ability_definition.trigger == trigger:
@@ -451,16 +458,19 @@ func cast_ability_with_anim(ability_def : AbilityDefinition, ability : Ability =
 	else:
 		self.anim_player.play(&"attack")
 	if self.is_inside_tree():
-		if ability:
+		var success := cast_ability(ability_def)
+		if ability and success:
 			var slot := ability.drag_component.cur_slot
 			if slot:
 				slot.play_anim()
-		cast_ability(ability_def)
 
 
-func cast_ability(ability: AbilityDefinition):
+func cast_ability(ability: AbilityDefinition) -> bool:
+	if randf() > ability.cast_chance:
+		return false
 	GlobalSignals.ability_applied.emit(ability, self.statuses, self)
 	self.on_ability_used(ability)
+	return true
 
 
 func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):

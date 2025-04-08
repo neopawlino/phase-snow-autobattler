@@ -24,6 +24,7 @@ offset_right = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="DamageNumbers" parent="." instance=ExtResource("1_bxa4k")]
 
@@ -56,6 +57,7 @@ anchor_bottom = 0.5
 offset_left = 320.0
 offset_right = 320.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="Team" type="Control" parent="CharacterSlots"]
 z_index = -1
@@ -68,6 +70,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 
 [node name="PlayerSlots" type="HBoxContainer" parent="CharacterSlots/Team" node_paths=PackedStringArray("slots")]
 layout_direction = 3
@@ -109,6 +112,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/EnemyTeam"]
 layout_direction = 2
@@ -152,6 +156,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="TeamManager" type="Node" parent="."]
 script = ExtResource("5_4now3")
@@ -164,6 +169,7 @@ test_character = ExtResource("7_o2rjw")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(320, 360)
