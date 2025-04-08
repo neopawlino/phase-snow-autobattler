@@ -22,6 +22,7 @@ ability_name = "Just Chatting"
 icon = ExtResource("1_ndq4w")
 description = "Gain %d Views/sec (2%% subscribers)"
 stat_changes = Array[ExtResource("1_0gipy")]([SubResource("Resource_4jnqx")])
+trigger = 0
 cooldown = 3.0
 scaling = Array[ExtResource("1_0gipy")]([SubResource("Resource_3vjuy")])
 ability_keys = Array[StringName]([])

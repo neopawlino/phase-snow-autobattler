@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=14 format=3 uid="uid://baiyj43bn6b1k"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=15 format=3 uid="uid://baiyj43bn6b1k"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_167rq"]
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="2_2048t"]
@@ -9,20 +9,27 @@
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="6_y1j6c"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_d62pp"]
 
+[sub_resource type="Resource" id="Resource_dx5s7"]
+script = ExtResource("2_fuv3c")
+stat = 5
+amount = 0.03
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
 [sub_resource type="Resource" id="Resource_2048t"]
 script = ExtResource("2_fuv3c")
 stat = 1
-amount = 10.0
+amount = 0.0
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
 [sub_resource type="Resource" id="Resource_d0bo2"]
 script = ExtResource("1_167rq")
 ability_name = "Test"
 icon = ExtResource("2_2048t")
-description = "Every 1 sec: add 10 views/sec"
+description = "Start Stream: Gain Views/sec equal to 3%% of Subscribers (currently %d Views/sec)"
 stat_changes = Array[ExtResource("2_fuv3c")]([SubResource("Resource_2048t")])
+trigger = 1
 cooldown = 1.0
-scaling = Array[ExtResource("2_fuv3c")]([])
+scaling = Array[ExtResource("2_fuv3c")]([SubResource("Resource_dx5s7")])
 ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_s0rwx"]

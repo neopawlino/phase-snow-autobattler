@@ -231,13 +231,15 @@ func start_stream():
 		char.drag_component.draggable = false
 		character_container.add_child(char)
 		GameState.main_slots.set_char_visual_pos(char, i)
-		char.make_timers()
+		char.setup_abilities()
+		char.in_stream = true
 		char.died.connect(kill_character.bind(char))
 		i += 1
 	in_stream = true
 	proc_start_stream_items()
 	apply_front_character_items()
 	can_tick = true
+	GlobalSignals.stream_setup_finished.emit()
 
 
 func proc_start_stream_items():
@@ -365,7 +367,8 @@ func summon_character(char_def : CharacterDefinition, team : Character.Team, pos
 	else:
 		enemy_team.insert(pos, char)
 	update_positions()
-	char.make_timers()
+	char.setup_abilities()
+	char.in_stream = true
 	char.died.connect(kill_character.bind(char))
 
 

@@ -110,6 +110,8 @@ var char_def : CharacterDefinition
 signal died
 var is_dead : bool = false
 
+var in_stream : bool = false
+
 signal xp_gained
 signal level_gained
 
@@ -127,6 +129,7 @@ func _ready() -> void:
 	GlobalSignals.character_tooltip_opened.connect(func(char : Character):
 		self.was_tooltip_open_for_character = char == self
 	)
+	GlobalSignals.stream_setup_finished.connect(on_stream_setup_finished)
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
 	update_level_label(cur_level)
@@ -373,29 +376,28 @@ func get_abilities() -> Array[Ability]:
 	return all_abilities
 
 
-func make_timers():
+func setup_abilities():
 	for ability in self.get_abilities():
 		make_ability_timer(ability.ability_definition, ability)
 	for ability_def in self.abilities:
 		make_ability_timer(ability_def)
 
 
+func setup_ability(ability_def : AbilityDefinition, ability : Ability = null):
+	match ability_def.trigger:
+		AbilityDefinition.Trigger.COOLDOWN:
+			self.make_ability_timer(ability_def, ability)
+		AbilityDefinition.Trigger.STREAM_START:
+			pass
+		_:
+			push_error("Invalid ability trigger", ability_def.trigger)
+
+
 func make_ability_timer(ability_def : AbilityDefinition, ability : Ability = null):
 	var timer := CustomTimer.new()
 	var ability_char := char
 	timer.wait_time = ability_def.cooldown
-	timer.timeout.connect(func():
-		if flipped:
-			anim_player.play(&"attack_flipped")
-		else:
-			anim_player.play(&"attack")
-		if self.is_inside_tree():
-			if ability:
-				var slot := ability.drag_component.cur_slot
-				if slot:
-					slot.play_anim()
-			cast_ability(ability_def)
-	)
+	timer.timeout.connect(cast_ability_with_anim.bind(ability_def, ability))
 	timer.started = true
 	if ability:
 		timer.progress_bar = ability.progress_bar
@@ -409,10 +411,35 @@ func stop_timers():
 	ability_timers.clear()
 
 
+func on_stream_setup_finished():
+	# trigger stream started abilities
+	if not self.in_stream:
+		return
+	for ability in self.get_abilities():
+		if ability.ability_definition.trigger == AbilityDefinition.Trigger.STREAM_START:
+			self.cast_ability_with_anim(ability.ability_definition, ability)
+	for ability_def in self.abilities:
+		if ability_def.trigger == AbilityDefinition.Trigger.STREAM_START:
+			self.cast_ability_with_anim(ability_def)
+
+
 func add_ability_slot():
 	var new_slot := ability_slot_scene.instantiate()
 	self.ability_slots.append(new_slot)
 	ability_slot_container.add_child(new_slot)
+
+
+func cast_ability_with_anim(ability_def : AbilityDefinition, ability : Ability = null):
+	if self.flipped:
+		self.anim_player.play(&"attack_flipped")
+	else:
+		self.anim_player.play(&"attack")
+	if self.is_inside_tree():
+		if ability:
+			var slot := ability.drag_component.cur_slot
+			if slot:
+				slot.play_anim()
+		cast_ability(ability_def)
 
 
 func cast_ability(ability: AbilityDefinition):
