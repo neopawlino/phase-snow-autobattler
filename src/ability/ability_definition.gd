@@ -4,7 +4,8 @@ class_name AbilityDefinition
 
 enum Trigger {
 	COOLDOWN,
-	STREAM_START
+	STREAM_START,
+	ABILITY_USED,
 }
 
 @export var ability_name : String

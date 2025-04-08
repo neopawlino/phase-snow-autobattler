@@ -78,6 +78,8 @@ var abilities : Array[AbilityDefinition]
 
 var ability_timers : Array[CustomTimer]
 
+var ability_used_triggered : bool
+
 # StatusId -> int (number of stacks)
 var statuses : Dictionary
 # StatusId -> StatusIcon (that has been added to status icon container)
@@ -152,6 +154,10 @@ func _process(delta: float):
 			self.sprite.frame = sell_sprite_frame
 		else:
 			self.sprite.frame = drag_sprite_frame
+
+
+func _physics_process(delta: float) -> void:
+	ability_used_triggered = false
 
 
 func get_pos() -> int:
@@ -378,19 +384,17 @@ func get_abilities() -> Array[Ability]:
 
 func setup_abilities():
 	for ability in self.get_abilities():
-		make_ability_timer(ability.ability_definition, ability)
+		setup_ability(ability.ability_definition, ability)
 	for ability_def in self.abilities:
-		make_ability_timer(ability_def)
+		setup_ability(ability_def)
 
 
 func setup_ability(ability_def : AbilityDefinition, ability : Ability = null):
 	match ability_def.trigger:
 		AbilityDefinition.Trigger.COOLDOWN:
 			self.make_ability_timer(ability_def, ability)
-		AbilityDefinition.Trigger.STREAM_START:
-			pass
 		_:
-			push_error("Invalid ability trigger", ability_def.trigger)
+			pass
 
 
 func make_ability_timer(ability_def : AbilityDefinition, ability : Ability = null):
@@ -415,12 +419,24 @@ func on_stream_setup_finished():
 	# trigger stream started abilities
 	if not self.in_stream:
 		return
+	self.cast_abilities_of_trigger(AbilityDefinition.Trigger.STREAM_START)
+
+
+func cast_abilities_of_trigger(trigger : AbilityDefinition.Trigger):
 	for ability in self.get_abilities():
-		if ability.ability_definition.trigger == AbilityDefinition.Trigger.STREAM_START:
+		if ability.ability_definition.trigger == trigger:
 			self.cast_ability_with_anim(ability.ability_definition, ability)
 	for ability_def in self.abilities:
-		if ability_def.trigger == AbilityDefinition.Trigger.STREAM_START:
+		if ability_def.trigger == trigger:
 			self.cast_ability_with_anim(ability_def)
+
+
+func on_ability_used(ability : AbilityDefinition):
+	if ability.trigger == AbilityDefinition.Trigger.ABILITY_USED or self.ability_used_triggered:
+		# on ability used can't trigger each other (easy infinite loop)
+		return
+	self.ability_used_triggered = true
+	self.cast_abilities_of_trigger(AbilityDefinition.Trigger.ABILITY_USED)
 
 
 func add_ability_slot():
@@ -444,6 +460,7 @@ func cast_ability_with_anim(ability_def : AbilityDefinition, ability : Ability =
 
 func cast_ability(ability: AbilityDefinition):
 	GlobalSignals.ability_applied.emit(ability, self.statuses, self)
+	self.on_ability_used(ability)
 
 
 func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
