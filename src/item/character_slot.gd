@@ -93,3 +93,13 @@ func on_mouse_exited() -> void:
 		GameState.drag_end_slot = null
 	if merge_swap_timer:
 		merge_swap_timer.stop()
+
+
+func play_anim() -> void:
+	var tween := self.create_tween()
+	tween.tween_property(
+		self, "scale", Vector2.ONE * 1.5, 0.02
+	).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(
+		self, "scale", Vector2.ONE, 0.3
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_delay(0.02)

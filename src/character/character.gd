@@ -8,8 +8,6 @@ class_name Character
 @export var visual : Node2D
 @export var damage_audio : AudioStream
 
-@export var anim_delay : float = 0.2
-
 @export var mouseover_scale : float = 1.1
 
 @export var damage_numbers_origin : Control
@@ -292,6 +290,7 @@ func my_duplicate() -> Character:
 		new_slot.slot_obj = new_ability
 		new_slot.add_child(new_ability)
 		new_ability.global_position = new_slot.global_position
+		new_ability.drag_component.cur_slot = new_slot
 
 	new_char.global_position = self.global_position
 	new_char.visual.global_position = self.visual.global_position
@@ -375,8 +374,10 @@ func get_abilities() -> Array[Ability]:
 
 
 func make_timers():
-	var abilities := get_abilities()
-	for ability in abilities:
+	for slot in ability_slots:
+		if not (slot.slot_obj is Ability):
+			continue
+		var ability : Ability = slot.slot_obj
 		var ability_def := ability.ability_definition
 		var timer := CustomTimer.new()
 		var ability_char := char
@@ -386,8 +387,8 @@ func make_timers():
 				anim_player.play(&"attack_flipped")
 			else:
 				anim_player.play(&"attack")
-			await get_tree().create_timer(anim_delay).timeout
 			if self.is_inside_tree():
+				slot.play_anim()
 				cast_ability(ability_def)
 		)
 		timer.started = true
