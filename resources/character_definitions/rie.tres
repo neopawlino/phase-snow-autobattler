@@ -27,9 +27,10 @@ ability_name = "Test"
 icon = ExtResource("2_2048t")
 description = "Start Stream: Gain Views/sec equal to 3%% of Subscribers (currently %d Views/sec)"
 stat_changes = Array[ExtResource("2_fuv3c")]([SubResource("Resource_2048t")])
+scaling = Array[ExtResource("2_fuv3c")]([SubResource("Resource_dx5s7")])
 trigger = 1
 cooldown = 1.0
-scaling = Array[ExtResource("2_fuv3c")]([SubResource("Resource_dx5s7")])
+cast_chance = 1.0
 ability_keys = Array[StringName]([])
 
 [sub_resource type="Resource" id="Resource_s0rwx"]

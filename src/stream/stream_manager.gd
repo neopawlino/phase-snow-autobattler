@@ -15,10 +15,6 @@ var original_player_team : Array[Character]
 
 var in_stream : bool = false
 
-@export var win_reward : int = 3
-@export var lose_reward : int = 0
-@export var draw_reward : int = 0
-
 @export var stat_colors : Dictionary[StatValue.Stat, Color]
 
 @export var tick_sound : AudioStream
@@ -29,9 +25,11 @@ var in_stream : bool = false
 var tick_sound_timer : Timer
 var can_tick : bool
 
-var reward : int
-var income : int
-var hp_gain : int
+@export var hp_drain_increase_start_delay : float = 25.0
+@export var hp_drain_increase_interval : float = 5.0
+var hp_drain : int
+var hp_drain_increase_timer : float
+var hp_drain_increase_started : bool
 
 var result : StreamSummary.StreamResult
 
@@ -107,6 +105,7 @@ var damage_tick_timer : float
 
 var prev_viewers : float
 
+
 func _ready():
 	GameState.stream_manager = self
 	GlobalSignals.ability_applied.connect(apply_ability)
@@ -134,9 +133,15 @@ func _physics_process(delta : float):
 		get_tree().create_timer(tick_debounce_time, true, true, true).timeout.connect(func(): can_tick = true)
 	prev_viewers = viewers
 
+	if hp_drain_increase_started:
+		hp_drain_increase_timer += delta
+		if hp_drain_increase_timer >= hp_drain_increase_interval:
+			hp_drain += 1
+			hp_drain_increase_timer -= hp_drain_increase_interval
+
 	damage_tick_timer += delta
 	if damage_tick_timer >= 1.0:
-		damage_all_characters(1)
+		damage_all_characters(hp_drain)
 		damage_tick_timer -= 1.0
 	check_stream_over()
 
@@ -214,6 +219,10 @@ func reset_stats():
 	ad_revenue = 0
 	member_revenue = 0
 
+	self.hp_drain = 1
+	self.hp_drain_increase_timer = 0.0
+	self.hp_drain_increase_started = false
+
 
 func start_stream():
 	reset_stats()
@@ -240,6 +249,9 @@ func start_stream():
 	proc_start_stream_items()
 	apply_front_character_items()
 	can_tick = true
+	get_tree().create_timer(self.hp_drain_increase_start_delay, false, true).timeout.connect(func():
+		self.hp_drain_increase_started = true
+	)
 	GlobalSignals.stream_setup_finished.emit()
 
 
