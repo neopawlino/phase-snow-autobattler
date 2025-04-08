@@ -73,13 +73,6 @@ var xp : int = 0:
 var level_requirements : Array[int]
 var levels : Array[CharacterLevel]
 
-var skill_points : int = 0:
-	set(value):
-		skill_points = value
-		update_skill_points(value)
-		skill_points_changed.emit(value)
-signal skill_points_changed(value : int)
-
 var ability_timers : Array[CustomTimer]
 
 # StatusId -> int (number of stacks)
@@ -103,7 +96,6 @@ var was_tooltip_open_for_character : bool
 var char_def : CharacterDefinition
 
 
-@onready var skill_points_label : Label = %SkillPointsLabel
 @export var drag_component : Draggable
 
 @export_storage var ability_slots : Array[Slot] = []
@@ -132,7 +124,6 @@ func _ready() -> void:
 	update_hp_bar(hp, max_hp)
 	update_xp_bar(xp)
 	update_level_label(cur_level)
-	update_skill_points(skill_points)
 	drag_component.mouseover_changed.connect(func(is_mouseover):
 		if is_mouseover and drag_component.draggable:
 			self.sprite.scale = base_scale * mouseover_scale
@@ -255,11 +246,6 @@ func update_level_label(level : int):
 	level_label.text = "Lv.%s" % level
 
 
-func update_skill_points(value : int):
-	skill_points_label.visible = value > 0
-	skill_points_label.text = "SP:%s" % value
-
-
 # WE NEED TO USE THIS TO DUPLICATE RESOURCES IN AN ARRAY
 # https://github.com/godotengine/godot/issues/74918
 func my_duplicate() -> Character:
@@ -342,7 +328,6 @@ func add_xp(amount : int):
 		return
 	var cur_level_req := level_requirements[cur_level]
 	xp += amount
-	skill_points += amount
 	if xp >= cur_level_req:
 		level_up()
 
