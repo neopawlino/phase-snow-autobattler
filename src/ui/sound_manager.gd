@@ -42,8 +42,8 @@ func play_sound_2d(pos: Vector2, sound: AudioStream, pitch_variance: float = 0.0
 	player.play()
 
 
-func play_sound(sound: AudioStream, pitch_variance: float = 0.0, volume_db: float = 0.0):
-	var pitch_scale = 1.0 + randf_range(-pitch_variance, pitch_variance)
+func play_sound(sound: AudioStream, pitch_variance: float = 0.0, pitch: float = 0.0, volume_db: float = 0.0):
+	var pitch_scale = 1.0 + pitch + randf_range(-pitch_variance, pitch_variance)
 	var player : AudioStreamPlayer = get_player()
 	player.stream = sound
 	player.pitch_scale = pitch_scale

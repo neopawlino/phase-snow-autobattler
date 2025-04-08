@@ -21,6 +21,14 @@ var in_stream : bool = false
 
 @export var stat_colors : Dictionary[StatValue.Stat, Color]
 
+@export var tick_sound : AudioStream
+@export var tick_start_pitch : float = 0.5
+@export var tick_end_pitch : float = 1.5
+@export var tick_volume : float = -6.0
+@export var tick_debounce_time : float = 0.1
+var tick_sound_timer : Timer
+var can_tick : bool
+
 var reward : int
 var income : int
 var hp_gain : int
@@ -97,6 +105,8 @@ var total_revenue : float
 
 var damage_tick_timer : float
 
+var prev_viewers : float
+
 func _ready():
 	GameState.stream_manager = self
 	GlobalSignals.ability_applied.connect(apply_ability)
@@ -114,7 +124,15 @@ func _physics_process(delta : float):
 	if not in_stream:
 		return
 	views += randfn(views_per_sec * delta, (views_per_sec * delta) * 0.5)
+
 	peak_viewers = maxf(viewers, peak_viewers)
+	if viewers != prev_viewers and can_tick:
+		var lerp_weight := viewers / (2.0 * viewer_goal)
+		var pitch := minf(lerpf(tick_start_pitch, tick_end_pitch, lerp_weight), tick_end_pitch)
+		SoundManager.play_sound(tick_sound, 0.0, pitch, tick_volume)
+		can_tick = false
+		get_tree().create_timer(tick_debounce_time, true, true, true).timeout.connect(func(): can_tick = true)
+	prev_viewers = viewers
 
 	damage_tick_timer += delta
 	if damage_tick_timer >= 1.0:
@@ -219,6 +237,7 @@ func start_stream():
 	in_stream = true
 	proc_start_stream_items()
 	apply_front_character_items()
+	can_tick = true
 
 
 func proc_start_stream_items():
