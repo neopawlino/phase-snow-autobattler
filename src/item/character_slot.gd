@@ -14,6 +14,8 @@ var slot_obj : Node
 
 @export var merge_swap_timer : Timer
 
+@export var anim_sfx : AudioStream
+
 var mouseover : bool:
 	set(val):
 		var changed := mouseover != val
@@ -103,3 +105,4 @@ func play_anim() -> void:
 	tween.tween_property(
 		self, "scale", Vector2.ONE, 0.3
 	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_delay(0.02)
+	SoundManager.play_sound(self.anim_sfx)
