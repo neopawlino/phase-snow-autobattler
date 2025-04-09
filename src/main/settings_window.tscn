@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgki1xvr22wbj"]
+
+[ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://src/main/kms_theme.tres" id="1_kxtc7"]
+[ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://src/ui/custom_window.gd" id="2_dkrp2"]
+[ext_resource type="PackedScene" uid="uid://bq8dpascomfv3" path="res://old/options_menu.tscn" id="3_dkrp2"]
+
+[node name="Settings" type="Window"]
+auto_translate_mode = 1
+title = "Settings"
+position = Vector2i(300, 200)
+size = Vector2i(450, 120)
+theme = ExtResource("1_kxtc7")
+script = ExtResource("2_dkrp2")
+
+[node name="OptionsMenu" parent="." instance=ExtResource("3_dkrp2")]
