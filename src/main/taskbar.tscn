@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddvu8dsob8vox"]
+[gd_scene load_steps=6 format=3 uid="uid://ddvu8dsob8vox"]
 
 [ext_resource type="Theme" uid="uid://b25e8xy3plsn6" path="res://resources/theme/desktop_theme.tres" id="1_icusc"]
 [ext_resource type="Script" uid="uid://01e7ioy5jri7" path="res://src/main/start_button.gd" id="2_0t3ke"]
+[ext_resource type="Script" uid="uid://chy0ylqnbrxwi" path="res://src/main/taskbar.gd" id="2_37ry6"]
 [ext_resource type="Script" uid="uid://bk2s3vsbs823v" path="res://src/main/start_menu.gd" id="2_bn8dn"]
-[ext_resource type="PackedScene" uid="uid://bgldvu5e637w2" path="res://src/main/taskbar_window.tscn" id="2_hggkt"]
+[ext_resource type="Script" uid="uid://c51gc708xsn10" path="res://src/main/day_label.gd" id="4_0t3ke"]
 
-[node name="Control" type="MarginContainer"]
+[node name="TaskBar" type="MarginContainer"]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,6 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_icusc")
+script = ExtResource("2_37ry6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -24,11 +27,12 @@ size_flags_vertical = 8
 theme_override_constants/separation = 0
 
 [node name="StartMenu" type="PanelContainer" parent="VBoxContainer" node_paths=PackedStringArray("task_bar")]
+visible = false
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 size_flags_horizontal = 0
 script = ExtResource("2_bn8dn")
-task_bar = NodePath("../TaskBar")
+task_bar = NodePath("../Bar")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/StartMenu"]
 layout_mode = 2
@@ -93,46 +97,44 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Quit"
 
-[node name="TaskBar" type="PanelContainer" parent="VBoxContainer"]
+[node name="Bar" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TaskBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Bar"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="VBoxContainer/TaskBar/HBoxContainer" node_paths=PackedStringArray("start_menu")]
+[node name="StartButton" type="Button" parent="VBoxContainer/Bar/HBoxContainer" node_paths=PackedStringArray("start_menu")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Start"
 script = ExtResource("2_0t3ke")
 start_menu = NodePath("../../../StartMenu")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TaskBar/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bar/HBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TaskBar/HBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Bar/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" parent="VBoxContainer/TaskBar/HBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_hggkt")]
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/TaskBar/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Bar/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/TaskBar/HBoxContainer/MarginContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Bar/HBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TaskBar/HBoxContainer/MarginContainer2/PanelContainer"]
+[node name="DayLabel" type="Label" parent="VBoxContainer/Bar/HBoxContainer/MarginContainer2/PanelContainer"]
 layout_mode = 2
 text = "Day 9999"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_0t3ke")
 
-[connection signal="pressed" from="VBoxContainer/TaskBar/HBoxContainer/StartButton" to="VBoxContainer/TaskBar/HBoxContainer/StartButton" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Bar/HBoxContainer/StartButton" to="VBoxContainer/Bar/HBoxContainer/StartButton" method="_on_pressed"]

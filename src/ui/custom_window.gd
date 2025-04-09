@@ -1,5 +1,6 @@
 extends Window
 
+@export var margin : Vector4 = Vector4(36, 10, 54, 10) # top right bottom left
 
 func _ready() -> void:
 	size_changed.connect(clamp_to_viewport)
@@ -13,7 +14,6 @@ func _process(delta: float) -> void:
 
 
 func clamp_to_viewport():
-	const margin := Vector4(40, 20, 20, 20) # top right bottom left
 	var viewport_size : Vector2 = Vector2(get_parent().size)
 	size.x = min(size.x, viewport_size.x - (margin.y + margin.w))
 	size.y = min(size.y, viewport_size.y - (margin.x + margin.z))

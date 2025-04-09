@@ -108,7 +108,9 @@ visible = false
 [node name="Analytics" parent="MainViewport" instance=ExtResource("12_ioy5u")]
 position = Vector2i(900, 400)
 
-[node name="Control" parent="MainViewport" instance=ExtResource("12_fkn0l")]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Taskbar" parent="CanvasLayer2" instance=ExtResource("12_fkn0l")]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
