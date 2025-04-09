@@ -231,18 +231,19 @@ func start_stream():
 	for slot in GameState.main_slots.slots:
 		if slot.slot_obj is Character:
 			original_player_team.append(slot.slot_obj)
-			player_team.append(slot.slot_obj.my_duplicate())
+			var dupe_char : Character = slot.slot_obj.my_duplicate()
+			dupe_char.set_meta(&"slot_index", slot.slot_index)
+			player_team.append(dupe_char)
 	hide_orig_team()
 	show_teams()
-	var i := 0
 	for char in player_team:
 		char.drag_component.draggable = false
 		character_container.add_child(char)
-		GameState.main_slots.set_char_visual_pos(char, i)
+		var slot_index : int = char.get_meta(&"slot_index", 0)
+		GameState.main_slots.set_char_visual_pos(char, slot_index)
 		char.setup_abilities()
 		char.in_stream = true
 		char.died.connect(kill_character.bind(char))
-		i += 1
 	in_stream = true
 	proc_start_stream_items()
 	apply_front_character_items()
