@@ -98,8 +98,29 @@ func on_drag_release():
 	elif GameState.drag_original_slot:
 		# dragging nowhere in particular, or letting go after swapping
 		self.move_to_original_slot()
+	if GameState.drag_sell_button:
+		self.sell()
 	GameState.drag_object = null
 	self.drag_ended.emit()
+
+
+func sell():
+	var sell_value : float = 0.0
+	if self.drag_object is Character:
+		sell_value = self.drag_object.sell_value
+	elif self.drag_object is Ability:
+		sell_value = self.drag_object.sell_value
+	else:
+		return
+	GameState.player_money += sell_value
+	var stat_val := StatValue.new()
+	stat_val.stat = StatValue.Stat.MONEY
+	stat_val.amount = sell_value
+	GlobalSignals.show_main_stat_value.emit(stat_val, get_global_mouse_position())
+	if self.cur_slot:
+		self.cur_slot.slot_obj = null
+	self.drag_object.queue_free()
+	GameState.drag_sell_button = false
 
 
 func move_to_original_slot(use_tween : bool = false):

@@ -180,8 +180,6 @@ func die(damage : int):
 
 func handle_drag_ended():
 	self.sprite.frame = idle_sprite_frame
-	if GameState.drag_sell_button:
-		self.sell_character()
 
 
 func handle_drag_occupied_slot(slot : Slot):
@@ -219,18 +217,6 @@ func set_flipped(flipped: bool):
 func merge_character(other: Character):
 	other.add_xp(1)
 	remove_self()
-
-
-func sell_character():
-	GameState.player_money += sell_value
-	var stat_val := StatValue.new()
-	stat_val.stat = StatValue.Stat.MONEY
-	stat_val.amount = sell_value
-	GlobalSignals.show_main_stat_value.emit(stat_val, self.global_position)
-	if drag_component.cur_slot:
-		drag_component.cur_slot.slot_obj = null
-	self.queue_free()
-	GameState.drag_sell_button = false
 
 
 func remove_self():
