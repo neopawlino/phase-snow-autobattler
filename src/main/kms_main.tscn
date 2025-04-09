@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=18 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://src/main/kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://src/main/main_viewport.gd" id="1_028yr"]
 [ext_resource type="Script" uid="uid://c8at01qjju0ml" path="res://src/main/main_camera.gd" id="2_ioy5u"]
 [ext_resource type="Script" uid="uid://7heqv5r7uqsi" path="res://src/ui/viewport_push_input.gd" id="3_todjn"]
 [ext_resource type="Texture2D" uid="uid://cn84stjrpsjkq" path="res://public/my_assets/bg_tile.png" id="5_todjn"]
+[ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://src/main/kms_theme.tres" id="6_dse3q"]
 [ext_resource type="PackedScene" uid="uid://h73e003v4ro5" path="res://src/main/desktop_shortcut.tscn" id="6_n0o07"]
 [ext_resource type="PackedScene" uid="uid://buhn71elsgfi3" path="res://src/main/kbs.tscn" id="10_h8i6l"]
 [ext_resource type="Texture2D" uid="uid://pu11gb2ctkly" path="res://public/my_assets/jam1.png" id="10_t7wwo"]
@@ -12,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c6gek18ydnx6j" path="res://public/my_assets/ana1.png" id="11_t5xiq"]
 [ext_resource type="PackedScene" uid="uid://ddvu8dsob8vox" path="res://src/main/taskbar.tscn" id="12_fkn0l"]
 [ext_resource type="PackedScene" uid="uid://d3ptx7wx54jxf" path="res://src/analytics/analytics.tscn" id="12_ioy5u"]
+[ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://src/ui/custom_window.gd" id="13_dmw0t"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://src/stream/stream_summary.tscn" id="13_h8i6l"]
 [ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://src/item/drag_container.gd" id="15_mldad"]
 
@@ -108,13 +110,22 @@ visible = false
 [node name="Analytics" parent="MainViewport" instance=ExtResource("12_ioy5u")]
 position = Vector2i(900, 400)
 
+[node name="Settings" type="Window" parent="MainViewport"]
+title = "Settings"
+position = Vector2i(300, 200)
+size = Vector2i(300, 300)
+visible = false
+theme = ExtResource("6_dse3q")
+script = ExtResource("13_dmw0t")
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
-[node name="Taskbar" parent="CanvasLayer2" instance=ExtResource("12_fkn0l")]
+[node name="Taskbar" parent="CanvasLayer2" node_paths=PackedStringArray("settings_window") instance=ExtResource("12_fkn0l")]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
+settings_window = NodePath("../../MainViewport/Settings")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
