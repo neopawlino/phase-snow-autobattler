@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://1af0t5t0aqld"]
+
+[ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_o6ck0"]
+[ext_resource type="Script" uid="uid://dyd8qxaxy06b1" path="res://src/ui/speed_button.gd" id="1_rpank"]
+
+[node name="StreamSpeedUI" type="MarginContainer" node_paths=PackedStringArray("decrease_button", "increase_button", "speed_label")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.0
+offset_right = 71.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme = ExtResource("1_o6ck0")
+theme_override_constants/margin_top = 32
+script = ExtResource("1_rpank")
+decrease_button = NodePath("HBoxContainer/DecreaseButton")
+increase_button = NodePath("HBoxContainer/IncreaseButton")
+speed_label = NodePath("HBoxContainer/SpeedLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="DecreaseButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "-"
+
+[node name="SpeedLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Speed: 1x"
+vertical_alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "+"

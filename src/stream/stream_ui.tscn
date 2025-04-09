@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_npxhq"]
 [ext_resource type="Script" uid="uid://d224tldmixo5n" path="res://src/stream/stream_ui.gd" id="2_qybfq"]
-[ext_resource type="Script" uid="uid://dyd8qxaxy06b1" path="res://src/ui/speed_button.gd" id="3_qybfq"]
+[ext_resource type="PackedScene" uid="uid://1af0t5t0aqld" path="res://src/stream/stream_speed.tscn" id="3_7fjv3"]
 
 [sub_resource type="Theme" id="Theme_vo0gr"]
 
@@ -168,19 +168,8 @@ text = "10000"
 layout_mode = 2
 text = "Members"
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="MarginContainer2" parent="." instance=ExtResource("3_7fjv3")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -71.0
-offset_right = 71.0
-offset_bottom = 40.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 32
-
-[node name="SpeedButton" type="Button" parent="MarginContainer2"]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 2
-text = "Speed: 1x"
-script = ExtResource("3_qybfq")
+offset_left = -83.0
+offset_right = 83.0
+offset_bottom = 140.0
