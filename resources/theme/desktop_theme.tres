@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b25e8xy3plsn6"]
+
+[ext_resource type="Texture2D" uid="uid://bucrdngrhlr7e" path="res://public/my_assets/patch.png" id="1_i3agy"]
+[ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="1_ksmin"]
+[ext_resource type="StyleBox" uid="uid://cvaq7usv0aea0" path="res://resources/theme/taskbar_button_focus.tres" id="2_ktmty"]
+[ext_resource type="StyleBox" uid="uid://c5e300qwqt1tj" path="res://resources/theme/taskbar_button_hover.tres" id="3_h2bre"]
+[ext_resource type="StyleBox" uid="uid://tk131vkh6l3v" path="res://resources/theme/taskbar_button.tres" id="4_y1hkq"]
+[ext_resource type="StyleBox" uid="uid://cmdmnme05nvh0" path="res://resources/theme/taskbar_button_pressed.tres" id="5_5mpgf"]
+[ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="6_okg53"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trblo"]
+texture = ExtResource("1_i3agy")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[resource]
+Button/colors/font_outline_color = Color(0.016, 0.0976, 0.16, 0.611765)
+Button/constants/outline_size = 6
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_ksmin")
+Button/styles/focus = ExtResource("2_ktmty")
+Button/styles/hover = ExtResource("3_h2bre")
+Button/styles/normal = ExtResource("4_y1hkq")
+Button/styles/pressed = ExtResource("5_5mpgf")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0.016, 0.0976, 0.16, 0.611765)
+Label/colors/font_shadow_color = Color(0.29, 0.29, 0.58, 0)
+Label/constants/outline_size = 8
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 2
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("6_okg53")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_trblo")

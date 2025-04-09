@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://src/main/kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://src/main/main_viewport.gd" id="1_028yr"]
 [ext_resource type="Script" uid="uid://c8at01qjju0ml" path="res://src/main/main_camera.gd" id="2_ioy5u"]
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="2_sukj3"]
 [ext_resource type="Script" uid="uid://7heqv5r7uqsi" path="res://src/ui/viewport_push_input.gd" id="3_todjn"]
 [ext_resource type="Texture2D" uid="uid://cn84stjrpsjkq" path="res://public/my_assets/bg_tile.png" id="5_todjn"]
-[ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://src/main/kms_theme.tres" id="6_dse3q"]
-[ext_resource type="Script" uid="uid://bo6wef6d3l071" path="res://src/main/window_shortcut.gd" id="6_hrlxh"]
-[ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://public/my_assets/link.png" id="8_7a1vo"]
+[ext_resource type="PackedScene" uid="uid://h73e003v4ro5" path="res://src/main/desktop_shortcut.tscn" id="6_n0o07"]
 [ext_resource type="PackedScene" uid="uid://buhn71elsgfi3" path="res://src/main/kbs.tscn" id="10_h8i6l"]
+[ext_resource type="Texture2D" uid="uid://pu11gb2ctkly" path="res://public/my_assets/jam1.png" id="10_t7wwo"]
 [ext_resource type="PackedScene" uid="uid://bpfgksmlwxjfc" path="res://src/shop/shop.tscn" id="11_h8i6l"]
+[ext_resource type="Texture2D" uid="uid://c6gek18ydnx6j" path="res://public/my_assets/ana1.png" id="11_t5xiq"]
+[ext_resource type="PackedScene" uid="uid://ddvu8dsob8vox" path="res://src/main/taskbar.tscn" id="12_fkn0l"]
 [ext_resource type="PackedScene" uid="uid://d3ptx7wx54jxf" path="res://src/analytics/analytics.tscn" id="12_ioy5u"]
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://src/stream/stream_summary.tscn" id="13_h8i6l"]
 [ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://src/item/drag_container.gd" id="15_mldad"]
@@ -48,68 +48,25 @@ texture = ExtResource("5_todjn")
 stretch_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainViewport"]
+texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="KBSShortcut" type="Button" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window")]
+[node name="KBSShortcut" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
 layout_mode = 2
-theme = ExtResource("6_dse3q")
-theme_type_variation = &"DesktopIconButton"
-text = "Stream"
-icon = ExtResource("2_sukj3")
-icon_alignment = 1
-vertical_icon_alignment = 0
-script = ExtResource("6_hrlxh")
 window = NodePath("../../KBS")
 
-[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/KBSShortcut"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 4.0
-offset_top = 92.0
-offset_right = 44.0
-offset_bottom = 132.0
-texture = ExtResource("8_7a1vo")
-
-[node name="ShopShortcut" type="Button" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window")]
+[node name="ShopShortcut" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
 layout_mode = 2
-theme = ExtResource("6_dse3q")
-theme_type_variation = &"DesktopIconButton"
 text = "Shopping"
-icon = ExtResource("2_sukj3")
-icon_alignment = 1
-vertical_icon_alignment = 0
-script = ExtResource("6_hrlxh")
+icon = ExtResource("10_t7wwo")
 window = NodePath("../../Shop")
 
-[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/ShopShortcut"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 4.0
-offset_top = 92.0
-offset_right = 44.0
-offset_bottom = 132.0
-texture = ExtResource("8_7a1vo")
-
-[node name="AnalyticsShortcut" type="Button" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window")]
+[node name="AnalyticsShortcut" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
 layout_mode = 2
-theme = ExtResource("6_dse3q")
-theme_type_variation = &"DesktopIconButton"
 text = "Analytics"
-icon = ExtResource("2_sukj3")
-icon_alignment = 1
-vertical_icon_alignment = 0
-script = ExtResource("6_hrlxh")
+icon = ExtResource("11_t5xiq")
 window = NodePath("../../Analytics")
-
-[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/AnalyticsShortcut"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 4.0
-offset_top = 92.0
-offset_right = 44.0
-offset_bottom = 132.0
-texture = ExtResource("8_7a1vo")
 
 [node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
 visible = false
@@ -150,6 +107,12 @@ visible = false
 
 [node name="Analytics" parent="MainViewport" instance=ExtResource("12_ioy5u")]
 position = Vector2i(900, 400)
+
+[node name="Control" parent="MainViewport" instance=ExtResource("12_fkn0l")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
