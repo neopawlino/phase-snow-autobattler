@@ -138,6 +138,9 @@ position = Vector2i(900, 400)
 [node name="Settings" parent="MainViewport" instance=ExtResource("12_10f2p")]
 visible = false
 
+[node name="DamageNumbers" parent="MainViewport" instance=ExtResource("18_d6ewd")]
+is_main_numbers = true
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="Taskbar" parent="CanvasLayer2" node_paths=PackedStringArray("settings_window") instance=ExtResource("12_fkn0l")]
@@ -146,9 +149,6 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 settings_window = NodePath("../../MainViewport/Settings")
-
-[node name="DamageNumbers" parent="CanvasLayer2" instance=ExtResource("18_d6ewd")]
-is_main_numbers = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

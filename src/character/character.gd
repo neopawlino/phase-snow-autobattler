@@ -223,6 +223,10 @@ func merge_character(other: Character):
 
 func sell_character():
 	GameState.player_money += sell_value
+	var stat_val := StatValue.new()
+	stat_val.stat = StatValue.Stat.MONEY
+	stat_val.amount = sell_value
+	GlobalSignals.show_main_stat_value.emit(stat_val, self.global_position)
 	if drag_component.cur_slot:
 		drag_component.cur_slot.slot_obj = null
 	self.queue_free()

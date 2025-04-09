@@ -14,7 +14,7 @@ static var stat_names : Dictionary[StatValue.Stat, String] = {
 
 static func get_stat_change_string(stat_value : StatValue) -> String:
 	if stat_value.stat == StatValue.Stat.MONEY:
-		return format_money(stat_value.amount)
+		return format_money(stat_value.amount, true)
 	var percent := "%%" if is_percent(stat_value.stat) else ""
 	var format_string := "%s" + percent + " %s"
 	return format_string % [format_stat_number(stat_value, true), stat_names.get(stat_value.stat, "???")]
