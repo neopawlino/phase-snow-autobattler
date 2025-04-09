@@ -13,27 +13,39 @@ script = ExtResource("1_rvv81")
 ability_name = "Pafu Bite"
 description = ""
 stat_changes = Array[ExtResource("2_bjufu")]([])
-cooldown = 1.0
 scaling = Array[ExtResource("2_bjufu")]([])
-ability_keys = Array[StringName]([])
+trigger = 0
+cooldown = 1.0
+cast_chance = 1.0
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
 
 [sub_resource type="Resource" id="Resource_3pnjp"]
 script = ExtResource("1_rvv81")
 ability_name = "\"Love\" Potion #520"
 description = ""
 stat_changes = Array[ExtResource("2_bjufu")]([])
-cooldown = 1.0
 scaling = Array[ExtResource("2_bjufu")]([])
-ability_keys = Array[StringName]([])
+trigger = 0
+cooldown = 1.0
+cast_chance = 1.0
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
 
 [sub_resource type="Resource" id="Resource_olj2m"]
 script = ExtResource("1_rvv81")
 ability_name = "Requiem"
 description = ""
 stat_changes = Array[ExtResource("2_bjufu")]([])
-cooldown = 1.0
 scaling = Array[ExtResource("2_bjufu")]([])
-ability_keys = Array[StringName]([])
+trigger = 0
+cooldown = 1.0
+cast_chance = 1.0
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
 
 [sub_resource type="Resource" id="Resource_s0rwx"]
 script = ExtResource("5_p5lb2")

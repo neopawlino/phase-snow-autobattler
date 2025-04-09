@@ -19,10 +19,13 @@ script = ExtResource("1_gfe1s")
 ability_name = "Yabbit"
 description = "When this talent uses an ability, gain 10 Viewers"
 stat_changes = Array[ExtResource("2_bxlyt")]([SubResource("Resource_gp3u3")])
+scaling = Array[ExtResource("2_bxlyt")]([])
 trigger = 2
 cooldown = 1.0
-scaling = Array[ExtResource("2_bxlyt")]([])
-ability_keys = Array[StringName]([])
+cast_chance = 1.0
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
 metadata/_custom_type_script = "uid://cgaytqa18e8dx"
 
 [sub_resource type="Resource" id="Resource_cbdyu"]

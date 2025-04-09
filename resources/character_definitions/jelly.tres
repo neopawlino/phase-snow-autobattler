@@ -23,7 +23,9 @@ scaling = Array[ExtResource("2_lustk")]([])
 trigger = 3
 cooldown = 1.0
 cast_chance = 0.1
-ability_keys = Array[StringName]([])
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
 metadata/_custom_type_script = "uid://cgaytqa18e8dx"
 
 [sub_resource type="Resource" id="Resource_kxool"]

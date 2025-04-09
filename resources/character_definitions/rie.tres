@@ -31,7 +31,9 @@ scaling = Array[ExtResource("2_fuv3c")]([SubResource("Resource_dx5s7")])
 trigger = 1
 cooldown = 1.0
 cast_chance = 1.0
-ability_keys = Array[StringName]([])
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
 
 [sub_resource type="Resource" id="Resource_s0rwx"]
 script = ExtResource("4_yhsmg")
