@@ -53,7 +53,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 
-[node name="AbilityReward" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer" node_paths=PackedStringArray("abilities_container", "title_label", "ability_reward_control", "skip_button")]
+[node name="AbilityReward" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer/AbilityRewardControl/MarginContainer" node_paths=PackedStringArray("window", "abilities_container", "title_label", "ability_reward_control", "skip_button")]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -61,6 +61,7 @@ theme = ExtResource("1_4p8mj")
 theme_type_variation = &"KbsPanelHighlighted"
 theme_override_styles/panel = ExtResource("3_pvfrd")
 script = ExtResource("3_ynl0e")
+window = NodePath("../../../../../..")
 abilities_container = NodePath("MarginContainer/Container/AbilitiesContainer")
 title_label = NodePath("MarginContainer/Container/MarginContainer/Label")
 ability_reward_control = NodePath("../..")

@@ -5,8 +5,9 @@ class_name ShopManager
 var talent_slots : Array[ShopSlot]
 var item_slots : Array[Slot]
 
+@export var window : CustomWindow
+
 @export var talent_slot_count : int = 3
-#@export var item_slot_count : int = 2
 @export var buy_price : float = 3
 @export var base_reroll_price : float = 2
 @export var reroll_increase : float = 1
@@ -18,7 +19,6 @@ var reroll_price : float:
 		update_reroll_button_text(value)
 
 @export var talent_slot_container : Container
-#@export var item_slot_container : Container
 
 var character_scene : PackedScene = preload("res://src/character/character.tscn")
 var shop_slot_scene : PackedScene = preload("res://src/shop/shop_slot.tscn")
@@ -43,25 +43,19 @@ func _ready() -> void:
 		talent_slot_container.add_child(slot)
 		slot.buy_button_pressed.connect(on_talent_buy_button_pressed)
 
-	#for i in range(item_slot_count):
-		#var slot : Slot = slot_scene.instantiate()
-		#slot.set_pickable(false)
-		#slot.slot_index = i
-		#slot.slot_type = Slot.SlotType.ITEM
-		#item_slots.append(slot)
-		#item_slot_container.add_child(slot)
-
 	GameState.shop_manager = self
 
 	GameState.player_money_changed.connect(update_reroll_button_enabled)
 	GlobalSignals.stream_end_anim_finished.connect(reroll_talents)
 	GlobalSignals.stream_end_anim_finished.connect(reset_reroll_price)
+	GlobalSignals.stream_end_anim_finished.connect(window.notification.emit)
+
+	window.notification.emit()
 
 	reroll_button.pressed.connect(on_reroll_button_pressed)
 
 	reset_reroll_price()
 	call_deferred("reroll_talents")
-	#call_deferred("reroll_items")
 
 
 func on_talent_buy_button_pressed(slot : ShopSlot):
@@ -111,20 +105,8 @@ func reroll_talents():
 		add_character_to_slot(char, slot, buy_price)
 
 
-#func reroll_items():
-	#for slot in item_slots:
-		#if slot.slot_obj:
-			#slot.slot_obj.queue_free()
-		#var item : Item = item_scene.instantiate()
-		#var item_def : ItemDefinition = all_item_definitions.pick_random()
-		#item.load_from_item_definition(item_def)
-		#add_item_to_slot(item, slot, item_def.price)
-	#update_shop_draggable()
-
-
 func reroll_all():
 	reroll_talents()
-	#reroll_items()
 
 
 func add_character_to_slot(char: Character, slot : ShopSlot, buy_price : float):

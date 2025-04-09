@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c42vp4gsn6lra"]
+[gd_scene load_steps=5 format=3 uid="uid://c42vp4gsn6lra"]
 
 [ext_resource type="Theme" uid="uid://b48mbnqi45i7o" path="res://resources/theme/analytics.tres" id="1_n031f"]
 [ext_resource type="Script" uid="uid://dyuagtu03owsk" path="res://src/analytics/subscribers_label.gd" id="2_u0564"]
 [ext_resource type="Script" uid="uid://6lvjr6b2bxfq" path="res://src/analytics/members_label.gd" id="3_qadeu"]
+[ext_resource type="Script" uid="uid://dwp2wtukn3y3n" path="res://src/analytics/total_earnings.gd" id="4_3s02s"]
 
 [node name="AnalyticsSite" type="PanelContainer"]
 anchors_preset = 15
@@ -54,3 +55,21 @@ layout_mode = 2
 text = "9999"
 horizontal_alignment = 1
 script = ExtResource("3_qadeu")
+
+[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+text = "Total Earnings"
+horizontal_alignment = 1
+
+[node name="TotalEarnings" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+text = "9999"
+horizontal_alignment = 1
+script = ExtResource("4_3s02s")

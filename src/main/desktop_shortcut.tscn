@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://h73e003v4ro5"]
+[gd_scene load_steps=6 format=3 uid="uid://h73e003v4ro5"]
 
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://src/main/kms_theme.tres" id="1_34m8t"]
 [ext_resource type="Texture2D" uid="uid://bxqeows7abebe" path="res://public/my_assets/kbsA1.png" id="2_7xw31"]
 [ext_resource type="Script" uid="uid://bo6wef6d3l071" path="res://src/main/window_shortcut.gd" id="3_vw5ke"]
 [ext_resource type="Texture2D" uid="uid://b6ed1jcwgugf0" path="res://public/my_assets/link.png" id="4_a85ql"]
+[ext_resource type="Texture2D" uid="uid://crpbuylex3jw" path="res://public/my_assets/notif.png" id="5_7xw31"]
 
-[node name="DesktopShortcut" type="Button"]
+[node name="DesktopShortcut" type="Button" node_paths=PackedStringArray("notification_icon")]
+texture_filter = 1
 custom_minimum_size = Vector2(160, 160)
 theme = ExtResource("1_34m8t")
 theme_type_variation = &"DesktopIconButton"
@@ -15,6 +17,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("3_vw5ke")
+notification_icon = NodePath("NotificationIcon")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -24,3 +27,11 @@ offset_top = 92.0
 offset_right = 56.0
 offset_bottom = 132.0
 texture = ExtResource("4_a85ql")
+
+[node name="NotificationIcon" type="TextureRect" parent="."]
+visible = false
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 56.0
+offset_bottom = 48.0
+texture = ExtResource("5_7xw31")

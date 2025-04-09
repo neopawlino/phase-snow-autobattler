@@ -12,4 +12,5 @@ size = Vector2i(600, 400)
 theme = ExtResource("1_e7rdd")
 script = ExtResource("2_blqjs")
 
-[node name="ShopSite" parent="." instance=ExtResource("3_blqjs")]
+[node name="ShopSite" parent="." node_paths=PackedStringArray("window") instance=ExtResource("3_blqjs")]
+window = NodePath("..")

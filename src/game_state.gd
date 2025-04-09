@@ -103,7 +103,12 @@ var base_member_rate : float = 0.1
 
 var highest_views : float
 var highest_viewers : float
-var total_earnings : float
+
+var total_earnings : float:
+	set(val):
+		total_earnings = val
+		total_earnings_changed.emit(val)
+signal total_earnings_changed(val: float)
 
 
 func get_interest() -> int:

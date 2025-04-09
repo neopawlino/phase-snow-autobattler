@@ -1,5 +1,7 @@
 extends Control
 
+@export var window : CustomWindow
+
 @export var abilities_container : Container
 
 @export var title_label : Label
@@ -28,6 +30,7 @@ func show_ability_reward():
 		ability.is_ability_reward = true
 		abilities_container.add_child(ability)
 	self.show_anim()
+	window.notification.emit()
 
 
 func show_anim():

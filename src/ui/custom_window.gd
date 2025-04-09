@@ -1,5 +1,9 @@
 extends Window
 
+class_name CustomWindow
+
+signal notification
+
 @export var margin : Vector4 = Vector4(36, 10, 54, 10) # top right bottom left
 
 func _ready() -> void:
