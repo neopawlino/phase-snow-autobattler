@@ -73,7 +73,6 @@ size_flags_horizontal = 4
 mouse_filter = 1
 
 [node name="PlayerSlots" type="HBoxContainer" parent="CharacterSlots/Team" node_paths=PackedStringArray("slots")]
-layout_direction = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -115,7 +114,6 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterSlots/EnemyTeam"]
-layout_direction = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
