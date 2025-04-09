@@ -40,7 +40,10 @@ var stream_finished_orig_position : Vector2
 var revenue_breakdown_orig_position : Vector2
 
 func _ready() -> void:
-	GlobalSignals.stream_ended.connect(show_stream_summary)
+	GlobalSignals.stream_ended.connect(func(goal_met : bool):
+		if goal_met:
+			show_stream_summary()
+	)
 	self.stream_finished_orig_position = self.stream_finished_container.global_position
 	self.revenue_breakdown_orig_position = self.revenue_breakdown_container.global_position
 

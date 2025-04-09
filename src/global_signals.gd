@@ -17,8 +17,10 @@ signal stream_anim_started
 
 signal stream_started
 signal stream_setup_finished
-signal stream_ended
+signal stream_ended(goal_met : bool)
 signal stream_results_confirmed
 signal stream_end_anim_finished
 
 signal rewards_screen_finished
+
+signal viewer_goal_failed

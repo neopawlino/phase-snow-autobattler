@@ -31,6 +31,8 @@ var player_money : float:
 		player_money_changed.emit(val)
 signal player_money_changed(value: float)
 
+var starting_money : float = 5.0
+
 var player_hp : int:
 	set(val):
 		player_hp = val
@@ -81,11 +83,16 @@ var subscribers : float = 1:
 		subscribers = val
 		subscribers_changed.emit(val)
 signal subscribers_changed(value: int)
+
+var initial_subscribers : float = 1.0
+
 var members : float = 0:
 	set(val):
 		members = val
 		members_changed.emit(val)
 signal members_changed(value: int)
+
+var initial_members : float = 0
 
 var base_views_per_sec : float = 10.0
 var base_viewer_retention : float = 0.1
@@ -122,6 +129,16 @@ func _ready() -> void:
 	GlobalSignals.stream_end_anim_finished.connect(func():
 		self.player_money += self.stream_manager.total_revenue
 	)
+	self.reset()
+
+
+func reset() -> void:
+	self.viewer_goal = self.base_viewer_goal
+	self.subscribers = self.initial_subscribers
+	self.members = self.initial_members
+	self.round_number = 1
+	self.player_money = self.starting_money
+	self.wins = 0
 
 
 func get_viewer_goal(round_num : int) -> float:

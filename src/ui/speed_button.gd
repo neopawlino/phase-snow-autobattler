@@ -26,7 +26,7 @@ func _ready() -> void:
 		self.decrease_button.disabled = false
 		self.set_speed(speed_index)
 	)
-	GlobalSignals.stream_ended.connect(func():
+	GlobalSignals.stream_ended.connect(func(_goal_met : bool):
 		self.increase_button.disabled = true
 		self.decrease_button.disabled = true
 		self.set_speed(0)

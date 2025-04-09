@@ -205,6 +205,7 @@ func show_orig_team():
 
 func reset_stats():
 	viewers = 0
+	peak_viewers = 0
 	views_per_sec = GameState.base_views_per_sec
 	subscriber_rate = GameState.base_subscriber_rate
 	member_rate = GameState.base_member_rate
@@ -431,17 +432,17 @@ func on_player_character_died(char : Character):
 func check_stream_over():
 	if not player_team.is_empty():
 		return
-	if self.peak_viewers >= GameState.viewer_goal:
-		result = StreamSummary.StreamResult.WIN
-	else:
-		result = StreamSummary.StreamResult.LOSE
 	for char in player_team:
 		char.stop_timers()
 	for char in enemy_team:
 		char.stop_timers()
 	in_stream = false
 	self.update_revenue()
-	GlobalSignals.stream_ended.emit()
+	if self.peak_viewers >= GameState.viewer_goal:
+		GlobalSignals.stream_ended.emit(true)
+	else:
+		GlobalSignals.stream_ended.emit(false)
+		GlobalSignals.viewer_goal_failed.emit()
 
 
 func update_revenue() -> void:

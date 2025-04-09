@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=23 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://src/main/kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://src/main/main_viewport.gd" id="1_028yr"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://b47gfxy22e6n2" path="res://src/stream/stream_summary.tscn" id="13_h8i6l"]
 [ext_resource type="Script" uid="uid://nutvltnpndbj" path="res://src/item/drag_container.gd" id="15_mldad"]
 [ext_resource type="PackedScene" uid="uid://dqwxvnhpjlljm" path="res://src/ui/damage_numbers.tscn" id="18_d6ewd"]
+[ext_resource type="PackedScene" uid="uid://v3pc2y7lhn1w" path="res://src/stream/result_screen.tscn" id="21_qq7ya"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("MainViewport")
@@ -153,11 +154,14 @@ settings_window = NodePath("../../MainViewport/Settings")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="CombatSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
+[node name="StreamSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
 visible = false
 pivot_offset = Vector2(640, 360)
 
 [node name="DragContainer" type="Node" parent="CanvasLayer"]
 script = ExtResource("15_mldad")
+
+[node name="ResultScreen" parent="CanvasLayer" instance=ExtResource("21_qq7ya")]
+visible = false
 
 [editable path="MainViewport/KBS"]

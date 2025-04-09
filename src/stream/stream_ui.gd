@@ -26,7 +26,7 @@ func _ready() -> void:
 
 	GlobalSignals.stream_started.connect(show_anim)
 	GlobalSignals.stream_started.connect(update_all)
-	GlobalSignals.stream_ended.connect(hide_anim)
+	GlobalSignals.stream_ended.connect(func(_goal_met : bool): hide_anim())
 
 
 func show_anim():

@@ -14,10 +14,8 @@ var character_slot_scene : PackedScene = preload("res://src/item/character_slot.
 
 
 func _ready():
-	GameState.round_number = 1
 	GameState.wins_needed = enemy_layouts.wins_needed
 	GameState.player_hp = enemy_layouts.initial_lives
-	GameState.wins = 0
 
 	load_initial_teams()
 
