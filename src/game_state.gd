@@ -27,6 +27,8 @@ var drag_initial_mouse_pos : Vector2
 
 var player_money : float:
 	set(val):
+		if val > player_money:
+			total_earnings += val - player_money
 		player_money = val
 		player_money_changed.emit(val)
 signal player_money_changed(value: float)
@@ -99,6 +101,10 @@ var base_viewer_retention : float = 0.1
 var base_subscriber_rate : float = 0.1
 var base_member_rate : float = 0.1
 
+var highest_views : float
+var highest_viewers : float
+var total_earnings : float
+
 
 func get_interest() -> int:
 	var interest_cap := get_interest_cap()
@@ -139,6 +145,9 @@ func reset() -> void:
 	self.round_number = 1
 	self.player_money = self.starting_money
 	self.wins = 0
+	self.highest_views = 0
+	self.highest_viewers = 0
+	self.total_earnings = 0
 
 
 func get_viewer_goal(round_num : int) -> float:

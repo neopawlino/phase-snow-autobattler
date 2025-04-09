@@ -50,6 +50,7 @@ var views : float:
 		if amt > views:
 			self.on_views_gained(amt - views)
 		views = amt
+		GameState.highest_views = maxf(amt, GameState.highest_views)
 		views_changed.emit(amt)
 signal views_changed(amt: float)
 
@@ -57,6 +58,7 @@ var peak_viewers : float:
 	set(amt):
 		peak_viewers = amt
 		peak_viewers_changed.emit(amt)
+		GameState.highest_viewers = maxf(amt, GameState.highest_viewers)
 signal peak_viewers_changed(amt: float)
 
 var views_per_sec : float:

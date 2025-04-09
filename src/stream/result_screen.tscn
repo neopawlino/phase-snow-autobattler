@@ -26,8 +26,8 @@ overlay = NodePath("TextureRect")
 day = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/Day/HBox/PanelContainer/MarginContainer/Label")
 highest_views = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/HighestViews/HBox/PanelContainer/MarginContainer/Label")
 highest_viewers = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/HighestViewers/HBox/PanelContainer/MarginContainer/Label")
-subscribers = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/HighestViewers/HBox/PanelContainer/MarginContainer/Label")
-members = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/Subscribers/HBox/PanelContainer/MarginContainer/Label")
+subscribers = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/Subscribers/HBox/PanelContainer/MarginContainer/Label")
+members = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/Members/HBox/PanelContainer/MarginContainer/Label")
 total_earnings = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/TotalEarnings/HBox/PanelContainer/MarginContainer/Label")
 
 [node name="TextureRect" type="TextureRect" parent="."]
