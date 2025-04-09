@@ -402,6 +402,7 @@ func make_ability_timer(ability_def : AbilityDefinition, ability : Ability = nul
 	var timer := CustomTimer.new()
 	var ability_char := char
 	timer.wait_time = ability_def.cooldown
+	timer.time_left = timer.wait_time
 	timer.timeout.connect(cast_ability_with_anim.bind(ability_def, ability))
 	timer.started = true
 	if ability:
