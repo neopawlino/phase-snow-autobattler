@@ -10,6 +10,8 @@ enum StreamResult {
 	DRAW
 }
 
+@export var stream_finished_label : Label
+
 @export var views_label : Label
 @export var viewers_label : Label
 @export var subscribers_label : Label
@@ -50,6 +52,8 @@ func show_stream_summary():
 
 
 func update_stream_finished():
+	self.stream_finished_label.text = "Stream Finished - Day %d" % GameState.round_number
+
 	self.views_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.views)
 	self.viewers_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.peak_viewers)
 	self.subscribers_container.visible = GameState.stream_manager.new_subscribers > 0

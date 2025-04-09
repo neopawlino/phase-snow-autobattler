@@ -22,17 +22,20 @@ width = 720
 height = 405
 fill_from = Vector2(1, 1)
 
-[node name="StreamSummary" type="Control" node_paths=PackedStringArray("views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "base_revenue_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
+[node name="StreamSummary" type="Control" node_paths=PackedStringArray("stream_finished_label", "views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "base_revenue_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
 mouse_filter = 1
 theme = ExtResource("1_0f2ul")
 script = ExtResource("2_gi83k")
+stream_finished_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer2/StreamFinishedLabel")
 views_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer/ViewsLabel")
 viewers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer/ViewersLabel")
 subscribers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer/SubscribersLabel")
@@ -108,10 +111,10 @@ theme_type_variation = &"ResultsHeaderPanel"
 layout_mode = 2
 theme_override_constants/margin_bottom = 32
 
-[node name="Label" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer2"]
+[node name="StreamFinishedLabel" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer2"]
 layout_mode = 2
 theme_type_variation = &"ResultsHeader"
-text = "Stream Finished"
+text = "Stream Finished - Day 1"
 
 [node name="VBoxContainer" type="Control" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(705, 405)
