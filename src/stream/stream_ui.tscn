@@ -54,6 +54,7 @@ horizontal_alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Views: The number of people in total who have watched the stream."
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
@@ -84,7 +85,7 @@ vertical_alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-tooltip_text = "Viewer Retention: Percent chance for Views to become Viewers"
+tooltip_text = "Viewer Retention: Percent chance for Views to become Viewers."
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
@@ -95,7 +96,7 @@ text = "(10%)"
 
 [node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-tooltip_text = "Viewers: Number of people currently watching the stream"
+tooltip_text = "Viewers: The number of people currently watching the stream."
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3"]
 layout_mode = 2
@@ -114,6 +115,7 @@ text = "Viewers"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Subscription Rate: Percent chance for new Viewers to become Subscribers."
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
@@ -124,6 +126,8 @@ text = "(10%)"
 
 [node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Subscribers: The number of people subscribed to your channel.
+Subscribers persist between streams and influence certain abilities."
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4"]
 layout_mode = 2
@@ -142,6 +146,7 @@ text = "Subscribers"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Membership Rate: Percent chance for new Subscreibers to become Members."
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
@@ -152,6 +157,8 @@ text = "(10%)"
 
 [node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Members: Number of people paying for a Membership. 
+This gives you income each stream."
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5"]
 layout_mode = 2
@@ -170,6 +177,10 @@ text = "Members"
 
 [node name="MarginContainer2" parent="." instance=ExtResource("3_7fjv3")]
 layout_mode = 1
-offset_left = -83.0
-offset_right = 83.0
-offset_bottom = 140.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -375.0
+offset_right = 0.0
+offset_bottom = 120.0
+grow_horizontal = 0

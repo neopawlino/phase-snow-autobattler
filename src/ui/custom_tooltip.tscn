@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dolvmnfaggn87" path="res://src/ui/custom_tooltip.gd" id="2_7fbja"]
 
 [node name="CustomTooltip" type="Control" node_paths=PackedStringArray("title_label", "description_label", "cooldown_label", "cooldown_container", "sell_value_label")]
+texture_filter = 1
 custom_minimum_size = Vector2(360, 200)
 layout_mode = 3
 anchors_preset = 0
@@ -75,6 +76,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_type_variation = &"TextSmall"
+theme_override_colors/font_color = Color(0.63, 0.63, 0.63, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.486275)
 theme_override_font_sizes/font_size = 32
 text = "Recycle Value: $2.00"
 autowrap_mode = 2

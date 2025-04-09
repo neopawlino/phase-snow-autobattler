@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ddip2yriujj48"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://ddip2yriujj48"]
 
 [ext_resource type="FontFile" uid="uid://d31aiqold0as0" path="res://assets/m5x7.ttf" id="1_d4nwg"]
 [ext_resource type="FontFile" uid="uid://cyf4ilchh31t0" path="res://assets/m3x6.ttf" id="2_7ct1h"]
+[ext_resource type="StyleBox" uid="uid://csxts8wfgo10l" path="res://resources/theme/pixel_panel.tres" id="2_886mr"]
+[ext_resource type="StyleBox" uid="uid://db3auj83cqxju" path="res://resources/theme/pixel_button.tres" id="2_b751m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_110ce"]
 bg_color = Color(0.17, 0.17, 0.17, 0.490196)
@@ -22,6 +24,30 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05tig"]
 bg_color = Color(0.2, 0.2, 0.2, 0.737255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owntx"]
+bg_color = Color(0.329513, 0.2484, 0.46, 0.756863)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.76, 0.64, 1, 0.552941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaf3v"]
+bg_color = Color(0.401147, 0.3024, 0.56, 0.756863)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.76, 0.64, 1, 0.552941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yp2uj"]
+bg_color = Color(0.70917, 0.5346, 0.99, 0.756863)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.76, 0.64, 1, 0.552941)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gf707"]
 bg_color = Color(0.803922, 0.360784, 0.360784, 1)
@@ -65,6 +91,10 @@ AbilityProgressBar/styles/fill = SubResource("StyleBoxFlat_05tig")
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/font_sizes/font_size = 64
 Button/fonts/font = ExtResource("1_d4nwg")
+Button/styles/focus = SubResource("StyleBoxFlat_owntx")
+Button/styles/hover = SubResource("StyleBoxFlat_aaf3v")
+Button/styles/normal = ExtResource("2_b751m")
+Button/styles/pressed = SubResource("StyleBoxFlat_yp2uj")
 DamageNumber/base_type = &"Label"
 DamageNumber/constants/shadow_offset_x = 0
 DamageNumber/constants/shadow_offset_y = 2
@@ -83,6 +113,7 @@ MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
 MarginContainer/constants/margin_top = 8
+PanelContainer/styles/panel = ExtResource("2_886mr")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_rg5kn")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_42deb")
 RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.662745)
