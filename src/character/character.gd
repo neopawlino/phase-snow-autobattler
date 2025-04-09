@@ -290,7 +290,7 @@ func my_duplicate() -> Character:
 	for i in range(ability_slot_count):
 		new_char.add_ability_slot()
 	for i in range(len(abilities)):
-		var new_ability : Ability = abilities[i].duplicate()
+		var new_ability : Ability = abilities[i].my_duplicate()
 		var new_slot := new_char.ability_slots[i]
 		new_slot.slot_obj = new_ability
 		new_slot.add_child(new_ability)

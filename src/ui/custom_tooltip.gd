@@ -41,7 +41,4 @@ func update_from_ability_definition(ability_def : AbilityDefinition):
 
 
 func update_ability_description(ability_def : AbilityDefinition):
-	if ability_def.scaling.is_empty():
-		description_label.text = ability_def.description
-	else:
-		description_label.text = ability_def.description % ability_def.get_format_string_values()
+	self.description_label.text = ability_def.get_description()

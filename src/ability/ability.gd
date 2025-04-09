@@ -33,3 +33,9 @@ func on_drag_occupied_slot(slot : Slot):
 	var other : Ability = slot.slot_obj
 	drag_component.move_to_slot(slot)
 	other.drag_component.move_to_slot(GameState.drag_original_slot)
+
+
+func my_duplicate() -> Ability:
+	var new_ability : Ability = self.duplicate()
+	new_ability.ability_definition = self.ability_definition.duplicate(true)
+	return new_ability

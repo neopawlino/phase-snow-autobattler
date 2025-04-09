@@ -296,33 +296,40 @@ func clear_teams():
 
 
 func apply_ability(ability: AbilityDefinition, caster_statuses: Dictionary, caster: Character):
+	self.handle_unique_ability_logic(ability, caster_statuses, caster)
 	var amount_add := calc_stat_scaling_amount(ability, caster)
 	for stat_change in ability.stat_changes:
-		var amount := stat_change.amount + amount_add
-		match stat_change.stat:
-			StatValue.Stat.VIEWS:
-				self.views += amount
-			StatValue.Stat.VIEWS_PER_SEC:
-				self.views_per_sec += amount
-			StatValue.Stat.VIEWER_RETENTION:
-				self.viewer_retention += amount
-			StatValue.Stat.VIEWERS:
-				self.viewers += amount
-			StatValue.Stat.SUBSCRIBER_RATE:
-				self.subscriber_rate += amount
-			StatValue.Stat.SUBSCRIBERS:
-				GameState.subscribers += amount
-			StatValue.Stat.MEMBER_RATE:
-				self.member_rate += amount
-			StatValue.Stat.MEMBERS:
-				GameState.members += amount
-			StatValue.Stat.STAMINA:
-				caster.hp = mini(caster.hp + int(amount), caster.max_hp)
-			_:
-				print_debug("Couldn't match stat: %s" % stat_change.stat)
-		var color : Color = self.stat_colors.get(stat_change.stat, Color.WHITE)
-		var change_string := StringUtil.get_stat_change_string(stat_change.stat, amount)
-		GlobalSignals.show_damage_number.emit(change_string, caster.global_position, color)
+		var new_stat_change := stat_change.duplicate()
+		new_stat_change.amount += amount_add
+		apply_stat_change(new_stat_change, caster)
+
+
+func apply_stat_change(stat_change : StatValue, caster : Character):
+	var amount := stat_change.amount
+	match stat_change.stat:
+		StatValue.Stat.VIEWS:
+			self.views += amount
+		StatValue.Stat.VIEWS_PER_SEC:
+			self.views_per_sec += amount
+		StatValue.Stat.VIEWER_RETENTION:
+			self.viewer_retention += amount
+		StatValue.Stat.VIEWERS:
+			self.viewers += amount
+		StatValue.Stat.SUBSCRIBER_RATE:
+			self.subscriber_rate += amount
+		StatValue.Stat.SUBSCRIBERS:
+			GameState.subscribers += amount
+		StatValue.Stat.MEMBER_RATE:
+			self.member_rate += amount
+		StatValue.Stat.MEMBERS:
+			GameState.members += amount
+		StatValue.Stat.STAMINA:
+			caster.hp = mini(caster.hp + int(amount), caster.max_hp)
+		_:
+			print_debug("Couldn't match stat: %s" % stat_change.stat)
+	var color : Color = self.stat_colors.get(stat_change.stat, Color.WHITE)
+	var change_string := StringUtil.get_stat_change_string(stat_change.stat, amount)
+	GlobalSignals.show_damage_number.emit(change_string, caster.global_position, color)
 
 
 func calc_stat_scaling_amount(ability: AbilityDefinition, caster: Character) -> float:
@@ -348,6 +355,17 @@ func calc_stat_scaling_amount(ability: AbilityDefinition, caster: Character) -> 
 			StatValue.Stat.STAMINA:
 				amt += caster.hp * stat_val.amount
 	return amt
+
+
+func handle_unique_ability_logic(ability: AbilityDefinition, caster_statuses: Dictionary, caster: Character):
+	match ability.ability_id:
+		&"energy_drink":
+			var heal_amount : int = ability.ability_data.get('heal_amount', 0)
+			ability.ability_data.set('heal_amount', max(heal_amount - 1, 0))
+			var stat_change := StatValue.new()
+			stat_change.stat = StatValue.Stat.STAMINA
+			stat_change.amount = heal_amount
+			apply_stat_change(stat_change, caster)
 
 
 func kill_character(char : Character):

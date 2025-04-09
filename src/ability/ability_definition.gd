@@ -19,12 +19,12 @@ enum Trigger {
 @export var cooldown : float = 1.0
 @export var cast_chance : float = 1.0
 
-@export var ability_keys : Array[StringName]
+@export var has_unique_description_logic : bool
+@export var ability_id : StringName
+@export var ability_data : Dictionary
 
 
 func get_format_string_values():
-	#if len(stat_changes) == 1:
-		#return stat_changes[0].amount + calc_stat_scaling_amount()
 	var values : Array = []
 	for stat_change in stat_changes:
 		values.append(stat_change.amount + calc_stat_scaling_amount())
@@ -54,3 +54,18 @@ func calc_stat_scaling_amount() -> float:
 			_:
 				print_debug("Unsupported stat: %s" % stat_val.stat)
 	return amt
+
+
+func get_description() -> String:
+	if self.has_unique_description_logic:
+		return self.get_unique_description()
+	if self.scaling.is_empty():
+		return self.description
+	return self.description % self.get_format_string_values()
+
+
+func get_unique_description() -> String:
+	match self.ability_id:
+		&"energy_drink":
+			return self.description % max(self.ability_data.get('heal_amount', 0), 0)
+	return self.description
