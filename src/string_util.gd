@@ -12,19 +12,21 @@ static var stat_names : Dictionary[StatValue.Stat, String] = {
 	StatValue.Stat.STAMINA: "Stamina",
 }
 
-static func get_stat_change_string(stat : StatValue.Stat, amount : float) -> String:
-	var percent := "%%" if is_percent(stat) else ""
+static func get_stat_change_string(stat_value : StatValue) -> String:
+	if stat_value.stat == StatValue.Stat.MONEY:
+		return format_money(stat_value.amount)
+	var percent := "%%" if is_percent(stat_value.stat) else ""
 	var format_string := "%s" + percent + " %s"
-	return format_string % [format_stat_number(stat, amount, true), stat_names.get(stat, "???")]
+	return format_string % [format_stat_number(stat_value, true), stat_names.get(stat_value.stat, "???")]
 
 
-static func format_stat_number(stat : StatValue.Stat, num : float, show_plus : bool = false) -> String:
-	if is_percent(stat):
+static func format_stat_number(stat_value : StatValue, show_plus : bool = false) -> String:
+	if is_percent(stat_value.stat):
 		if show_plus:
-			return "%+d" % (num * 100)
+			return "%+d" % (stat_value.amount * 100)
 		else:
-			return "%d" % (num * 100)
-	return format_number(num, show_plus)
+			return "%d" % (stat_value.amount * 100)
+	return format_number(stat_value.amount, show_plus)
 
 
 static func format_number(num : float, show_plus : bool = false) -> String:
@@ -84,5 +86,10 @@ static func is_percent(stat : StatValue.Stat):
 	]
 
 
-static func format_money(value : float) -> String:
+static func format_money(value : float, show_plus : bool = false) -> String:
+	if show_plus:
+		if value > 0:
+			return "+$%.2f" % value
+		else:
+			return "-$%.2f" % value
 	return "$%.2f" % value

@@ -47,4 +47,4 @@ func update_ability_description(ability_def : AbilityDefinition):
 
 func update_sell_value(sell_value : float):
 	self.sell_value_label.visible = true
-	self.sell_value_label.text = "Sell Value: %s" % StringUtil.format_money(sell_value)
+	self.sell_value_label.text = "Recycle Value: %s" % StringUtil.format_money(sell_value)

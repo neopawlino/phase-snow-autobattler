@@ -76,5 +76,5 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
-text = "Sell Value: $2.00"
+text = "Recycle Value: $2.00"
 autowrap_mode = 2

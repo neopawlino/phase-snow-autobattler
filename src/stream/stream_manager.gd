@@ -15,8 +15,6 @@ var original_player_team : Array[Character]
 
 var in_stream : bool = false
 
-@export var stat_colors : Dictionary[StatValue.Stat, Color]
-
 @export var tick_sound : AudioStream
 @export var tick_start_pitch : float = 0.5
 @export var tick_end_pitch : float = 1.5
@@ -325,11 +323,11 @@ func apply_stat_change(stat_change : StatValue, caster : Character):
 			GameState.members += amount
 		StatValue.Stat.STAMINA:
 			caster.hp = mini(caster.hp + int(amount), caster.max_hp)
+		StatValue.Stat.MONEY:
+			GameState.player_money += amount
 		_:
 			print_debug("Couldn't match stat: %s" % stat_change.stat)
-	var color : Color = self.stat_colors.get(stat_change.stat, Color.WHITE)
-	var change_string := StringUtil.get_stat_change_string(stat_change.stat, amount)
-	GlobalSignals.show_damage_number.emit(change_string, caster.global_position, color)
+	GlobalSignals.show_stream_stat_value.emit(stat_change, caster.global_position)
 
 
 func calc_stat_scaling_amount(ability: AbilityDefinition, caster: Character) -> float:
@@ -354,6 +352,8 @@ func calc_stat_scaling_amount(ability: AbilityDefinition, caster: Character) -> 
 				amt += GameState.members * stat_val.amount
 			StatValue.Stat.STAMINA:
 				amt += caster.hp * stat_val.amount
+			StatValue.Stat.MONEY:
+				amt += GameState.player_money * stat_val.amount
 	return amt
 
 

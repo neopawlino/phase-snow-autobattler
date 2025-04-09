@@ -11,6 +11,7 @@ enum Stat {
 	MEMBER_RATE,
 	MEMBERS,
 	STAMINA,
+	MONEY,
 }
 
 @export var stat : Stat

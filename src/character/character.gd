@@ -493,7 +493,7 @@ func receive_ability(ability: AbilityLevel, caster_statuses: Dictionary):
 
 func take_damage(amount : int):
 	self.hp -= amount
-	GlobalSignals.show_damage_number.emit(str(-amount), damage_numbers_origin.global_position, Color.FIREBRICK)
+	GlobalSignals.show_stream_damage_number.emit(str(-amount), damage_numbers_origin.global_position, Color.FIREBRICK)
 	sprite.damage_flash()
 	sprite.damage_shake(6)
 	SoundManager.play_sound(damage_audio)
