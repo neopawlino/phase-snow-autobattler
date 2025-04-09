@@ -82,3 +82,7 @@ static func is_percent(stat : StatValue.Stat):
 		StatValue.Stat.SUBSCRIBER_RATE,
 		StatValue.Stat.MEMBER_RATE,
 	]
+
+
+static func format_money(value : float) -> String:
+	return "$%.2f" % value

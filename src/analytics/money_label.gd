@@ -7,4 +7,4 @@ func _ready() -> void:
 
 
 func update_text(val : float):
-	self.text = "$%.2f" % val
+	self.text = StringUtil.format_money(val)

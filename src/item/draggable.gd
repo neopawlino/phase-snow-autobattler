@@ -142,6 +142,7 @@ func _make_custom_tooltip(for_text: String) -> Object:
 		tooltip.update_from_item_definition(drag_object.item_definition)
 	elif drag_object is Character:
 		tooltip.update_from_character_definition(drag_object.char_def)
+		tooltip.update_sell_value(drag_object.sell_value)
 		if not drag_object.abilities.is_empty():
 			tooltip.update_ability_description(drag_object.abilities.front())
 	return tooltip

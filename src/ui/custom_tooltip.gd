@@ -5,6 +5,7 @@ class_name CustomTooltip
 @export var description_label : RichTextLabel
 @export var cooldown_label : Label
 @export var cooldown_container : Control
+@export var sell_value_label : Label
 
 var item_def : ItemDefinition
 var ability_def : AbilityDefinition
@@ -42,3 +43,8 @@ func update_from_ability_definition(ability_def : AbilityDefinition):
 
 func update_ability_description(ability_def : AbilityDefinition):
 	self.description_label.text = ability_def.get_description()
+
+
+func update_sell_value(sell_value : float):
+	self.sell_value_label.visible = true
+	self.sell_value_label.text = "Sell Value: %s" % StringUtil.format_money(sell_value)

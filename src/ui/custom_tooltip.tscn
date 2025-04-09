@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_wgoo6"]
 [ext_resource type="Script" uid="uid://dolvmnfaggn87" path="res://src/ui/custom_tooltip.gd" id="2_7fbja"]
 
-[node name="CustomTooltip" type="Control" node_paths=PackedStringArray("title_label", "description_label", "cooldown_label", "cooldown_container")]
+[node name="CustomTooltip" type="Control" node_paths=PackedStringArray("title_label", "description_label", "cooldown_label", "cooldown_container", "sell_value_label")]
 custom_minimum_size = Vector2(360, 200)
 layout_mode = 3
 anchors_preset = 0
@@ -17,6 +17,7 @@ title_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/TitleLabel")
 description_label = NodePath("MarginContainer/VBoxContainer/DescriptionLabel")
 cooldown_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Cooldown/MarginContainer/CooldownLabel")
 cooldown_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Cooldown")
+sell_value_label = NodePath("MarginContainer/VBoxContainer/SellValueLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(360, 200)
@@ -66,3 +67,14 @@ text = "Test description lorem ipsum dolor \\nalkj
 
 dfl;ajkl;sdfj[n][\\n]"
 fit_content = true
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SellValueLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Sell Value: $2.00"
+autowrap_mode = 2

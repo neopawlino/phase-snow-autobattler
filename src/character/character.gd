@@ -92,9 +92,7 @@ var unique_status_icons : Array
 
 var team : int
 
-var sell_price : float = 2
-
-var last_tween : Tween
+var sell_value : float = 2
 
 var was_tooltip_open_for_character : bool
 
@@ -182,10 +180,7 @@ func die(damage : int):
 
 func handle_drag_ended():
 	self.sprite.frame = idle_sprite_frame
-	if last_tween:
-		last_tween.kill()
 	if GameState.drag_sell_button:
-		# dragging to recycle bin: move to signal, handle separately (character, item, ability)
 		self.sell_character()
 
 
@@ -227,7 +222,7 @@ func merge_character(other: Character):
 
 
 func sell_character():
-	GameState.player_money += sell_price
+	GameState.player_money += sell_value
 	if drag_component.cur_slot:
 		drag_component.cur_slot.slot_obj = null
 	self.queue_free()
@@ -349,6 +344,7 @@ func add_xp(amount : int):
 	xp += amount
 	if xp >= cur_level_req:
 		level_up()
+	sell_value += 1.0
 	xp_gained.emit()
 
 
