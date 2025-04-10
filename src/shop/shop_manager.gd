@@ -11,6 +11,7 @@ var item_slots : Array[Slot]
 @export var buy_price : float = 10
 @export var base_reroll_price : float = 2
 @export var reroll_increase : float = 1
+@export var reroll_increase_mult : float = 1.3
 
 var inflation_coeff : float = 1.0:
 	set(val):
@@ -111,10 +112,11 @@ func update_reroll_button_enabled(money: float = GameState.player_money):
 
 
 func reset_reroll_price():
-	reroll_price = base_reroll_price
+	reroll_price = base_reroll_price * inflation_coeff
 
 
 func increase_reroll_price():
+	reroll_price *= reroll_increase_mult
 	reroll_price += reroll_increase
 
 
