@@ -173,7 +173,7 @@ name_label = NodePath("Visual/CharacterUI/NameLabel")
 char_info_container = NodePath("Visual/CharacterUI")
 status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
 drag_component = NodePath("Draggable")
-ability_slot_container = NodePath("Visual/CharacterUI/AbilitiesContainer")
+ability_slot_container = NodePath("Visual/CharacterUI/ScrollContainer/AbilitiesContainer")
 character_ui = NodePath("Visual/CharacterUI")
 
 [node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("smoke_particles")]
@@ -352,11 +352,14 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AbilitiesContainer" type="GridContainer" parent="Visual/CharacterUI"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Visual/CharacterUI"]
+custom_minimum_size = Vector2(164, 54)
+layout_mode = 2
+
+[node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/CharacterUI/ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 4
-columns = 3
+size_flags_horizontal = 6
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
 offset_left = -60.0
