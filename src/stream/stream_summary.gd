@@ -22,7 +22,7 @@ enum StreamResult {
 
 @export var overlay : CanvasItem
 
-@export var base_revenue_label : Label
+@export var performance_bonus_label : Label
 @export var ad_revenue_container : Control
 @export var ad_revenue_label : Label
 @export var rpm_label : Label
@@ -68,7 +68,7 @@ func update_stream_finished():
 
 
 func update_revenue_breakdown():
-	self.base_revenue_label.text = StringUtil.format_money(GameState.stream_manager.base_revenue)
+	self.performance_bonus_label.text = StringUtil.format_money(GameState.stream_manager.get_performance_bonus())
 
 	self.ad_revenue_container.visible = GameState.stream_manager.ad_revenue > 0
 	self.ad_revenue_label.text = StringUtil.format_money(GameState.stream_manager.ad_revenue)

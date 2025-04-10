@@ -93,6 +93,7 @@ static func format_money(value : float, show_plus : bool = false) -> String:
 			plus_or_minus = "+"
 		else:
 			plus_or_minus = "-"
-	if absf(value) >= 1e9:
-		return plus_or_minus + "$" + format_scientific(value)
-	return plus_or_minus + "$%.2f" % value
+	if value >= 1e6:
+		return plus_or_minus + "$" + format_number(value, false)
+	else:
+		return plus_or_minus + "$%.2f" % value
