@@ -71,7 +71,8 @@ var xp : int = 0:
 	set(value):
 		xp = value
 		update_xp_bar(value)
-@onready var level_requirement : int = 1
+var total_xp : int = 0
+var level_requirement : int = 1
 var level_requirement_increase : int = 1
 var hp_on_level_up : int
 
@@ -216,7 +217,7 @@ func set_flipped(flipped: bool):
 
 
 func merge_character(other: Character):
-	other.add_xp(1)
+	other.add_xp(self.total_xp + 1)
 	remove_self()
 
 
@@ -329,6 +330,7 @@ func add_xp(amount : int):
 	if is_max_level():
 		return
 	xp += amount
+	total_xp += amount
 	if xp >= level_requirement:
 		level_up()
 	sell_value += 1.0
