@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_fs08f"]
 [ext_resource type="Script" uid="uid://7wlbp1eggga0" path="res://src/ability/ability.gd" id="1_sfoxn"]
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_uvmqb"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://src/item/draggable.tscn" id="2_sfoxn"]
 [ext_resource type="Resource" uid="uid://cn5wsgbf1r7t2" path="res://resources/ability_definitions/just_chatting.tres" id="3_0oypb"]
+[ext_resource type="Texture2D" uid="uid://bbwvpdjmjkx2k" path="res://public/ability_icons/energy_drink.png" id="4_rnp74"]
 
 [node name="Ability" type="Control" node_paths=PackedStringArray("drag_component", "icon", "progress_bar")]
 custom_minimum_size = Vector2(48, 48)
@@ -19,13 +19,14 @@ ability_definition = ExtResource("3_0oypb")
 progress_bar = NodePath("ProgressBar")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_uvmqb")
+texture = ExtResource("4_rnp74")
 expand_mode = 3
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
