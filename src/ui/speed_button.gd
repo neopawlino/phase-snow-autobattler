@@ -57,6 +57,8 @@ func set_speed(i : int) -> void:
 	Engine.time_scale = float(speed)
 	Engine.physics_ticks_per_second = base_physics_tps * speed
 	self.speed_label.text = "Speed: %dx" % speed
+	self.decrease_button.disabled = i == 0
+	self.increase_button.disabled = i == len(speed_options) - 1
 
 
 func save_speed(i : int) -> void:

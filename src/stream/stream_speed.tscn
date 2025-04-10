@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dyd8qxaxy06b1" path="res://src/ui/speed_button.gd" id="1_rpank"]
 
 [node name="StreamSpeedUI" type="MarginContainer" node_paths=PackedStringArray("decrease_button", "increase_button", "speed_label")]
+texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
