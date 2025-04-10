@@ -454,7 +454,8 @@ func update_revenue() -> void:
 
 
 func get_total_revenue() -> float:
-	return self.base_revenue + self.ad_revenue + self.member_revenue
+	var times_hit_goal := floorf(self.peak_viewers / self.viewer_goal)
+	return self.base_revenue * times_hit_goal + self.ad_revenue + self.member_revenue
 
 
 func proc_end_combat_items():

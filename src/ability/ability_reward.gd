@@ -17,8 +17,8 @@ func _ready() -> void:
 	GlobalSignals.stream_end_anim_finished.connect(show_ability_reward)
 	GlobalSignals.rewards_screen_finished.connect(close_ability_reward)
 	skip_button.pressed.connect(close_ability_reward)
-	# test
-	show_ability_reward()
+	self.close_ability_reward()
+	self.ability_reward_control.hide()
 
 
 func show_ability_reward():

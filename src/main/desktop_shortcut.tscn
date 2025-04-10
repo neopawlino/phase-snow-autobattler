@@ -30,6 +30,7 @@ texture = ExtResource("4_a85ql")
 
 [node name="NotificationIcon" type="TextureRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 16.0
 offset_top = 8.0
 offset_right = 56.0

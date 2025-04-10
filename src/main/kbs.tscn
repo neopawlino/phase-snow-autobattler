@@ -115,6 +115,7 @@ mouse_default_cursor_shape = 2
 text = "Skip"
 
 [node name="Items" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -183,7 +184,75 @@ size_flags_vertical = 4
 [node name="HBoxContainer2" type="HBoxContainer" parent="KBSMain/VBoxContainer"]
 layout_mode = 2
 
+[node name="Abilities" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("1_4p8mj")
+theme_type_variation = &"KbsPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities"]
+layout_mode = 2
+theme_override_constants/margin_top = -32
+
+[node name="Container" type="VBoxContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Abilities"
+
+[node name="MarginContainer2" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="AbilitySlotsContainer" type="HFlowContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/v_separation = 8
+script = ExtResource("3_a1e8s")
+
+[node name="AbilitySlot" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
+layout_mode = 2
+
+[node name="AbilitySlot2" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
+layout_mode = 2
+
+[node name="AbilitySlot3" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
+layout_mode = 2
+
+[node name="AbilitySlot4" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
+layout_mode = 2
+
+[node name="AbilitySlot5" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
+layout_mode = 2
+
+[node name="AbilitySlot6" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
+layout_mode = 2
+
+[node name="AbilitySlot7" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
+layout_mode = 2
+
+[node name="AbilitySlot8" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
+layout_mode = 2
+
 [node name="TabContainer" type="TabContainer" parent="KBSMain/VBoxContainer/HBoxContainer2"]
+visible = false
 custom_minimum_size = Vector2(128, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -191,82 +260,13 @@ current_tab = 0
 tabs_position = 1
 clip_tabs = false
 
-[node name="Abilities" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer"]
+[node name="Food" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.5
+size_flags_vertical = 3
 theme = ExtResource("1_4p8mj")
 theme_type_variation = &"KbsPanel"
 metadata/_tab_index = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities"]
-layout_mode = 2
-theme_override_constants/margin_top = -32
-
-[node name="Container" type="VBoxContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-
-[node name="Label" type="Label" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-text = "Abilities"
-
-[node name="MarginContainer2" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-
-[node name="ScrollContainer" type="ScrollContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2"]
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="AbilitySlotsContainer" type="HFlowContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/v_separation = 8
-script = ExtResource("3_a1e8s")
-
-[node name="AbilitySlot" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
-layout_mode = 2
-
-[node name="AbilitySlot2" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
-layout_mode = 2
-
-[node name="AbilitySlot3" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
-layout_mode = 2
-
-[node name="AbilitySlot4" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
-layout_mode = 2
-
-[node name="AbilitySlot5" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
-layout_mode = 2
-
-[node name="AbilitySlot6" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
-layout_mode = 2
-
-[node name="AbilitySlot7" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
-layout_mode = 2
-
-[node name="AbilitySlot8" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
-layout_mode = 2
-
-[node name="Food" type="PanelContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("1_4p8mj")
-theme_type_variation = &"KbsPanel"
-metadata/_tab_index = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="KBSMain/VBoxContainer/HBoxContainer2/TabContainer/Food"]
 layout_mode = 2
