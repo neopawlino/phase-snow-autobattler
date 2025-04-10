@@ -8,7 +8,7 @@ var item_slots : Array[Slot]
 @export var window : CustomWindow
 
 @export var talent_slot_count : int = 3
-@export var buy_price : float = 3
+@export var buy_price : float = 10
 @export var base_reroll_price : float = 2
 @export var reroll_increase : float = 1
 
