@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=7 format=3 uid="uid://ba6w7lds8uqqi"]
+
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_px0ai"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_x5o1m"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_o4h3s"]
+
+[sub_resource type="Resource" id="Resource_4jnqx"]
+script = ExtResource("2_x5o1m")
+stat = 1
+amount = 50.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_1iy0p"]
+script = ExtResource("2_x5o1m")
+stat = 8
+amount = -1.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_njj5a"]
+script = ExtResource("2_x5o1m")
+stat = 2
+amount = -0.05
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[resource]
+script = ExtResource("3_o4h3s")
+ability_name = "Rage Bait"
+icon = ExtResource("1_px0ai")
+description = "Gain 40 Views/sec
+Lose 5% Viewer Retention
+Lose 1 Stamina"
+stat_changes = Array[ExtResource("2_x5o1m")]([SubResource("Resource_4jnqx"), SubResource("Resource_1iy0p"), SubResource("Resource_njj5a")])
+scaling = Array[ExtResource("2_x5o1m")]([])
+trigger = 0
+cooldown = 8.0
+cast_chance = 1.0
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
+metadata/_custom_type_script = "uid://cgaytqa18e8dx"

@@ -7,5 +7,5 @@ script = ExtResource("1_o78bw")
 base_folder = "res://resources/ability_definitions"
 includes = Array[String](["*.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://resources/ability_definitions/clip_that.tres", "res://resources/ability_definitions/energy_drink.tres", "res://resources/ability_definitions/gamer_moment.tres", "res://resources/ability_definitions/just_chatting.tres"])
+paths = Array[String](["res://resources/ability_definitions/clip_that.tres", "res://resources/ability_definitions/energy_drink.tres", "res://resources/ability_definitions/gamer_moment.tres", "res://resources/ability_definitions/just_chatting.tres", "res://resources/ability_definitions/members_asmr.tres", "res://resources/ability_definitions/rage_bait.tres"])
 metadata/_custom_type_script = "uid://bbdbym8di10nf"

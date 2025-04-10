@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=6 format=3 uid="uid://bre61gepw1pvt"]
+
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_50ayu"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_ngdmt"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_bbnxf"]
+
+[sub_resource type="Resource" id="Resource_4jnqx"]
+script = ExtResource("2_ngdmt")
+stat = 1
+amount = 1.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_1iy0p"]
+script = ExtResource("2_ngdmt")
+stat = 6
+amount = 0.02
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[resource]
+script = ExtResource("3_bbnxf")
+ability_name = "Members ASMR"
+icon = ExtResource("1_50ayu")
+description = "Gain 1 View/sec
+Gain 2% Membership Rate"
+stat_changes = Array[ExtResource("2_ngdmt")]([SubResource("Resource_4jnqx"), SubResource("Resource_1iy0p")])
+scaling = Array[ExtResource("2_ngdmt")]([])
+trigger = 0
+cooldown = 5.0
+cast_chance = 1.0
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
+metadata/_custom_type_script = "uid://cgaytqa18e8dx"
