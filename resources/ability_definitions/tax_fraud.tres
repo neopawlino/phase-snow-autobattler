@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [sub_resource type="Resource" id="Resource_1m1yu"]
 script = ExtResource("2_1m1yu")
-stat = 3
+stat = 0
 amount = 0.0
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
@@ -59,7 +59,7 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 script = ExtResource("1_owb8v")
 stat_change = SubResource("Resource_hyjlk")
 stat_scaling = SubResource("Resource_atxmv")
-chance = 0.2
+chance = 0.4
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [resource]
@@ -67,8 +67,8 @@ script = ExtResource("2_7c38d")
 ability_name = "Tax Fraud"
 icon = ExtResource("3_rehar")
 description = "Gain $ equal to 10%% of Money (Currently $%d)
-Gain Viewers equal to 5%% of Money (Currently %d)
-20%% chance to lose 20%% Money (Currently $%d)"
+Gain Views equal to 5%% of Money (Currently %d)
+40%% chance to lose 20%% Money (Currently $%d)"
 ability_effects = Array[ExtResource("1_owb8v")]([SubResource("Resource_tno5r"), SubResource("Resource_hla6t"), SubResource("Resource_o24g4")])
 trigger = 0
 cooldown = 10.0
