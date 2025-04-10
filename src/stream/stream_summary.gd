@@ -64,18 +64,18 @@ func update_stream_finished():
 	self.members_container.visible = GameState.stream_manager.new_members > 0
 	self.members_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.new_members)
 
-	self.total_revenue_label.text = "$%.2f" % GameState.stream_manager.total_revenue
+	self.total_revenue_label.text = StringUtil.format_money(GameState.stream_manager.total_revenue)
 
 
 func update_revenue_breakdown():
-	self.base_revenue_label.text = "$%.2f" % GameState.stream_manager.base_revenue
+	self.base_revenue_label.text = StringUtil.format_money(GameState.stream_manager.base_revenue)
 
 	self.ad_revenue_container.visible = GameState.stream_manager.ad_revenue > 0
-	self.ad_revenue_label.text = "$%.2f" % GameState.stream_manager.ad_revenue
-	self.rpm_label.text = "($%.2f per 1,000 views)" % GameState.stream_manager.ad_rpm
+	self.ad_revenue_label.text = StringUtil.format_money(GameState.stream_manager.ad_revenue)
+	self.rpm_label.text = "(%s per 1,000 views)" % StringUtil.format_money(GameState.stream_manager.ad_rpm)
 
 	self.member_revenue_container.visible = GameState.members > 0
-	self.member_revenue_label.text = "$%.2f" % GameState.stream_manager.member_revenue
+	self.member_revenue_label.text = StringUtil.format_money(GameState.stream_manager.member_revenue)
 
 	# no item revenue yet
 	self.item_revenue_container.visible = false

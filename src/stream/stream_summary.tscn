@@ -376,7 +376,7 @@ text = "Base Salary"
 [node name="BaseRevenueLabel" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer/BaseRevenueContainer"]
 layout_mode = 2
 theme_type_variation = &"RevenueLabel"
-text = "$5.00"
+text = "$1000000000"
 
 [node name="AdRevenueContainer" type="HBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3/VBoxContainer"]
 layout_mode = 2
