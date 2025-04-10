@@ -352,10 +352,11 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/CharacterUI"]
+[node name="AbilitiesContainer" type="GridContainer" parent="Visual/CharacterUI"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
+columns = 3
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
 offset_left = -60.0

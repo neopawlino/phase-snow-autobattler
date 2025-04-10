@@ -71,8 +71,9 @@ var xp : int = 0:
 	set(value):
 		xp = value
 		update_xp_bar(value)
-var level_requirements : Array[int]
-var levels : Array[CharacterLevel]
+@onready var level_requirement : int = 1
+var level_requirement_increase : int = 1
+var hp_on_level_up : int
 
 var abilities : Array[AbilityDefinition]
 
@@ -237,9 +238,8 @@ func update_xp_bar(xp : int):
 		xp_bar.max_value = 1
 		xp_bar.value = 1
 	else:
-		var xp_req := level_requirements[cur_level]
-		xp_label.text = "%s/%s" % [xp, xp_req]
-		xp_bar.max_value = xp_req
+		xp_label.text = "%s/%s" % [xp, level_requirement]
+		xp_bar.max_value = level_requirement
 		xp_bar.value = xp
 
 
@@ -255,10 +255,9 @@ func my_duplicate() -> Character:
 	new_char.max_hp = self.max_hp
 	new_char.hp = self.max_hp
 	new_char.team = self.team
+	new_char.level_requirement = self.level_requirement
 	new_char.cur_level = self.cur_level
 	new_char.xp = self.xp
-	new_char.level_requirements = self.level_requirements.duplicate()
-	new_char.levels = self.levels.duplicate()
 
 	new_char.char_def = self.char_def
 
@@ -304,8 +303,7 @@ func load_from_character_definition(char_def : CharacterDefinition):
 	self.character_name = char_def.character_name
 	self.max_hp = char_def.max_hp
 	self.hp = max_hp
-	self.levels = char_def.levels.duplicate()
-	self.level_requirements = char_def.level_requirements.duplicate()
+	self.hp_on_level_up = char_def.hp_on_level_up
 	self.cur_level = char_def.initial_level
 
 	for unique_status in char_def.unique_statuses:
@@ -330,9 +328,8 @@ func load_from_character_definition(char_def : CharacterDefinition):
 func add_xp(amount : int):
 	if is_max_level():
 		return
-	var cur_level_req := level_requirements[cur_level]
 	xp += amount
-	if xp >= cur_level_req:
+	if xp >= level_requirement:
 		level_up()
 	sell_value += 1.0
 	xp_gained.emit()
@@ -340,17 +337,13 @@ func add_xp(amount : int):
 
 func level_up():
 	# index 0 == level 1, etc.
-	var char_level : CharacterLevel = levels[cur_level]
-	max_hp += char_level.hp
-	hp += char_level.hp
-
-	for status in char_level.statuses:
-		self.add_status(status.status_id, status.value)
+	max_hp += hp_on_level_up
+	hp += hp_on_level_up
 
 	self.add_ability_slot()
 
-	var cur_level_req := level_requirements[cur_level]
-	xp -= cur_level_req
+	xp -= level_requirement
+	level_requirement += level_requirement_increase
 	cur_level += 1
 	SoundManager.play_sound(level_up_audio)
 	level_gained.emit()
@@ -537,4 +530,4 @@ func can_merge(other: Character) -> bool:
 
 
 func is_max_level() -> bool:
-	return cur_level >= len(levels)
+	return false

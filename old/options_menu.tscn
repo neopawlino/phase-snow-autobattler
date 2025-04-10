@@ -97,13 +97,12 @@ text = "Hard Mode"
 layout_mode = 2
 
 [node name="Cheats" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Cheats"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Enable Cheats/Debug Menu"
+text = "Enable Cheats (in Shop)"
 
 [node name="CheatsCheck" type="CheckButton" parent="ScrollContainer/MarginContainer/VBoxContainer/Cheats"]
 layout_mode = 2

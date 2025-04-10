@@ -36,6 +36,8 @@ var shop_slot_scene : PackedScene = preload("res://src/shop/shop_slot.tscn")
 @export var reroll_normal_text_color : Color = Color("0f1111")
 @export var reroll_disabled_text_color : Color = Color("00000089")
 
+@export var cheats_container : Control
+
 
 func _ready() -> void:
 	for child in talent_slot_container.get_children():
@@ -57,6 +59,11 @@ func _ready() -> void:
 	GlobalSignals.stream_end_anim_finished.connect(reroll_talents)
 	GlobalSignals.stream_end_anim_finished.connect(reset_reroll_price)
 	GlobalSignals.stream_end_anim_finished.connect(window.notification.emit)
+
+	cheats_container.visible = GameState.cheats_enabled
+	GameState.cheats_enabled_changed.connect(func(enabled : bool):
+		cheats_container.visible = enabled
+	)
 
 	window.notification.emit()
 
