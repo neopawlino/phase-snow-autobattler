@@ -23,6 +23,7 @@ size = Vector2i(1024, 600)
 min_size = Vector2i(500, 500)
 theme = ExtResource("1_4p8mj")
 script = ExtResource("2_0dw17")
+notif_on_ready = true
 
 [node name="KBSMain" type="PanelContainer" parent="."]
 anchors_preset = 15
