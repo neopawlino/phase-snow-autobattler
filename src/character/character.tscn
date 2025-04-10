@@ -353,13 +353,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Visual/CharacterUI"]
-custom_minimum_size = Vector2(164, 54)
+custom_minimum_size = Vector2(160, 54)
 layout_mode = 2
 
 [node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/CharacterUI/ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_constants/separation = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
 offset_left = -60.0

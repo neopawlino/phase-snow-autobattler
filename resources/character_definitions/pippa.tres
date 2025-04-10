@@ -1,18 +1,12 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=14 format=3 uid="uid://110qt3emx8hl"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=12 format=3 uid="uid://110qt3emx8hl"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_gfe1s"]
+[ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="2_46065"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_bxlyt"]
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="3_inkqf"]
 [ext_resource type="Texture2D" uid="uid://c6kreiov0lvdg" path="res://public/my_assets/SAPC_Pippa_Sheet.png" id="4_1d2hq"]
-[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="5_2leud"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="6_j07mt"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_gkwi3"]
-
-[sub_resource type="Resource" id="Resource_s18u6"]
-script = ExtResource("2_bxlyt")
-stat = 5
-amount = 0.01
-metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
 [sub_resource type="Resource" id="Resource_gp3u3"]
 script = ExtResource("2_bxlyt")
@@ -20,12 +14,23 @@ stat = 3
 amount = 10.0
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
+[sub_resource type="Resource" id="Resource_s18u6"]
+script = ExtResource("2_bxlyt")
+stat = 5
+amount = 0.01
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_h2ynj"]
+script = ExtResource("2_46065")
+stat_change = SubResource("Resource_gp3u3")
+stat_scaling = SubResource("Resource_s18u6")
+metadata/_custom_type_script = "uid://l8fykjikpf83"
+
 [sub_resource type="Resource" id="Resource_h8imw"]
 script = ExtResource("1_gfe1s")
 ability_name = "Yabbit"
 description = "When Pippa uses an ability, gain Viewers equal to 10 + 1%% of Subscribers (currently %d)"
-stat_changes = Array[ExtResource("2_bxlyt")]([SubResource("Resource_gp3u3")])
-scaling = Array[ExtResource("2_bxlyt")]([SubResource("Resource_s18u6")])
+ability_effects = Array[ExtResource("2_46065")]([SubResource("Resource_h2ynj")])
 trigger = 2
 cooldown = 1.0
 cast_chance = 1.0
@@ -33,21 +38,6 @@ has_unique_description_logic = false
 ability_id = &""
 ability_data = {}
 metadata/_custom_type_script = "uid://cgaytqa18e8dx"
-
-[sub_resource type="Resource" id="Resource_cbdyu"]
-script = ExtResource("5_2leud")
-hp = 5
-statuses = Array[ExtResource("3_inkqf")]([])
-
-[sub_resource type="Resource" id="Resource_7bqur"]
-script = ExtResource("5_2leud")
-hp = 5
-statuses = Array[ExtResource("3_inkqf")]([])
-
-[sub_resource type="Resource" id="Resource_ks00s"]
-script = ExtResource("5_2leud")
-hp = 5
-statuses = Array[ExtResource("3_inkqf")]([])
 
 [resource]
 script = ExtResource("6_j07mt")
@@ -59,8 +49,7 @@ sprite_scale = Vector2(2, 2)
 sprite_hframes = 4
 max_hp = 20
 abilities = Array[ExtResource("1_gfe1s")]([SubResource("Resource_h8imw")])
-level_requirements = Array[int]([1, 2, 3])
-levels = Array[ExtResource("5_2leud")]([SubResource("Resource_cbdyu"), SubResource("Resource_7bqur"), SubResource("Resource_ks00s")])
+hp_on_level_up = 5
 initial_level = 0
 initial_ability_levels = Array[int]([1, 0, 0])
 statuses = Array[ExtResource("3_inkqf")]([])

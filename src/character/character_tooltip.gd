@@ -71,13 +71,13 @@ func update_char_level_bonuses(level : int):
 	if character.is_max_level():
 		level_up_container.visible = false
 		return
-	var next_level := character.levels[character.cur_level]
-	level_up_label.text = "On Level Up: +%sHP" % next_level.hp
-	for child in level_up_status_container.get_children():
-		child.queue_free()
-	for status in next_level.statuses:
-		var icon := StatusIcon.make_status_icon(status.status_id, status.value)
-		level_up_status_container.add_child(icon)
+	#var next_level := character.levels[character.cur_level]
+	#level_up_label.text = "On Level Up: +%sHP" % next_level.hp
+	#for child in level_up_status_container.get_children():
+		#child.queue_free()
+	#for status in next_level.statuses:
+		#var icon := StatusIcon.make_status_icon(status.status_id, status.value)
+		#level_up_status_container.add_child(icon)
 
 
 func load_char(character : Character):

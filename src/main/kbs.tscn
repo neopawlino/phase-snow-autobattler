@@ -18,7 +18,7 @@
 [node name="KBS" type="Window"]
 auto_translate_mode = 1
 title = "KBS v0.0.1"
-position = Vector2i(20, 36)
+position = Vector2i(0, 36)
 size = Vector2i(1024, 600)
 min_size = Vector2i(500, 500)
 theme = ExtResource("1_4p8mj")

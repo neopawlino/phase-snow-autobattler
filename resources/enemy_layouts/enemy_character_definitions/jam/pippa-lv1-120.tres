@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=16 format=3 uid="uid://2vsws1vrpcum"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=10 format=3 uid="uid://2vsws1vrpcum"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_a2fir"]
-[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_nx3be"]
+[ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="2_npmmd"]
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="3_2bjbq"]
 [ext_resource type="Texture2D" uid="uid://c6kreiov0lvdg" path="res://public/my_assets/SAPC_Pippa_Sheet.png" id="4_d08cq"]
-[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="5_5vg4x"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="6_n4ppp"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_nx3be"]
 
@@ -12,8 +11,7 @@
 script = ExtResource("1_a2fir")
 ability_name = "The Ripper"
 description = ""
-stat_changes = Array[ExtResource("2_nx3be")]([])
-scaling = Array[ExtResource("2_nx3be")]([])
+ability_effects = Array[ExtResource("2_npmmd")]([])
 trigger = 0
 cooldown = 1.0
 cast_chance = 1.0
@@ -25,8 +23,7 @@ ability_data = {}
 script = ExtResource("1_a2fir")
 ability_name = "I'm Gonna ****ing Shoot Up A W*lm*rt"
 description = ""
-stat_changes = Array[ExtResource("2_nx3be")]([])
-scaling = Array[ExtResource("2_nx3be")]([])
+ability_effects = Array[ExtResource("2_npmmd")]([])
 trigger = 0
 cooldown = 1.0
 cast_chance = 1.0
@@ -38,39 +35,13 @@ ability_data = {}
 script = ExtResource("1_a2fir")
 ability_name = "Gamer Rage"
 description = ""
-stat_changes = Array[ExtResource("2_nx3be")]([])
-scaling = Array[ExtResource("2_nx3be")]([])
+ability_effects = Array[ExtResource("2_npmmd")]([])
 trigger = 0
 cooldown = 1.0
 cast_chance = 1.0
 has_unique_description_logic = false
 ability_id = &""
 ability_data = {}
-
-[sub_resource type="Resource" id="Resource_cbdyu"]
-script = ExtResource("5_5vg4x")
-hp = 8
-statuses = Array[ExtResource("3_2bjbq")]([])
-
-[sub_resource type="Resource" id="Resource_3tl47"]
-script = ExtResource("3_2bjbq")
-status_id = 2
-value = 1
-
-[sub_resource type="Resource" id="Resource_7bqur"]
-script = ExtResource("5_5vg4x")
-hp = 8
-statuses = Array[ExtResource("3_2bjbq")]([SubResource("Resource_3tl47")])
-
-[sub_resource type="Resource" id="Resource_r6e1p"]
-script = ExtResource("3_2bjbq")
-status_id = 0
-value = 2
-
-[sub_resource type="Resource" id="Resource_ks00s"]
-script = ExtResource("5_5vg4x")
-hp = 8
-statuses = Array[ExtResource("3_2bjbq")]([SubResource("Resource_r6e1p")])
 
 [resource]
 script = ExtResource("6_n4ppp")
@@ -82,8 +53,7 @@ sprite_scale = Vector2(3, 3)
 sprite_hframes = 4
 max_hp = 38
 abilities = Array[ExtResource("1_a2fir")]([SubResource("Resource_muout"), SubResource("Resource_ip3ax"), SubResource("Resource_edjr2")])
-level_requirements = Array[int]([1, 2, 3])
-levels = Array[ExtResource("5_5vg4x")]([SubResource("Resource_cbdyu"), SubResource("Resource_7bqur"), SubResource("Resource_ks00s")])
+hp_on_level_up = 5
 initial_level = 1
 initial_ability_levels = Array[int]([1, 2, 0])
 statuses = Array[ExtResource("3_2bjbq")]([])

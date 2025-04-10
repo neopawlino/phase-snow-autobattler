@@ -1,36 +1,51 @@
-[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=7 format=3 uid="uid://ba6w7lds8uqqi"]
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=11 format=3 uid="uid://ba6w7lds8uqqi"]
 
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_px0ai"]
+[ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_x5o1m"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_x5o1m"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_o4h3s"]
 
-[sub_resource type="Resource" id="Resource_4jnqx"]
+[sub_resource type="Resource" id="Resource_o4h3s"]
 script = ExtResource("2_x5o1m")
 stat = 1
-amount = 50.0
+amount = 40.0
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
-[sub_resource type="Resource" id="Resource_1iy0p"]
-script = ExtResource("2_x5o1m")
-stat = 8
-amount = -1.0
-metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+[sub_resource type="Resource" id="Resource_7tvos"]
+script = ExtResource("1_x5o1m")
+stat_change = SubResource("Resource_o4h3s")
+metadata/_custom_type_script = "uid://l8fykjikpf83"
 
-[sub_resource type="Resource" id="Resource_njj5a"]
+[sub_resource type="Resource" id="Resource_ggtyu"]
 script = ExtResource("2_x5o1m")
 stat = 2
-amount = -0.05
+amount = -0.03
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_g1x8s"]
+script = ExtResource("1_x5o1m")
+stat_change = SubResource("Resource_ggtyu")
+metadata/_custom_type_script = "uid://l8fykjikpf83"
+
+[sub_resource type="Resource" id="Resource_yevbq"]
+script = ExtResource("2_x5o1m")
+stat = 8
+amount = -2.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_m08b4"]
+script = ExtResource("1_x5o1m")
+stat_change = SubResource("Resource_yevbq")
+metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [resource]
 script = ExtResource("3_o4h3s")
 ability_name = "Rage Bait"
 icon = ExtResource("1_px0ai")
 description = "Gain 40 Views/sec
-Lose 5% Viewer Retention
-Lose 1 Stamina"
-stat_changes = Array[ExtResource("2_x5o1m")]([SubResource("Resource_4jnqx"), SubResource("Resource_1iy0p"), SubResource("Resource_njj5a")])
-scaling = Array[ExtResource("2_x5o1m")]([])
+Lose 3% Viewer Retention
+Lose 2 Stamina"
+ability_effects = Array[ExtResource("1_x5o1m")]([SubResource("Resource_7tvos"), SubResource("Resource_g1x8s"), SubResource("Resource_m08b4")])
 trigger = 0
 cooldown = 8.0
 cast_chance = 1.0

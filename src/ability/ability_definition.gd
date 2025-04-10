@@ -12,8 +12,7 @@ enum Trigger {
 @export var ability_name : String
 @export var icon : Texture2D
 @export_multiline var description : String
-@export var stat_changes : Array[StatValue]
-@export var scaling : Array[StatValue]
+@export var ability_effects : Array[AbilityEffect]
 
 @export var trigger : Trigger
 @export var cooldown : float = 1.0
@@ -24,44 +23,45 @@ enum Trigger {
 @export var ability_data : Dictionary
 
 
-func get_format_string_values():
+func get_format_string_values() -> Array:
 	var values : Array = []
-	for stat_change in stat_changes:
-		values.append(stat_change.amount + calc_stat_scaling_amount())
+	for effect in ability_effects:
+		if effect.stat_scaling:
+			values.append(effect.stat_change.amount + calc_stat_scaling_amount(effect.stat_scaling))
 	return values
 
 
-func calc_stat_scaling_amount() -> float:
+static func calc_stat_scaling_amount(scaling : StatValue) -> float:
 	var amt : float = 0
-	for stat_val in self.scaling:
-		match stat_val.stat:
-			StatValue.Stat.VIEWS:
-				amt += GameState.stream_manager.views * stat_val.amount
-			StatValue.Stat.VIEWS_PER_SEC:
-				amt += GameState.stream_manager.views_per_sec * stat_val.amount
-			StatValue.Stat.VIEWER_RETENTION:
-				amt += GameState.stream_manager.viewer_retention * stat_val.amount
-			StatValue.Stat.VIEWERS:
-				amt += GameState.stream_manager.viewers * stat_val.amount
-			StatValue.Stat.SUBSCRIBER_RATE:
-				amt += GameState.stream_manager.subscriber_rate * stat_val.amount
-			StatValue.Stat.SUBSCRIBERS:
-				amt += GameState.subscribers * stat_val.amount
-			StatValue.Stat.MEMBER_RATE:
-				amt += GameState.stream_manager.member_rate * stat_val.amount
-			StatValue.Stat.MEMBERS:
-				amt += GameState.members * stat_val.amount
-			_:
-				print_debug("Unsupported stat: %s" % stat_val.stat)
+	match scaling.stat:
+		StatValue.Stat.VIEWS:
+			amt += GameState.stream_manager.views * scaling.amount
+		StatValue.Stat.VIEWS_PER_SEC:
+			amt += GameState.stream_manager.views_per_sec * scaling.amount
+		StatValue.Stat.VIEWER_RETENTION:
+			amt += GameState.stream_manager.viewer_retention * scaling.amount
+		StatValue.Stat.VIEWERS:
+			amt += GameState.stream_manager.viewers * scaling.amount
+		StatValue.Stat.SUBSCRIBER_RATE:
+			amt += GameState.stream_manager.subscriber_rate * scaling.amount
+		StatValue.Stat.SUBSCRIBERS:
+			amt += GameState.subscribers * scaling.amount
+		StatValue.Stat.MEMBER_RATE:
+			amt += GameState.stream_manager.member_rate * scaling.amount
+		StatValue.Stat.MEMBERS:
+			amt += GameState.members * scaling.amount
+		_:
+			print_debug("Unsupported stat: %s" % scaling.stat)
 	return amt
 
 
 func get_description() -> String:
 	if self.has_unique_description_logic:
 		return self.get_unique_description()
-	if self.scaling.is_empty():
+	var scaling_values := self.get_format_string_values()
+	if scaling_values.is_empty():
 		return self.description
-	return self.description % self.get_format_string_values()
+	return self.description % scaling_values
 
 
 func get_unique_description() -> String:

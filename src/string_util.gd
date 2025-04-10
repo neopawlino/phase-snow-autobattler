@@ -12,7 +12,7 @@ static var stat_names : Dictionary[StatValue.Stat, String] = {
 	StatValue.Stat.STAMINA: "Stamina",
 }
 
-static func get_stat_change_string(stat_value : StatValue) -> String:
+func get_stat_change_string(stat_value : StatValue) -> String:
 	if stat_value.stat == StatValue.Stat.MONEY:
 		return format_money(stat_value.amount, true)
 	var percent := "%%" if is_percent(stat_value.stat) else ""
@@ -20,7 +20,7 @@ static func get_stat_change_string(stat_value : StatValue) -> String:
 	return format_string % [format_stat_number(stat_value, true), stat_names.get(stat_value.stat, "???")]
 
 
-static func format_stat_number(stat_value : StatValue, show_plus : bool = false) -> String:
+func format_stat_number(stat_value : StatValue, show_plus : bool = false) -> String:
 	if is_percent(stat_value.stat):
 		if show_plus:
 			return "%+d" % (stat_value.amount * 100)
@@ -29,7 +29,7 @@ static func format_stat_number(stat_value : StatValue, show_plus : bool = false)
 	return format_number(stat_value.amount, show_plus)
 
 
-static func format_number(num : float, show_plus : bool = false) -> String:
+func format_number(num : float, show_plus : bool = false) -> String:
 	if num >= 1e15: # switch to scientific at quadrillion
 		return format_scientific(num, show_plus)
 	elif num >= 1e12: # 1 trillion
@@ -46,7 +46,7 @@ static func format_number(num : float, show_plus : bool = false) -> String:
 		return "%d" % num
 
 
-static func format_letters(num : float, letter_value : float, letter : String, show_plus : bool = false) -> String:
+func format_letters(num : float, letter_value : float, letter : String, show_plus : bool = false) -> String:
 	var significand := num / letter_value
 	var format_string := "%"
 	if show_plus:
@@ -68,7 +68,7 @@ static func format_letters(num : float, letter_value : float, letter : String, s
 		return format_string % [significand, letter]
 
 
-static func format_scientific(num : float, show_plus : bool = false) -> String:
+func format_scientific(num : float, show_plus : bool = false) -> String:
 	var exponent := log(num) / log(10.0)
 	var significand := num / pow(10, floorf(exponent) - 2) # to hundreds place
 	significand = floorf(significand) # always round down
@@ -78,7 +78,7 @@ static func format_scientific(num : float, show_plus : bool = false) -> String:
 	return "%.2fe%d" % [significand, exponent]
 
 
-static func is_percent(stat : StatValue.Stat):
+func is_percent(stat : StatValue.Stat):
 	return stat in [
 		StatValue.Stat.VIEWER_RETENTION,
 		StatValue.Stat.SUBSCRIBER_RATE,
@@ -86,7 +86,7 @@ static func is_percent(stat : StatValue.Stat):
 	]
 
 
-static func format_money(value : float, show_plus : bool = false) -> String:
+func format_money(value : float, show_plus : bool = false) -> String:
 	var plus_or_minus := ""
 	if show_plus:
 		if value > 0:

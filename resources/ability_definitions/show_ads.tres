@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=10 format=3 uid="uid://udkratxoq7db"]
+
+[ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_0g037"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_j4xty"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_yo31j"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="3_agw2c"]
+
+[sub_resource type="Resource" id="Resource_lxtkx"]
+script = ExtResource("2_yo31j")
+stat = 9
+amount = 0.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_jxi5g"]
+script = ExtResource("2_yo31j")
+stat = 3
+amount = 0.02
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_ingym"]
+script = ExtResource("1_0g037")
+stat_change = SubResource("Resource_lxtkx")
+stat_scaling = SubResource("Resource_jxi5g")
+metadata/_custom_type_script = "uid://l8fykjikpf83"
+
+[sub_resource type="Resource" id="Resource_xdf6s"]
+script = ExtResource("2_yo31j")
+stat = 2
+amount = -0.01
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_ktbkg"]
+script = ExtResource("1_0g037")
+stat_change = SubResource("Resource_xdf6s")
+metadata/_custom_type_script = "uid://l8fykjikpf83"
+
+[resource]
+script = ExtResource("2_j4xty")
+ability_name = "Show Ads"
+icon = ExtResource("3_agw2c")
+description = "Gain $0.02 per viewer (Currently %d)
+Lose 1%% Viewer Retention"
+ability_effects = Array[ExtResource("1_0g037")]([SubResource("Resource_ingym"), SubResource("Resource_ktbkg")])
+trigger = 0
+cooldown = 6.0
+cast_chance = 1.0
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
+metadata/_custom_type_script = "uid://cgaytqa18e8dx"

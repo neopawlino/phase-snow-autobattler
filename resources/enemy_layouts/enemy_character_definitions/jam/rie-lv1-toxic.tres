@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=16 format=3 uid="uid://nvvwsoulwx7k"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=10 format=3 uid="uid://nvvwsoulwx7k"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_ijlsd"]
-[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_js7g6"]
+[ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="2_us0qe"]
 [ext_resource type="Script" uid="uid://dujerhumvfdvw" path="res://resources/status_effects/status_effect.gd" id="3_cx815"]
 [ext_resource type="Texture2D" uid="uid://c48xyiiskpfks" path="res://public/my_assets/SAPC_Rie_Sheet.png" id="4_bpquc"]
-[ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="5_awikx"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="6_2macc"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_js7g6"]
 
@@ -12,8 +11,7 @@
 script = ExtResource("1_ijlsd")
 ability_name = "Pafu Bite"
 description = ""
-stat_changes = Array[ExtResource("2_js7g6")]([])
-scaling = Array[ExtResource("2_js7g6")]([])
+ability_effects = Array[ExtResource("2_us0qe")]([])
 trigger = 0
 cooldown = 1.0
 cast_chance = 1.0
@@ -25,8 +23,7 @@ ability_data = {}
 script = ExtResource("1_ijlsd")
 ability_name = "\"Love\" Potion #520"
 description = ""
-stat_changes = Array[ExtResource("2_js7g6")]([])
-scaling = Array[ExtResource("2_js7g6")]([])
+ability_effects = Array[ExtResource("2_us0qe")]([])
 trigger = 0
 cooldown = 1.0
 cast_chance = 1.0
@@ -38,39 +35,13 @@ ability_data = {}
 script = ExtResource("1_ijlsd")
 ability_name = "Requiem"
 description = ""
-stat_changes = Array[ExtResource("2_js7g6")]([])
-scaling = Array[ExtResource("2_js7g6")]([])
+ability_effects = Array[ExtResource("2_us0qe")]([])
 trigger = 0
 cooldown = 1.0
 cast_chance = 1.0
 has_unique_description_logic = false
 ability_id = &""
 ability_data = {}
-
-[sub_resource type="Resource" id="Resource_s0rwx"]
-script = ExtResource("5_awikx")
-hp = 5
-statuses = Array[ExtResource("3_cx815")]([])
-
-[sub_resource type="Resource" id="Resource_a7ikp"]
-script = ExtResource("3_cx815")
-status_id = 3
-value = 1
-
-[sub_resource type="Resource" id="Resource_klgkn"]
-script = ExtResource("5_awikx")
-hp = 5
-statuses = Array[ExtResource("3_cx815")]([SubResource("Resource_a7ikp")])
-
-[sub_resource type="Resource" id="Resource_u0chf"]
-script = ExtResource("3_cx815")
-status_id = 4
-value = 1
-
-[sub_resource type="Resource" id="Resource_l7yi4"]
-script = ExtResource("5_awikx")
-hp = 5
-statuses = Array[ExtResource("3_cx815")]([SubResource("Resource_u0chf")])
 
 [resource]
 script = ExtResource("6_2macc")
@@ -82,8 +53,7 @@ sprite_scale = Vector2(3, 3)
 sprite_hframes = 4
 max_hp = 25
 abilities = Array[ExtResource("1_ijlsd")]([SubResource("Resource_d0bo2"), SubResource("Resource_3pnjp"), SubResource("Resource_olj2m")])
-level_requirements = Array[int]([1, 2, 3])
-levels = Array[ExtResource("5_awikx")]([SubResource("Resource_s0rwx"), SubResource("Resource_klgkn"), SubResource("Resource_l7yi4")])
+hp_on_level_up = 5
 initial_level = 1
 initial_ability_levels = Array[int]([1, 1, 1])
 statuses = Array[ExtResource("3_cx815")]([])

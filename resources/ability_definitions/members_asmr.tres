@@ -1,29 +1,39 @@
-[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=6 format=3 uid="uid://bre61gepw1pvt"]
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=9 format=3 uid="uid://bre61gepw1pvt"]
 
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_50ayu"]
+[ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_ngdmt"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_ngdmt"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_bbnxf"]
 
-[sub_resource type="Resource" id="Resource_4jnqx"]
+[sub_resource type="Resource" id="Resource_ngdmt"]
 script = ExtResource("2_ngdmt")
 stat = 1
-amount = 1.0
+amount = 5.0
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
-[sub_resource type="Resource" id="Resource_1iy0p"]
+[sub_resource type="Resource" id="Resource_bbnxf"]
+script = ExtResource("1_ngdmt")
+stat_change = SubResource("Resource_ngdmt")
+metadata/_custom_type_script = "uid://l8fykjikpf83"
+
+[sub_resource type="Resource" id="Resource_ksykl"]
 script = ExtResource("2_ngdmt")
 stat = 6
 amount = 0.02
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
+[sub_resource type="Resource" id="Resource_hte5y"]
+script = ExtResource("1_ngdmt")
+stat_change = SubResource("Resource_ksykl")
+metadata/_custom_type_script = "uid://l8fykjikpf83"
+
 [resource]
 script = ExtResource("3_bbnxf")
 ability_name = "Members ASMR"
 icon = ExtResource("1_50ayu")
-description = "Gain 1 View/sec
+description = "Gain 5 Views/sec
 Gain 2% Membership Rate"
-stat_changes = Array[ExtResource("2_ngdmt")]([SubResource("Resource_4jnqx"), SubResource("Resource_1iy0p")])
-scaling = Array[ExtResource("2_ngdmt")]([])
+ability_effects = Array[ExtResource("1_ngdmt")]([SubResource("Resource_bbnxf"), SubResource("Resource_hte5y")])
 trigger = 0
 cooldown = 5.0
 cast_chance = 1.0

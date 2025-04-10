@@ -299,10 +299,11 @@ func clear_teams():
 
 func apply_ability(ability: AbilityDefinition, caster_statuses: Dictionary, caster: Character):
 	self.handle_unique_ability_logic(ability, caster_statuses, caster)
-	var amount_add := calc_stat_scaling_amount(ability, caster)
-	for stat_change in ability.stat_changes:
-		var new_stat_change := stat_change.duplicate()
-		new_stat_change.amount += amount_add
+	for effect in ability.ability_effects:
+		var new_stat_change := effect.stat_change.duplicate()
+		if effect.stat_scaling:
+			var amount_add := calc_stat_scaling_amount(effect.stat_scaling, caster)
+			new_stat_change.amount += amount_add
 		apply_stat_change(new_stat_change, caster)
 
 
@@ -334,30 +335,29 @@ func apply_stat_change(stat_change : StatValue, caster : Character):
 	GlobalSignals.show_stream_stat_value.emit(stat_change, caster.global_position)
 
 
-func calc_stat_scaling_amount(ability: AbilityDefinition, caster: Character) -> float:
+func calc_stat_scaling_amount(stat_scaling: StatValue, caster: Character) -> float:
 	var amt : float = 0
-	for stat_val in ability.scaling:
-		match stat_val.stat:
-			StatValue.Stat.VIEWS:
-				amt += self.views * stat_val.amount
-			StatValue.Stat.VIEWS_PER_SEC:
-				amt += self.views_per_sec * stat_val.amount
-			StatValue.Stat.VIEWER_RETENTION:
-				amt += self.viewer_retention * stat_val.amount
-			StatValue.Stat.VIEWERS:
-				amt += self.viewers * stat_val.amount
-			StatValue.Stat.SUBSCRIBER_RATE:
-				amt += self.subscriber_rate * stat_val.amount
-			StatValue.Stat.SUBSCRIBERS:
-				amt += GameState.subscribers * stat_val.amount
-			StatValue.Stat.MEMBER_RATE:
-				amt += self.member_rate * stat_val.amount
-			StatValue.Stat.MEMBERS:
-				amt += GameState.members * stat_val.amount
-			StatValue.Stat.STAMINA:
-				amt += caster.hp * stat_val.amount
-			StatValue.Stat.MONEY:
-				amt += GameState.player_money * stat_val.amount
+	match stat_scaling.stat:
+		StatValue.Stat.VIEWS:
+			amt += self.views * stat_scaling.amount
+		StatValue.Stat.VIEWS_PER_SEC:
+			amt += self.views_per_sec * stat_scaling.amount
+		StatValue.Stat.VIEWER_RETENTION:
+			amt += self.viewer_retention * stat_scaling.amount
+		StatValue.Stat.VIEWERS:
+			amt += self.viewers * stat_scaling.amount
+		StatValue.Stat.SUBSCRIBER_RATE:
+			amt += self.subscriber_rate * stat_scaling.amount
+		StatValue.Stat.SUBSCRIBERS:
+			amt += GameState.subscribers * stat_scaling.amount
+		StatValue.Stat.MEMBER_RATE:
+			amt += self.member_rate * stat_scaling.amount
+		StatValue.Stat.MEMBERS:
+			amt += GameState.members * stat_scaling.amount
+		StatValue.Stat.STAMINA:
+			amt += caster.hp * stat_scaling.amount
+		StatValue.Stat.MONEY:
+			amt += GameState.player_money * stat_scaling.amount
 	return amt
 
 
