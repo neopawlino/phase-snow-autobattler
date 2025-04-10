@@ -12,7 +12,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmb2m"]
 bg_color = Color(0.890196, 0.901961, 0.901961, 1)
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("talent_slot_container", "reroll_button", "reroll_label", "reroll_price_label")]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("inflation_label", "talent_slot_container", "reroll_button", "reroll_label", "reroll_price_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,6 +22,7 @@ theme = ExtResource("1_pybh5")
 theme_type_variation = &"BgPanel"
 theme_override_styles/panel = SubResource("StyleBoxFlat_gmb2m")
 script = ExtResource("2_tkxm1")
+inflation_label = NodePath("ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer3/HBoxContainer/InflationLabel")
 talent_slot_container = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/TalentSlotContainer")
 reroll_button = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton")
 reroll_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer/RerollLabel")
@@ -54,6 +55,28 @@ layout_mode = 2
 theme_type_variation = &"HeaderLabel"
 text = "Jamazon"
 
+[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="InflationTitle" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Inflation"
+
+[node name="InflationLabel" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "x1.98e300"
+
 [node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 24
@@ -68,7 +91,7 @@ theme_override_constants/separation = 0
 [node name="MoneyTitle" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
-text = "Balance:"
+text = "Balance"
 
 [node name="MoneyLabel" type="Label" parent="ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2

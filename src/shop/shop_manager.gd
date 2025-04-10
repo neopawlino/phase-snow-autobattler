@@ -12,8 +12,12 @@ var item_slots : Array[Slot]
 @export var base_reroll_price : float = 2
 @export var reroll_increase : float = 1
 
-var inflation_coeff : float = 1.0
+var inflation_coeff : float = 1.0:
+	set(val):
+		inflation_coeff = val
+		update_inflation_label(val)
 @export var inflation_mult_per_round : float = 1.2
+@export var inflation_label : Label
 
 var reroll_price : float:
 	set(value):
@@ -59,11 +63,19 @@ func _ready() -> void:
 	reroll_button.pressed.connect(on_reroll_button_pressed)
 
 	reset_reroll_price()
+	update_inflation_label(inflation_coeff)
 	call_deferred("reroll_talents")
 
 
 func increase_inflation():
 	self.inflation_coeff *= self.inflation_mult_per_round
+
+
+func update_inflation_label(val : float):
+	if val >= 1e6:
+		inflation_label.text = "x" + StringUtil.format_number(val)
+	else:
+		inflation_label.text = "x%.2f" % val
 
 
 func on_talent_buy_button_pressed(slot : ShopSlot):
