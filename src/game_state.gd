@@ -110,6 +110,10 @@ var total_earnings : float:
 		total_earnings_changed.emit(val)
 signal total_earnings_changed(val: float)
 
+var viewer_goal_exp_base : float = 1.2
+var starting_viewer_goal_exp_base : float = 1.2
+var viewer_goal_exp_base_increase_per_round : float = 0.01
+
 
 func get_interest() -> int:
 	var interest_cap := get_interest_cap()
@@ -135,6 +139,7 @@ signal paused_changed(is_paused : bool)
 func _ready() -> void:
 	GlobalSignals.stream_results_confirmed.connect(func():
 		round_number += 1
+		viewer_goal_exp_base += viewer_goal_exp_base_increase_per_round
 		viewer_goal = get_viewer_goal(round_number)
 	)
 	GlobalSignals.stream_end_anim_finished.connect(func():
@@ -156,4 +161,4 @@ func reset() -> void:
 
 
 func get_viewer_goal(round_num : int) -> float:
-	return base_viewer_goal * pow(1.3, round_num-1)
+	return base_viewer_goal * pow(viewer_goal_exp_base, round_num-1)

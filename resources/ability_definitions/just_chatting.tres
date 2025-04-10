@@ -4,25 +4,26 @@
 [ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_ndq4w"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_ndq4w"]
 
-[sub_resource type="Resource" id="Resource_3vjuy"]
-script = ExtResource("1_0gipy")
-stat = 5
-amount = 0.01
-metadata/_custom_type_script = "uid://5vwcxgum5ovh"
-
 [sub_resource type="Resource" id="Resource_4jnqx"]
 script = ExtResource("1_0gipy")
 stat = 1
-amount = 0.0
+amount = 10.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_eg8yb"]
+script = ExtResource("1_0gipy")
+stat = 4
+amount = 0.01
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
 [resource]
 script = ExtResource("2_ndq4w")
 ability_name = "Just Chatting"
 icon = ExtResource("1_ndq4w")
-description = "Gain Views/sec equal to 1%% of Subscribers (currently %d)"
-stat_changes = Array[ExtResource("1_0gipy")]([SubResource("Resource_4jnqx")])
-scaling = Array[ExtResource("1_0gipy")]([SubResource("Resource_3vjuy")])
+description = "Gain 10 Views/sec
+Gain 1% Subscription Rate"
+stat_changes = Array[ExtResource("1_0gipy")]([SubResource("Resource_4jnqx"), SubResource("Resource_eg8yb")])
+scaling = Array[ExtResource("1_0gipy")]([])
 trigger = 0
 cooldown = 7.0
 cast_chance = 1.0

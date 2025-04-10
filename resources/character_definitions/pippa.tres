@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=13 format=3 uid="uid://110qt3emx8hl"]
+[gd_resource type="Resource" script_class="CharacterDefinition" load_steps=14 format=3 uid="uid://110qt3emx8hl"]
 
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="1_gfe1s"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_bxlyt"]
@@ -7,6 +7,12 @@
 [ext_resource type="Script" uid="uid://c5oyhf14psdli" path="res://src/character/character_level.gd" id="5_2leud"]
 [ext_resource type="Script" uid="uid://dtx2b3fd5prkl" path="res://src/character/character_definition.gd" id="6_j07mt"]
 [ext_resource type="Script" uid="uid://c7uixg3ybpnjs" path="res://resources/status_effects/unique_status.gd" id="7_gkwi3"]
+
+[sub_resource type="Resource" id="Resource_s18u6"]
+script = ExtResource("2_bxlyt")
+stat = 5
+amount = 0.01
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
 [sub_resource type="Resource" id="Resource_gp3u3"]
 script = ExtResource("2_bxlyt")
@@ -17,9 +23,9 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 [sub_resource type="Resource" id="Resource_h8imw"]
 script = ExtResource("1_gfe1s")
 ability_name = "Yabbit"
-description = "When this talent uses an ability, gain 10 Viewers"
+description = "When Pippa uses an ability, gain Viewers equal to 10 + 1%% of Subscribers (currently %d)"
 stat_changes = Array[ExtResource("2_bxlyt")]([SubResource("Resource_gp3u3")])
-scaling = Array[ExtResource("2_bxlyt")]([])
+scaling = Array[ExtResource("2_bxlyt")]([SubResource("Resource_s18u6")])
 trigger = 2
 cooldown = 1.0
 cast_chance = 1.0
