@@ -99,6 +99,8 @@ var ad_rpm : float = 2.5
 var member_revenue : float
 var revenue_per_member : float = 1.0
 
+var ability_revenue : float
+
 var total_revenue : float
 
 var damage_tick_timer : float
@@ -219,6 +221,7 @@ func reset_stats():
 
 	ad_revenue = 0
 	member_revenue = 0
+	ability_revenue = 0
 
 	self.hp_drain = 1
 	self.hp_drain_increase_timer = 0.0
@@ -300,6 +303,8 @@ func clear_teams():
 func apply_ability(ability: AbilityDefinition, caster_statuses: Dictionary, caster: Character):
 	self.handle_unique_ability_logic(ability, caster_statuses, caster)
 	for effect in ability.ability_effects:
+		if randf() > effect.chance:
+			continue
 		var new_stat_change := effect.stat_change.duplicate()
 		if effect.stat_scaling:
 			var amount_add := calc_stat_scaling_amount(effect.stat_scaling, caster)
@@ -330,6 +335,7 @@ func apply_stat_change(stat_change : StatValue, caster : Character):
 			caster.hp = mini(caster.hp + int(amount), caster.max_hp)
 		StatValue.Stat.MONEY:
 			GameState.player_money += amount
+			self.ability_revenue += amount
 		_:
 			print_debug("Couldn't match stat: %s" % stat_change.stat)
 	GlobalSignals.show_stream_stat_value.emit(stat_change, caster.global_position)

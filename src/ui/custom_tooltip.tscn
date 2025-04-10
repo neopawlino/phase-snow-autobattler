@@ -5,7 +5,7 @@
 
 [node name="CustomTooltip" type="Control" node_paths=PackedStringArray("title_label", "description_label", "cooldown_label", "cooldown_container", "sell_value_label")]
 texture_filter = 1
-custom_minimum_size = Vector2(360, 200)
+custom_minimum_size = Vector2(360, 300)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 8.0
@@ -21,7 +21,7 @@ cooldown_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Coold
 sell_value_label = NodePath("MarginContainer/VBoxContainer/SellValueLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(360, 200)
+custom_minimum_size = Vector2(360, 300)
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 1418.0

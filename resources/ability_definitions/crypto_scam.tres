@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 script = ExtResource("1_4m3pm")
 stat_change = SubResource("Resource_r6xak")
 stat_scaling = SubResource("Resource_oick6")
+chance = 0.25
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [sub_resource type="Resource" id="Resource_4m3pm"]
@@ -39,13 +40,14 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 script = ExtResource("1_4m3pm")
 stat_change = SubResource("Resource_4m3pm")
 stat_scaling = SubResource("Resource_3gqe3")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [resource]
 script = ExtResource("3_r6xak")
 ability_name = "Crypto Scam"
 icon = ExtResource("1_41kpt")
-description = "Gain $ equal to 50%% of Subscribers (Currently $%d)
+description = "25%% chance to gain $ equal to 50%% of Subscribers (Currently $%d)
 Lose 2%% of Subscribers (Currently %d)"
 ability_effects = Array[ExtResource("1_4m3pm")]([SubResource("Resource_v6cir"), SubResource("Resource_68m7s")])
 trigger = 0

@@ -64,7 +64,8 @@ func update_stream_finished():
 	self.members_container.visible = GameState.stream_manager.new_members > 0
 	self.members_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.new_members)
 
-	self.total_revenue_label.text = StringUtil.format_money(GameState.stream_manager.total_revenue)
+	var total_revenue := GameState.stream_manager.total_revenue + GameState.stream_manager.ability_revenue
+	self.total_revenue_label.text = StringUtil.format_money(total_revenue)
 
 
 func update_revenue_breakdown():
@@ -80,8 +81,9 @@ func update_revenue_breakdown():
 	# no item revenue yet
 	self.item_revenue_container.visible = false
 
-	# no abilities revenue yet
-	self.abilities_revenue_container.visible = false
+	var ability_revenue := GameState.stream_manager.ability_revenue
+	self.abilities_revenue_container.visible = ability_revenue > 0
+	self.abilities_revenue_label.text = StringUtil.format_money(ability_revenue)
 
 
 func show_anim():

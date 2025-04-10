@@ -16,6 +16,7 @@ enum Trigger {
 
 @export var trigger : Trigger
 @export var cooldown : float = 1.0
+
 @export var cast_chance : float = 1.0
 
 @export var has_unique_description_logic : bool
@@ -50,6 +51,8 @@ static func calc_stat_scaling_amount(scaling : StatValue) -> float:
 			amt += GameState.stream_manager.member_rate * scaling.amount
 		StatValue.Stat.MEMBERS:
 			amt += GameState.members * scaling.amount
+		StatValue.Stat.MONEY:
+			amt += GameState.player_money * scaling.amount
 		_:
 			print_debug("Unsupported stat: %s" % scaling.stat)
 	return amt

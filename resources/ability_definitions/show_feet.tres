@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=11 format=3 uid="uid://c4jss1013rac"]
+
+[ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_47tuj"]
+[ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_06ory"]
+[ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_uasaa"]
+[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="3_eoinx"]
+
+[sub_resource type="Resource" id="Resource_gfkr1"]
+script = ExtResource("2_06ory")
+stat = 7
+amount = 0.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_mbgqc"]
+script = ExtResource("2_06ory")
+stat = 3
+amount = 0.01
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_lxrtf"]
+script = ExtResource("1_47tuj")
+stat_change = SubResource("Resource_gfkr1")
+stat_scaling = SubResource("Resource_mbgqc")
+chance = 1.0
+metadata/_custom_type_script = "uid://l8fykjikpf83"
+
+[sub_resource type="Resource" id="Resource_qspeb"]
+script = ExtResource("2_06ory")
+stat = 3
+amount = 0.0
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_wq0iq"]
+script = ExtResource("2_06ory")
+stat = 3
+amount = -0.1
+metadata/_custom_type_script = "uid://5vwcxgum5ovh"
+
+[sub_resource type="Resource" id="Resource_vmeg2"]
+script = ExtResource("1_47tuj")
+stat_change = SubResource("Resource_qspeb")
+stat_scaling = SubResource("Resource_wq0iq")
+chance = 0.5
+metadata/_custom_type_script = "uid://l8fykjikpf83"
+
+[resource]
+script = ExtResource("2_uasaa")
+ability_name = "Show Feet"
+icon = ExtResource("3_eoinx")
+description = "Gain Members equal to 1%% of Viewers (currently %d)
+50%% chance to lose 10%% of Viewers (currently %d)"
+ability_effects = Array[ExtResource("1_47tuj")]([SubResource("Resource_lxrtf"), SubResource("Resource_vmeg2")])
+trigger = 0
+cooldown = 10.0
+cast_chance = 1.0
+has_unique_description_logic = false
+ability_id = &""
+ability_data = {}
+metadata/_custom_type_script = "uid://cgaytqa18e8dx"
