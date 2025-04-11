@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="AbilityDefinition" load_steps=8 format=3 uid="uid://2xnil7mwy10j"]
 
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_l7uci"]
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_nxmvj"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_nxmvj"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_30e7d"]
+[ext_resource type="Texture2D" uid="uid://pdp3jvccuowc" path="res://public/ability_icons/pandering.png" id="3_nxmvj"]
 
 [sub_resource type="Resource" id="Resource_30e7d"]
 script = ExtResource("2_nxmvj")
@@ -21,12 +21,13 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 script = ExtResource("1_nxmvj")
 stat_change = SubResource("Resource_30e7d")
 stat_scaling = SubResource("Resource_roupq")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [resource]
 script = ExtResource("3_30e7d")
 ability_name = "Pandering"
-icon = ExtResource("1_l7uci")
+icon = ExtResource("3_nxmvj")
 description = "Gain Views/sec equal to 1%% of Subscribers (currently %d)"
 ability_effects = Array[ExtResource("1_nxmvj")]([SubResource("Resource_sjy4f")])
 trigger = 0

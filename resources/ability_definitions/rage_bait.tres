@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="AbilityDefinition" load_steps=11 format=3 uid="uid://ba6w7lds8uqqi"]
 
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_px0ai"]
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_x5o1m"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_x5o1m"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_o4h3s"]
+[ext_resource type="Texture2D" uid="uid://dw5ntblmv47a2" path="res://public/ability_icons/rage_bait.png" id="3_x5o1m"]
 
 [sub_resource type="Resource" id="Resource_o4h3s"]
 script = ExtResource("2_x5o1m")
@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 [sub_resource type="Resource" id="Resource_7tvos"]
 script = ExtResource("1_x5o1m")
 stat_change = SubResource("Resource_o4h3s")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [sub_resource type="Resource" id="Resource_ggtyu"]
@@ -25,6 +26,7 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 [sub_resource type="Resource" id="Resource_g1x8s"]
 script = ExtResource("1_x5o1m")
 stat_change = SubResource("Resource_ggtyu")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [sub_resource type="Resource" id="Resource_yevbq"]
@@ -36,12 +38,13 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 [sub_resource type="Resource" id="Resource_m08b4"]
 script = ExtResource("1_x5o1m")
 stat_change = SubResource("Resource_yevbq")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [resource]
 script = ExtResource("3_o4h3s")
 ability_name = "Rage Bait"
-icon = ExtResource("1_px0ai")
+icon = ExtResource("3_x5o1m")
 description = "Gain 40 Views/sec
 Lose 3% Viewer Retention
 Lose 2 Stamina"
