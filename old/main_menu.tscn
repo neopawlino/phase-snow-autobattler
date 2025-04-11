@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfb4x856hp1cd" path="res://old/main_menu.gd" id="1_pcoso"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_xyjcc"]
 [ext_resource type="PackedScene" uid="uid://cpfytprhd24ow" path="res://old/bg.tscn" id="2_h0mp6"]
-[ext_resource type="PackedScene" uid="uid://bq8dpascomfv3" path="res://old/options_menu.tscn" id="4_43rle"]
+[ext_resource type="PackedScene" uid="uid://bq8dpascomfv3" path="res://src/main/options_menu.tscn" id="4_43rle"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("main_menu_container", "options")]
 process_mode = 3

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_bkle6"]
 [ext_resource type="Script" uid="uid://bntuvmj46h7xe" path="res://old/pause.gd" id="1_ol8cc"]
-[ext_resource type="PackedScene" uid="uid://bq8dpascomfv3" path="res://old/options_menu.tscn" id="3_pd36b"]
+[ext_resource type="PackedScene" uid="uid://bq8dpascomfv3" path="res://src/main/options_menu.tscn" id="3_pd36b"]
 
 [node name="Pause" type="Control" node_paths=PackedStringArray("options", "pause_menu")]
 layout_mode = 3

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://src/main/kms_theme.tres" id="1_kxtc7"]
 [ext_resource type="Script" uid="uid://bkof2ddjf2mel" path="res://src/ui/custom_window.gd" id="2_dkrp2"]
-[ext_resource type="PackedScene" uid="uid://bq8dpascomfv3" path="res://old/options_menu.tscn" id="3_dkrp2"]
+[ext_resource type="PackedScene" uid="uid://bq8dpascomfv3" path="res://src/main/options_menu.tscn" id="3_dkrp2"]
 
 [node name="Settings" type="Window"]
 auto_translate_mode = 1

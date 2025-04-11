@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bq8dpascomfv3"]
 
-[ext_resource type="Script" uid="uid://bbf45s3q8558f" path="res://old/options_menu.gd" id="1_4ygv0"]
+[ext_resource type="Script" uid="uid://bbf45s3q8558f" path="res://src/main/options_menu.gd" id="1_4ygv0"]
 [ext_resource type="Theme" uid="uid://b25e8xy3plsn6" path="res://resources/theme/desktop_theme.tres" id="1_gs7yn"]
 
 [node name="OptionsMenu" type="PanelContainer" node_paths=PackedStringArray("hard_mode", "cheats", "volume_slider", "music_vol_slider", "sound_vol_slider")]
