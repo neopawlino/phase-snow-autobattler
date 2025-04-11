@@ -12,7 +12,7 @@ colors = PackedColorArray(0.179083, 0.135, 0.25, 0.298039)
 gradient = SubResource("Gradient_61ara")
 width = 1
 
-[node name="ResultScreen" type="Control" node_paths=PackedStringArray("results_panel", "overlay", "day", "highest_views", "highest_viewers", "subscribers", "members", "total_earnings")]
+[node name="ResultScreen" type="Control" node_paths=PackedStringArray("results_panel", "overlay", "title_label", "subtitle_label", "day", "highest_views", "highest_viewers", "subscribers", "members", "total_earnings", "restart_button", "endless_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,12 +23,16 @@ theme = ExtResource("1_p5wir")
 script = ExtResource("1_feru4")
 results_panel = NodePath("PanelContainer")
 overlay = NodePath("TextureRect")
+title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
+subtitle_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/SubtitleLabel")
 day = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/Day/HBox/PanelContainer/MarginContainer/Label")
 highest_views = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/HighestViews/HBox/PanelContainer/MarginContainer/Label")
 highest_viewers = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/HighestViewers/HBox/PanelContainer/MarginContainer/Label")
 subscribers = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/Subscribers/HBox/PanelContainer/MarginContainer/Label")
 members = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/Members/HBox/PanelContainer/MarginContainer/Label")
 total_earnings = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/TotalEarnings/HBox/PanelContainer/MarginContainer/Label")
+restart_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RetryButton")
+endless_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/EndlessButton")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(2000, 2000)
@@ -60,14 +64,14 @@ layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="ResultLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_p5wir")
 theme_override_font_sizes/font_size = 96
 text = "VICTORY!"
 horizontal_alignment = 1
 
-[node name="ResultLabel2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SubtitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_p5wir")
 text = "You reached 1,000,000 Subscribers on Day 30."
