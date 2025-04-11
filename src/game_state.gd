@@ -115,6 +115,9 @@ var starting_viewer_goal_exp_base : float = 1.2
 var max_viewer_goal_exp_base : float = 1.4
 var viewer_goal_exp_base_increase_per_round : float = 0.01
 
+var victory_screen_shown : bool = false
+var victory_sub_count : float = 1000000
+
 
 func get_interest() -> int:
 	var interest_cap := get_interest_cap()
@@ -146,6 +149,8 @@ func _ready() -> void:
 	)
 	GlobalSignals.stream_end_anim_finished.connect(func():
 		self.player_money += self.stream_manager.total_revenue
+		if self.subscribers >= victory_sub_count and not victory_screen_shown:
+			GlobalSignals.victory.emit()
 	)
 	self.reset()
 
@@ -160,6 +165,7 @@ func reset() -> void:
 	self.highest_views = 0
 	self.highest_viewers = 0
 	self.total_earnings = 0
+	self.victory_screen_shown = false
 
 
 func get_viewer_goal(round_num : int) -> float:

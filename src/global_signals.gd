@@ -24,3 +24,4 @@ signal stream_end_anim_finished
 signal rewards_screen_finished
 
 signal viewer_goal_failed
+signal victory

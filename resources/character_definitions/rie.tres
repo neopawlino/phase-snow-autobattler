@@ -25,6 +25,7 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 script = ExtResource("2_qxxbn")
 stat_change = SubResource("Resource_dx5s7")
 stat_scaling = SubResource("Resource_fa1ld")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [sub_resource type="Resource" id="Resource_d0bo2"]
