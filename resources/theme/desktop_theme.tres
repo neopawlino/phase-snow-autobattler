@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b25e8xy3plsn6"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://b25e8xy3plsn6"]
 
 [ext_resource type="Texture2D" uid="uid://bucrdngrhlr7e" path="res://public/my_assets/patch.png" id="1_i3agy"]
 [ext_resource type="FontFile" uid="uid://d31aiqold0as0" path="res://assets/m5x7.ttf" id="1_trblo"]
@@ -6,6 +6,18 @@
 [ext_resource type="StyleBox" uid="uid://c5e300qwqt1tj" path="res://resources/theme/taskbar_button_hover.tres" id="3_h2bre"]
 [ext_resource type="StyleBox" uid="uid://tk131vkh6l3v" path="res://resources/theme/taskbar_button.tres" id="4_y1hkq"]
 [ext_resource type="StyleBox" uid="uid://cmdmnme05nvh0" path="res://resources/theme/taskbar_button_pressed.tres" id="5_5mpgf"]
+[ext_resource type="StyleBox" uid="uid://6lu36mlolaj5" path="res://resources/theme/window_border.tres" id="7_ksmin"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2pot"]
+bg_color = Color(0.964706, 0.835294, 0.921569, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trblo"]
 texture = ExtResource("1_i3agy")
@@ -15,6 +27,9 @@ texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 
 [resource]
+AcceptDialog/constants/buttons_min_height = 40
+AcceptDialog/constants/buttons_min_width = 120
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_r2pot")
 Button/colors/font_color = Color(0.0769467, 0.0696, 0.29, 1)
 Button/colors/font_focus_color = Color(0.106133, 0.096, 0.4, 1)
 Button/colors/font_hover_color = Color(0.106133, 0.096, 0.4, 1)
@@ -34,3 +49,4 @@ Label/constants/shadow_outline_size = 0
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_trblo")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_trblo")
+Window/styles/embedded_border = ExtResource("7_ksmin")

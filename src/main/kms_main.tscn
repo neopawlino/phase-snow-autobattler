@@ -115,6 +115,7 @@ position = Vector2i(900, 300)
 size = Vector2i(300, 350)
 
 [node name="Settings" parent="MainViewport" instance=ExtResource("12_10f2p")]
+size = Vector2i(460, 150)
 visible = false
 
 [node name="DamageNumbers" parent="MainViewport" instance=ExtResource("18_d6ewd")]

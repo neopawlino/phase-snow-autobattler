@@ -170,3 +170,8 @@ func reset() -> void:
 
 func get_viewer_goal(round_num : int) -> float:
 	return base_viewer_goal * pow(viewer_goal_exp_base, round_num-1)
+
+
+func restart_game() -> void:
+	self.reset()
+	get_tree().reload_current_scene()

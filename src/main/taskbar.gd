@@ -5,9 +5,13 @@ var initial_position : Vector2
 @export var settings_window : Window
 
 @export var settings_button : Button
+@export var restart_button : Button
 @export var quit_button : Button
 
 @export var start_menu : Control
+
+@export var restart_confirmation : ConfirmationDialog
+@export var quit_confirmation : ConfirmationDialog
 
 var settings_default_size
 var settings_default_pos
@@ -22,6 +26,13 @@ func _ready() -> void:
 	GlobalSignals.stream_anim_started.connect(hide_anim)
 	GlobalSignals.stream_results_confirmed.connect(show_anim)
 	self.settings_button.pressed.connect(on_settings_button_pressed)
+	self.restart_button.pressed.connect(on_restart_button_pressed)
+	self.quit_button.pressed.connect(on_quit_button_pressed)
+
+	self.restart_confirmation.confirmed.connect(GameState.restart_game)
+	self.quit_confirmation.confirmed.connect(func():
+		get_tree().quit()
+	)
 
 	# Hide quit button on web export
 	self.quit_button.visible = not OS.has_feature("web")
@@ -34,6 +45,16 @@ func on_settings_button_pressed():
 		settings_window.visible = true
 	settings_window.grab_focus()
 	start_menu.hide()
+
+
+func on_restart_button_pressed():
+	restart_confirmation.show()
+	restart_confirmation.popup_centered()
+
+
+func on_quit_button_pressed():
+	quit_confirmation.show()
+	quit_confirmation.popup_centered()
 
 
 func hide_anim():

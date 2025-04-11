@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bk2s3vsbs823v" path="res://src/main/start_menu.gd" id="2_bn8dn"]
 [ext_resource type="Script" uid="uid://c51gc708xsn10" path="res://src/main/day_label.gd" id="4_0t3ke"]
 
-[node name="TaskBar" type="MarginContainer" node_paths=PackedStringArray("settings_button", "quit_button", "start_menu")]
+[node name="TaskBar" type="MarginContainer" node_paths=PackedStringArray("settings_button", "restart_button", "quit_button", "start_menu", "restart_confirmation", "quit_confirmation")]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,8 +21,11 @@ mouse_filter = 2
 theme = ExtResource("1_icusc")
 script = ExtResource("2_37ry6")
 settings_button = NodePath("VBoxContainer/StartMenu/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/SettingsButton")
+restart_button = NodePath("VBoxContainer/StartMenu/HBoxContainer/MarginContainer/VBoxContainer/RestartButton")
 quit_button = NodePath("VBoxContainer/StartMenu/HBoxContainer/MarginContainer/VBoxContainer/QuitButton")
 start_menu = NodePath("VBoxContainer/StartMenu")
+restart_confirmation = NodePath("RestartConfirmation")
+quit_confirmation = NodePath("QuitConfirmation")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -139,5 +142,22 @@ text = "Day 9999"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_0t3ke")
+
+[node name="RestartConfirmation" type="ConfirmationDialog" parent="."]
+title = "Restart Game"
+position = Vector2i(0, 36)
+size = Vector2i(404, 150)
+ok_button_text = "Confirm"
+dialog_text = "Are you sure you want to restart?
+All progress will be lost."
+
+[node name="QuitConfirmation" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Quit Game"
+position = Vector2i(0, 36)
+size = Vector2i(404, 150)
+ok_button_text = "Confirm"
+dialog_text = "Are you sure you want to quit?
+All progress will be lost."
 
 [connection signal="pressed" from="VBoxContainer/Bar/HBoxContainer/StartButton" to="VBoxContainer/Bar/HBoxContainer/StartButton" method="_on_pressed"]

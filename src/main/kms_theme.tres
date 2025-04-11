@@ -9,6 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://dfy0ijtexai2x" path="res://resources/theme/kbs/tab_selected.tres" id="5_3k1qh"]
 [ext_resource type="StyleBox" uid="uid://dqtj43ceown7c" path="res://resources/theme/kbs/tab_unselected.tres" id="6_o2ech"]
 [ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="7_mtu8u"]
+[ext_resource type="StyleBox" uid="uid://6lu36mlolaj5" path="res://resources/theme/window_border.tres" id="10_mtu8u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgl0v"]
 content_margin_left = 4.0
@@ -72,19 +73,6 @@ border_color = Color(0.235294, 0.25098, 0.301961, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgl0v"]
-bg_color = Color(0.2144, 0.232, 0.32, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_left = 8.0
-expand_margin_top = 34.0
-expand_margin_right = 8.0
-expand_margin_bottom = 8.0
-shadow_size = 2
-shadow_offset = Vector2(2, 2)
-
 [resource]
 Button/constants/icon_max_width = 128
 Button/fonts/font = ExtResource("1_ifyi5")
@@ -123,4 +111,4 @@ TabContainer/styles/tab_selected = ExtResource("5_3k1qh")
 TabContainer/styles/tab_unselected = ExtResource("6_o2ech")
 Window/constants/resize_margin = 8
 Window/fonts/title_font = null
-Window/styles/embedded_border = SubResource("StyleBoxFlat_vgl0v")
+Window/styles/embedded_border = ExtResource("10_mtu8u")

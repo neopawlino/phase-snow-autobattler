@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://l8fykjikpf83"
 script = ExtResource("2_j4xty")
 ability_name = "Ad Break"
 icon = ExtResource("3_agw2c")
-description = "Gain $0.02 per viewer (Currently %d)
+description = "Gain $0.02 per viewer (Currently $%d)
 Gain 3 Stamina"
 ability_effects = Array[ExtResource("1_0g037")]([SubResource("Resource_ingym"), SubResource("Resource_ktbkg")])
 trigger = 0

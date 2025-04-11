@@ -37,7 +37,7 @@ func _ready() -> void:
 		show_anim()
 		GameState.victory_screen_shown = true
 	)
-	restart_button.pressed.connect(restart_game)
+	restart_button.pressed.connect(GameState.restart_game)
 	endless_button.pressed.connect(hide_anim)
 
 
@@ -77,8 +77,3 @@ func update_results(victory : bool):
 	members.text = StringUtil.format_number(GameState.members)
 	total_earnings.text = StringUtil.format_money(GameState.total_earnings)
 	endless_button.visible = victory
-
-
-func restart_game() -> void:
-	GameState.reset()
-	get_tree().reload_current_scene()
