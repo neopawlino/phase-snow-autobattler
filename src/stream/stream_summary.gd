@@ -82,7 +82,7 @@ func update_revenue_breakdown():
 	self.item_revenue_container.visible = false
 
 	var ability_revenue := GameState.stream_manager.ability_revenue
-	self.abilities_revenue_container.visible = ability_revenue > 0
+	self.abilities_revenue_container.visible = ability_revenue != 0
 	self.abilities_revenue_label.text = StringUtil.format_money(ability_revenue)
 
 

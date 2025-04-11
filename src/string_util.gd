@@ -88,12 +88,11 @@ func is_percent(stat : StatValue.Stat):
 
 func format_money(value : float, show_plus : bool = false) -> String:
 	var plus_or_minus := ""
-	if show_plus:
-		if value > 0:
-			plus_or_minus = "+"
-		else:
-			plus_or_minus = "-"
-	if value >= 1e6:
-		return plus_or_minus + "$" + format_number(value, false)
+	if value > 0 and show_plus:
+		plus_or_minus = "+"
+	if value < 0:
+		plus_or_minus = "-"
+	if absf(value) >= 1e6:
+		return plus_or_minus + "$" + format_number(absf(value), false)
 	else:
-		return plus_or_minus + "$%.2f" % value
+		return plus_or_minus + "$%.2f" % absf(value)
