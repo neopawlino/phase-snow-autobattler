@@ -32,3 +32,9 @@ func _ready() -> void:
 
 func random_ability() -> AbilityDefinition:
 	return all_ability_definitions.pick_random()
+
+
+func random_abilities_no_dupes(count : int) -> Array[AbilityDefinition]:
+	var dupe := all_ability_definitions.duplicate()
+	dupe.shuffle()
+	return dupe.slice(0, count)

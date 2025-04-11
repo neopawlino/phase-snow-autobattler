@@ -24,9 +24,9 @@ func _ready() -> void:
 func show_ability_reward():
 	for child in abilities_container.get_children():
 		child.queue_free()
-	for _i in range(num_choices):
+	for ability_def in RandomUtil.random_abilities_no_dupes(num_choices):
 		var ability : Ability = ability_scene.instantiate()
-		ability.ability_definition = RandomUtil.random_ability()
+		ability.ability_definition = ability_def
 		ability.is_ability_reward = true
 		abilities_container.add_child(ability)
 	self.show_anim()
