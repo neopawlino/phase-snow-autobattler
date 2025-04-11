@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://7wlbp1eggga0" path="res://src/ability/ability.gd" id="1_sfoxn"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://src/item/draggable.tscn" id="2_sfoxn"]
 [ext_resource type="Resource" uid="uid://cn5wsgbf1r7t2" path="res://resources/ability_definitions/just_chatting.tres" id="3_0oypb"]
-[ext_resource type="Texture2D" uid="uid://dw5ntblmv47a2" path="res://public/ability_icons/rage_bait.png" id="4_rnp74"]
+[ext_resource type="Texture2D" uid="uid://7ljcx3f7f6n0" path="res://public/ability_icons/energy_drink2.png" id="4_rnp74"]
 
 [node name="Ability" type="Control" node_paths=PackedStringArray("drag_component", "icon", "progress_bar")]
 custom_minimum_size = Vector2(48, 48)

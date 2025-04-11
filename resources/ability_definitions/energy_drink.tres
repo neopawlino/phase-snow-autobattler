@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_vfoij"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_rd52b"]
-[ext_resource type="Texture2D" uid="uid://bbwvpdjmjkx2k" path="res://public/ability_icons/energy_drink.png" id="2_vfoij"]
+[ext_resource type="Texture2D" uid="uid://7ljcx3f7f6n0" path="res://public/ability_icons/energy_drink2.png" id="2_vfoij"]
 
 [resource]
 script = ExtResource("2_rd52b")
