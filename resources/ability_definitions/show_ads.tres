@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_0g037"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_j4xty"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_yo31j"]
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="3_agw2c"]
+[ext_resource type="Texture2D" uid="uid://dfumh6iji75qp" path="res://public/ability_icons/show_ads.png" id="3_yo31j"]
 
 [sub_resource type="Resource" id="Resource_lxtkx"]
 script = ExtResource("2_yo31j")
@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://l8fykjikpf83"
 [resource]
 script = ExtResource("2_j4xty")
 ability_name = "Ad Break"
-icon = ExtResource("3_agw2c")
+icon = ExtResource("3_yo31j")
 description = "Gain $0.02 per viewer (Currently $%d)
 Gain 3 Stamina"
 ability_effects = Array[ExtResource("1_0g037")]([SubResource("Resource_ingym"), SubResource("Resource_ktbkg")])
