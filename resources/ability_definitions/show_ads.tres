@@ -21,25 +21,27 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 script = ExtResource("1_0g037")
 stat_change = SubResource("Resource_lxtkx")
 stat_scaling = SubResource("Resource_jxi5g")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [sub_resource type="Resource" id="Resource_xdf6s"]
 script = ExtResource("2_yo31j")
-stat = 2
-amount = -0.01
+stat = 8
+amount = 3.0
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
 [sub_resource type="Resource" id="Resource_ktbkg"]
 script = ExtResource("1_0g037")
 stat_change = SubResource("Resource_xdf6s")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [resource]
 script = ExtResource("2_j4xty")
-ability_name = "Show Ads"
+ability_name = "Ad Break"
 icon = ExtResource("3_agw2c")
 description = "Gain $0.02 per viewer (Currently %d)
-Lose 1%% Viewer Retention"
+Gain 3 Stamina"
 ability_effects = Array[ExtResource("1_0g037")]([SubResource("Resource_ingym"), SubResource("Resource_ktbkg")])
 trigger = 0
 cooldown = 6.0
