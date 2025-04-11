@@ -33,7 +33,7 @@ var player_money : float:
 		player_money_changed.emit(val)
 signal player_money_changed(value: float)
 
-var starting_money : float = 10.0
+var starting_money : float = 15.0
 
 var player_hp : int:
 	set(val):
