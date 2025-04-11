@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="1_0gipy"]
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_eg8yb"]
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_ndq4w"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_ndq4w"]
+[ext_resource type="Texture2D" uid="uid://caj4rq6vbbarq" path="res://public/ability_icons/just_chatting.png" id="3_y2j3n"]
 
 [sub_resource type="Resource" id="Resource_y2j3n"]
 script = ExtResource("1_0gipy")
@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 [sub_resource type="Resource" id="Resource_3qvrq"]
 script = ExtResource("1_eg8yb")
 stat_change = SubResource("Resource_y2j3n")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [sub_resource type="Resource" id="Resource_snxwq"]
@@ -25,12 +26,13 @@ metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 [sub_resource type="Resource" id="Resource_cxn8x"]
 script = ExtResource("1_eg8yb")
 stat_change = SubResource("Resource_snxwq")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [resource]
 script = ExtResource("2_ndq4w")
 ability_name = "Just Chatting"
-icon = ExtResource("1_ndq4w")
+icon = ExtResource("3_y2j3n")
 description = "Gain 10 Views/sec
 Gain 1% Subscription Rate"
 ability_effects = Array[ExtResource("1_eg8yb")]([SubResource("Resource_3qvrq"), SubResource("Resource_cxn8x")])

@@ -1,26 +1,26 @@
 [gd_resource type="Resource" script_class="AbilityDefinition" load_steps=7 format=3 uid="uid://nk4rplfteqop"]
 
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="1_08nl4"]
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_ynvpu"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_l43op"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_04cdj"]
+[ext_resource type="Texture2D" uid="uid://de8w4ybcaq105" path="res://public/ability_icons/clip_that_2.png" id="3_ynvpu"]
 
 [sub_resource type="Resource" id="Resource_je6el"]
 script = ExtResource("2_l43op")
 stat = 4
 amount = 0.03
-scaling = false
 metadata/_custom_type_script = "uid://5vwcxgum5ovh"
 
 [sub_resource type="Resource" id="Resource_vgwmd"]
 script = ExtResource("1_ynvpu")
 stat_change = SubResource("Resource_je6el")
+chance = 1.0
 metadata/_custom_type_script = "uid://l8fykjikpf83"
 
 [resource]
 script = ExtResource("3_04cdj")
 ability_name = "Clip That"
-icon = ExtResource("1_08nl4")
+icon = ExtResource("3_ynvpu")
 description = "Gain 3% Subscription Rate"
 ability_effects = Array[ExtResource("1_ynvpu")]([SubResource("Resource_vgwmd")])
 trigger = 0
