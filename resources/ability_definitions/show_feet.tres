@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_47tuj"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_06ory"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_uasaa"]
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="3_eoinx"]
+[ext_resource type="Texture2D" uid="uid://d1pg8wr2spwuu" path="res://public/ability_icons/show_feet.png" id="3_06ory"]
 
 [sub_resource type="Resource" id="Resource_gfkr1"]
 script = ExtResource("2_06ory")
@@ -46,7 +46,7 @@ metadata/_custom_type_script = "uid://l8fykjikpf83"
 [resource]
 script = ExtResource("2_uasaa")
 ability_name = "Show Feet"
-icon = ExtResource("3_eoinx")
+icon = ExtResource("3_06ory")
 description = "Gain Members equal to 2%% of Viewers (currently %d)
 50%% chance to lose 10%% of Viewers (currently %d)"
 ability_effects = Array[ExtResource("1_47tuj")]([SubResource("Resource_lxrtf"), SubResource("Resource_vmeg2")])
