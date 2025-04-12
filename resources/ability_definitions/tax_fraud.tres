@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_owb8v"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_1m1yu"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="2_7c38d"]
-[ext_resource type="Texture2D" uid="uid://vlvgm7jye1rj" path="res://public/icon.svg" id="3_rehar"]
+[ext_resource type="Texture2D" uid="uid://dftmsqde1hppu" path="res://public/ability_icons/tax_fraud.png" id="3_1m1yu"]
 
 [sub_resource type="Resource" id="Resource_k3mxq"]
 script = ExtResource("2_1m1yu")
@@ -65,7 +65,7 @@ metadata/_custom_type_script = "uid://l8fykjikpf83"
 [resource]
 script = ExtResource("2_7c38d")
 ability_name = "Tax Fraud"
-icon = ExtResource("3_rehar")
+icon = ExtResource("3_1m1yu")
 description = "Gain $ equal to 10%% of Money (Currently $%d)
 Gain Views equal to 5%% of Money (Currently %d)
 40%% chance to lose 20%% Money (Currently $%d)"
