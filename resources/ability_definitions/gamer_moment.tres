@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://l8fykjikpf83" path="res://ability_effect.gd" id="1_58a1v"]
 [ext_resource type="Script" uid="uid://5vwcxgum5ovh" path="res://src/analytics/stat_value.gd" id="2_gyd6f"]
-[ext_resource type="Texture2D" uid="uid://c6mwix8pr31ql" path="res://public/ability_icons/gamer_moment2.png" id="3_58a1v"]
+[ext_resource type="Texture2D" uid="uid://d3abrjmpq8k36" path="res://public/ability_icons/gamer_moment3.png" id="3_58a1v"]
 [ext_resource type="Script" uid="uid://cgaytqa18e8dx" path="res://src/ability/ability_definition.gd" id="3_ngstd"]
 
 [sub_resource type="Resource" id="Resource_v5hmm"]
