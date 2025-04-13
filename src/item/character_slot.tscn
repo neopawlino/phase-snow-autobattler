@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3kuf2p6gvovk"]
+[gd_scene load_steps=4 format=3 uid="uid://d3kuf2p6gvovk"]
 
 [ext_resource type="Script" uid="uid://c5ilf8qew1tt1" path="res://src/item/character_slot.gd" id="1_x2ymd"]
 [ext_resource type="Texture2D" uid="uid://dhkgqtjouosqu" path="res://public/my_assets/slot.png" id="2_2h50i"]
+[ext_resource type="Texture2D" uid="uid://bb3xwpn8l6t41" path="res://public/my_assets/slot_corner.png" id="3_0gmm3"]
 
-[node name="CharacterSlot" type="Control" node_paths=PackedStringArray("merge_swap_timer")]
+[node name="CharacterSlot" type="Control" node_paths=PackedStringArray("merge_swap_timer", "slot_indicator")]
+texture_filter = 1
 custom_minimum_size = Vector2(120, 200)
 layout_mode = 3
 anchors_preset = 0
@@ -12,6 +14,7 @@ offset_bottom = 200.0
 mouse_filter = 1
 script = ExtResource("1_x2ymd")
 merge_swap_timer = NodePath("MergeSwapTimer")
+slot_indicator = NodePath("SlotIndicator")
 pickable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -25,3 +28,44 @@ offset = Vector2(0, 30)
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
+
+[node name="SlotIndicator" type="Control" parent="."]
+custom_minimum_size = Vector2(120, 120)
+anchors_preset = 0
+offset_top = 30.0
+offset_right = 120.0
+offset_bottom = 150.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="SlotIndicator"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("3_0gmm3")
+
+[node name="TextureRect2" type="TextureRect" parent="SlotIndicator"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+offset_left = 120.0
+offset_right = 152.0
+offset_bottom = 32.0
+rotation = 1.5708
+texture = ExtResource("3_0gmm3")
+
+[node name="TextureRect3" type="TextureRect" parent="SlotIndicator"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 152.0
+offset_bottom = 152.0
+rotation = 3.14159
+texture = ExtResource("3_0gmm3")
+
+[node name="TextureRect4" type="TextureRect" parent="SlotIndicator"]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 32.0
+offset_bottom = 152.0
+rotation = -1.5708
+texture = ExtResource("3_0gmm3")
