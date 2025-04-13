@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=23 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://src/ui/visual_follow.gd" id="2_0vcty"]
 [ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://src/character/character.gd" id="2_1four"]
@@ -10,7 +10,9 @@
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="4_18dhx"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://src/item/draggable.tscn" id="5_bv4aq"]
 [ext_resource type="Script" uid="uid://b1n7n8i4cjf7l" path="res://src/character/character_sprite.gd" id="5_wdpcj"]
+[ext_resource type="Texture2D" uid="uid://yyc4ch6wql6p" path="res://public/my_assets/upgr.png" id="9_omsti"]
 [ext_resource type="Script" uid="uid://8dv01jb3ku2t" path="res://src/character/character_particles.gd" id="9_ykcix"]
+[ext_resource type="Script" uid="uid://gjxuajud3lk4" path="res://src/character/upgrade_indicator.gd" id="10_omsti"]
 
 [sub_resource type="Gradient" id="Gradient_qi5as"]
 offsets = PackedFloat32Array(0, 0.549296, 1)
@@ -206,6 +208,14 @@ script = ExtResource("5_wdpcj")
 libraries = {
 &"": SubResource("AnimationLibrary_bty2k")
 }
+
+[node name="UpgradeIndicator" type="Sprite2D" parent="Visual/SpriteParent" node_paths=PackedStringArray("char")]
+z_index = 2
+position = Vector2(0, -100)
+scale = Vector2(3, 3)
+texture = ExtResource("9_omsti")
+script = ExtResource("10_omsti")
+char = NodePath("../../..")
 
 [node name="LevelUpParticles" type="CPUParticles2D" parent="Visual"]
 emitting = false
