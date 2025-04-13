@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ds7ogdyno53ug"]
+[gd_scene load_steps=24 format=3 uid="uid://ds7ogdyno53ug"]
 
 [ext_resource type="Script" uid="uid://ds6icp55gk7w5" path="res://src/ui/visual_follow.gd" id="2_0vcty"]
 [ext_resource type="Script" uid="uid://bawfd3r6s5qei" path="res://src/character/character.gd" id="2_1four"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://bowkvjqncd3p" path="res://src/ui/damage_flash.gdshader" id="3_yxww1"]
 [ext_resource type="AudioStream" uid="uid://d3xy3u4e8hipl" path="res://public/sfx/levelup.wav" id="4_8cpw0"]
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="4_18dhx"]
+[ext_resource type="AudioStream" uid="uid://d2ago4dkpoy7r" path="res://public/sfx/ability.wav" id="5_6mb4q"]
 [ext_resource type="PackedScene" uid="uid://b1ou3ss74ylrx" path="res://src/item/draggable.tscn" id="5_bv4aq"]
 [ext_resource type="Script" uid="uid://b1n7n8i4cjf7l" path="res://src/character/character_sprite.gd" id="5_wdpcj"]
 [ext_resource type="Texture2D" uid="uid://yyc4ch6wql6p" path="res://public/my_assets/upgr.png" id="9_omsti"]
@@ -164,6 +165,7 @@ visual = NodePath("Visual")
 damage_audio = ExtResource("2_a5pac")
 die_audio = ExtResource("3_m366t")
 level_up_audio = ExtResource("4_8cpw0")
+xp_gain_audio = ExtResource("5_6mb4q")
 damage_numbers_origin = NodePath("Visual/CharacterUI/HPBar/DamageNumbersOrigin")
 hp_label = NodePath("Visual/CharacterUI/HPBar/HPLabel")
 hp_bar = NodePath("Visual/CharacterUI/HPBar")

@@ -9,6 +9,7 @@ class_name Character
 @export var damage_audio : AudioStream
 @export var die_audio : AudioStream
 @export var level_up_audio : AudioStream
+@export var xp_gain_audio : AudioStream
 
 @export var mouseover_scale : float = 1.1
 
@@ -340,6 +341,8 @@ func add_xp(amount : int):
 	total_xp += amount
 	if xp >= level_requirement:
 		level_up()
+	else:
+		SoundManager.play_sound(xp_gain_audio)
 	sell_value += 2.5
 	xp_gained.emit()
 
