@@ -68,7 +68,7 @@ corner_radius_bottom_left = 4
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42deb"]
-bg_color = Color(0.75, 0.75, 0.75, 1)
+bg_color = Color(0.282353, 0.854902, 1, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4

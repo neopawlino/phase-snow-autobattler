@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://tkfw2aqo8uiy"]
+[gd_scene load_steps=8 format=3 uid="uid://tkfw2aqo8uiy"]
 
 [ext_resource type="Theme" uid="uid://ddip2yriujj48" path="res://resources/theme.tres" id="1_npxhq"]
 [ext_resource type="Script" uid="uid://d224tldmixo5n" path="res://src/stream/stream_ui.gd" id="2_qybfq"]
 [ext_resource type="PackedScene" uid="uid://1af0t5t0aqld" path="res://src/stream/stream_speed.tscn" id="3_7fjv3"]
+[ext_resource type="AudioStream" uid="uid://d2ago4dkpoy7r" path="res://public/sfx/ability.wav" id="3_eq0lu"]
 
 [sub_resource type="Theme" id="Theme_vo0gr"]
 
-[node name="StreamUI" type="Control" node_paths=PackedStringArray("viewer_goal", "views", "views_per_sec", "viewer_retention", "viewers", "subscriber_rate", "subscribers", "member_rate", "members")]
+[sub_resource type="Curve" id="Curve_7fjv3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_eq0lu"]
+colors = PackedColorArray(0, 1, 0.983333, 1, 1, 1, 1, 0.352941)
+
+[node name="StreamUI" type="Control" node_paths=PackedStringArray("viewer_goal", "views", "views_per_sec", "viewer_retention", "viewers", "subscriber_rate", "subscribers", "member_rate", "members", "goal_progress_bar", "goal_mult_label", "goal_hit_particles")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -17,15 +25,19 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_npxhq")
 script = ExtResource("2_qybfq")
-viewer_goal = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ViewerGoalLabel")
-views = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/ViewsLabel")
-views_per_sec = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/ViewsPerSecLabel")
-viewer_retention = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ViewerRetentionLabel")
+viewer_goal = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer2/ViewerGoalLabel")
+views = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/vbox/ViewsLabel")
+views_per_sec = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/vbox/HBoxContainer/ViewsPerSecLabel")
+viewer_retention = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ViewerRetentionLabel")
 viewers = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2/HBoxContainer2/ViewersLabel")
-subscriber_rate = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/SubscriberRateLabel")
+subscriber_rate = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/SubscriberRateLabel")
 subscribers = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/HBoxContainer3/SubscribersLabel")
-member_rate = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/MemberRateLabel")
+member_rate = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/MemberRateLabel")
 members = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer/HBoxContainer4/MembersLabel")
+goal_progress_bar = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer/GoalProgressBar")
+goal_mult_label = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer2/Control/GoalMultLabel")
+goal_hit_sound = ExtResource("3_eq0lu")
+goal_hit_particles = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer2/Control/GoalMultLabel/GoalParticles")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -41,16 +53,8 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ViewerGoalLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
-layout_mode = 2
-text = "Viewer Goal: 99999"
-horizontal_alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -59,29 +63,29 @@ tooltip_text = "Views: The number of people in total who have watched the stream
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+[node name="vbox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+custom_minimum_size = Vector2(210, 0)
 layout_mode = 2
 tooltip_text = "Views: Number of people who have viewed the stream"
 
-[node name="ViewsLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/vbox"]
 layout_mode = 2
-text = "0"
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/vbox/HBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"TextSmall"
 text = "Views"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_bottom = 0
-
-[node name="ViewsPerSecLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="ViewsPerSecLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/vbox/HBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_vo0gr")
 theme_type_variation = &"TextSmall"
-text = "(0/sec)"
+text = "(9.99e999/sec)"
 vertical_alignment = 2
+
+[node name="ViewsLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/vbox"]
+layout_mode = 2
+text = "9.99e308"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -89,10 +93,20 @@ tooltip_text = "Viewer Retention: Percent chance for Views to become Viewers."
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="ViewerRetentionLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"TextSmall"
-text = "(10%)"
+text = "VR"
+
+[node name="ViewerRetentionLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TextSmall"
+text = "999%"
 
 [node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -101,17 +115,18 @@ tooltip_text = "Viewers: The number of people currently watching the stream."
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-
-[node name="ViewersLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "999"
 
 [node name="ViewersLabel2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2/HBoxContainer2"]
 layout_mode = 2
+theme_type_variation = &"TextSmall"
 text = "Viewers"
+
+[node name="ViewersLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "999"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -119,10 +134,20 @@ tooltip_text = "Subscription Rate: Percent chance for new Viewers to become Subs
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="SubscriberRateLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"TextSmall"
-text = "(10%)"
+text = "SR"
+
+[node name="SubscriberRateLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TextSmall"
+text = "999%"
 
 [node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -132,17 +157,18 @@ Subscribers persist between streams and influence certain abilities."
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4"]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer"]
+[node name="HBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-
-[node name="SubscribersLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "1"
 
 [node name="SubscribersLabel2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/HBoxContainer3"]
 layout_mode = 2
+theme_type_variation = &"TextSmall"
 text = "Subscribers"
+
+[node name="SubscribersLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/HBoxContainer3"]
+layout_mode = 2
+text = "1"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -150,10 +176,20 @@ tooltip_text = "Membership Rate: Percent chance for new Subscreibers to become M
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="MemberRateLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"TextSmall"
-text = "(10%)"
+text = "MR"
+
+[node name="MemberRateLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TextSmall"
+text = "999%"
 
 [node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -163,24 +199,106 @@ This gives you income each stream."
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5"]
 layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer"]
+[node name="HBoxContainer4" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-
-[node name="MembersLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "10000"
 
 [node name="MembersLabel2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer/HBoxContainer4"]
 layout_mode = 2
+theme_type_variation = &"TextSmall"
 text = "Members"
+
+[node name="MembersLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer/HBoxContainer4"]
+layout_mode = 2
+text = "10000"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Viewer Goal:"
+
+[node name="ViewerGoalLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+text = "99999"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 0
+
+[node name="GoalProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="GoalMultLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer2/Control"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+offset_top = -6.0
+offset_right = 90.0
+offset_bottom = 32.0
+pivot_offset = Vector2(45, 30)
+text = "1x"
+horizontal_alignment = 1
+
+[node name="GoalParticles" type="CPUParticles2D" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer2/Control/GoalMultLabel"]
+position = Vector2(32, 20)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_7fjv3")
+color_ramp = SubResource("Gradient_eq0lu")
 
 [node name="MarginContainer2" parent="." instance=ExtResource("3_7fjv3")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -375.0
+offset_left = -288.0
 offset_right = 0.0
-offset_bottom = 120.0
+offset_bottom = 116.0
 grow_horizontal = 0

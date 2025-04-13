@@ -107,6 +107,9 @@ var damage_tick_timer : float
 
 var prev_viewers : float
 
+var times_hit_goal : float
+signal goal_hit
+
 
 func _ready():
 	GameState.stream_manager = self
@@ -145,6 +148,8 @@ func _physics_process(delta : float):
 	if damage_tick_timer >= 1.0:
 		damage_all_characters(hp_drain)
 		damage_tick_timer -= 1.0
+
+	update_times_hit_goal()
 	check_stream_over()
 
 
@@ -223,9 +228,12 @@ func reset_stats():
 	member_revenue = 0
 	ability_revenue = 0
 
+	self.times_hit_goal = 0
+
 	self.hp_drain = 1
 	self.hp_drain_increase_timer = 0.0
 	self.hp_drain_increase_started = false
+
 
 
 func start_stream():
@@ -463,8 +471,15 @@ func get_total_revenue() -> float:
 	return self.get_performance_bonus() + self.ad_revenue + self.member_revenue
 
 
+func update_times_hit_goal():
+	var prev_times := times_hit_goal
+	times_hit_goal = floorf(self.peak_viewers / self.viewer_goal)
+	if times_hit_goal > prev_times:
+		goal_hit.emit()
+
+
 func get_performance_bonus() -> float:
-	var times_hit_goal := floorf(self.peak_viewers / self.viewer_goal)
+	self.update_times_hit_goal()
 	return self.base_revenue * times_hit_goal
 
 
