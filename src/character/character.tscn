@@ -200,7 +200,7 @@ color_ramp = SubResource("Gradient_qi5as")
 [node name="Sprite2D" type="Sprite2D" parent="Visual/SpriteParent"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_yxww1")
-scale = Vector2(3, 3)
+scale = Vector2(2, 2)
 texture = ExtResource("2_y5mxj")
 offset = Vector2(4, -4)
 hframes = 4
@@ -213,8 +213,8 @@ libraries = {
 
 [node name="UpgradeIndicator" type="Sprite2D" parent="Visual/SpriteParent" node_paths=PackedStringArray("char")]
 z_index = 2
-position = Vector2(0, -94)
-scale = Vector2(3, 3)
+position = Vector2(0, -80)
+scale = Vector2(4, 4)
 texture = ExtResource("9_omsti")
 script = ExtResource("10_omsti")
 char = NodePath("../../..")
@@ -263,10 +263,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -150.0
-offset_right = 48.0
-offset_bottom = -70.0
+offset_left = -74.0
+offset_top = -176.0
+offset_right = 74.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
