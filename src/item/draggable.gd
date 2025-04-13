@@ -21,6 +21,9 @@ var cur_slot : Slot
 
 @export var drag_object : Node
 
+@export var pickup_sound : AudioStream
+@export var drop_sound : AudioStream
+
 var drag_initial_pos : Vector2
 var drag_offset : Vector2
 
@@ -73,19 +76,25 @@ func _process(delta: float) -> void:
 	if GameState.is_dragging:
 		mouseover = false
 	if mouseover and Input.is_action_just_pressed("click") and not GameState.is_dragging:
-		drag_initial_pos = drag_object.global_position
-		drag_offset = self.get_global_mouse_position() - self.global_position
-		GameState.is_dragging = true
-		GameState.drag_object = self.drag_object
-		GameState.drag_original_slot = self.cur_slot
-		GameState.drag_end_slot = self.cur_slot
-		GameState.drag_initial_mouse_pos = self.get_global_mouse_position()
-		self.drag_object.reparent(GameState.drag_parent, true)
-		self.drag_started.emit()
+		start_dragging()
 	if Input.is_action_pressed("click") and GameState.drag_object == self.drag_object:
 		drag_object.global_position = self.get_global_mouse_position() - drag_offset
 	elif Input.is_action_just_released("click") and GameState.drag_object == self.drag_object:
 		on_drag_release()
+
+
+func start_dragging():
+	drag_initial_pos = drag_object.global_position
+	drag_offset = self.get_global_mouse_position() - self.global_position
+	GameState.is_dragging = true
+	GameState.drag_object = self.drag_object
+	GameState.drag_original_slot = self.cur_slot
+	GameState.drag_end_slot = self.cur_slot
+	GameState.drag_initial_mouse_pos = self.get_global_mouse_position()
+	self.drag_object.reparent(GameState.drag_parent, true)
+	self.drag_started.emit()
+	if pickup_sound:
+		SoundManager.play_sound(pickup_sound)
 
 
 func on_drag_release():
@@ -102,6 +111,8 @@ func on_drag_release():
 		self.sell()
 	GameState.drag_object = null
 	self.drag_ended.emit()
+	if drop_sound:
+		SoundManager.play_sound(drop_sound)
 
 
 func sell():
