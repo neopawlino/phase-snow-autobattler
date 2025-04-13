@@ -23,8 +23,6 @@ class_name Character
 @export var xp_label : Label
 @export var xp_bar : ProgressBar
 
-@export var ability_bar_container : BoxContainer
-
 @export var name_label : Label
 
 @export var char_info_container : Container

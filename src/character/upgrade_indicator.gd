@@ -8,6 +8,9 @@ func _ready() -> void:
 
 
 func update_visibility(drag_obj : Node):
+	if not char.character_ui.visible:
+		self.hide()
+		return
 	if drag_obj is Character:
 		self.visible = char.can_merge(drag_obj)
 	else:

@@ -150,7 +150,7 @@ colors = PackedColorArray(0, 1, 0.983333, 1, 1, 1, 1, 0.352941)
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "ability_bar_container", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slot_container", "character_ui")]
+[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slot_container", "character_ui")]
 texture_filter = 1
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 3
@@ -172,7 +172,6 @@ hp_bar = NodePath("Visual/CharacterUI/HPBar")
 level_label = NodePath("Visual/CharacterUI/VBoxContainer/LvLabel")
 xp_label = NodePath("Visual/CharacterUI/VBoxContainer/XPBar/XPLabel")
 xp_bar = NodePath("Visual/CharacterUI/VBoxContainer/XPBar")
-ability_bar_container = NodePath("Visual/CharacterUI/AbilityBarContainer")
 name_label = NodePath("Visual/CharacterUI/NameLabel")
 char_info_container = NodePath("Visual/CharacterUI")
 status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
@@ -274,18 +273,11 @@ mouse_filter = 2
 theme = ExtResource("4_18dhx")
 alignment = 2
 
-[node name="AbilityBarContainer" type="VBoxContainer" parent="Visual/CharacterUI"]
-layout_mode = 2
-theme_override_constants/separation = 4
-
 [node name="NameLabel" type="Label" parent="Visual/CharacterUI"]
 visible = false
 layout_mode = 2
 text = "He may"
 horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Visual/CharacterUI"]
-layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Visual/CharacterUI"]
 layout_mode = 2
@@ -387,7 +379,10 @@ theme_override_constants/separation = 0
 
 [node name="Draggable" parent="." node_paths=PackedStringArray("drag_object") instance=ExtResource("5_bv4aq")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 160)
+custom_minimum_size = Vector2(120, 120)
+offset_top = 30.0
+offset_right = 120.0
+offset_bottom = 150.0
 drag_object = NodePath("..")
 
 [connection signal="level_gained" from="." to="Visual/LevelUpParticles" method="emit_particles"]
