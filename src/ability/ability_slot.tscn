@@ -6,7 +6,7 @@
 
 [node name="AbilitySlot" type="PanelContainer" node_paths=PackedStringArray("slot_indicator")]
 texture_filter = 1
-custom_minimum_size = Vector2(52, 52)
+custom_minimum_size = Vector2(48, 48)
 pivot_offset = Vector2(24, 24)
 theme_type_variation = &"AbilitySlot"
 script = ExtResource("1_au03e")
@@ -28,25 +28,25 @@ texture = ExtResource("3_efogu")
 
 [node name="TextureRect2" type="TextureRect" parent="SlotIndicator"]
 layout_mode = 1
-offset_left = 52.0
-offset_right = 68.0
+offset_left = 48.0
+offset_right = 64.0
 offset_bottom = 16.0
 rotation = 1.5708
 texture = ExtResource("3_efogu")
 
 [node name="TextureRect3" type="TextureRect" parent="SlotIndicator"]
 layout_mode = 0
-offset_left = 52.0
-offset_top = 52.0
-offset_right = 68.0
-offset_bottom = 68.0
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 64.0
+offset_bottom = 64.0
 rotation = 3.14159
 texture = ExtResource("3_efogu")
 
 [node name="TextureRect4" type="TextureRect" parent="SlotIndicator"]
 layout_mode = 0
-offset_top = 52.0
+offset_top = 48.0
 offset_right = 16.0
-offset_bottom = 68.0
+offset_bottom = 64.0
 rotation = -1.5708
 texture = ExtResource("3_efogu")

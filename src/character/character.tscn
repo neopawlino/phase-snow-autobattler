@@ -211,7 +211,7 @@ libraries = {
 
 [node name="UpgradeIndicator" type="Sprite2D" parent="Visual/SpriteParent" node_paths=PackedStringArray("char")]
 z_index = 2
-position = Vector2(0, -100)
+position = Vector2(0, -94)
 scale = Vector2(3, 3)
 texture = ExtResource("9_omsti")
 script = ExtResource("10_omsti")
@@ -363,14 +363,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Visual/CharacterUI"]
-custom_minimum_size = Vector2(160, 54)
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 
 [node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/CharacterUI/ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 6
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
 offset_left = -60.0
