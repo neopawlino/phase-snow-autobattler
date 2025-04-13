@@ -11,6 +11,7 @@ extends Control
 @export var subscribers : Label
 @export var member_rate : Label
 @export var members : Label
+@export var money : Label
 
 @export var goal_progress_bar : ProgressBar
 @export var goal_mult_label : Label
@@ -31,9 +32,10 @@ func _ready() -> void:
 	GameState.subscribers_changed.connect(update_subscribers)
 	stream_manager.member_rate_changed.connect(update_member_rate)
 	GameState.members_changed.connect(update_members)
+	GameState.player_money_changed.connect(update_money)
 
 	stream_manager.goal_hit.connect(func():
-		update_viewer_goal()
+		update_viewer_goal(stream_manager.viewer_goal)
 		play_goal_hit_effect()
 	)
 
@@ -56,7 +58,7 @@ func hide_anim():
 
 
 func update_all():
-	update_viewer_goal()
+	update_viewer_goal(stream_manager.viewer_goal)
 	update_views(stream_manager.views)
 	update_views_per_sec(stream_manager.views_per_sec)
 	update_viewer_retention(stream_manager.viewer_retention)
@@ -65,12 +67,13 @@ func update_all():
 	update_subscribers(GameState.subscribers)
 	update_member_rate(stream_manager.member_rate)
 	update_members(GameState.members)
+	update_money(GameState.player_money)
 
 
-func update_viewer_goal():
-	viewer_goal.text = StringUtil.format_number(stream_manager.viewer_goal)
+func update_viewer_goal(amt : float):
+	viewer_goal.text = StringUtil.format_number(amt)
 	goal_progress_bar.min_value = 0
-	goal_progress_bar.max_value = stream_manager.viewer_goal
+	goal_progress_bar.max_value = amt
 	goal_progress_bar.value = fmod(stream_manager.peak_viewers, stream_manager.viewer_goal)
 	var times_hit_goal := minf(9999.0, stream_manager.times_hit_goal)
 	if times_hit_goal > 0:
@@ -96,7 +99,7 @@ func play_goal_hit_effect():
 
 
 func update_views(amt : float):
-	views.text = "%s" % StringUtil.format_number(amt)
+	views.text = StringUtil.format_number(amt)
 
 
 func update_views_per_sec(amt : float):
@@ -108,8 +111,8 @@ func update_viewer_retention(amt : float):
 
 
 func update_viewers(amt : float):
-	viewers.text = "%s" % StringUtil.format_number(amt)
-	update_viewer_goal()
+	viewers.text = StringUtil.format_number(amt)
+	update_viewer_goal(stream_manager.viewer_goal)
 
 
 func update_subscriber_rate(amt : float):
@@ -117,7 +120,7 @@ func update_subscriber_rate(amt : float):
 
 
 func update_subscribers(amt : float):
-	subscribers.text = "%s" % StringUtil.format_number(amt)
+	subscribers.text = StringUtil.format_number(amt)
 
 
 func update_member_rate(amt : float):
@@ -125,4 +128,8 @@ func update_member_rate(amt : float):
 
 
 func update_members(amt : float):
-	members.text = "%s" % StringUtil.format_number(amt)
+	members.text = StringUtil.format_number(amt)
+
+
+func update_money(amt : float):
+	money.text = StringUtil.format_money(amt)
