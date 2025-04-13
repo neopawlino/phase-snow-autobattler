@@ -8,6 +8,8 @@ var initial_position : Vector2
 @export var restart_button : Button
 @export var quit_button : Button
 
+@export var click_sound : AudioStream
+
 @export var start_menu : Control
 
 @export var restart_confirmation : ConfirmationDialog
@@ -39,6 +41,8 @@ func _ready() -> void:
 
 
 func on_settings_button_pressed():
+	if click_sound:
+		SoundManager.play_sound(click_sound)
 	if not settings_window.visible:
 		settings_window.size = self.settings_default_size
 		settings_window.position = self.settings_default_pos
@@ -48,11 +52,15 @@ func on_settings_button_pressed():
 
 
 func on_restart_button_pressed():
+	if click_sound:
+		SoundManager.play_sound(click_sound)
 	restart_confirmation.show()
 	restart_confirmation.popup_centered()
 
 
 func on_quit_button_pressed():
+	if click_sound:
+		SoundManager.play_sound(click_sound)
 	quit_confirmation.show()
 	quit_confirmation.popup_centered()
 

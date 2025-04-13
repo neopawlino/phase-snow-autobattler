@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddvu8dsob8vox"]
+[gd_scene load_steps=7 format=3 uid="uid://ddvu8dsob8vox"]
 
 [ext_resource type="Theme" uid="uid://b25e8xy3plsn6" path="res://resources/theme/desktop_theme.tres" id="1_icusc"]
 [ext_resource type="Script" uid="uid://01e7ioy5jri7" path="res://src/main/start_button.gd" id="2_0t3ke"]
 [ext_resource type="Script" uid="uid://chy0ylqnbrxwi" path="res://src/main/taskbar.gd" id="2_37ry6"]
 [ext_resource type="Script" uid="uid://bk2s3vsbs823v" path="res://src/main/start_menu.gd" id="2_bn8dn"]
+[ext_resource type="AudioStream" uid="uid://chilwaplwvmof" path="res://public/sfx/tick.wav" id="3_37ry6"]
 [ext_resource type="Script" uid="uid://c51gc708xsn10" path="res://src/main/day_label.gd" id="4_0t3ke"]
 
 [node name="TaskBar" type="MarginContainer" node_paths=PackedStringArray("settings_button", "restart_button", "quit_button", "start_menu", "restart_confirmation", "quit_confirmation")]
@@ -23,6 +24,7 @@ script = ExtResource("2_37ry6")
 settings_button = NodePath("VBoxContainer/StartMenu/HBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/SettingsButton")
 restart_button = NodePath("VBoxContainer/StartMenu/HBoxContainer/MarginContainer/VBoxContainer/RestartButton")
 quit_button = NodePath("VBoxContainer/StartMenu/HBoxContainer/MarginContainer/VBoxContainer/QuitButton")
+click_sound = ExtResource("3_37ry6")
 start_menu = NodePath("VBoxContainer/StartMenu")
 restart_confirmation = NodePath("RestartConfirmation")
 quit_confirmation = NodePath("QuitConfirmation")
@@ -116,6 +118,7 @@ layout_mode = 2
 text = "Start"
 script = ExtResource("2_0t3ke")
 start_menu = NodePath("../../../StartMenu")
+click_sound = ExtResource("3_37ry6")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bar/HBoxContainer"]
 custom_minimum_size = Vector2(0, 40)

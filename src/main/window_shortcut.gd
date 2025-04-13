@@ -3,6 +3,8 @@ extends Button
 @export var window : CustomWindow
 @export var notification_icon : Control
 
+@export var click_sound : AudioStream
+
 var default_size : Vector2
 var default_pos : Vector2
 
@@ -20,4 +22,6 @@ func on_pressed():
 		window.size = self.default_size
 		window.position = self.default_pos
 		window.visible = true
+	if click_sound:
+		SoundManager.play_sound(click_sound)
 	window.grab_focus()
