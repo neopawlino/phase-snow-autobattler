@@ -32,6 +32,11 @@ var shop_slot_scene : PackedScene = preload("res://src/shop/shop_slot.tscn")
 @export var reroll_normal_text_color : Color = Color("0f1111")
 @export var reroll_disabled_text_color : Color = Color("00000089")
 
+@export var error_label : Label
+var error_tween : Tween
+
+@export var no_room_message : String = "No room in Bench!"
+
 @export var cheats_container : Control
 
 
@@ -51,6 +56,7 @@ func _ready() -> void:
 	GameState.shop_manager = self
 
 	GameState.player_money_changed.connect(update_reroll_button_enabled)
+	GameState.player_money_changed.connect(update_can_afford)
 	GameState.inflation_changed.connect(update_inflation_label)
 	GlobalSignals.stream_end_anim_finished.connect(reroll_talents)
 	GlobalSignals.stream_end_anim_finished.connect(reset_reroll_price)
@@ -67,6 +73,7 @@ func _ready() -> void:
 
 	reset_reroll_price()
 	update_inflation_label(GameState.inflation_coeff)
+	error_label.hide()
 	call_deferred("reroll_talents")
 
 
@@ -100,6 +107,12 @@ func update_reroll_button_enabled(money: float = GameState.player_money):
 	var color := reroll_disabled_text_color if disabled else reroll_normal_text_color
 	reroll_label.add_theme_color_override(&"font_color", color)
 	reroll_price_label.add_theme_color_override(&"font_color", color)
+
+
+func update_can_afford(player_money : float):
+	for slot in self.talent_slots:
+		if slot.slot_obj:
+			slot.set_can_afford(slot.buy_price <= player_money)
 
 
 func reset_reroll_price():
@@ -142,6 +155,7 @@ func add_character_to_slot(char: Character, slot : ShopSlot, buy_price : float):
 	slot.set_price(buy_price)
 	slot.set_title(char.char_def.character_name)
 	slot.set_sold_out(false)
+	slot.set_can_afford(buy_price <= GameState.player_money)
 
 
 func add_item_to_slot(item : Item, slot : Slot, buy_price : int):
@@ -154,6 +168,17 @@ func add_item_to_slot(item : Item, slot : Slot, buy_price : int):
 
 	item.global_position = slot.global_position
 	self.item_container.add_child(item)
+
+
+func show_error(message : String):
+	error_label.text = message
+	error_label.modulate.a = 1.0
+	error_label.show()
+	if error_tween:
+		error_tween.kill()
+	error_tween = self.create_tween()
+	error_tween.tween_property(error_label, "modulate:a", 0.0, 1.0).set_delay(1.0)
+	error_tween.tween_callback(error_label.hide)
 
 
 func on_reroll_button_pressed() -> void:

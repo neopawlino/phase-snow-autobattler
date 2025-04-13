@@ -12,7 +12,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmb2m"]
 bg_color = Color(0.890196, 0.901961, 0.901961, 1)
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("inflation_label", "talent_slot_container", "reroll_button", "reroll_label", "reroll_price_label", "cheats_container")]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("inflation_label", "talent_slot_container", "reroll_button", "reroll_label", "reroll_price_label", "error_label", "cheats_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,6 +27,7 @@ talent_slot_container = NodePath("ScrollContainer/VBoxContainer/MarginContainer/
 reroll_button = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton")
 reroll_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer/RerollLabel")
 reroll_price_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer/RerollPriceLabel")
+error_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/ErrorLabel")
 cheats_container = NodePath("ScrollContainer/VBoxContainer/CheatsContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -124,6 +125,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Talents"
+
+[node name="ErrorLabel" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0, 0, 1)
+text = "Can't afford!"
 
 [node name="RerollButton" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(160, 32)
