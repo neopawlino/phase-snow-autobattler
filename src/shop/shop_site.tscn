@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0vebfhhnx8ng"]
+[gd_scene load_steps=12 format=3 uid="uid://d0vebfhhnx8ng"]
 
 [ext_resource type="Theme" uid="uid://dy3ejfj58drwu" path="res://resources/theme/jamazon.tres" id="1_pybh5"]
 [ext_resource type="PackedScene" uid="uid://drgpkq08jre2r" path="res://src/main/kbs_character_slot.tscn" id="2_b2b50"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://dpq7fbl6dtbdd" path="res://src/shop/shop_manager.gd" id="2_tkxm1"]
 [ext_resource type="PackedScene" uid="uid://dd3yd21lrvjcv" path="res://src/shop/shop_slot.tscn" id="3_8xggp"]
 [ext_resource type="Script" uid="uid://bj83sngk6nd4t" path="res://old/debug.gd" id="3_b2b50"]
+[ext_resource type="AudioStream" uid="uid://cpehp8a42ms1q" path="res://public/sfx/buy.wav" id="3_o4m5f"]
 [ext_resource type="FontFile" uid="uid://bw82tl4vno34" path="res://assets/OpenSans-Regular.ttf" id="4_egwmr"]
+[ext_resource type="AudioStream" uid="uid://c4vyhe50u6amo" path="res://public/sfx/error.wav" id="4_lrpwa"]
 [ext_resource type="FontFile" uid="uid://c7txq4e8xd3b5" path="res://assets/OpenSans-Bold.ttf" id="5_aqqgx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmb2m"]
@@ -29,6 +31,9 @@ reroll_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelCont
 reroll_price_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/RerollButton/RerollLabelContainer/RerollPriceLabel")
 error_label = NodePath("ScrollContainer/VBoxContainer/MarginContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/ErrorLabel")
 cheats_container = NodePath("ScrollContainer/VBoxContainer/CheatsContainer")
+reroll_sound = ExtResource("3_o4m5f")
+buy_sound = ExtResource("3_o4m5f")
+error_sound = ExtResource("4_lrpwa")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2

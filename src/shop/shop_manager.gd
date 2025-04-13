@@ -39,6 +39,10 @@ var error_tween : Tween
 
 @export var cheats_container : Control
 
+@export var reroll_sound : AudioStream
+@export var buy_sound : AudioStream
+@export var error_sound : AudioStream
+
 
 func _ready() -> void:
 	for child in talent_slot_container.get_children():
@@ -87,10 +91,10 @@ func update_inflation_label(val : float):
 func on_talent_buy_button_pressed(slot : ShopSlot):
 	assert(slot.slot_obj != null)
 	if GameState.bench_slots.all_slots_full():
-		# TODO no room anim
+		show_error(no_room_message)
 		return
 	if GameState.player_money < slot.buy_price:
-		# TODO can't afford anim or disable button state
+		# button should be disabled
 		return
 	GameState.player_money -= slot.buy_price
 	var character : Character = slot.slot_obj
@@ -98,6 +102,8 @@ func on_talent_buy_button_pressed(slot : ShopSlot):
 	character.drag_component.draggable = true
 	character.set_ui_visible(true)
 	slot.set_sold_out(true)
+
+	SoundManager.play_sound(buy_sound)
 
 
 func update_reroll_button_enabled(money: float = GameState.player_money):
@@ -157,6 +163,9 @@ func add_character_to_slot(char: Character, slot : ShopSlot, buy_price : float):
 	slot.set_sold_out(false)
 	slot.set_can_afford(buy_price <= GameState.player_money)
 
+	# anim
+	char.sprite.damage_shake(6)
+
 
 func add_item_to_slot(item : Item, slot : Slot, buy_price : int):
 	item.cur_slot = slot
@@ -179,6 +188,7 @@ func show_error(message : String):
 	error_tween = self.create_tween()
 	error_tween.tween_property(error_label, "modulate:a", 0.0, 1.0).set_delay(1.0)
 	error_tween.tween_callback(error_label.hide)
+	SoundManager.play_sound(error_sound)
 
 
 func on_reroll_button_pressed() -> void:
@@ -189,3 +199,4 @@ func on_reroll_button_pressed() -> void:
 	GameState.player_money -= reroll_price
 	increase_reroll_price()
 	reroll_all()
+	SoundManager.play_sound(reroll_sound)
