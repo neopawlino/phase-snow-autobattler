@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 		var offset_y : float = 0.0
 		for num in nums:
 			num.pos.y += offset_y
-			self._display_damage_number(num)
+			self.display_damage_number(num)
 			offset_y -= prevent_overlap_offset
 	queued_numbers.clear()
 
@@ -64,7 +64,7 @@ func queue_display_number(value: String, pos: Vector2, color : Color = Color.WHI
 	pos_array.append(num)
 
 
-func _display_damage_number(num : DamageNumber):
+func display_damage_number(num : DamageNumber):
 	self.display_number(num.text, num.pos, num.color)
 
 
