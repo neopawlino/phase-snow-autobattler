@@ -107,9 +107,9 @@ func on_drag_release():
 func sell():
 	var sell_value : float = 0.0
 	if self.drag_object is Character:
-		sell_value = self.drag_object.sell_value
+		sell_value = self.drag_object.sell_value * GameState.inflation_coeff
 	elif self.drag_object is Ability:
-		sell_value = self.drag_object.sell_value
+		sell_value = self.drag_object.sell_value * GameState.inflation_coeff
 	else:
 		return
 	GameState.player_money += sell_value
@@ -159,11 +159,12 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	var tooltip : CustomTooltip = tooltip_scene.instantiate()
 	if drag_object is Ability:
 		tooltip.update_from_ability_definition(drag_object.ability_definition)
+		tooltip.update_sell_value(drag_object.sell_value * GameState.inflation_coeff)
 	elif drag_object is Item:
 		tooltip.update_from_item_definition(drag_object.item_definition)
 	elif drag_object is Character:
 		tooltip.update_from_character_definition(drag_object.char_def)
-		tooltip.update_sell_value(drag_object.sell_value)
+		tooltip.update_sell_value(drag_object.sell_value * GameState.inflation_coeff)
 		if not drag_object.abilities.is_empty():
 			tooltip.update_ability_description(drag_object.abilities.front())
 	return tooltip

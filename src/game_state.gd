@@ -35,6 +35,13 @@ signal player_money_changed(value: float)
 
 var starting_money : float = 15.0
 
+var inflation_coeff : float = 1.0:
+	set(val):
+		inflation_coeff = val
+		inflation_changed.emit(val)
+signal inflation_changed(val : float)
+var inflation_mult_per_round : float = 1.2
+
 var player_hp : int:
 	set(val):
 		player_hp = val
@@ -152,6 +159,7 @@ func _ready() -> void:
 		if self.subscribers >= victory_sub_count and not victory_screen_shown:
 			GlobalSignals.victory.emit()
 	)
+	GlobalSignals.stream_results_confirmed.connect(increase_inflation)
 	self.reset()
 
 
@@ -166,10 +174,15 @@ func reset() -> void:
 	self.highest_viewers = 0
 	self.total_earnings = 0
 	self.victory_screen_shown = false
+	self.inflation_coeff = 1.0
 
 
 func get_viewer_goal(round_num : int) -> float:
 	return base_viewer_goal * pow(viewer_goal_exp_base, round_num-1)
+
+
+func increase_inflation():
+	self.inflation_coeff *= self.inflation_mult_per_round
 
 
 func restart_game() -> void:

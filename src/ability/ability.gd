@@ -9,7 +9,7 @@ class_name Ability
 
 var is_ability_reward : bool
 
-var sell_value : float = 3.0
+var sell_value : float = 5.0
 
 func _ready() -> void:
 	drag_component.drag_started.connect(on_drag_started)

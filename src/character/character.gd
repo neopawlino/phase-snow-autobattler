@@ -94,7 +94,7 @@ var unique_status_icons : Array
 
 var team : int
 
-var sell_value : float = 2
+var sell_value : float = 5.0
 
 var was_tooltip_open_for_character : bool
 
@@ -333,7 +333,7 @@ func add_xp(amount : int):
 	total_xp += amount
 	if xp >= level_requirement:
 		level_up()
-	sell_value += 1.0
+	sell_value += 2.5
 	xp_gained.emit()
 
 

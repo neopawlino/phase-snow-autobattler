@@ -13,11 +13,6 @@ var item_slots : Array[Slot]
 @export var reroll_increase : float = 1
 @export var reroll_increase_mult : float = 1.3
 
-var inflation_coeff : float = 1.0:
-	set(val):
-		inflation_coeff = val
-		update_inflation_label(val)
-@export var inflation_mult_per_round : float = 1.2
 @export var inflation_label : Label
 
 var reroll_price : float:
@@ -56,7 +51,7 @@ func _ready() -> void:
 	GameState.shop_manager = self
 
 	GameState.player_money_changed.connect(update_reroll_button_enabled)
-	GlobalSignals.stream_results_confirmed.connect(increase_inflation)
+	GameState.inflation_changed.connect(update_inflation_label)
 	GlobalSignals.stream_end_anim_finished.connect(reroll_talents)
 	GlobalSignals.stream_end_anim_finished.connect(reset_reroll_price)
 	GlobalSignals.stream_end_anim_finished.connect(window.notification.emit)
@@ -71,12 +66,8 @@ func _ready() -> void:
 	reroll_button.pressed.connect(on_reroll_button_pressed)
 
 	reset_reroll_price()
-	update_inflation_label(inflation_coeff)
+	update_inflation_label(GameState.inflation_coeff)
 	call_deferred("reroll_talents")
-
-
-func increase_inflation():
-	self.inflation_coeff *= self.inflation_mult_per_round
 
 
 func update_inflation_label(val : float):
@@ -112,7 +103,7 @@ func update_reroll_button_enabled(money: float = GameState.player_money):
 
 
 func reset_reroll_price():
-	reroll_price = base_reroll_price * inflation_coeff
+	reroll_price = base_reroll_price * GameState.inflation_coeff
 
 
 func increase_reroll_price():
@@ -131,7 +122,7 @@ func reroll_talents():
 		var char : Character = character_scene.instantiate()
 		char.load_from_character_definition(RandomUtil.all_character_definitions.pick_random())
 		char.set_ui_visible(false)
-		add_character_to_slot(char, slot, buy_price * inflation_coeff)
+		add_character_to_slot(char, slot, buy_price * GameState.inflation_coeff)
 
 
 func reroll_all():
