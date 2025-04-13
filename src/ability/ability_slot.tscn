@@ -16,6 +16,7 @@ anim_sfx = ExtResource("2_ok8cg")
 pickable = true
 
 [node name="SlotIndicator" type="Control" parent="."]
+z_index = 1
 layout_mode = 2
 mouse_filter = 2
 
