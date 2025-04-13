@@ -13,6 +13,8 @@ var slot_index : int
 var slot_obj : Node
 
 @export var merge_swap_timer : Timer
+@export var show_slot_indicator : bool = true
+@export var slot_indicator : Control
 
 @export var anim_sfx : AudioStream
 
@@ -42,6 +44,22 @@ func _ready() -> void:
 	self.mouse_exited.connect(func():
 		self.mouseover = false
 	)
+
+	GameState.drag_object_changed.connect(update_slot_indicator)
+	update_slot_indicator(GameState.drag_object)
+
+
+func update_slot_indicator(drag_obj : Node):
+	if not slot_indicator:
+		return
+	if not drag_obj or not show_slot_indicator:
+		slot_indicator.hide()
+		return
+	# change visibility of the indicator
+	if drag_obj is Ability and self.slot_type == SlotType.ABILITY:
+		slot_indicator.show()
+	elif drag_obj is Character and self.slot_type == SlotType.CHARACTER:
+		slot_indicator.show()
 
 
 func set_pickable(pickable : bool):

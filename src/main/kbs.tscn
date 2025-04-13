@@ -227,6 +227,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/v_separation = 8
 script = ExtResource("3_a1e8s")
+show_slot_indicator = false
 
 [node name="AbilitySlot" parent="KBSMain/VBoxContainer/HBoxContainer2/Abilities/MarginContainer/Container/MarginContainer2/ScrollContainer/AbilitySlotsContainer" instance=ExtResource("3_fw664")]
 layout_mode = 2

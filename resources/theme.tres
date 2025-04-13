@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://ddip2yriujj48"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://ddip2yriujj48"]
 
 [ext_resource type="FontFile" uid="uid://d31aiqold0as0" path="res://assets/m5x7.ttf" id="1_d4nwg"]
 [ext_resource type="FontFile" uid="uid://cyf4ilchh31t0" path="res://assets/m3x6.ttf" id="2_7ct1h"]
@@ -26,6 +26,10 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05tig"]
 bg_color = Color(0.2, 0.2, 0.2, 0.737255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b751m"]
+bg_color = Color(0.179083, 0.135, 0.25, 0.376471)
+border_color = Color(0.76, 0.64, 1, 0.552941)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owntx"]
 bg_color = Color(0.329513, 0.2484, 0.46, 0.756863)
@@ -91,6 +95,8 @@ AbilityProgressBar/base_type = &"ProgressBar"
 AbilityProgressBar/font_sizes/font_size = 32
 AbilityProgressBar/styles/background = SubResource("StyleBoxEmpty_b751m")
 AbilityProgressBar/styles/fill = SubResource("StyleBoxFlat_05tig")
+AbilitySlot/base_type = &"PanelContainer"
+AbilitySlot/styles/panel = SubResource("StyleBoxFlat_b751m")
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/font_sizes/font_size = 64
 Button/fonts/font = ExtResource("1_d4nwg")
