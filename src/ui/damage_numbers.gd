@@ -18,21 +18,54 @@ extends Node
 	StatValue.Stat.MONEY: Color("ffff00"),
 }
 
+@export var prevent_overlap_offset : float = 30.0
+
+class DamageNumber:
+	var pos: Vector2
+	var text : String
+	var color : Color
+
+var queued_numbers : Dictionary[Vector2, Array]
+
 # based on a tutorial by DashNothing
 # https://www.youtube.com/watch?v=F0DQLSiLkjg
 
 func _ready() -> void:
 	if self.is_main_numbers:
-		GlobalSignals.show_main_stat_value.connect(display_stat_value)
+		GlobalSignals.show_main_stat_value.connect(queue_display_stat_value)
 	if self.is_stream_numbers:
-		GlobalSignals.show_stream_stat_value.connect(display_stat_value)
-		GlobalSignals.show_stream_damage_number.connect(display_number)
+		GlobalSignals.show_stream_stat_value.connect(queue_display_stat_value)
+		GlobalSignals.show_stream_damage_number.connect(queue_display_number)
 
 
-func display_stat_value(stat_value : StatValue, pos : Vector2):
+func _physics_process(delta: float) -> void:
+	for pos in queued_numbers:
+		var nums : Array = queued_numbers[pos]
+		var offset_y : float = 0.0
+		for num in nums:
+			num.pos.y += offset_y
+			self._display_damage_number(num)
+			offset_y -= prevent_overlap_offset
+	queued_numbers.clear()
+
+
+func queue_display_stat_value(stat_value : StatValue, pos : Vector2):
 	var color : Color = self.stat_colors.get(stat_value.stat, Color.WHITE)
 	var change_string := StringUtil.get_stat_change_string(stat_value)
-	self.display_number(change_string, pos, color)
+	self.queue_display_number(change_string, pos, color)
+
+
+func queue_display_number(value: String, pos: Vector2, color : Color = Color.WHITE):
+	var pos_array : Array = self.queued_numbers.get_or_add(pos, [])
+	var num := DamageNumber.new()
+	num.text = value
+	num.pos = pos
+	num.color = color
+	pos_array.append(num)
+
+
+func _display_damage_number(num : DamageNumber):
+	self.display_number(num.text, num.pos, num.color)
 
 
 func display_number(value: String, pos: Vector2, color : Color = Color.WHITE):
