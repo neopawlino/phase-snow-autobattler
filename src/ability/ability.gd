@@ -23,8 +23,12 @@ func on_drag_started():
 		return
 	self.is_ability_reward = false
 	self.drag_component.on_drag_release()
-	self.drag_component.move_to_slot(GameState.ability_slots.get_next_free_slot(), true)
+	move_to_inventory()
 	GlobalSignals.rewards_screen_finished.emit()
+
+
+func move_to_inventory():
+	self.drag_component.move_to_slot(GameState.ability_slots.get_next_free_slot(), true)
 
 
 func on_drag_occupied_slot(slot : Slot):

@@ -224,7 +224,14 @@ func merge_character(other: Character):
 func remove_self():
 	if drag_component.cur_slot:
 		drag_component.cur_slot.slot_obj = null
+	move_abilities_to_inventory()
 	self.queue_free()
+
+
+func move_abilities_to_inventory():
+	for slot in ability_slots:
+		if slot.slot_obj:
+			slot.slot_obj.move_to_inventory()
 
 
 func update_hp_bar(hp : int, max_hp : int):

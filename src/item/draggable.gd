@@ -108,6 +108,7 @@ func sell():
 	var sell_value : float = 0.0
 	if self.drag_object is Character:
 		sell_value = self.drag_object.sell_value * GameState.inflation_coeff
+		self.drag_object.move_abilities_to_inventory()
 	elif self.drag_object is Ability:
 		sell_value = self.drag_object.sell_value * GameState.inflation_coeff
 	else:
