@@ -22,7 +22,7 @@ width = 720
 height = 405
 fill_from = Vector2(1, 1)
 
-[node name="StreamSummary" type="Control" node_paths=PackedStringArray("stream_finished_label", "stream_title_label", "views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "performance_bonus_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
+[node name="StreamSummary" type="Control" node_paths=PackedStringArray("stream_finished_label", "stream_title_label", "thumbnail", "views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "performance_bonus_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +37,7 @@ theme = ExtResource("1_0f2ul")
 script = ExtResource("2_gi83k")
 stream_finished_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer2/StreamFinishedLabel")
 stream_title_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/StreamTitle")
+thumbnail = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/Thumbnail")
 views_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer/ViewsLabel")
 viewers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer/ViewersLabel")
 subscribers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer/SubscribersLabel")
@@ -121,7 +122,7 @@ text = "Stream Finished - Day 1"
 custom_minimum_size = Vector2(705, 405)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(720, 405)
 layout_mode = 2
@@ -130,7 +131,7 @@ offset_bottom = 405.0
 texture = ExtResource("3_4n7bs")
 expand_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="ThumbnailOverlay" type="TextureRect" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 offset_right = 720.0
 offset_bottom = 64.0

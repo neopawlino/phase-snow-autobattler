@@ -13,6 +13,8 @@ enum StreamResult {
 @export var stream_finished_label : Label
 @export var stream_title_label : Label
 
+@export var thumbnail : TextureRect
+
 @export var views_label : Label
 @export var viewers_label : Label
 @export var subscribers_label : Label
@@ -69,12 +71,17 @@ var stream_finished_orig_position : Vector2
 var revenue_breakdown_orig_position : Vector2
 
 func _ready() -> void:
+	GlobalSignals.stream_started.connect(on_stream_started)
 	GlobalSignals.stream_ended.connect(func(goal_met : bool):
 		if goal_met:
 			show_stream_summary()
 	)
 	self.stream_finished_orig_position = self.stream_finished_container.global_position
 	self.revenue_breakdown_orig_position = self.revenue_breakdown_container.global_position
+
+
+func on_stream_started():
+	thumbnail.texture = ImageTexture.create_from_image(self.get_viewport().get_texture().get_image())
 
 
 func show_stream_summary():
