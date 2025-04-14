@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Phase Snow Autobattler"
+config/name="Kuro Management Simulator"
+config/version="0.1.0"
 run/main_scene="uid://c0spke4hrcfyf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://public/icon.svg"
