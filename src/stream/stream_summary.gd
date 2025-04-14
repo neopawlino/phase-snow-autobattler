@@ -11,6 +11,7 @@ enum StreamResult {
 }
 
 @export var stream_finished_label : Label
+@export var stream_title_label : Label
 
 @export var views_label : Label
 @export var viewers_label : Label
@@ -36,6 +37,34 @@ enum StreamResult {
 @export var stream_finished_container : Control
 @export var revenue_breakdown_container : Control
 
+@export var stream_titles : Array[String] = [
+	"the bestest and greatest stream ever fort night",
+	"[ENDURANCE] stream ends when I yab",
+	"it's a good announcement i swear",
+	"[DONOTHON DAY 228] please send help I am trapped in this nightmare",
+	"That one anime song you liked 10 years ago [Cover]",
+	"[Minceraft] Collab with HEROBRINE?!!?!",
+	"[Zatsu] I LITERALLY ALMOST DIED???? (had breakfast)",
+	"[ASMR] eating a $10,000 mic for breakfast",
+	"[Art] Making thumbnails! (it's cropped h*ntai)",
+	"[ASMR] Betterhelp roleplay (gone bad) (gone wrong) (homicide)",
+	"Drinking 10,000 grams of pure caffeine #ad",
+	"Top 5 Streamer Simulator Games TIER LIST",
+	"Learning Korean so I can say SLURS",
+	"Spreading VTubers to war-torn countries! <3",
+	"[DONOTHON DAY 128] $1 = 10,000 GACHA PULLS",
+	"EASIEST way to get FREE MONEY [gambling]",
+	"One secret the IRS DOESN'T want you to know [it's tax fraud]",
+	"[Handcam] Cooking without a fire exinguisher CHALLENGE",
+	"[ASMR] eating a whole head of cabbage",
+	"[zatsu] being funny speedrun any%",
+	"[Handcam] Genetically engineering cat girls because no one else will",
+	"My response. (to the allegations)",
+	"Doing nothing for 12 HOURS",
+	"PhaseJam Situation is Crazy",
+	"[DONOTHON] $1 = 1 hour locked in a cage with bears",
+]
+
 var stream_finished_orig_position : Vector2
 var revenue_breakdown_orig_position : Vector2
 
@@ -56,6 +85,7 @@ func show_stream_summary():
 
 func update_stream_finished():
 	self.stream_finished_label.text = "Stream Finished - Day %d" % GameState.round_number
+	self.stream_title_label.text = self.stream_titles.pick_random()
 
 	self.views_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.views)
 	self.viewers_label.text = "%s" % StringUtil.format_number(GameState.stream_manager.peak_viewers)

@@ -22,7 +22,7 @@ width = 720
 height = 405
 fill_from = Vector2(1, 1)
 
-[node name="StreamSummary" type="Control" node_paths=PackedStringArray("stream_finished_label", "views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "performance_bonus_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
+[node name="StreamSummary" type="Control" node_paths=PackedStringArray("stream_finished_label", "stream_title_label", "views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "performance_bonus_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,6 +36,7 @@ mouse_filter = 1
 theme = ExtResource("1_0f2ul")
 script = ExtResource("2_gi83k")
 stream_finished_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer2/StreamFinishedLabel")
+stream_title_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/StreamTitle")
 views_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer/VBoxContainer/MarginContainer/ViewsLabel")
 viewers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer2/VBoxContainer/MarginContainer/ViewersLabel")
 subscribers_label = NodePath("Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HFlowContainer/MarginContainer3/VBoxContainer/MarginContainer/SubscribersLabel")
@@ -151,7 +152,7 @@ layout_mode = 2
 [node name="StreamTitle" type="Label" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(688, 0)
 layout_mode = 2
-text = "the bestest greatest stream ever fort night"
+text = "[DONOTHON] $1 = 1 hour locked in a cage with bears"
 autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/StreamFinishedContainer/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
