@@ -101,10 +101,14 @@ texture = ExtResource("8_7a1vo")
 
 [node name="KBS" parent="SubViewportContainer/MainViewport" instance=ExtResource("10_h8i6l")]
 position = Vector2i(200, 36)
+visible = false
 min_size = Vector2i(1024, 500)
 
 [node name="PreviewViewportContainer" parent="SubViewportContainer/MainViewport/KBS" index="1" node_paths=PackedStringArray("in_stream_parent")]
 in_stream_parent = NodePath("../../../../CanvasLayer")
+
+[node name="PreviewViewport" parent="SubViewportContainer/MainViewport/KBS/PreviewViewportContainer" index="0"]
+render_target_update_mode = 0
 
 [node name="Shop" parent="SubViewportContainer/MainViewport" instance=ExtResource("11_h8i6l")]
 visible = false
