@@ -266,7 +266,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug/VBoxContainer"]
 layout_mode = 2
-text = "Debug"
+text = "Cheats"
 
 [node name="HBoxContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug/VBoxContainer"]
 layout_mode = 2
