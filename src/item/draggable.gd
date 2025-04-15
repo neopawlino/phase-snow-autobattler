@@ -92,12 +92,14 @@ func start_dragging():
 	GameState.drag_end_slot = self.cur_slot
 	GameState.drag_initial_mouse_pos = self.get_global_mouse_position()
 	self.drag_object.reparent(GameState.drag_parent, true)
+	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	self.drag_started.emit()
 	if pickup_sound:
 		SoundManager.play_sound(pickup_sound)
 
 
 func on_drag_release():
+	self.mouse_filter = Control.MOUSE_FILTER_PASS
 	GameState.is_dragging = false
 	if GameState.drag_end_slot and GameState.drag_end_slot.slot_obj:
 		self.drag_occupied_slot.emit(GameState.drag_end_slot)
@@ -144,6 +146,7 @@ func move_to_slot(slot : Slot, use_tween : bool = false):
 		self.cur_slot.slot_obj = null
 	var viewport_pos := slot.get_global_transform().origin
 	var result_pos := ScreenSpaceUtil.get_screenspace_position(slot, viewport_pos)
+	var result_scale := ScreenSpaceUtil.get_screen_scale(slot)
 
 	if GameState.drag_object != self.drag_object:
 		var from_pos := ScreenSpaceUtil.get_screenspace_position(self, self.get_global_transform().origin)
@@ -152,8 +155,10 @@ func move_to_slot(slot : Slot, use_tween : bool = false):
 	if not GameState.is_dragging or GameState.drag_object != self.drag_object:
 		tween = self.create_tween()
 		tween.tween_property(self.drag_object, "global_position", result_pos, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(self.drag_object, "scale", result_scale, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_callback(func():
 			self.drag_object.global_position = slot.global_position
+			self.drag_object.scale = Vector2.ONE
 			self.drag_object.reparent(slot)
 		)
 	elif GameState.is_dragging and GameState.drag_object == self.drag_object:

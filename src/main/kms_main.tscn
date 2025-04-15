@@ -1,9 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://c0spke4hrcfyf"]
+[gd_scene load_steps=22 format=3 uid="uid://c0spke4hrcfyf"]
 
 [ext_resource type="Script" uid="uid://ddeal4r0ac4cj" path="res://src/main/kms_main.gd" id="1_5fqus"]
 [ext_resource type="Script" uid="uid://dgctwie6wj5fa" path="res://src/main/main_viewport.gd" id="1_028yr"]
 [ext_resource type="Script" uid="uid://c8at01qjju0ml" path="res://src/main/main_camera.gd" id="2_ioy5u"]
-[ext_resource type="Script" uid="uid://7heqv5r7uqsi" path="res://src/ui/viewport_push_input.gd" id="3_todjn"]
+[ext_resource type="Script" uid="uid://cmgbc2bh3cruk" path="res://src/main/main_viewport_container.gd" id="4_bnwds"]
 [ext_resource type="Texture2D" uid="uid://cn84stjrpsjkq" path="res://public/my_assets/bg_tile.png" id="5_todjn"]
 [ext_resource type="Theme" uid="uid://cf7m6ltsqcbhq" path="res://src/main/kms_theme.tres" id="6_dse3q"]
 [ext_resource type="PackedScene" uid="uid://h73e003v4ro5" path="res://src/main/desktop_shortcut.tscn" id="6_n0o07"]
@@ -22,30 +22,33 @@
 [ext_resource type="PackedScene" uid="uid://dqwxvnhpjlljm" path="res://src/ui/damage_numbers.tscn" id="18_d6ewd"]
 [ext_resource type="PackedScene" uid="uid://v3pc2y7lhn1w" path="res://src/stream/result_screen.tscn" id="21_qq7ya"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
-viewport_path = NodePath("MainViewport")
-
 [node name="main" type="Node2D"]
 script = ExtResource("1_5fqus")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("preview_viewport_container", "preview_center", "kbs_window")]
 script = ExtResource("2_ioy5u")
-preview_viewport_container = NodePath("../MainViewport/KBS/PreviewViewportContainer")
-preview_center = NodePath("../MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer/PreviewContainer/PreviewCenter")
-kbs_window = NodePath("../MainViewport/KBS")
+preview_viewport_container = NodePath("../SubViewportContainer/MainViewport/KBS/PreviewViewportContainer")
+preview_center = NodePath("../SubViewportContainer/MainViewport/KBS/KBSMain/VBoxContainer/HBoxContainer/PreviewContainer/PreviewCenter")
+kbs_window = NodePath("../SubViewportContainer/MainViewport/KBS")
 
-[node name="MainViewportSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("viewport")]
-texture = SubResource("ViewportTexture_1bvp3")
-script = ExtResource("3_todjn")
-viewport = NodePath("../MainViewport")
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_bnwds")
 
-[node name="MainViewport" type="SubViewport" parent="."]
+[node name="MainViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 gui_embed_subwindows = true
 size = Vector2i(1280, 720)
+render_target_update_mode = 4
 script = ExtResource("1_028yr")
 
-[node name="TextureRect" type="TextureRect" parent="MainViewport"]
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/MainViewport"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,28 +57,28 @@ grow_vertical = 2
 texture = ExtResource("5_todjn")
 stretch_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainViewport"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/MainViewport"]
 texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="KBSShortcut" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
+[node name="KBSShortcut" parent="SubViewportContainer/MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
 layout_mode = 2
 window = NodePath("../../KBS")
 
-[node name="ShopShortcut" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
+[node name="ShopShortcut" parent="SubViewportContainer/MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
 layout_mode = 2
 text = "Shopping"
 icon = ExtResource("10_t7wwo")
 window = NodePath("../../Shop")
 
-[node name="AnalyticsShortcut" parent="MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
+[node name="AnalyticsShortcut" parent="SubViewportContainer/MainViewport/VBoxContainer" node_paths=PackedStringArray("window") instance=ExtResource("6_n0o07")]
 layout_mode = 2
 text = "Analytics"
 icon = ExtResource("11_t5xiq")
 window = NodePath("../../Analytics")
 
-[node name="RecycleBin" type="Button" parent="MainViewport/VBoxContainer"]
+[node name="RecycleBin" type="Button" parent="SubViewportContainer/MainViewport/VBoxContainer"]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 theme = ExtResource("6_dse3q")
@@ -87,7 +90,7 @@ vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("11_6gj0c")
 
-[node name="TextureRect" type="TextureRect" parent="MainViewport/VBoxContainer/RecycleBin"]
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/MainViewport/VBoxContainer/RecycleBin"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
@@ -96,29 +99,25 @@ offset_right = 56.0
 offset_bottom = 132.0
 texture = ExtResource("8_7a1vo")
 
-[node name="KBS" parent="MainViewport" instance=ExtResource("10_h8i6l")]
+[node name="KBS" parent="SubViewportContainer/MainViewport" instance=ExtResource("10_h8i6l")]
 position = Vector2i(200, 36)
-visible = false
 min_size = Vector2i(1024, 500)
 
-[node name="PreviewViewportContainer" parent="MainViewport/KBS" index="1" node_paths=PackedStringArray("in_stream_parent")]
-in_stream_parent = NodePath("../../../CanvasLayer")
+[node name="PreviewViewportContainer" parent="SubViewportContainer/MainViewport/KBS" index="1" node_paths=PackedStringArray("in_stream_parent")]
+in_stream_parent = NodePath("../../../../CanvasLayer")
 
-[node name="PreviewViewport" parent="MainViewport/KBS/PreviewViewportContainer" index="0"]
-render_target_update_mode = 0
-
-[node name="Shop" parent="MainViewport" instance=ExtResource("11_h8i6l")]
+[node name="Shop" parent="SubViewportContainer/MainViewport" instance=ExtResource("11_h8i6l")]
 visible = false
 
-[node name="Analytics" parent="MainViewport" instance=ExtResource("12_ioy5u")]
-position = Vector2i(900, 300)
+[node name="Analytics" parent="SubViewportContainer/MainViewport" instance=ExtResource("12_ioy5u")]
+position = Vector2i(940, 297)
 size = Vector2i(300, 350)
 
-[node name="Settings" parent="MainViewport" instance=ExtResource("12_10f2p")]
+[node name="Settings" parent="SubViewportContainer/MainViewport" instance=ExtResource("12_10f2p")]
 size = Vector2i(460, 150)
 visible = false
 
-[node name="DamageNumbers" parent="MainViewport" instance=ExtResource("18_d6ewd")]
+[node name="DamageNumbers" parent="SubViewportContainer/MainViewport" instance=ExtResource("18_d6ewd")]
 is_main_numbers = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
@@ -128,13 +127,14 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
-settings_window = NodePath("../../MainViewport/Settings")
+settings_window = NodePath("../../SubViewportContainer/MainViewport/Settings")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="StreamSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
 visible = false
+scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(640, 360)
 
 [node name="DragContainer" type="Node" parent="CanvasLayer"]
@@ -143,4 +143,4 @@ script = ExtResource("15_mldad")
 [node name="ResultScreen" parent="CanvasLayer" instance=ExtResource("21_qq7ya")]
 visible = false
 
-[editable path="MainViewport/KBS"]
+[editable path="SubViewportContainer/MainViewport/KBS"]

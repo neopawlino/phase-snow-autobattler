@@ -121,6 +121,8 @@ func _ready():
 
 	GlobalSignals.stream_results_confirmed.connect(reset_stats)
 	GameState.subscribers_changed.connect(on_subscribers_changed)
+
+	get_viewport().size_changed.connect(on_viewport_size_changed)
 	hide_teams()
 
 
@@ -265,6 +267,9 @@ func start_stream():
 	get_tree().create_timer(self.hp_drain_increase_start_delay, false, true).timeout.connect(func():
 		self.hp_drain_increase_started = true
 	)
+	# stream starts -> viewport size changes -> slot positions update on one frame,
+	# so we need to set the positions on the next frame
+	call_deferred("on_viewport_size_changed")
 	GlobalSignals.stream_setup_finished.emit()
 
 
@@ -443,6 +448,12 @@ func on_player_character_died(char : Character):
 			for team_char in player_team:
 				team_char.add_status(StatusEffect.StatusId.STRENGTH, 1)
 				team_char.add_status(StatusEffect.StatusId.ARMOR, 1)
+
+
+func on_viewport_size_changed():
+	for char in player_team:
+		var slot_index : int = char.get_meta(&"slot_index", 0)
+		GameState.main_slots.set_char_visual_pos(char, slot_index)
 
 
 func check_stream_over():

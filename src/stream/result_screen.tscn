@@ -14,9 +14,11 @@ width = 1
 
 [node name="ResultScreen" type="Control" node_paths=PackedStringArray("results_panel", "overlay", "title_label", "subtitle_label", "day", "highest_views", "highest_viewers", "subscribers", "members", "total_earnings", "restart_button", "endless_button")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_p5wir")
@@ -36,9 +38,12 @@ endless_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxCont
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(2000, 2000)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("GradientTexture1D_u3fk5")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

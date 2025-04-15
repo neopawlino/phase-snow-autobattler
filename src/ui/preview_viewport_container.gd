@@ -18,10 +18,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if self.in_stream:
-		return
-	update_size()
-	var final_scale := self.size * self.scale
-	self.global_position = preview_center.global_position - final_scale / 2.
+		var window := get_window()
+		self.size = window.size
+		self.position = Vector2.ZERO
+	else:
+		update_size()
+		var final_scale := self.size * self.scale
+		self.global_position = preview_center.global_position - final_scale / 2.
 
 
 func update_size():
@@ -46,4 +49,5 @@ func move_to_top_layer():
 
 func move_to_kbs_window():
 	self.reparent(self.out_stream_parent)
+	self.size = self.base_size
 	self.in_stream = false

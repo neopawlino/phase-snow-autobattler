@@ -40,8 +40,15 @@ layer = -1
 [node name="TextureRect" type="TextureRect" parent="BGCanvasLayer"]
 z_index = -99
 custom_minimum_size = Vector2(1280, 720)
-offset_right = 1280.0
-offset_bottom = 720.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_4pdcm")
@@ -50,11 +57,12 @@ stretch_mode = 5
 
 [node name="CharacterSlots" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 320.0
-offset_right = 320.0
+grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
@@ -152,6 +160,6 @@ offset_bottom = 40.0
 mouse_filter = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(320, 360)
+position = Vector2(640, 360)
 zoom = Vector2(2, 2)
 script = ExtResource("10_4now3")

@@ -36,6 +36,7 @@ func get_screenspace_position(node : Node, viewport_position : Vector2) -> Vecto
 			result_pos += preview_viewport.position
 			# preview viewport is scaled
 			result_pos += node_pos_from_camera * stream_camera.zoom * preview_viewport.scale
+			#result_pos += node_pos_from_camera * preview_viewport.scale
 		else:
 			result_pos += viewport_position
 	if shop:
@@ -43,3 +44,10 @@ func get_screenspace_position(node : Node, viewport_position : Vector2) -> Vecto
 		result_pos += Vector2(shop.position)
 		result_pos += viewport_position
 	return result_pos
+
+
+func get_screen_scale(node : Node) -> Vector2:
+	var preview_viewport : SubViewportContainer = self.find_preview_viewport(node)
+	if preview_viewport:
+		return stream_camera.zoom * preview_viewport.scale
+	return Vector2.ONE
