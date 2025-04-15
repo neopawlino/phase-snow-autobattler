@@ -134,7 +134,6 @@ layer = 2
 
 [node name="StreamSummary" parent="CanvasLayer" instance=ExtResource("13_h8i6l")]
 visible = false
-scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(640, 360)
 
 [node name="DragContainer" type="Node" parent="CanvasLayer"]

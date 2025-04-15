@@ -24,14 +24,11 @@ fill_from = Vector2(1, 1)
 
 [node name="StreamSummary" type="Control" node_paths=PackedStringArray("stream_finished_label", "stream_title_label", "thumbnail", "views_label", "viewers_label", "subscribers_label", "subscribers_container", "members_label", "members_container", "total_revenue_label", "overlay", "performance_bonus_label", "ad_revenue_container", "ad_revenue_label", "rpm_label", "member_revenue_container", "member_revenue_label", "item_revenue_container", "item_revenue_label", "abilities_revenue_container", "abilities_revenue_label", "stream_finished_container", "revenue_breakdown_container")]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
 mouse_filter = 1
 theme = ExtResource("1_0f2ul")
 script = ExtResource("2_gi83k")
@@ -75,9 +72,11 @@ texture = SubResource("GradientTexture1D_wr6po")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -95,6 +94,8 @@ offset_right = 360.0
 offset_bottom = 441.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(360, 441.5)
 theme_type_variation = &"StreamResultsPanel"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/StreamFinishedContainer"]
@@ -325,12 +326,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -792.5
-offset_top = -238.0
-offset_right = -375.5
-offset_bottom = 222.0
+offset_left = -685.0
+offset_top = -233.5
+offset_right = -236.0
+offset_bottom = 233.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(224.5, 233.5)
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_type_variation = &"RevenueBreakdownPanel"
@@ -342,8 +345,8 @@ size_flags_vertical = 0
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_right = 16
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16
 
 [node name="Label" type="Label" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer2"]
@@ -363,10 +366,10 @@ layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
+theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/RevenueBreakdownContainer/VBoxContainer2/MarginContainer3"]
 layout_mode = 2
