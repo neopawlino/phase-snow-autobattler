@@ -128,9 +128,11 @@ func show_anim():
 	var tween := self.create_tween()
 	tween.tween_property(self.overlay, "modulate:a", 1.0, 0.5)
 
+	self.stream_finished_container.position = self.stream_finished_orig_pos
 	self.stream_finished_container.position.y += 1000
 	tween.parallel().tween_property(self.stream_finished_container, "position:y", stream_finished_orig_pos.y, 0.5).set_trans(Tween.TRANS_QUAD)
 
+	self.revenue_breakdown_container.position = self.rev_breakdown_orig_pos
 	self.revenue_breakdown_container.position.y += 1000
 	tween.tween_property(self.revenue_breakdown_container, "position:y", rev_breakdown_orig_pos.y, 0.5).set_trans(Tween.TRANS_QUAD)
 	self.show()
@@ -146,14 +148,14 @@ func hide_anim():
 	tween.tween_property(self.overlay, "modulate:a", 0.0, 0.5)
 	tween.parallel().tween_property(
 		self.stream_finished_container,
-		"global_position:y",
-		stream_finished_container.global_position.y + 1000,
+		"position:y",
+		stream_finished_container.position.y + 1000,
 		0.5
 	).set_trans(Tween.TRANS_QUAD)
 	tween.parallel().tween_property(
 		self.revenue_breakdown_container,
-		"global_position:y",
-		revenue_breakdown_container.global_position.y + 1000,
+		"position:y",
+		revenue_breakdown_container.position.y + 1000,
 		0.5
 	).set_trans(Tween.TRANS_QUAD)
 
