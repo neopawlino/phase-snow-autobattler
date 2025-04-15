@@ -114,7 +114,7 @@ render_target_update_mode = 0
 visible = false
 
 [node name="Analytics" parent="SubViewportContainer/MainViewport" instance=ExtResource("12_ioy5u")]
-position = Vector2i(940, 297)
+position = Vector2i(9999, 9999)
 size = Vector2i(300, 350)
 
 [node name="Settings" parent="SubViewportContainer/MainViewport" instance=ExtResource("12_10f2p")]
