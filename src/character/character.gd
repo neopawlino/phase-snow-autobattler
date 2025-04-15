@@ -2,6 +2,8 @@ extends Control
 
 class_name Character
 
+@export var max_level : int = 4
+
 @export var sprite : CharacterSprite
 @export var anim_player : AnimationPlayer
 
@@ -553,4 +555,4 @@ func can_merge(other: Character) -> bool:
 
 
 func is_max_level() -> bool:
-	return false
+	return self.cur_level >= self.max_level
