@@ -78,7 +78,6 @@ func get_slot_container():
 
 
 func on_mouse_entered() -> void:
-	print('mouse entered')
 	if not GameState.is_dragging or not self.pickable:
 		return
 	if GameState.drag_object is Character and self.slot_type == SlotType.CHARACTER:
@@ -108,7 +107,6 @@ func is_empty() -> bool:
 
 
 func on_mouse_exited() -> void:
-	print('mouse exit')
 	if not GameState.is_dragging:
 		return
 	if GameState.drag_end_slot == self:
