@@ -77,6 +77,7 @@ var cheats_enabled : bool:
 		cheats_enabled = val
 		cheats_enabled_changed.emit(val)
 signal cheats_enabled_changed(value : bool)
+var cheat_remove_level_cap : bool = false
 
 
 var viewer_goal : float = 10:

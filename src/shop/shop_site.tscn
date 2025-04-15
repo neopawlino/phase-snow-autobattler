@@ -283,5 +283,12 @@ custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 text = "Give talents XP"
 
+[node name="CheckButton" type="CheckButton" parent="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Remove Talent Level Cap"
+alignment = 1
+
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug/VBoxContainer/HBoxContainer/AddTalent" to="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug" method="_on_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug/VBoxContainer/HBoxContainer/GiveXP" to="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug" method="give_xp"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug/VBoxContainer/HBoxContainer/CheckButton" to="ScrollContainer/VBoxContainer/CheatsContainer/PanelContainer2/Debug" method="_on_check_button_toggled"]

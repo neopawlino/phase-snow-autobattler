@@ -555,4 +555,4 @@ func can_merge(other: Character) -> bool:
 
 
 func is_max_level() -> bool:
-	return self.cur_level >= self.max_level
+	return self.cur_level >= self.max_level and not GameState.cheat_remove_level_cap

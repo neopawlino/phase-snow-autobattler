@@ -14,3 +14,7 @@ func give_xp() -> void:
 		if slot_obj is Character:
 			slot_obj.add_xp(1)
 	)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	GameState.cheat_remove_level_cap = toggled_on
