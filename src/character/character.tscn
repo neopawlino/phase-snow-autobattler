@@ -150,7 +150,7 @@ colors = PackedColorArray(0, 1, 0.983333, 1, 1, 1, 1, 0.352941)
 
 [sub_resource type="Theme" id="Theme_f484m"]
 
-[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slot_container", "character_ui")]
+[node name="Character" type="Control" node_paths=PackedStringArray("sprite", "anim_player", "visual", "damage_numbers_origin", "hp_label", "hp_bar", "level_label", "xp_label", "xp_bar", "name_label", "char_info_container", "status_icon_container", "drag_component", "ability_slot_container", "ability_slot_grid_container", "ability_grid_scroll_container", "character_ui")]
 texture_filter = 1
 custom_minimum_size = Vector2(120, 160)
 layout_mode = 3
@@ -176,7 +176,9 @@ name_label = NodePath("Visual/CharacterUI/NameLabel")
 char_info_container = NodePath("Visual/CharacterUI")
 status_icon_container = NodePath("Visual/VBoxContainer2/StatusContainer")
 drag_component = NodePath("Draggable")
-ability_slot_container = NodePath("Visual/CharacterUI/ScrollContainer/AbilitiesContainer")
+ability_slot_container = NodePath("Visual/CharacterUI/AbilitiesContainer")
+ability_slot_grid_container = NodePath("Visual/CharacterUI/ScrollContainer/AbilitiesGridContainer")
+ability_grid_scroll_container = NodePath("Visual/CharacterUI/ScrollContainer")
 character_ui = NodePath("Visual/CharacterUI")
 
 [node name="Visual" type="Node2D" parent="." node_paths=PackedStringArray("smoke_particles")]
@@ -357,14 +359,21 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Visual/CharacterUI"]
-custom_minimum_size = Vector2(148, 48)
+visible = false
+custom_minimum_size = Vector2(116, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/CharacterUI/ScrollContainer"]
+[node name="AbilitiesGridContainer" type="GridContainer" parent="Visual/CharacterUI/ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 6
-theme_override_constants/separation = 2
+columns = 2
+
+[node name="AbilitiesContainer" type="HBoxContainer" parent="Visual/CharacterUI"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 6
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Visual"]
 offset_left = -60.0

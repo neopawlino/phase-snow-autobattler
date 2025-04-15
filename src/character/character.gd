@@ -104,6 +104,8 @@ var char_def : CharacterDefinition
 
 @export_storage var ability_slots : Array[Slot] = []
 @export var ability_slot_container : Control
+@export var ability_slot_grid_container : Control
+@export var ability_grid_scroll_container : Control
 
 @export var character_ui : Control
 
@@ -439,7 +441,18 @@ func on_ability_used(ability : AbilityDefinition):
 func add_ability_slot():
 	var new_slot := ability_slot_scene.instantiate()
 	self.ability_slots.append(new_slot)
-	ability_slot_container.add_child(new_slot)
+	if len(ability_slots) > 3:
+		move_ability_slots_to_grid()
+		ability_slot_grid_container.add_child(new_slot)
+	else:
+		ability_slot_container.add_child(new_slot)
+
+
+func move_ability_slots_to_grid():
+	for slot in ability_slots:
+		if slot.get_parent() == ability_slot_container:
+			slot.reparent(ability_slot_grid_container)
+	ability_grid_scroll_container.show()
 
 
 func cast_ability_with_anim(ability_def : AbilityDefinition, ability : Ability = null):
