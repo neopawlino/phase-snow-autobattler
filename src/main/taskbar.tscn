@@ -70,7 +70,7 @@ theme_override_constants/margin_right = 8
 
 [node name="Label" type="Label" parent="VBoxContainer/StartMenu/HBoxContainer/Control/MarginContainer/Panel/MarginContainer"]
 layout_mode = 2
-text = "KurOS v0.1.0"
+text = "KurOS v0.1.1"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/StartMenu/HBoxContainer"]
 layout_mode = 2
