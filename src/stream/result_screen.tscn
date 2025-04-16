@@ -37,7 +37,7 @@ restart_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxCont
 endless_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/EndlessButton")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(2000, 2000)
+custom_minimum_size = Vector2(9999, 9999)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
