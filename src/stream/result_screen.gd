@@ -3,7 +3,9 @@ extends Control
 class_name ResultScreen
 
 @export var defeat_title : String = "STATUS: TERMINATED"
-@export var defeat_subtitle : String = "Failed to meet viewership goal."
+@export var defeat_subtitle : String = "Failed to meet viewership goal on Day %d."
+@export var endless_defeat_title : String = "STATUS: GRADUATED"
+@export var endless_defeat_subtitle : String = "Failed to meet viewership goal on Day %d."
 @export var victory_title : String = "VICTORY!"
 @export var victory_subtitle : String = "You reached 1,000,000 subscribers on Day %d."
 
@@ -67,9 +69,12 @@ func update_results(victory : bool):
 	if victory:
 		title_label.text = victory_title
 		subtitle_label.text = victory_subtitle % day_number
+	elif GameState.victory_screen_shown:
+		title_label.text = endless_defeat_title
+		subtitle_label.text = endless_defeat_subtitle % day_number
 	else:
 		title_label.text = defeat_title
-		subtitle_label.text = defeat_subtitle
+		subtitle_label.text = defeat_subtitle % day_number
 	day.text = "%d" % day_number
 	highest_views.text = StringUtil.format_number(GameState.highest_views)
 	highest_viewers.text = StringUtil.format_number(GameState.highest_viewers)
